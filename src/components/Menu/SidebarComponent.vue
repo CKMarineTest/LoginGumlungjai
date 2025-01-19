@@ -10,7 +10,7 @@
       <nav class="mt-6">
         <ul class="space-y-2 px-3">
           <li v-for="item in menuItems" :key="item.label">
-            <a href="#" @click="setActive(item.label)" :class="[
+            <a href="#" @click="setActive(item)" :class="[
               'flex items-center py-3 px-4 rounded-xl hover:bg-white/10 backdrop-blur transition-all duration-200',
               isExpanded ? 'px-4' : 'px-0 justify-center',
               isActive === item.label ? 'bg-white/20 shadow-lg' : ''
