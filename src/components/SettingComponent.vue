@@ -96,6 +96,8 @@
 import { ref } from 'vue';
 import SidebarComponent from './Menu/SidebarComponent.vue';
 
+import { CubeTransparentIcon } from '@heroicons/vue/24/outline';
+
 const activeTab = ref('Appearance');
 const selectedMode = ref('System Default');
 const selectedTheme = ref('Royal Heath');
