@@ -14,10 +14,20 @@ const routes = [
         name: 'Login',
         component: () => import('../components/LoginFormComponent.vue'),
     },
-    {       
-        path: '/HomePage',
-        name: 'HomePage',
-        component: () => import('../components/HomePage.vue'),
+    {
+        path: '/Dashboard',
+        name: 'Dashboard',
+        component: () => import('../views/DashBoard.vue'),
+    },
+    {
+        path: '/registerform',
+        name: 'RegisterForm',
+        component: () => import('../views/RegisterForm.vue'),
+    },
+    {
+        path: '/setting',
+        name: 'Setting',
+        component: () => import('../views/SettingViews.vue'),
     }
 ]
 
