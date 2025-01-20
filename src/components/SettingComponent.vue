@@ -22,7 +22,7 @@
 
             <div v-if="activeTab === 'Appearance'" class="space-y-12">
                 <header>
-                    <h1 class="text-2xl font-semibold text-gray-900">Appearance</h1>
+                    <h1 class="text-2xl font-semibold text-gray-900 flex"><CubeTransparentIcon class="h-7 w-5" />&nbsp;  Appearance</h1>
                     <p class="mt-1 text-sm text-gray-500">Customize how your dashboard looks and feels</p>
                 </header>
 
