@@ -12,7 +12,7 @@ const routes = [
     {
         path: '/Login',
         name: 'Login',
-        component: () => import('../components/LoginFormComponent.vue'),
+        component: () => import('../views/LoginForm.vue'),
     },
     {
         path: '/Dashboard',
@@ -26,14 +26,19 @@ const routes = [
     },
     {
         path: '/setting',
-        name: 'Setting',
+        name: 'setting',
         component: () => import('../views/SettingViews.vue'),
     },
     {
         path: '/infoscholarship',
         name: 'infoscholarship',
         component: () => import('../views/InfoScholarShip.vue'),
-    }
+    },
+    {
+        path: '/settinguser',
+        name: 'settinguser',
+        component: () => import('../views/SettingUser.vue')
+    },
 ]
 
 const router = createRouter({

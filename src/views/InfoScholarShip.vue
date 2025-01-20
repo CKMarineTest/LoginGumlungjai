@@ -5,5 +5,5 @@
 </template>
 
 <script setup>
-    import InfoScholarShipsComponent from '@/components/InfoScholarShipsComponent.vue';
+import InfoScholarShipsComponent from '@/components/InfoScholarShipsComponent.vue';
 </script>
