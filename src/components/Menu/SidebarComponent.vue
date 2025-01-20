@@ -1,14 +1,20 @@
 <template>
-  <div class="flex min-h-screen bg-gray-50">
+  <div class="flex min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
     <aside 
-      class="fixed left-0 h-screen transition-all duration-300 bg-gradient-to-b from-blue-600 to-blue-800 text-white z-20"
+      class="fixed left-0 h-screen transition-all duration-300 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white z-20 shadow-xl"
       :class="[isExpanded ? 'w-64' : 'w-20']"
-      @mouseenter="isExpanded = true"
-      @mouseleave="isExpanded = false"
+      @mouseenter="expandSidebar"
+      @mouseleave="collapseSidebar"
     >
-      <div class="h-16 flex items-center justify-center bg-white/10 backdrop-blur">
-        <span v-if="isExpanded" class="text-xl font-bold text-white">GumLungjai</span>
-        <span v-else class="text-xl font-bold text-white">G</span>
+      <div class="h-16 flex items-center justify-center bg-white/10 backdrop-blur-sm border-b border-white/10 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent"></div>
+        <transition name="fade" mode="out-in">
+          <span v-if="isExpanded" class="text-xl font-bold text-white tracking-wide relative">
+            GumLungjai
+            <div class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-white/50 to-transparent"></div>
+          </span>
+          <span v-else class="text-xl font-bold text-white">G</span>
+        </transition>
       </div>
 
       <nav class="mt-6">
@@ -16,26 +22,31 @@
           <li v-for="item in menuItems" :key="item.label">
             <router-link
               :to="item.path"
-              class="flex items-center py-3 rounded-xl hover:bg-white/10 backdrop-blur transition-all duration-200"
+              class="flex items-center py-3 rounded-xl hover:bg-white/15 backdrop-blur transition-all duration-200 group relative overflow-hidden"
               :class="[
                 isExpanded ? 'px-4' : 'px-0 justify-center',
                 $route.path === item.path ? 'bg-white/20 shadow-lg' : ''
               ]"
             >
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
               <component
                 :is="item.icon"
-                class="w-5 h-5 flex-shrink-0"
+                class="w-5 h-5 flex-shrink-0 transition-all duration-200 group-hover:scale-110"
                 :class="$route.path === item.path ? 'text-white' : 'text-blue-100'"
               />
               <transition name="fade">
                 <span
                   v-if="isExpanded"
-                  class="ml-3 text-sm font-medium whitespace-nowrap"
+                  class="ml-3 text-sm font-medium whitespace-nowrap tracking-wide"
                   :class="$route.path === item.path ? 'text-white' : 'text-blue-100'"
                 >
                   {{ item.label }}
                 </span>
               </transition>
+              
+              <div v-if="!isExpanded" class="absolute left-full ml-2 px-3 py-1.5 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap shadow-xl">
+                {{ item.label }}
+              </div>
             </router-link>
           </li>
         </ul>
@@ -44,70 +55,123 @@
 
     <div class="flex-1 min-w-0"> 
       <div 
-        class="transition-all duration-300 ml-20"
+        class="transition-all duration-300"
         :class="[isExpanded ? 'ml-64' : 'ml-20']"
       >
         <header
-          class="h-16 bg-white border-b flex items-center justify-between px-6 shadow-sm fixed top-0 right-0 transition-all duration-300"
+          class="h-16 bg-white/90 border-b flex items-center justify-between px-6 shadow-sm fixed top-0 right-0 transition-all duration-300 backdrop-blur-md z-10"
           :class="[isExpanded ? 'left-64' : 'left-20']"
         >
           <div class="flex-1 max-w-lg">
-            <div class="relative">
-              <magnifying-glass-icon class="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <div class="relative group">
+              <magnifying-glass-icon class="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 transition-colors group-hover:text-blue-500" />
               <input 
                 type="text" 
                 v-model="searchQuery" 
                 placeholder="ค้นหา..."
-                class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50/50 hover:bg-white"
               >
+              <div class="absolute inset-0 border border-transparent group-hover:border-blue-100 rounded-xl pointer-events-none transition-colors"></div>
             </div>
           </div>
 
-          <div class="flex items-center space-x-4">
-            <div class="relative">
+          <div class="flex items-center space-x-6">
+            <div class="relative notifications-container">
               <button 
-                @click="showNotifications = !showNotifications"
-                class="p-2 hover:bg-gray-100 rounded-full relative transition-colors"
+                @click="toggleNotifications"
+                class="p-2.5 hover:bg-gray-100 rounded-xl relative transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
                 <bell-icon class="w-5 h-5 text-gray-600" />
-                <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                <!-- <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full animate-ping"></span>
+                <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span> -->
               </button>
 
-              <div 
-                v-if="showNotifications"
-                class="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl border py-2 z-30"
-                @click="showNotifications = false"
+              <transition 
+                enter-active-class="transition duration-200 ease-out"
+                enter-from-class="transform scale-95 opacity-0"
+                enter-to-class="transform scale-100 opacity-100"
+                leave-active-class="transition duration-200 ease-in"
+                leave-from-class="transform scale-100 opacity-100"
+                leave-to-class="transform scale-95 opacity-0"
               >
-              </div>
+                <div 
+                  v-if="showNotifications"
+                  class="absolute right-0 mt-3 w-80 bg-white rounded-xl shadow-xl border py-2 z-30"
+                >
+                  <div class="px-4 py-2 border-b flex justify-between items-center">
+                    <h3 class="font-medium text-gray-900">การแจ้งเตือน</h3>
+                    <!-- <button class="text-xs text-blue-600 hover:text-blue-700">อ่านทั้งหมดแล้ว</button> -->
+                  </div>
+                  <div class="max-h-64 overflow-y-auto">
+                    <div class="px-4 py-3 hover:bg-gray-50 transition-colors cursor-pointer">
+                      <p class="text-sm text-gray-600">ไม่มีการแจ้งเตือนใหม่</p>
+                    </div>
+                  </div>
+                </div>
+              </transition>
             </div>
 
-            <div class="relative">
+            <div class="relative profile-container">
               <button 
-                @click="showProfileMenu = !showProfileMenu"
-                class="flex items-center space-x-3 hover:bg-gray-100 rounded-lg px-3 py-2 transition-colors"
+                @click="toggleProfileMenu"
+                class="flex items-center space-x-3 hover:bg-gray-100 rounded-xl px-3 py-2 transition-all duration-200 group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
-                <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white text-sm font-medium">
+                <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white text-sm font-medium shadow-lg transition-transform duration-200 group-hover:scale-105 relative overflow-hidden">
+                  <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent transform rotate-45"></div>
                   {{ userName[0] }}
                 </div>
                 <div class="flex items-center">
-                  <span class="text-sm font-medium">{{ userName }}</span>
-                  <chevron-down-icon class="w-4 h-4 ml-1 text-gray-500" />
+                  <span class="text-sm font-medium text-gray-700">{{ userName }}</span>
+                  <chevron-down-icon 
+                    class="w-4 h-4 ml-1 text-gray-500 transition-transform duration-200" 
+                    :class="{ 'rotate-180': showProfileMenu }" 
+                  />
                 </div>
               </button>
 
-              <div 
-                v-if="showProfileMenu"
-                class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border py-2 z-30"
-                @click="showProfileMenu = false"
+              <transition 
+                enter-active-class="transition duration-200 ease-out"
+                enter-from-class="transform scale-95 opacity-0"
+                enter-to-class="transform scale-100 opacity-100"
+                leave-active-class="transition duration-200 ease-in"
+                leave-from-class="transform scale-100 opacity-100"
+                leave-to-class="transform scale-95 opacity-0"
               >
-                <a 
-                  href="#" 
-                  class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
-                  @click.prevent="handleLogout"
+                <div 
+                  v-if="showProfileMenu"
+                  class="absolute right-0 mt-3 w-56 bg-white rounded-xl shadow-xl border py-2 z-30"
                 >
-                  ออกจากระบบ
-                </a>
-              </div>
+                  <div class="px-4 py-2 border-b">
+                    <p class="text-sm font-medium text-gray-900">{{ userName }}</p>
+                    <p class="text-xs text-gray-500"></p>
+                  </div>
+                  <div class="py-1">
+                    <a 
+                      href="#" 
+                      class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                    >
+                      <user-icon class="w-4 h-4 mr-3 text-gray-400" />
+                      โปรไฟล์
+                    </a>
+                    <a 
+                      href="#" 
+                      class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                    >
+                      <cog-6-tooth-icon class="w-4 h-4 mr-3 text-gray-400" />
+                      ตั้งค่า
+                    </a>
+                  </div>
+                  <hr class="my-1 border-gray-200">
+                  <a 
+                    href="#" 
+                    class="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors group"
+                    @click.prevent="handleLogout"
+                  >
+                    <arrow-right-on-rectangle-icon class="w-4 h-4 mr-3 text-red-400 group-hover:text-red-500" />
+                    ออกจากระบบ
+                  </a>
+                </div>
+              </transition>
             </div>
           </div>
         </header>
@@ -127,7 +191,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { 
   ChartBarIcon, 
@@ -135,13 +199,12 @@ import {
   BellIcon,
   ChevronDownIcon,
   MagnifyingGlassIcon,
-  DocumentIcon
-  
+  DocumentIcon,
+  ArrowRightOnRectangleIcon,
+  UserIcon
 } from '@heroicons/vue/24/outline';
 
 const router = useRouter();
-// const route = useRoute();
-
 const isExpanded = ref(false);
 const showNotifications = ref(false);
 const showProfileMenu = ref(false);
@@ -154,9 +217,48 @@ const menuItems = ref([
   { icon: Cog6ToothIcon, label: 'ตั้งค่า', path: '/setting' }
 ]);
 
+const expandSidebar = () => {
+  isExpanded.value = true;
+};
+
+const collapseSidebar = () => {
+  isExpanded.value = false;
+};
+
+const toggleNotifications = (event) => {
+  event.stopPropagation();
+  showNotifications.value = !showNotifications.value;
+  if (showNotifications.value) {
+    showProfileMenu.value = false;
+  }
+};
+
+const toggleProfileMenu = (event) => {
+  event.stopPropagation();
+  showProfileMenu.value = !showProfileMenu.value;
+  if (showProfileMenu.value) {
+    showNotifications.value = false;
+  }
+};
+
 const handleLogout = () => {
   router.push('/login');
 };
+
+const handleClickOutside = (event) => {
+  if (!event.target.closest('.notifications-container') && !event.target.closest('.profile-container')) {
+    showNotifications.value = false;
+    showProfileMenu.value = false;
+  }
+};
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside);
+});
+
+onUnmounted(() => {
+  document.removeEventListener('click', handleClickOutside);
+});
 </script>
 
 <style scoped>
@@ -172,12 +274,17 @@ const handleLogout = () => {
 
 .page-enter-active,
 .page-leave-active {
-  transition: opacity 0.2s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.page-enter-from,
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
 .page-leave-to {
   opacity: 0;
+  transform: translateY(-10px);
 }
 
 ::-webkit-scrollbar {
@@ -186,6 +293,7 @@ const handleLogout = () => {
 
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb {
