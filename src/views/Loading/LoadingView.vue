@@ -12,7 +12,9 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import { defineProps, computed } from 'vue';
+
 
 const props = defineProps({
     is_show: {
@@ -22,6 +24,7 @@ const props = defineProps({
 });
 
 const is_show = computed(() => props.is_show);
+
 </script>
 
 <style scoped>

@@ -1,9 +1,9 @@
 <template>
     <div class="flex">
         <SettingComponent />
-    </div>
+    </div> 
 </template>
 
 <script setup>
-import SettingComponent from '@/components/SettingComponent.vue';
+    import SettingComponent from '@/components/SettingComponent.vue';
 </script>
