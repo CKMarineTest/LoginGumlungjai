@@ -201,7 +201,8 @@ import {
   MagnifyingGlassIcon,
   DocumentIcon,
   ArrowRightOnRectangleIcon,
-  UserIcon
+  UserIcon,
+  IdentificationIcon
 } from '@heroicons/vue/24/outline';
 
 const router = useRouter();
@@ -214,7 +215,8 @@ const userName = ref('พงศกร ทองรักษ์');
 const menuItems = ref([
   { icon: ChartBarIcon, label: 'แดชบอร์ด', path: '/dashboard' },
   { icon: DocumentIcon, label: 'ใบสมัคร', path: '/registerform' },
-  { icon: Cog6ToothIcon, label: 'ตั้งค่า', path: '/setting' }
+  { icon: IdentificationIcon, label: 'ข้อมูลผู้ที่ได้รับทุน', path: '/infoscholarship'},
+  { icon: Cog6ToothIcon, label: 'ตั้งค่า', path: '/setting' },
 ]);
 
 const expandSidebar = () => {
