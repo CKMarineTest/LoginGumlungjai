@@ -68,10 +68,10 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ item.email }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-right">
                                 <div
-                                    class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                    class="flex items-center justify-end gap-2 ">
                                     <button
                                         @click="documentData"
-                                        class="p-2 text-blue-600 hover:bg-blue-200 rounded-lg transition-colors duration-200">
+                                        class="p-2 text-blue-600 rounded-xl hover:bg-blue-200 duraion-200 ">
                                         <DocumentTextIcon class="h-5 w-5" />
                                     </button>
                                 </div>

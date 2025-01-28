@@ -1,13 +1,18 @@
 <template>
-    <div class="min-h-screen p-4 md:p-6 lg:p-8">
+
+    <div class="flex">
+        <!-- <aside class="w-16 h-screen fixed left-0 bg-gray-900"> -->
+        <!-- <SidebarComponent /> -->
+        <!-- </aside> -->
+    </div>
+    <div class="min-h-screen bg-blue-100 p-4 md:p-6 lg:p-8">
         <div class="w-full max-w-7xl mx-auto bg-white shadow-xl rounded-xl overflow-hidden">
             <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-4 text-white relative overflow-hidden">
                 <div class="flex flex-wrap justify-between items-start gap-4 relative z-10">
                     <div class="flex items-center gap-6 w-full sm:w-auto">
                         <div
-                            class="bg-white/90 backdrop-blur p-3 rounded-2xl shadow-lg transform hover:scale-105 transition-transform">
-                            <img :src="logoUrl || './../assets/picture/GLJ_Logo.png'" alt="Logo"
-                                class="w-14 h-14 rounded-xl sm:w-32 sm:h-32 lg:w-48 lg:h-48"
+                            class="bg-white backdrop-blur p-3 rounded-2xl shadow-xl transform hover:scale-105 transition-transform">
+                            <img :src="logoUrl" alt="Logo" class="w-14 h-14 rounded-xl sm:w-32 sm:h-32 lg:w-48 lg:h-48"
                                 style="object-fit: cover; height: 200px; width: auto;" />
                         </div>
                         <div>
@@ -36,37 +41,36 @@
                 <h3 class="text-xl font-semibold text-blue-900 mb-6 flex items-center gap-2">
                     ประเภททุนการศึกษา
                 </h3>
-                <div class="relative">
-
+                <div class="relative text-red-500 text-xl">
+                    {{ refexample }}
                 </div>
             </div>
             <div class="divide-y divide-gray-100 p-8 bg-gray-50/50 border-b">
                 <h3 class="text-xl font-semibold text-blue-900 mb-6 flex items-center gap-2">
                     ส่วนที่ 1 ข้อมูลส่วนตัวของผู้สมัครรับทุนการศึกษา
-                    <p class="text-sm text-red-500 ml-auto">เครื่องหมาย * คือ จำเป็นต้องกรอก</p>
                 </h3>
 
                 <div class="flex flex-wrap gap-4">
                     <div class="w-full sm:w-1/2 lg:w-1/3">
                         <label class="text-lg font-semibold text-blue-700 mb-2 block" for="name">
-                            ชื่อ <span class="text-red-500 text-sm">*</span>
+                            ชื่อ <span class="text-red-500 text-sm"></span>
                         </label>
-                        <input type="text" placeholder="กรอกชื่อ" id="name" name="name"
+                        <input type="text" placeholder="ชื่อ" id="name" name="name" readonly
                             class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200">
 
                     </div>
                     <div class="w-full sm:w-1/2 lg:w-1/3">
                         <label class="text-lg font-semibold text-blue-700 mb-2 block" for="lastname">
-                            นามสกุล <span class="text-red-500 text-sm">*</span>
+                            นามสกุล <span class="text-red-500 text-sm"></span>
                         </label>
-                        <input type="text" placeholder="กรอกนามสกุล" id="lastname" name="lastname"
+                        <input type="text" placeholder="นามสกุล" id="lastname" name="lastname" readonly
                             class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200">
                     </div>
                     <div class="w-full sm:w-1/2 lg:w-1/4">
                         <label class="text-lg font-semibold text-blue-700 mb-2 block" for="nickname">
-                            ชื่อเล่น <span class="text-red-500 text-sm">*</span>
+                            ชื่อเล่น <span class="text-red-500 text-sm"></span>
                         </label>
-                        <input type="text" placeholder="กรอกชื่อเล่น" id="nickname" name="nickname"
+                        <input type="text" placeholder="ชื่อเล่น" id="nickname" name="nickname" readonly
                             class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200">
                     </div>
                 </div>
@@ -74,30 +78,30 @@
                 <div class="flex flex-wrap gap-4 mt-2">
                     <div class="w-full sm:w-1/2 lg:w-1/4">
                         <label for="dob" class="text-lg font-semibold text-blue-700 mb-2 block">
-                            วัน/เดือน/ปีเกิด <span class="text-red-500 text-sm">*</span>
+                            วัน/เดือน/ปีเกิด <span class="text-red-500 text-sm"></span>
                         </label>
-                        <input type="date" placeholder="กรอกวันเดือนปีเกิด" id="dob" name="dob"
+                        <input type="date" placeholder="วันเดือนปีเกิด" id="dob" name="dob" readonly
                             class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200">
                     </div>
                     <div class="w-full sm:w-1/2 lg:w-1/3">
                         <label class="text-lg font-semibold text-blue-700 mb-2 block" for="age">
-                            อายุ <span class="text-red-500 text-sm">*</span>
+                            อายุ <span class="text-red-500 text-sm"></span>
                         </label>
-                        <input type="number" placeholder="กรอกอายุ" id="age" name="age"
+                        <input type="number" placeholder="อายุ" id="age" name="age" readonly
                             class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200">
                     </div>
                     <div class="w-full sm:w-1/2 lg:w-1/3">
                         <label class="text-lg font-semibold text-blue-700 mb-2 block" for="phone">
-                            เบอร์โทรศัพท์ติดต่อ <span class="text-red-500 text-sm">*</span>
+                            เบอร์โทรศัพท์ติดต่อ <span class="text-red-500 text-sm"></span>
                         </label>
-                        <input type="tel" placeholder="กรอกเบอร์โทรศัพท์" id="phone" maxlength="10" name="phone"
+                        <input type="tel" placeholder="เบอร์โทรศัพท์" id="phone" maxlength="10" name="phone" readonly
                             class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200">
                     </div>
                     <div class="w-full sm:w-1/3 lg:w-1/3">
                         <label class="text-lg font-semibold text-blue-700 mb-2 block" for="idcard">
-                            เลขบัตรประจำตัวประชาชน <span class="text-red-500 text-sm">*</span>
+                            เลขบัตรประจำตัวประชาชน <span class="text-red-500 text-sm"></span>
                         </label>
-                        <input type="text" placeholder="กรอกเลขบัตรประชาชน" id="idcard" name="idcard"
+                        <input type="text" placeholder="เลขบัตรประชาชน" id="idcard" name="idcard" readonly
                             class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200" />
                     </div>
 
@@ -106,162 +110,93 @@
                             <label class="text-lg font-semibold text-blue-700 mb-2 block" for="phone2">
                                 เบอร์โทรศัพท์ติดต่อ (สำรอง) <span class="text-red-500 text-sm"></span>
                             </label>
-                            <input type="tel" placeholder="กรอกเบอร์โทรศัพท์ติดต่อ (สำรอง)" maxlength="10" name="phone2"
-                                id="phone2"
+                            <input type="tel" placeholder="เบอร์โทรศัพท์ติดต่อ (สำรอง)" maxlength="10" name="phone2"
+                                readonly id="phone2"
                                 class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200">
                         </div>
                         <div class="w-full sm:w-1/3 lg:w-1/3">
                             <label class="text-lg font-semibold text-blue-700 mb-2 block" for="email">
-                                อีเมล <span class="text-red-500 text-sm">*</span>
+                                อีเมล <span class="text-red-500 text-sm"></span>
                             </label>
-                            <input type="email" placeholder="กรอกอีเมล" id="email" @blur="validateEmail" name="email"
+                            <input type="email" placeholder="อีเมล" id="email" @blur="validateEmail" name="email"
+                                readonly
                                 class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200" />
                         </div>
                         <div class="w-full sm:w-1/2 lg:w-1/4">
                             <label class="text-lg font-semibold text-blue-700 mb-2 block" for="lineId">
                                 ID LINE <span class="text-red-500 text-sm"></span>
                             </label>
-                            <input type="text" placeholder="กรอกไอดีไลน์" id="lineId" name="lineId"
+                            <input type="text" placeholder="ไอดีไลน์" id="lineId" name="lineId" readonly
                                 class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200">
                         </div>
                         <div class="w-full sm:w-1/2 lg:w-1/2">
                             <label class="text-lg font-semibold text-blue-700 mb-2 block" for="facebook">
                                 Facebook <span class="text-red-500 text-sm"></span>
                             </label>
-                            <input type="text" placeholder="Facebook" id="facebook" name="facebook"
+                            <input type="text" placeholder="Facebook" id="facebook" name="facebook" readonly
                                 class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200">
                         </div>
                         <div class="w-full sm:w-1/1 lg:w-1/1">
                             <label class="text-lg font-semibold text-blue-700 mb-2 block" for="special">
                                 ความสามารถพิเศษ <span class="text-red-500 text-sm"></span>
                             </label>
-                            <textarea id="special" name="special" rows="4"
+                            <textarea id="special" name="special" rows="4" readonly
                                 class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
-                                placeholder="กรอกความสามารถพิเศษ"></textarea>
+                                placeholder="ความสามารถพิเศษ"></textarea>
                         </div>
 
                         <div class="w-full">
                             <label class="text-lg font-semibold text-blue-700 mb-4 block" for="health">
-                                สุขภาพผู้ขอรับทุน <span class="text-red-500 text-sm">*</span>
+                                สุขภาพผู้ขอรับทุน <span class="text-red-500 text-sm"></span>
                             </label>
                             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                                <label
-                                    class="flex items-center gap-4 p-4 bg-white border-2 rounded-xl hover:border-blue-400 cursor-pointer transition-all group">
-                                    <input type="radio" name="health" value="healthy"
-                                        class="w-6 h-6 text-blue-600 rounded-lg border-gray-300 focus:ring-blue-500" />
-                                    <span class="text-lg font-medium">สมบูรณ์แข็งแรง</span>
-                                </label>
-
-                                <label
-                                    class="flex items-center gap-4 p-4 bg-white border-2 rounded-xl hover:border-blue-400 cursor-pointer transition-all group">
-                                    <input type="radio" name="health" value="hasDisease"
-                                        class="w-6 h-6 text-blue-600 rounded-lg border-gray-300 focus:ring-blue-500" />
-                                    <span class="text-lg font-medium">มีโรคประจำตัว</span>
-                                </label>
-
-                                <label
-                                    class="flex items-center gap-4 p-4 bg-white border-2 rounded-xl hover:border-blue-400 cursor-pointer transition-all group">
-                                    <input type="radio" name="health" value="other"
-                                        class="w-6 h-6 text-blue-600 rounded-lg border-gray-300 focus:ring-blue-500" />
-                                    <span class="text-lg font-medium">อื่นๆ</span>
-                                </label>
+                                <input type="text" placeholder="สุขภาพ" id="health" name="health" readonly
+                                    class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200">
                             </div>
                         </div>
                         <div class="w-full sm:w-1/1 lg:w-1/1">
                             <label class="text-lg font-semibold text-blue-700 mb-2 block" for="special">
                                 งานพิเศษที่เคยทำหรือกำลังทำอยู่ (นอกเวลาการศึกษา) <span
-                                    class="text-red-500 text-sm">*</span>
+                                    class="text-red-500 text-sm"></span>
                             </label>
                             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                                <label
-                                    class="flex items-center gap-4 p-4 bg-white border-2 rounded-xl hover:border-blue-400 cursor-pointer transition-all group">
-                                    <input type="radio" name="specialWork" value="notDoing"
-                                        class="w-6 h-6 text-blue-600 rounded-lg border-gray-300 focus:ring-blue-500" />
-                                    <span class="text-lg font-medium">ไม่ได้ทำ</span>
-                                </label>
-
-                                <label
-                                    class="flex items-center gap-4 p-4 bg-white border-2 rounded-xl hover:border-blue-400 cursor-pointer transition-all group">
-                                    <input type="radio" name="specialWork" value="hasSpecialWork"
-                                        class="w-6 h-6 text-blue-600 rounded-lg border-gray-300 focus:ring-blue-500" />
-                                    <span class="text-lg font-medium">ทำ</span>
-                                </label>
+                                <input type="text" placeholder="งานพิเศษ" id="special" name="special" readonly
+                                    class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200">
                             </div>
                             <div class="w-full sm:w-1/1 lg:w-1/1 mt-2">
-                                <label class="text-lg font-semibold text-blue-700 mb-2 block" for="special">
+                                <label class="text-lg font-semibold text-blue-700 mb-2 block" for="scholarship">
                                     เคยได้รับทุนการศึกษาหรือขอรับทุนที่อื่นหรือไม่ <span
-                                        class="text-red-500 text-sm">*</span>
+                                        class="text-red-500 text-sm"></span>
                                 </label>
                                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                                    <label
-                                        class="flex items-center gap-4 p-4 bg-white border-2 rounded-xl hover:border-blue-400 cursor-pointer transition-all group">
-                                        <div class="relative">
-                                            <input type="radio" name="scholarship" value="no"
-                                                class="w-6 h-6 text-blue-600 rounded-lg border-gray-300 focus:ring-blue-500" />
-                                            <div
-                                                class="absolute inset-0 bg-blue-500 scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-10 rounded-lg transition-all">
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <span class="text-lg font-medium">ไม่เคย</span>
-                                        </div>
-                                    </label>
-
-                                    <label
-                                        class="flex items-center gap-4 p-4 bg-white border-2 rounded-xl hover:border-blue-400 cursor-pointer transition-all group">
-                                        <div class="relative">
-                                            <input type="radio" name="scholarship" value="yes"
-                                                class="w-6 h-6 text-blue-600 rounded-lg border-gray-300 focus:ring-blue-500" />
-                                            <div
-                                                class="absolute inset-0 bg-blue-500 scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-10 rounded-lg transition-all">
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <span class="text-lg font-medium">เคย</span>
-                                        </div>
-                                    </label>
+                                    <input type="text" placeholder="การรับทุน" id="scholarship" name="scholarship"
+                                        readonly
+                                        class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200">
                                 </div>
 
                                 <div class="w-full sm:w-1/1 lg:w-1/1 mt-2">
-                                    <label class="text-lg font-semibold text-blue-700 mb-2 block" for="special">
-                                        เป็นผู้กู้ กยศ. หรือไม่ <span class="text-red-500 text-sm">*</span>
+                                    <label class="text-lg font-semibold text-blue-700 mb-2 block" for="">
+                                        เป็นผู้กู้ กยศ. หรือไม่ <span class="text-red-500 text-sm"></span>
+                                    </label>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                                        <input type="text" placeholder="การกู้กยศ." id="" name="" readonly
+                                            class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200">
+                                    </div>
+
+                                    <label class="text-lg font-semibold text-blue-700 mb-2 block" for="">
+                                        กู้กยศ.เป็นค่าใช้จ่าย <span class="text-red-500 text-sm"></span>
                                     </label>
                                     <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                                        <label
-                                            class="flex items-center gap-4 p-4 bg-white border-2 rounded-xl hover:border-blue-400 cursor-pointer transition-all group">
-                                            <div class="relative">
-                                                <input type="radio" name="beingstudentLoaner" value="no"
-                                                    class="w-6 h-6 text-blue-600 rounded-lg border-gray-300 focus:ring-blue-500" />
-                                                <div
-                                                    class="absolute inset-0 bg-blue-500 scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-10 rounded-lg transition-all">
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <span class="text-lg font-medium">ไม่เป็น</span>
-                                            </div>
-                                        </label>
-
-                                        <label
-                                            class="flex items-center gap-4 p-4 bg-white border-2 rounded-xl hover:border-blue-400 cursor-pointer transition-all group">
-                                            <div class="relative">
-                                                <input type="radio" name="beingstudentLoaner" value="hasLoaning"
-                                                    id="hasLoaning"
-                                                    class="w-6 h-6 text-blue-600 rounded-lg border-gray-300 focus:ring-blue-500" />
-                                                <div
-                                                    class="absolute inset-0 bg-blue-500 scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-10 rounded-lg transition-all">
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <span class="text-lg font-medium">เป็น</span>
-                                            </div>
-                                        </label>
+                                        <input type="text" placeholder="กู้กยศ. เป็นค่าใช้จ่าย" id="" name="" readonly
+                                            class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200">
                                     </div>
 
                                     <div class="w-full mt-2">
                                         <label for="university" class="text-lg font-semibold text-blue-700 mb-2 block">
                                             สถานศึกษาที่สอบติด
                                             (สามารถค้นหาเป็นตัวย่อภาษาไทยและอังกฤษหรือชื่อเต็มของมหาวิทยาลัย) <span
-                                                class="text-red-500 text-sm">*</span>
+                                                class="text-red-500 text-sm"></span>
                                         </label>
                                         <div class="relative">
                                             <div
@@ -333,56 +268,56 @@
                                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
                                         <div>
                                             <label class="text-lg font-semibold text-blue-700 mb-2 block" for="faculty">
-                                                คณะ <span class="text-red-500">*</span>
+                                                คณะ <span class="text-red-500"></span>
                                             </label>
-                                            <input type="text" id="faculty" name="faculty"
+                                            <input type="text" id="faculty" name="faculty" readonly
                                                 class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
-                                                placeholder="กรอกคณะ">
+                                                placeholder="คณะ">
                                         </div>
 
                                         <div>
                                             <label class="text-lg font-semibold text-blue-700 mb-2 block" for="major">
-                                                สาขา <span class="text-red-500">*</span>
+                                                สาขา <span class="text-red-500"></span>
                                             </label>
-                                            <input type="text" id="major" name="major"
+                                            <input type="text" id="major" name="major" readonly
                                                 class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
-                                                placeholder="กรอกสาขา">
+                                                placeholder="สาขา">
                                         </div>
                                     </div>
 
                                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
                                         <div class="relative">
                                             <label class="text-lg font-semibold text-blue-700 mb-2 block" for="floor">
-                                                ชั้นปี <span class="text-red-500">*</span>
+                                                ชั้นปี <span class="text-red-500"></span>
                                             </label>
-                                            <input type="text" id="floor" name="floor"
+                                            <input type="text" id="floor" name="floor" readonly
                                                 class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
-                                                placeholder="กรอกชั้นปี">
+                                                placeholder="ชั้นปี">
                                         </div>
                                         <div>
                                             <label class="text-lg font-semibold text-blue-700 mb-2 block" for="year">
-                                                ปีการศึกษา <span class="text-red-500">*</span>
+                                                ปีการศึกษา <span class="text-red-500"></span>
                                             </label>
-                                            <input type="text" id="floor" name="floor"
+                                            <input type="text" id="floor" name="floor" readonly
                                                 class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
-                                                placeholder="กรอกปีการศึกษา">
+                                                placeholder="ปีการศึกษา">
                                         </div>
                                         <div>
                                             <label class="text-lg font-semibold text-blue-700 mb-2 block" for="gpa">
                                                 คะแนนเฉลี่ย (จบ ม.6 ใส่เกรดจากใบปพ.1/รบ.1) <span
-                                                    class="text-red-500">*</span>
+                                                    class="text-red-500"></span>
                                             </label>
-                                            <input type="number" id="gpa" name="gpa"
+                                            <input type="number" id="gpa" name="gpa" readonly
                                                 class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
-                                                placeholder="กรอกเกรดเฉลี่ย">
+                                                placeholder="เกรดเฉลี่ย">
                                         </div>
                                         <div>
                                             <label class="text-lg font-semibold text-blue-700 mb-2 block" for="tcas">
                                                 ค่าเล่าเรียน <span class="text-red-500"></span>
                                             </label>
-                                            <input type="number" id="tcas" name="tcas"
+                                            <input type="number" id="tcas" name="tcas" readonly
                                                 class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
-                                                placeholder="กรอกค่าเล่าเรียน (บาท/เทอม)">
+                                                placeholder="ค่าเล่าเรียน (บาท/เทอม)">
                                         </div>
                                     </div>
                                     <br>
@@ -400,10 +335,10 @@
                                                         1
                                                     </div>
 
-                                                    <input type="text" placeholder="ระดับ"
+                                                    <input type="text" placeholder="ระดับ" readonly
                                                         class="w-full md:w-4/12 px-3 md:px-4 h-10 md:h-12 text-base md:text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500">
 
-                                                    <input type="text"
+                                                    <input type="text" readonly
                                                         class="w-full md:w-4/12 px-3 md:px-4 h-10 md:h-12 text-base md:text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
                                                         placeholder="ระบุชื่อรายการเกียรติบัตร" />
 
@@ -418,42 +353,42 @@
                                         <div class="w-full sm:w-full lg:w-full">
                                             <h3 class="text-xl font-semibold text-blue-900 mb-2 flex items-center"
                                                 for="">
-                                                ที่อยู่ตามภูมิลำเนาเดิม <span class="text-red-500 text-sm">*</span>
+                                                ที่อยู่ตามภูมิลำเนาเดิม <span class="text-red-500 text-sm"></span>
                                             </h3>
                                             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                                                 <div class="relative group">
                                                     <label
                                                         class="block text-lg font-semibold text-blue-700 mb-2.5 transition-colors group-hover:text-blue-600">
-                                                        บ้านเลขที่ <span class="text-red-500 text-sm">*</span>
+                                                        บ้านเลขที่ <span class="text-red-500 text-sm"></span>
                                                     </label>
-                                                    <input type="text" placeholder="บ้านเลขที่" id="homeid"
+                                                    <input type="text" placeholder="บ้านเลขที่" id="homeid" readonly
                                                         class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                                 </div>
 
                                                 <div class="relative group">
                                                     <label
                                                         class="block text-lg font-semibold text-blue-700 mb-2.5 transition-colors group-hover:text-blue-600">
-                                                        หมู่ที่ <span class="text-red-500 text-sm">*</span>
+                                                        หมู่ที่ <span class="text-red-500 text-sm"></span>
                                                     </label>
-                                                    <input type="text" placeholder="หมู่ที่" id="grouphomeid"
+                                                    <input type="text" placeholder="หมู่ที่" id="grouphomeid" readonly
                                                         class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                                 </div>
 
                                                 <div class="relative group">
                                                     <label
                                                         class="block text-lg font-semibold text-blue-700 mb-2.5 transition-colors group-hover:text-blue-600">
-                                                        ตรอก/ซอย <span class="text-red-500 text-sm">*</span>
+                                                        ตรอก/ซอย <span class="text-red-500 text-sm"></span>
                                                     </label>
-                                                    <input type="text" placeholder="ตรอก/ซอย" id="soi" name="soi"
+                                                    <input type="text" placeholder="ตรอก/ซอย" id="soi" name="soi" readonly
                                                         class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                                 </div>
 
                                                 <div class="relative group">
                                                     <label
                                                         class="block text-lg font-semibold text-blue-700 mb-2.5 transition-colors group-hover:text-blue-600">
-                                                        ถนน <span class="text-red-500 text-sm">*</span>
+                                                        ถนน <span class="text-red-500 text-sm"></span>
                                                     </label>
-                                                    <input type="text" placeholder="ถนน" id="road" name="road"
+                                                    <input type="text" placeholder="ถนน" id="road" name="road" readonly
                                                         class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                                 </div>
                                             </div>
@@ -462,9 +397,9 @@
                                                 <div class="relative group">
                                                     <label
                                                         class="block text-lg font-semibold text-blue-700 mb-2.5 transition-colors group-hover:text-blue-600">
-                                                        จังหวัด <span class="text-red-500 text-sm">*</span>
+                                                        จังหวัด <span class="text-red-500 text-sm"></span>
                                                     </label>
-                                                    <input type="text" placeholder="จังหวัด" id="province"
+                                                    <input type="text" placeholder="จังหวัด" id="province" readonly
                                                         name="province"
                                                         class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                                 </div>
@@ -472,18 +407,18 @@
                                                 <div class="relative group">
                                                     <label
                                                         class="block text-lg font-semibold text-blue-700 mb-2.5 transition-colors group-hover:text-blue-600">
-                                                        เขต/อำเภอ <span class="text-red-500 text-sm">*</span>
+                                                        เขต/อำเภอ <span class="text-red-500 text-sm"></span>
                                                     </label>
-                                                    <input type="text" placeholder="อำเภอ" id="district" name="district"
+                                                    <input type="text" placeholder="อำเภอ" id="district" name="district" readonly
                                                         class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                                 </div>
 
                                                 <div class="relative group">
                                                     <label
                                                         class="block text-lg font-semibold text-blue-700 mb-2.5 transition-colors group-hover:text-blue-600">
-                                                        แขวง/ตำบล <span class="text-red-500 text-sm">*</span>
+                                                        แขวง/ตำบล <span class="text-red-500 text-sm"></span>
                                                     </label>
-                                                    <input type="text" placeholder="ตำบล" id="subdistrict"
+                                                    <input type="text" placeholder="ตำบล" id="subdistrict" readonly
                                                         name="subdistrict"
                                                         class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                                 </div>
@@ -491,9 +426,9 @@
                                                 <div class="relative group">
                                                     <label
                                                         class="block text-lg font-semibold text-blue-700 mb-2.5 transition-colors group-hover:text-blue-600">
-                                                        รหัสไปรษณีย์ <span class="text-red-500 text-sm">*</span>
+                                                        รหัสไปรษณีย์ <span class="text-red-500 text-sm"></span>
                                                     </label>
-                                                    <input type="text" placeholder="รหัสไปรษณีย์" id="zip_code"
+                                                    <input type="text" placeholder="รหัสไปรษณีย์" id="zip_code" readonly
                                                         name="zip_code"
                                                         class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                                 </div>
@@ -501,42 +436,42 @@
                                             <h3 class="text-xl font-semibold text-blue-900 mb-2 flex items-center mt-2"
                                                 for="currentAddress">
                                                 ที่อยู่ปัจจุบันของผู้ขอรับทุน <span
-                                                    class="text-red-500 text-sm">*</span>
+                                                    class="text-red-500 text-sm"></span>
                                             </h3>
                                             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                                                 <div class="relative group">
                                                     <label
                                                         class="block text-lg font-semibold text-blue-700 mb-2.5 transition-colors group-hover:text-blue-600">
-                                                        บ้านเลขที่ <span class="text-red-500 text-sm">*</span>
+                                                        บ้านเลขที่ <span class="text-red-500 text-sm"></span>
                                                     </label>
-                                                    <input type="text" placeholder="บ้านเลขที่" id="homeid"
+                                                    <input type="text" placeholder="บ้านเลขที่" id="homeid" readonly
                                                         class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                                 </div>
 
                                                 <div class="relative group">
                                                     <label
                                                         class="block text-lg font-semibold text-blue-700 mb-2.5 transition-colors group-hover:text-blue-600">
-                                                        หมู่ที่ <span class="text-red-500 text-sm">*</span>
+                                                        หมู่ที่ <span class="text-red-500 text-sm"></span>
                                                     </label>
-                                                    <input type="text" placeholder="หมู่ที่" id="grouphomeid"
+                                                    <input type="text" placeholder="หมู่ที่" id="grouphomeid" readonly
                                                         class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                                 </div>
 
                                                 <div class="relative group">
                                                     <label
                                                         class="block text-lg font-semibold text-blue-700 mb-2.5 transition-colors group-hover:text-blue-600">
-                                                        ตรอก/ซอย <span class="text-red-500 text-sm">*</span>
+                                                        ตรอก/ซอย <span class="text-red-500 text-sm"></span>
                                                     </label>
-                                                    <input type="text" placeholder="ตรอก/ซอย" id="soi" name="soi"
+                                                    <input type="text" placeholder="ตรอก/ซอย" id="soi" name="soi" readonly
                                                         class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                                 </div>
 
                                                 <div class="relative group">
                                                     <label
                                                         class="block text-lg font-semibold text-blue-700 mb-2.5 transition-colors group-hover:text-blue-600">
-                                                        ถนน <span class="text-red-500 text-sm">*</span>
+                                                        ถนน <span class="text-red-500 text-sm"></span>
                                                     </label>
-                                                    <input type="text" placeholder="ถนน" id="road" name="road"
+                                                    <input type="text" placeholder="ถนน" id="road" name="road" readonly
                                                         class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                                 </div>
                                             </div>
@@ -545,9 +480,9 @@
                                                 <div class="relative group">
                                                     <label
                                                         class="block text-lg font-semibold text-blue-700 mb-2.5 transition-colors group-hover:text-blue-600">
-                                                        จังหวัด <span class="text-red-500 text-sm">*</span>
+                                                        จังหวัด <span class="text-red-500 text-sm"></span>
                                                     </label>
-                                                    <input type="text" placeholder="จังหวัด" id="province"
+                                                    <input type="text" placeholder="จังหวัด" id="province" readonly
                                                         name="province"
                                                         class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                                 </div>
@@ -555,18 +490,18 @@
                                                 <div class="relative group">
                                                     <label
                                                         class="block text-lg font-semibold text-blue-700 mb-2.5 transition-colors group-hover:text-blue-600">
-                                                        เขต/อำเภอ <span class="text-red-500 text-sm">*</span>
+                                                        เขต/อำเภอ <span class="text-red-500 text-sm"></span>
                                                     </label>
-                                                    <input type="text" placeholder="อำเภอ" id="district" name="district"
+                                                    <input type="text" placeholder="อำเภอ" id="district" name="district" readonly
                                                         class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                                 </div>
 
                                                 <div class="relative group">
                                                     <label
                                                         class="block text-lg font-semibold text-blue-700 mb-2.5 transition-colors group-hover:text-blue-600">
-                                                        แขวง/ตำบล <span class="text-red-500 text-sm">*</span>
+                                                        แขวง/ตำบล <span class="text-red-500 text-sm"></span>
                                                     </label>
-                                                    <input type="text" placeholder="ตำบล" id="subdistrict"
+                                                    <input type="text" placeholder="ตำบล" id="subdistrict" readonly
                                                         name="subdistrict"
                                                         class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                                 </div>
@@ -574,9 +509,9 @@
                                                 <div class="relative group">
                                                     <label
                                                         class="block text-lg font-semibold text-blue-700 mb-2.5 transition-colors group-hover:text-blue-600">
-                                                        รหัสไปรษณีย์ <span class="text-red-500 text-sm">*</span>
+                                                        รหัสไปรษณีย์ <span class="text-red-500 text-sm"></span>
                                                     </label>
-                                                    <input type="text" placeholder="รหัสไปรษณีย์" id="zip_code"
+                                                    <input type="text" placeholder="รหัสไปรษณีย์" id="zip_code" readonly
                                                         name="zip_code"
                                                         class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                                 </div>
@@ -591,27 +526,27 @@
                                             <div>
                                                 <label for="fatherName"
                                                     class="block text-lg font-semibold text-blue-700 mb-2">
-                                                    บิดาชื่อ <span class="text-red-500 text-sm align-top">*</span>
+                                                    บิดาชื่อ <span class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="text" id="fatherName" placeholder="กรอกชื่อบิดา นาย"
+                                                <input type="text" id="fatherName" placeholder="ชื่อบิดา นาย" readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
 
                                             <div>
                                                 <label for="fatherLastName"
                                                     class="block text-lg font-semibold text-blue-700 mb-2">
-                                                    นามสกุล <span class="text-red-500 text-sm align-top">*</span>
+                                                    นามสกุล <span class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="text" id="fatherLastName" placeholder="กรอกนามสกุล"
+                                                <input type="text" id="fatherLastName" placeholder="นามสกุล" readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
 
                                             <div>
                                                 <label for="fatherAge"
                                                     class="block text-lg font-semibold text-blue-700 mb-2">
-                                                    อายุ <span class="text-red-500 text-sm align-top">*</span>
+                                                    อายุ <span class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="number" id="fatherAge" placeholder="กรอกอายุ"
+                                                <input type="number" id="fatherAge" placeholder="อายุ" readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
                                         </div>
@@ -619,18 +554,18 @@
                                             <div>
                                                 <label for="faterJob"
                                                     class="block text-lg font-semibold text-blue-700 mb-2">
-                                                    อาชีพ <span class="text-red-500 text-sm align-top">*</span>
+                                                    อาชีพ <span class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="text" id="faterJob" placeholder="กรอกอาชีพ"
+                                                <input type="text" id="faterJob" placeholder="อาชีพ" readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
 
                                             <div>
                                                 <label for="fatherWorkPlace"
                                                     class="block text-lg font-semibold text-blue-700 mb-2">
-                                                    สถานที่ทำงาน <span class="text-red-500 text-sm align-top">*</span>
+                                                    สถานที่ทำงาน <span class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="text" id="fatherWorkPlace" placeholder="กรอกสถานที่ทำงาน"
+                                                <input type="text" id="fatherWorkPlace" placeholder="สถานที่ทำงาน" readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
                                         </div>
@@ -639,11 +574,11 @@
                                             <div>
                                                 <label for="fatherSalary"
                                                     class="block text-lg font-semibold text-blue-700 mb-2">
-                                                    รายได้ต่อเดือน <span class="text-red-500 text-sm align-top">*</span>
+                                                    รายได้ต่อเดือน <span class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="number"
+                                                <input type="number" readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
-                                                    placeholder="กรอกรายได้ต่อเดือนบิดา">
+                                                    placeholder="รายได้ต่อเดือนบิดา">
                                             </div>
                                         </div>
 
@@ -657,27 +592,27 @@
                                                 <label for="motherName"
                                                     class="block text-lg font-semibold text-blue-700 mb-2">
                                                     มารดาชื่อ นาง / นางสาว <span
-                                                        class="text-red-500 text-sm align-top">*</span>
+                                                        class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="text" id="motherName" placeholder="กรอกชื่อมารดา"
+                                                <input type="text" id="motherName" placeholder="ชื่อมารดา" readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
 
                                             <div>
                                                 <label for="motherLastname"
                                                     class="block text-lg font-semibold text-blue-700 mb-2">
-                                                    นามสกุล <span class="text-red-500 text-sm align-top">*</span>
+                                                    นามสกุล <span class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="text" id="motherLastname" placeholder="กรอกนามสกุล"
+                                                <input type="text" id="motherLastname" placeholder="นามสกุล" readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
 
                                             <div>
                                                 <label for="motherAge"
                                                     class="block text-lg font-semibold text-blue-700 mb-2">
-                                                    อายุ <span class="text-red-500 text-sm align-top">*</span>
+                                                    อายุ <span class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="number" id="motherAge" placeholder="กรอกอายุ"
+                                                <input type="number" id="motherAge" placeholder="อายุ" readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
                                         </div>
@@ -686,18 +621,18 @@
                                             <div>
                                                 <label for="motherJob"
                                                     class="block text-lg font-semibold text-blue-700 mb-2">
-                                                    อาชีพ <span class="text-red-500 text-sm align-top">*</span>
+                                                    อาชีพ <span class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="text" id="motherJob" placeholder="กรอกอาชีพ"
+                                                <input type="text" id="motherJob" placeholder="อาชีพ" readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
 
                                             <div>
                                                 <label for="motherWorkPlace"
                                                     class="block text-lg font-semibold text-blue-700 mb-2">
-                                                    สถานที่ทำงาน <span class="text-red-500 text-sm align-top">*</span>
+                                                    สถานที่ทำงาน <span class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="text" id="motherWorkPlace" placeholder="กรอกสถานที่ทำงาน"
+                                                <input type="text" id="motherWorkPlace" placeholder="สถานที่ทำงาน" readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
                                         </div>
@@ -706,27 +641,28 @@
                                             <div>
                                                 <label for="motherSalary"
                                                     class="block text-lg font-semibold text-blue-700 mb-2">
-                                                    รายได้ต่อเดือน <span class="text-red-500 text-sm align-top">*</span>
+                                                    รายได้ต่อเดือน <span class="text-red-500 text-sm align-top"></span>
                                                 </label>
 
-                                                <input type="number" id="motherSalary" name="motherSalary"
+                                                <input type="number" id="motherSalary" name="motherSalary" readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
-                                                    placeholder="กรอกรายได้ต่อเดือนมารดา">
+                                                    placeholder="รายได้ต่อเดือนมารดา">
 
                                             </div>
                                         </div>
                                         <h3
                                             class="text-xl font-semibold text-blue-900 mt-8 mb-6 flex items-center gap-2">
-                                            ผู้ขอรับทุนอยู่ในการดูแลของผู้ปกครอง (บุคคลอื่นกรณีไม่ใช่ บิดา / มารดา)
+                                            ผู้ขอรับทุนได้รับความอุปการะเลี้ยงดูจาก
                                         </h3>
-                                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 mb-2 lg:grid-cols-3 gap-4">
+
                                             <div>
                                                 <label for="parentName"
                                                     class="block text-lg font-semibold text-blue-700 mb-2">
                                                     ผู้ปกครองชิ่อ นาย / นาง / นางสาว <span
                                                         class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="text" id="parentName" placeholder="กรอกชื่อผู้ปกครอง"
+                                                <input type="text" id="parentName" placeholder="ชื่อผู้ปกครอง" readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
 
@@ -735,7 +671,7 @@
                                                     class="block text-lg font-semibold text-blue-700 mb-2">
                                                     นามสกุล <span class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="text" id="parentLastname" placeholder="กรอกนามสกุล"
+                                                <input type="text" id="parentLastname" placeholder="นามสกุล" readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
 
@@ -744,7 +680,7 @@
                                                     class="block text-lg font-semibold text-blue-700 mb-2">
                                                     อายุ <span class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="number" id="parentAge" placeholder="กรอกอายุ"
+                                                <input type="number" id="parentAge" placeholder="อายุ" readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
                                         </div>
@@ -755,7 +691,7 @@
                                                     class="block text-lg font-semibold text-blue-700 mb-2">
                                                     อาชีพ <span class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="text" id="parentJob" placeholder="กรอกอาชีพ"
+                                                <input type="text" id="parentJob" placeholder="อาชีพ" readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
 
@@ -764,7 +700,7 @@
                                                     class="block text-lg font-semibold text-blue-700 mb-2">
                                                     สถานที่ทำงาน <span class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="text" id="parentWorkPlace" placeholder="กรอกสถานที่ทำงาน"
+                                                <input type="text" id="parentWorkPlace" placeholder="สถานที่ทำงาน" readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
                                         </div>
@@ -773,11 +709,11 @@
                                             <div>
                                                 <label for="parentSalary"
                                                     class="block text-lg font-semibold text-blue-700 mb-2">
-                                                    รายได้ต่อเดือน <span class="text-red-500 text-sm align-top">*</span>
+                                                    รายได้ต่อเดือน <span class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="number" id="gpa" name="gpa"
+                                                <input type="number" id="parentSalary" name="parentSalary" readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
-                                                    placeholder="กรอกรายได้ต่อเดือนผู้ปกครอง">
+                                                    placeholder="รายได้ต่อเดือนผู้ปกครอง">
                                             </div>
                                         </div>
 
@@ -792,7 +728,7 @@
                                                     ผู้สมัครมีพี่น้อง (รวมตัวเอง) <span
                                                         class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="text" id="siblingCount" placeholder="กรอกจำนวนพี่น้อง"
+                                                <input type="text" id="siblingCount" placeholder="จำนวนพี่น้อง" readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
 
@@ -801,7 +737,7 @@
                                                     class="block text-lg font-semibold text-blue-700 mb-2">
                                                     ชาย (คน) <span class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="text" id="siblingMan" placeholder="ชาย (คน)"
+                                                <input type="text" id="siblingMan" placeholder="ชาย (คน)" readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
 
@@ -810,7 +746,7 @@
                                                     class="block text-lg font-semibold text-blue-700 mb-2">
                                                     หญิง (คน) <span class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="text" id="siblingWomen" placeholder="หญิง (คน)"
+                                                <input type="text" id="siblingWomen" placeholder="หญิง (คน)" readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
                                         </div>
@@ -822,7 +758,7 @@
                                                     ผู้สมัครเป็นบุตรคนที่ <span
                                                         class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="text" id="siblingCountRegister"
+                                                <input type="text" id="siblingCountRegister" readonly
                                                     placeholder="ผู้สมัครเป็นบุตรคนที่"
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
@@ -833,16 +769,12 @@
                                                     จำนวนพี่น้องที่กำลังศึกษาอยู่ (รวมตัวเอง)<span
                                                         class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="text" id="siblingStudying"
-                                                    placeholder="กรอกจำนวนพี่น้องที่กำลังศึกษาอยู่"
+                                                <input type="text" id="siblingStudying" readonly
+                                                    placeholder="จำนวนพี่น้องที่กำลังศึกษาอยู่"
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
                                         </div>
 
-                                        <h3
-                                            class="text-xl font-semibold text-blue-900 mt-8 mb-6 flex items-center gap-2">
-                                            ผู้ขอรับทุนได้รับความอุปการะเลี้ยงดูจาก
-                                        </h3>
 
 
                                         <h3 class="text-xl font-semibold text-blue-900 mb-6 flex items-center gap-2">
@@ -856,7 +788,7 @@
                                         <div
                                             class="p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200 shadow-md">
                                             <div class="space-y-6">
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -871,18 +803,24 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 
+import logoUrl from '@/assets/picture/logo.png';
+
+const refexample = ref('ตัวอย่าง');
+
+// import SidebarComponent from './Menu/SidebarComponent.vue';
 </script>
 
 <style scoped>
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
-    input[type="number"] {
-        appearance: textfield;
-        -moz-appearance: textfield;
-    }
+input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
 </style>
