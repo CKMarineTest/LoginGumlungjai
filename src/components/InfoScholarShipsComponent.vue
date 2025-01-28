@@ -159,11 +159,11 @@ const headers = [
 ]
 
 const data = ref([
-    // { id: 'USR001', name: 'สมชาย ใจดี', email: 'somchai@example.com', status: 'กำลังใช้งาน' },
-    // { id: 'USR002', name: 'สมหญิง รักดี', email: 'somying@example.com', status: 'ไม่ได้ใช้งาน' },
-    // { id: 'USR003', name: 'มานี มีเงิน', email: 'manee@example.com', status: 'กำลังใช้งาน' },
-    // { id: 'USR004', name: 'สมศรี ศรีสุข', email: 'somsri@example.com', status: 'กำลังใช้งาน' },
-    // { id: 'USR005', name: 'สมพร พรเพียง', email: 'somporn@example.com', status: 'ไม่ได้ใช้งาน' },
+    { id: 'USR001', name: 'สมชาย ใจดี', email: 'somchai@example.com', status: 'กำลังใช้งาน' },
+    { id: 'USR002', name: 'สมหญิง รักดี', email: 'somying@example.com', status: 'ไม่ได้ใช้งาน' },
+    { id: 'USR003', name: 'มานี มีเงิน', email: 'manee@example.com', status: 'กำลังใช้งาน' },
+    { id: 'USR004', name: 'สมศรี ศรีสุข', email: 'somsri@example.com', status: 'กำลังใช้งาน' },
+    { id: 'USR005', name: 'สมพร พรเพียง', email: 'somporn@example.com', status: 'ไม่ได้ใช้งาน' },
 ])
 
 const sortedAndFilteredData = computed(() => {

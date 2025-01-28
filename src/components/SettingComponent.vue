@@ -1,159 +1,195 @@
 <template>
     <div class="flex min-h-screen bg-gray-50">
-        <aside class="w-16 h-screen fixed left-0 bg-gray-900 z-50">
-            <SidebarComponent />
-        </aside>
-    </div>
-    <main class="flex-1 ml-16">
-        <br>
-        <br>
-        <div class="max-w-12xl mx-auto p-8">
-            <nav class="mb-8 border-b">
-                <div class="flex space-x-1">
-                    <button v-for="tab in tabs" :key="tab"
-                        class="px-6 py-3 text-sm font-medium transition-colors duration-200" :class="{
-                            'border-b-2 border-blue-600 text-blue-600': activeTab === tab,
-                            'text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-t-lg': activeTab !== tab
-                        }" @click="activeTab = tab">
-                        {{ tab }}
-                    </button>
+      <aside class="w-16 h-screen fixed left-0 bg-gray-900 z-50">
+        <SidebarComponent />
+      </aside>
+      <main class="flex-1 ml-16">
+        <div class="max-w-7xl mx-auto p-8">
+          <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 flex items-center mb-2">
+              <CubeTransparentIcon class="h-8 w-8 text-blue-600 mr-3" />
+              Appearance Settings
+            </h1>
+            <p class="text-gray-600">Personalize your dashboard experience</p>
+          </div>
+  
+          <div class="space-y-8">
+            <!-- Color Mode Section -->
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 transition-all hover:shadow-md">
+              <h2 class="text-xl font-semibold text-gray-900 mb-2 flex items-center">
+                <SunIcon class="h-5 w-5 text-amber-500 mr-2" />
+                Color Mode
+              </h2>
+              <p class="text-gray-500 mb-6">Choose how you'd like your interface to appear</p>
+  
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
+                <div
+                  v-for="mode in colorModes"
+                  :key="mode.name"
+                  class="relative cursor-pointer group"
+                  @click="selectedMode = mode.name"
+                >
+                  <div
+                    class="rounded-xl overflow-hidden transition-all duration-300"
+                    :class="{
+                      'ring-2 ring-blue-500 ring-offset-4': selectedMode === mode.name,
+                      'hover:shadow-xl transform hover:-translate-y-1': selectedMode !== mode.name
+                    }"
+                  >
+                    <div :class="[mode.preview, 'h-36 relative']">
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/10"></div>
+                      <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/20">
+                        <component
+                          :is="mode.icon"
+                          class="h-6 w-6 text-white mb-2"
+                        />
+                      </div>
+                    </div>
+                    <div class="p-4 bg-white border-t border-gray-100">
+                      <p class="text-sm font-medium text-center text-gray-900">{{ mode.name }}</p>
+                      <p class="text-xs text-center text-gray-500 mt-1">{{ mode.description }}</p>
+                    </div>
+                  </div>
                 </div>
-            </nav>
-
-            <div v-if="activeTab === 'Appearance'" class="space-y-12">
-                <header>
-                    <h1 class="text-2xl font-semibold text-gray-900 flex"><CubeTransparentIcon class="h-7 w-5" />&nbsp;  Appearance</h1>
-                    <p class="mt-1 text-sm text-gray-500">Customize how your dashboard looks and feels</p>
-                </header>
-
-                <section class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                    <h2 class="text-lg font-medium text-gray-900 mb-2">Color Mode</h2>
-                    <p class="text-sm text-gray-500 mb-6">Select your preferred color scheme</p>
-
-                    <div class="grid grid-cols-3 gap-6 max-w-3xl">
-                        <div v-for="mode in colorModes" :key="mode.name" class="relative cursor-pointer group"
-                            @click="selectedMode = mode.name">
-                            <div class="rounded-lg overflow-hidden transition-all duration-200 hover:scale-102" :class="{
-                                'ring-2 ring-blue-500 ring-offset-2': selectedMode === mode.name,
-                                'hover:shadow-lg': selectedMode !== mode.name
-                            }">
-                                <div :class="[mode.preview, 'h-32 relative']">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/5"></div>
-                                </div>
-                                <div class="p-4 bg-white border border-gray-100">
-                                    <p class="text-sm font-medium text-center text-gray-900">{{ mode.name }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                    <h2 class="text-lg font-medium text-gray-900 mb-2">Themes</h2>
-                    <p class="text-sm text-gray-500 mb-6">Choose from our curated theme collection</p>
-
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                        <button v-for="theme in themes" :key="theme.name"
-                            class="group relative flex items-center space-x-3 p-4 rounded-xl transition-all duration-200 hover:shadow-md"
-                            :class="{
-                                'ring-2 ring-blue-500 ring-offset-2 bg-blue-50': selectedTheme === theme.name,
-                                'border border-gray-100 hover:border-blue-200 bg-white': selectedTheme !== theme.name
-                            }" @click="selectedTheme = theme.name">
-                            <div class="w-10 h-10 rounded-full shadow-inner" :class="theme.gradient"></div>
-                            <span class="text-sm font-medium" :class="{
-                                'text-blue-600': selectedTheme === theme.name,
-                                'text-gray-700': selectedTheme !== theme.name
-                            }">{{ theme.name }}</span>
-                        </button>
-                    </div>
-                </section>
-
-                <!-- <section class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h2 class="text-lg font-medium text-gray-900 mb-2">Transparent Sidebar</h2>
-                            <p class="text-sm text-gray-500">Enable transparency for the desktop sidebar</p>
-                        </div>
-
-                        <label class="relative inline-flex items-center cursor-pointer">
-                            <input type="checkbox" v-model="isTransparent" class="sr-only peer">
-                            <div class="w-14 h-7 bg-gray-200 rounded-full peer 
-                             peer-checked:after:translate-x-full peer-checked:bg-blue-600
-                             after:content-[''] after:absolute after:top-0.5 after:left-[4px]
-                             after:bg-white after:rounded-full after:h-6 after:w-6 
-                             after:transition-all after:border-gray-300 after:border
-                             peer-checked:after:border-white">
-                            </div>
-                        </label>
-                    </div>
-                </section> -->
+              </div>
+            </section>
+  
+            <!-- Theme Section -->
+            <section class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 transition-all hover:shadow-md">
+              <h2 class="text-xl font-semibold text-gray-900 mb-2 flex items-center">
+                <SwatchIcon class="h-5 w-5 text-indigo-500 mr-2" />
+                Theme Selection
+              </h2>
+              <p class="text-gray-500 mb-6">Express yourself with our carefully crafted themes</p>
+  
+              <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <button
+                  v-for="theme in themes"
+                  :key="theme.name"
+                  class="group relative flex flex-col items-center p-6 rounded-xl transition-all duration-300"
+                  :class="{
+                    'ring-2 ring-blue-500 ring-offset-2 bg-blue-50': selectedTheme === theme.name,
+                    'border border-gray-100 hover:border-blue-200 hover:shadow-lg hover:-translate-y-1 bg-white': selectedTheme !== theme.name
+                  }"
+                  @click="selectedTheme = theme.name"
+                >
+                  <div class="w-16 h-16 rounded-full shadow-lg mb-4" :class="theme.gradient"></div>
+                  <span
+                    class="text-sm font-medium text-center"
+                    :class="{
+                      'text-blue-600': selectedTheme === theme.name,
+                      'text-gray-700': selectedTheme !== theme.name
+                    }"
+                  >{{ theme.name }}</span>
+                  <span class="text-xs text-gray-500 mt-1">{{ theme.description }}</span>
+                </button>
+              </div>
+            </section>
+  
+            <!-- Save Button -->
+            <div class="flex justify-end">
+              <button
+                class="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium shadow-sm hover:bg-blue-700 transition-colors duration-200 flex items-center"
+                @click="saveSettings"
+              >
+                <CheckIcon class="h-5 w-5 mr-2" />
+                Save Changes
+              </button>
             </div>
+          </div>
         </div>
-    </main>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-import SidebarComponent from './Menu/SidebarComponent.vue';
-
-import { CubeTransparentIcon } from '@heroicons/vue/24/outline';
-
-const activeTab = ref('Appearance');
-const selectedMode = ref('System Default');
-const selectedTheme = ref('Royal Heath');
-// const isTransparent = ref(false);
-
-// const theme = ref('light');
-
-// const themes = {
-//     light: 'theme-light',
-//     dark: 'theme-dark',
-//     custom: 'theme-custom'
-// }
-
-// const changeTheme = (newTheme) => {
-//     theme.value = newTheme;
-
-//     document.documentElement.classList.remove(...Object.values(themes));
-
-//     document.documentElement.classList.add(themes[newTheme]);
-// }
-
-const tabs = ['Appearance'];
-
-const colorModes = [
+      </main>
+    </div>
+  </template>
+  
+  <script setup>
+  import { ref } from 'vue';
+  import SidebarComponent from './Menu/SidebarComponent.vue';
+  import { 
+    CubeTransparentIcon,
+    SunIcon,
+    MoonIcon,
+    ComputerDesktopIcon,
+    SwatchIcon,
+    CheckIcon
+  } from '@heroicons/vue/24/outline';
+  
+//   const activeTab = ref('Appearance');
+  const selectedMode = ref('System Default');
+  const selectedTheme = ref('Royal Heath');
+  
+  const colorModes = [
     {
-        name: 'Dark',
-        preview: 'bg-gray-900'
+      name: 'Light',
+      preview: 'bg-white',
+      icon: SunIcon,
+      description: 'Perfect for daytime use'
     },
     {
-        name: 'System Default',
-        preview: 'bg-white border border-gray-200'
+      name: 'Dark',
+      preview: 'bg-gray-900',
+      icon: MoonIcon,
+      description: 'Easy on the eyes at night'
     },
     {
-        name: 'Light',
-        preview: 'bg-gray'
+      name: 'System Default',
+      preview: 'bg-gradient-to-r from-gray-100 to-gray-200',
+      icon: ComputerDesktopIcon,
+      description: 'Matches your system settings'
     }
-]
-
-const themes = [
-    { name: 'Royal Heath', gradient: 'bg-gradient-to-r from-purple-500 to-pink-500' },
-    { name: 'Egg Sour', gradient: 'bg-gradient-to-r from-yellow-400 to-orange-500' },
-    { name: 'Snowy Mint', gradient: 'bg-gradient-to-r from-green-400 to-cyan-500' },
-    { name: 'Hopbush', gradient: 'bg-gradient-to-r from-purple-400 to-pink-400' },
-    { name: 'Flax', gradient: 'bg-gradient-to-r from-yellow-200 to-green-300' },
-    { name: 'Fuchsia', gradient: 'bg-gradient-to-r from-fuchsia-500 to-pink-500' },
-    { name: 'Tumbleweed', gradient: 'bg-gradient-to-r from-orange-300 to-rose-300' },
-    { name: 'Buttercup', gradient: 'bg-gradient-to-r from-yellow-300 to-green-400' },
-    { name: 'Can Can', gradient: 'bg-gradient-to-r from-red-300 to-pink-300' },
-    { name: 'Cornflower Blue', gradient: 'bg-gradient-to-r from-blue-400 to-indigo-400' },
-    { name: 'Tonys', gradient: 'bg-gradient-to-r from-orange-400 to-rose-400' },
-    { name: 'Rise Flower', gradient: 'bg-gradient-to-r from-violet-300 to-purple-300' }
-]
-</script>
-
-<style scoped>
-.scale-102 {
-    transform: scale(1.02);
-}
-</style>
+  ];
+  
+  const themes = [
+    { 
+      name: 'Royal Heath',
+      gradient: 'bg-gradient-to-r from-purple-500 to-pink-500',
+      description: 'Elegant & bold'
+    },
+    { 
+      name: 'Ocean Breeze',
+      gradient: 'bg-gradient-to-r from-blue-400 to-cyan-500',
+      description: 'Cool & calming'
+    },
+    { 
+      name: 'Sunset Glow',
+      gradient: 'bg-gradient-to-r from-orange-400 to-pink-500',
+      description: 'Warm & inviting'
+    },
+    { 
+      name: 'Forest Mist',
+      gradient: 'bg-gradient-to-r from-green-400 to-emerald-500',
+      description: 'Natural & fresh'
+    },
+    { 
+      name: 'Lavender Dream',
+      gradient: 'bg-gradient-to-r from-violet-400 to-purple-500',
+      description: 'Soft & dreamy'
+    },
+    { 
+      name: 'Golden Hour',
+      gradient: 'bg-gradient-to-r from-yellow-400 to-orange-500',
+      description: 'Rich & vibrant'
+    },
+    { 
+      name: 'Arctic Aurora',
+      gradient: 'bg-gradient-to-r from-blue-500 to-green-400',
+      description: 'Mystic & serene'
+    },
+    { 
+      name: 'Cherry Blossom',
+      gradient: 'bg-gradient-to-r from-pink-400 to-rose-300',
+      description: 'Gentle & sweet'
+    }
+  ];
+  
+  const saveSettings = () => {
+    // Add save functionality here
+    console.log('Saving settings:', { selectedMode: selectedMode.value, selectedTheme: selectedTheme.value });
+  };
+  </script>
+  
+  <style scoped>
+  .transform {
+    transition: transform 0.2s ease-in-out;
+  }
+  </style>

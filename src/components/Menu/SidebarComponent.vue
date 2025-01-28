@@ -1,43 +1,55 @@
 <template>
   <div class="flex min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <!-- Sidebar with improved styling -->
     <aside
-      class="fixed left-0 h-screen transition-all duration-300 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white z-20 shadow-xl"
+      class="fixed left-0 h-screen transition-all duration-300 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white z-20 shadow-2xl"
       :class="[isExpanded ? 'w-64' : 'w-20']" @mouseenter="expandSidebar" @mouseleave="collapseSidebar">
+      <!-- Improved header with glass effect -->
       <div
-        class="h-16 flex items-center justify-center bg-white/10 backdrop-blur-sm border-b border-white/10 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent"></div>
+        class="h-20 flex items-center justify-center bg-white/10 backdrop-blur-md border-b border-white/10 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-75"></div>
         <transition name="fade" mode="out-in">
-          <span v-if="isExpanded" class="text-xl font-bold text-white tracking-wide relative">
-            GumLungjai
-            <div class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-white/50 to-transparent"></div>
+          <span v-if="isExpanded" class="text-2xl font-bold text-white tracking-wider relative">
+            <span class="relative z-10">GumLungjai</span>
+            <div
+              class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-white/70 via-white/50 to-transparent">
+            </div>
+            <!-- Added subtle glow effect -->
+            <div class="absolute -inset-1 bg-white/20 blur-xl -z-10"></div>
           </span>
-          <span v-else class="text-xl font-bold text-white">G</span>
+          <span v-else class="text-2xl font-bold text-white">G</span>
         </transition>
       </div>
 
-      <nav class="mt-6">
-        <ul class="space-y-2 px-3">
+      <!-- Improved navigation -->
+      <nav class="mt-8">
+        <ul class="space-y-3 px-4">
           <li v-for="item in menuItems" :key="item.label">
             <router-link :to="item.path"
-              class="flex items-center py-3 rounded-xl hover:bg-white/15 backdrop-blur transition-all duration-200 group relative overflow-hidden"
+              class="flex items-center py-3.5 rounded-xl hover:bg-white/20 backdrop-blur transition-all duration-300 group relative overflow-hidden"
               :class="[
                 isExpanded ? 'px-4' : 'px-0 justify-center',
-                $route.path === item.path ? 'bg-white/20 shadow-lg' : ''
+                $route.path === item.path ? 'bg-white/25 shadow-lg' : ''
               ]">
+              <!-- Improved hover effect -->
               <div
-                class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000">
+                class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700">
               </div>
-              <component :is="item.icon" class="w-5 h-5 flex-shrink-0 transition-all duration-200 group-hover:scale-110"
+
+              <component :is="item.icon" class="w-6 h-6 flex-shrink-0 transition-all duration-300 group-hover:scale-110"
                 :class="$route.path === item.path ? 'text-white' : 'text-blue-100'" />
+
               <transition name="fade">
-                <span v-if="isExpanded" class="ml-3 text-sm font-medium whitespace-nowrap tracking-wide"
+                <span v-if="isExpanded"
+                  class="ml-4 text-sm font-medium whitespace-nowrap tracking-wide transition-all duration-300"
                   :class="$route.path === item.path ? 'text-white' : 'text-blue-100'">
                   {{ item.label }}
                 </span>
               </transition>
 
+              <!-- Improved tooltip -->
               <div v-if="!isExpanded"
-                class="absolute left-full ml-2 px-3 py-1.5 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap shadow-xl">
+                class="absolute left-full ml-3 px-4 py-2 bg-gray-900/90 backdrop-blur-sm text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap shadow-xl transform -translate-x-2 group-hover:translate-x-0">
                 {{ item.label }}
               </div>
             </router-link>
@@ -46,44 +58,47 @@
       </nav>
     </aside>
 
+    <!-- Main content area -->
     <div class="flex-1 min-w-0">
       <div class="transition-all duration-300" :class="[isExpanded ? 'ml-64' : 'ml-20']">
+        <!-- Improved header -->
         <header
-          class="h-16 bg-white/90 border-b flex items-center justify-between px-6 shadow-sm fixed top-0 right-0 transition-all duration-300 backdrop-blur-md z-10"
+          class="h-16 bg-white/80 border-b flex items-center justify-between px-8 shadow-sm fixed top-0 right-0 transition-all duration-300 backdrop-blur-md z-10"
           :class="[isExpanded ? 'left-64' : 'left-20']">
+          <!-- Improved search bar -->
           <div class="flex-1 max-w-lg">
             <div class="relative group">
               <magnifying-glass-icon
-                class="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 transition-colors group-hover:text-blue-500" />
+                class="w-5 h-5 absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 transition-colors duration-300 group-hover:text-blue-500" />
               <input type="text" v-model="searchQuery" placeholder="ค้นหา..."
-                class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50/50 hover:bg-white">
+                class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 bg-gray-50/50 hover:bg-white/90">
               <div
-                class="absolute inset-0 border border-transparent group-hover:border-blue-100 rounded-xl pointer-events-none transition-colors">
+                class="absolute inset-0 border border-transparent group-hover:border-blue-100 rounded-xl pointer-events-none transition-colors duration-300">
               </div>
             </div>
           </div>
 
-          <div class="flex items-center space-x-6">
+          <!-- Improved notification and profile section -->
+          <div class="flex items-center space-x-8">
+            <!-- Notification button with improved styling -->
             <div class="relative notifications-container">
               <button @click="toggleNotifications"
-                class="p-2.5 hover:bg-gray-100 rounded-xl relative transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                <bell-icon class="w-5 h-5 text-gray-600" />
-                <!-- <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full animate-ping"></span>
-                <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span> -->
+                class="p-3 hover:bg-gray-100 rounded-xl relative transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 group">
+                <bell-icon class="w-5 h-5 text-gray-600 group-hover:text-blue-500 transition-colors duration-300" />
               </button>
 
-              <transition enter-active-class="transition duration-200 ease-out"
+              <!-- Improved notifications dropdown -->
+              <transition enter-active-class="transition duration-300 ease-out"
                 enter-from-class="transform scale-95 opacity-0" enter-to-class="transform scale-100 opacity-100"
                 leave-active-class="transition duration-200 ease-in" leave-from-class="transform scale-100 opacity-100"
                 leave-to-class="transform scale-95 opacity-0">
                 <div v-if="showNotifications"
-                  class="absolute right-0 mt-3 w-80 bg-white rounded-xl shadow-xl border py-2 z-30">
-                  <div class="px-4 py-2 border-b flex justify-between items-center">
+                  class="absolute right-0 mt-4 w-80 bg-white rounded-xl shadow-xl border py-2 z-30">
+                  <div class="px-4 py-3 border-b flex justify-between items-center">
                     <h3 class="font-medium text-gray-900">การแจ้งเตือน</h3>
-                    <!-- <button class="text-xs text-blue-600 hover:text-blue-700">อ่านทั้งหมดแล้ว</button> -->
                   </div>
                   <div class="max-h-64 overflow-y-auto">
-                    <div class="px-4 py-3 hover:bg-gray-50 transition-colors cursor-pointer">
+                    <div class="px-4 py-3 hover:bg-gray-50 transition-colors duration-300 cursor-pointer">
                       <p class="text-sm text-gray-600">ไม่มีการแจ้งเตือนใหม่</p>
                     </div>
                   </div>
@@ -91,46 +106,48 @@
               </transition>
             </div>
 
+            <!-- Improved profile section -->
             <div class="relative profile-container">
               <button @click="toggleProfileMenu"
-                class="flex items-center space-x-3 hover:bg-gray-100 rounded-xl px-3 py-2 transition-all duration-200 group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                class="flex items-center space-x-3 hover:bg-gray-100 rounded-xl px-4 py-2.5 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                 <div
-                  class="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white text-sm font-medium shadow-lg transition-transform duration-200 group-hover:scale-105 relative overflow-hidden">
-                  <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent transform rotate-45"></div>
+                  class="w-9 h-9 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center text-white text-sm font-medium shadow-lg transition-transform duration-300 group-hover:scale-105 relative overflow-hidden">
+                  <div class="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent transform rotate-45"></div>
                   {{ userName[0] }}
                 </div>
                 <div class="flex items-center">
                   <span class="text-sm font-medium text-gray-700">{{ userName }}</span>
-                  <chevron-down-icon class="w-4 h-4 ml-1 text-gray-500 transition-transform duration-200"
+                  <chevron-down-icon class="w-4 h-4 ml-2 text-gray-500 transition-transform duration-300"
                     :class="{ 'rotate-180': showProfileMenu }" />
                 </div>
               </button>
 
-              <transition enter-active-class="transition duration-200 ease-out"
+              <!-- Improved profile dropdown -->
+              <transition enter-active-class="transition duration-300 ease-out"
                 enter-from-class="transform scale-95 opacity-0" enter-to-class="transform scale-100 opacity-100"
                 leave-active-class="transition duration-200 ease-in" leave-from-class="transform scale-100 opacity-100"
                 leave-to-class="transform scale-95 opacity-0">
                 <div v-if="showProfileMenu"
-                  class="absolute right-0 mt-3 w-56 bg-white rounded-xl shadow-xl border py-2 z-30">
-                  <div class="px-4 py-2 border-b">
+                  class="absolute right-0 mt-4 w-60 bg-white rounded-xl shadow-xl border py-2 z-30">
+                  <div class="px-4 py-3 border-b">
                     <p class="text-sm font-medium text-gray-900">{{ userName }}</p>
-                    <p class="text-xs text-gray-500"></p>
+                    <p class="text-xs text-gray-500 mt-1">ผู้ใช้งานระบบ</p>
                   </div>
-                  <div class="py-1">
+                  <div class="py-2">
                     <a href="#"
-                      class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-                      <user-icon class="w-4 h-4 mr-3 text-gray-400" />
+                      class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-300 group">
+                      <user-icon class="w-4 h-4 mr-3 text-gray-400 group-hover:text-blue-500" />
                       โปรไฟล์
                     </a>
-                    <a @click="handleRouteSetting" href=""
-                      class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-                      <cog-6-tooth-icon class="w-4 h-4 mr-3 text-gray-400" />
+                    <a @click="handleRouteSetting" href="#"
+                      class="flex items-center px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-300 group">
+                      <cog-6-tooth-icon class="w-4 h-4 mr-3 text-gray-400 group-hover:text-blue-500" />
                       ตั้งค่า
                     </a>
                   </div>
                   <hr class="my-1 border-gray-200">
                   <a href="#"
-                    class="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors group"
+                    class="flex items-center px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors duration-300 group"
                     @click.prevent="handleLogout">
                     <arrow-right-on-rectangle-icon class="w-4 h-4 mr-3 text-red-400 group-hover:text-red-500" />
                     ออกจากระบบ
