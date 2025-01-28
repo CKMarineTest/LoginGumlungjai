@@ -37,8 +37,13 @@ const routes = [
     {
         path: '/settinguser',
         name: 'settinguser',
-        component: () => import('../views/SettingUser.vue')
+        component: () => import('../views/SettingUser.vue'),
     },
+    {
+        path: '/documentdata',
+        name: 'documentdata',
+        component: () => import('../views/DocumentdataView.vue'),
+    }
 ]
 
 const router = createRouter({

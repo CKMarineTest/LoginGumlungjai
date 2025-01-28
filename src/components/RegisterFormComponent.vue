@@ -70,6 +70,7 @@
                                 <div
                                     class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                                     <button
+                                        @click="documentData"
                                         class="p-2 text-blue-600 hover:bg-blue-200 rounded-lg transition-colors duration-200">
                                         <DocumentTextIcon class="h-5 w-5" />
                                     </button>
@@ -147,6 +148,7 @@ import { ref, computed } from 'vue';
 import { DocumentTextIcon } from '@heroicons/vue/24/outline';
 
 import SidebarComponent from './Menu/SidebarComponent.vue';
+import router from '@/router';
 
 const searchQuery = ref('')
 const sortKey = ref('id')
@@ -159,11 +161,11 @@ const headers = [
 ]
 
 const data = ref([
-    // { id: 'USR001', name: 'สมชาย ใจดี', email: 'somchai@example.com', status: 'กำลังใช้งาน' },
-    // { id: 'USR002', name: 'สมหญิง รักดี', email: 'somying@example.com', status: 'ไม่ได้ใช้งาน' },
-    // { id: 'USR003', name: 'มานี มีเงิน', email: 'manee@example.com', status: 'กำลังใช้งาน' },
-    // { id: 'USR004', name: 'สมศรี ศรีสุข', email: 'somsri@example.com', status: 'กำลังใช้งาน' },
-    // { id: 'USR005', name: 'สมพร พรเพียง', email: 'somporn@example.com', status: 'ไม่ได้ใช้งาน' },
+    { id: 'USR001', name: 'สมชาย ใจดี', email: 'somchai@example.com' },
+    { id: 'USR002', name: 'สมหญิง รักดี', email: 'somying@example.com' },
+    { id: 'USR003', name: 'มานี มีเงิน', email: 'manee@example.com' },
+    { id: 'USR004', name: 'สมศรี ศรีสุข', email: 'somsri@example.com' },
+    { id: 'USR005', name: 'สมพร พรเพียง', email: 'somporn@example.com' },
 ])
 
 const sortedAndFilteredData = computed(() => {
@@ -198,5 +200,9 @@ const sortBy = (key) => {
         sortKey.value = key
         sortOrder.value = 'asc'
     }
+}
+
+const documentData = () => {
+    router.push('/documentdata')
 }
 </script>
