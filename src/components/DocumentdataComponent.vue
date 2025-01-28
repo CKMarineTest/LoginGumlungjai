@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <div class="p-8 bg-gray-50/50 border-b">
+            <div class="p-8 bg-gray-50/50 border">
                 <br>
                 <h3 class="text-xl font-semibold text-blue-900 mb-6 flex items-center gap-2">
                     ประเภททุนการศึกษา
@@ -143,16 +143,6 @@
                             <textarea id="special" name="special" rows="4" readonly
                                 class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
                                 placeholder="ความสามารถพิเศษ"></textarea>
-                        </div>
-
-                        <div class="w-full">
-                            <label class="text-lg font-semibold text-blue-700 mb-4 block" for="health">
-                                สุขภาพผู้ขอรับทุน <span class="text-red-500 text-sm"></span>
-                            </label>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                                <input type="text" placeholder="สุขภาพ" id="health" name="health" readonly
-                                    class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200">
-                            </div>
                         </div>
                         <div class="w-full sm:w-1/1 lg:w-1/1">
                             <label class="text-lg font-semibold text-blue-700 mb-2 block" for="specialWork">
