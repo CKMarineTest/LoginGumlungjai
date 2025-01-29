@@ -163,7 +163,6 @@ const themes = [
 ];
 
 const saveSettings = () => {
-  // Add save functionality here
   console.log('Saving settings:', { selectedMode: selectedMode.value, selectedTheme: selectedTheme.value });
 };
 </script>

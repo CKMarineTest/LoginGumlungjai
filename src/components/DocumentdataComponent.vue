@@ -62,7 +62,7 @@
                         <label class="text-lg font-semibold text-blue-700 mb-2 block" for="lastname">
                             นามสกุล <span class="text-red-500 text-sm"></span>
                         </label>
-                        <input type="text" placeholder="นามสกุล" id="lastname" name="lastname" readonly
+                        <input type="text" placeholder="นามสกุล" id="lastname" name="lastname" readonly 
                             class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200">
                     </div>
                     <div class="w-full sm:w-1/2 lg:w-1/4">

@@ -134,15 +134,15 @@ import { DocumentTextIcon } from '@heroicons/vue/24/outline';
 import SidebarComponent from './Menu/SidebarComponent.vue';
 import router from '@/router';
 
-const searchQuery = ref('')
-const sortKey = ref('id')
-const sortOrder = ref('asc')
+const searchQuery = ref('');
+const sortKey = ref('id');
+const sortOrder = ref('asc');
 
 const headers = [
     { key: 'id', label: 'รหัส' },
     { key: 'name', label: 'ชื่อ' },
     { key: 'email', label: 'อีเมล' },
-]
+];
 
 const data = ref([
     { id: 'USR001', name: 'สมชาย ใจดี', email: 'somchai@example.com' },
@@ -150,43 +150,43 @@ const data = ref([
     { id: 'USR003', name: 'มานี มีเงิน', email: 'manee@example.com' },
     { id: 'USR004', name: 'สมศรี ศรีสุข', email: 'somsri@example.com' },
     { id: 'USR005', name: 'สมพร พรเพียง', email: 'somporn@example.com' },
-])
+]);
 
 const sortedAndFilteredData = computed(() => {
-    let result = [...data.value]
+    let result = [...data.value];
 
     if (searchQuery.value) {
         result = result.filter(item =>
             Object.values(item).some(value =>
                 String(value).toLowerCase().includes(searchQuery.value.toLowerCase())
             )
-        )
+        );
     }
 
     result.sort((a, b) => {
-        const aValue = a[sortKey.value]
-        const bValue = b[sortKey.value]
+        const aValue = a[sortKey.value];
+        const bValue = b[sortKey.value];
 
         if (sortOrder.value === 'asc') {
-            return aValue > bValue ? 1 : -1
+            return aValue > bValue ? 1 : -1;
         } else {
-            return aValue < bValue ? 1 : -1
+            return aValue < bValue ? 1 : -1;
         }
     })
+    return result;
+});
 
-    return result
-})
 
 const sortBy = (key) => {
     if (sortKey.value === key) {
-        sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc'
+        sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
     } else {
-        sortKey.value = key
-        sortOrder.value = 'asc'
+        sortKey.value = key;
+        sortOrder.value = 'asc';
     }
 }
 
 const documentData = () => {
-    router.push('/documentdata')
+    router.push('/documentdata');
 }
 </script>
