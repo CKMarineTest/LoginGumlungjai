@@ -369,7 +369,8 @@
                                                         class="block text-lg font-semibold text-blue-700 mb-2.5 transition-colors group-hover:text-blue-600">
                                                         ตรอก/ซอย <span class="text-red-500 text-sm"></span>
                                                     </label>
-                                                    <input type="text" placeholder="ตรอก/ซอย" id="soi" name="soi" readonly
+                                                    <input type="text" placeholder="ตรอก/ซอย" id="soi" name="soi"
+                                                        readonly
                                                         class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                                 </div>
 
@@ -399,7 +400,8 @@
                                                         class="block text-lg font-semibold text-blue-700 mb-2.5 transition-colors group-hover:text-blue-600">
                                                         เขต/อำเภอ <span class="text-red-500 text-sm"></span>
                                                     </label>
-                                                    <input type="text" placeholder="อำเภอ" id="district" name="district" readonly
+                                                    <input type="text" placeholder="อำเภอ" id="district" name="district"
+                                                        readonly
                                                         class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                                 </div>
 
@@ -425,8 +427,7 @@
                                             </div>
                                             <h3 class="text-xl font-semibold text-blue-900 mb-2 flex items-center mt-2"
                                                 for="currentAddress">
-                                                ที่อยู่ปัจจุบันของผู้ขอรับทุน <span
-                                                    class="text-red-500 text-sm"></span>
+                                                ที่อยู่ปัจจุบันของผู้ขอรับทุน <span class="text-red-500 text-sm"></span>
                                             </h3>
                                             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                                                 <div class="relative group">
@@ -452,7 +453,8 @@
                                                         class="block text-lg font-semibold text-blue-700 mb-2.5 transition-colors group-hover:text-blue-600">
                                                         ตรอก/ซอย <span class="text-red-500 text-sm"></span>
                                                     </label>
-                                                    <input type="text" placeholder="ตรอก/ซอย" id="soi" name="soi" readonly
+                                                    <input type="text" placeholder="ตรอก/ซอย" id="soi" name="soi"
+                                                        readonly
                                                         class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                                 </div>
 
@@ -482,7 +484,8 @@
                                                         class="block text-lg font-semibold text-blue-700 mb-2.5 transition-colors group-hover:text-blue-600">
                                                         เขต/อำเภอ <span class="text-red-500 text-sm"></span>
                                                     </label>
-                                                    <input type="text" placeholder="อำเภอ" id="district" name="district" readonly
+                                                    <input type="text" placeholder="อำเภอ" id="district" name="district"
+                                                        readonly
                                                         class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                                 </div>
 
@@ -506,8 +509,37 @@
                                                         class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                                 </div>
                                             </div>
+                                            <div class="mt-4">
+                                                <h3
+                                                    class="text-lg font-semibold gap-2 text-blue-700 mb-2 flex items-center">
+                                                    ค่าเช่าบ้านต่อเดือน
+                                                </h3>
+
+                                                <input type="number"
+                                                    class="w-full sm:w-6/12 px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
+                                                    placeholder="ระบุค่าเช่าบ้านต่อเดือน" />
+
+                                                <div class="flex flex-col sm:flex-row gap-4 mt-4">
+                                                    <div
+                                                        class="flex-1 flex items-center justify-center h-32 border-2 border-dashed border-blue-300 rounded-lg cursor-pointer hover:bg-blue-50 transition-all">
+                                                        <h1>ตัวอย่างรูปที่อยู่อาศัย</h1>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex flex-col sm:flex-row gap-4 mt-4">
+                                                    <div
+                                                        class="flex-1 flex items-center justify-center h-32 border-2 border-dashed border-blue-300 rounded-lg cursor-pointer hover:bg-blue-50 transition-all">
+                                                        <h1>ตัวอย่างหลักฐานค่าใช้จ่ายค่าเช่าออกโดยสถานที่ให้เช่า</h1>
+                                                    </div>
+                                                </div>
+
+                                            </div>
                                         </div>
+
+
+
                                     </div>
+
                                     <div class="mx-auto px-1 mt-2">
                                         <h3 class="text-xl font-semibold text-blue-900 mb-6 flex items-center">
                                             ข้อมูลบิดา
@@ -555,7 +587,8 @@
                                                     class="block text-lg font-semibold text-blue-700 mb-2">
                                                     สถานที่ทำงาน <span class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="text" id="fatherWorkPlace" placeholder="สถานที่ทำงาน" readonly
+                                                <input type="text" id="fatherWorkPlace" placeholder="สถานที่ทำงาน"
+                                                    readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
                                         </div>
@@ -622,7 +655,8 @@
                                                     class="block text-lg font-semibold text-blue-700 mb-2">
                                                     สถานที่ทำงาน <span class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="text" id="motherWorkPlace" placeholder="สถานที่ทำงาน" readonly
+                                                <input type="text" id="motherWorkPlace" placeholder="สถานที่ทำงาน"
+                                                    readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
                                         </div>
@@ -690,7 +724,8 @@
                                                     class="block text-lg font-semibold text-blue-700 mb-2">
                                                     สถานที่ทำงาน <span class="text-red-500 text-sm align-top"></span>
                                                 </label>
-                                                <input type="text" id="parentWorkPlace" placeholder="สถานที่ทำงาน" readonly
+                                                <input type="text" id="parentWorkPlace" placeholder="สถานที่ทำงาน"
+                                                    readonly
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
                                         </div>
@@ -763,8 +798,88 @@
                                                     placeholder="จำนวนพี่น้องที่กำลังศึกษาอยู่"
                                                     class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
                                             </div>
-                                        </div>
 
+                                        </div>
+                                        <SiblingInfoFormConponent />
+
+                                        <div class="mt-6">
+                                            <h4
+                                                class="text-xl font-semibold text-blue-900 mt-8 mb-6 flex items-center gap-2">
+                                                ข้อมูลสุขภาพร่างกายของสมาชิกในครอบครัว
+                                            </h4>
+
+                                            <h4 class="text-sm font text-red-700 mb-3">
+                                                สุขภาพของบิดา/มารดา/ผู้ปกครอง/พี่น้อง/ตนเอง เมื่อเจ็บป่วยมีค่าใช้จ่าย
+                                                เป็นอุปสรรคต่อการศึกษา
+                                            </h4>
+
+                                            <div
+                                                class="p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200 shadow-md">
+                                                <div class="space-y-6">
+                                                    <div class="relative">
+                                                        <div
+                                                            class="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300">
+                                                            <div class="flex items-center mb-4">
+                                                                <div
+                                                                    class="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold mr-4 text-lg">
+                                                                    1
+                                                                </div>
+                                                                <h3 class="text-lg font-semibold text-gray-800">
+                                                                    รายละเอียด
+                                                                </h3>
+                                                            </div>
+
+                                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                                <div>
+                                                                    <label
+                                                                        class="block text-sm font-medium text-gray-600 mb-2">
+                                                                        ผู้ป่วย
+                                                                    </label>
+                                                                    <input type="text" readonly
+                                                                        class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500">
+
+                                                                    <label
+                                                                        class="block text-sm font-medium text-gray-600 mb-2">
+                                                                        อาการ
+                                                                    </label>
+
+                                                                    <textarea readonly
+                                                                        class="w-full md:w-12/12 px-3 md:px-4 h-40 text-base md:text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
+                                                                        rows="5" cols="50" placeholder=""
+                                                                        maxlength="250"></textarea>
+                                                                </div>
+
+                                                                <div class="flex flex-row gap-4">
+                                                                    <div class="flex-1 relative">
+                                                                        <label
+                                                                            class="block text-sm font-medium text-gray-600 mb-2">
+                                                                            รูปผู้ป่วย
+                                                                        </label>
+                                                                        <div
+                                                                            class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-blue-500 transition-all duration-200">
+                                                                            ตัวอย่างรูปผู้ป่วย
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="flex-1 relative">
+                                                                        <label
+                                                                            class="block text-sm font-medium text-gray-600 mb-2">
+                                                                            ใบรับรองแพทย์
+                                                                        </label>
+                                                                        <div
+                                                                            class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-blue-500 transition-all duration-200">
+                                                                            ตัวอย่างใบรับรองแพทย์
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
 
 
                                         <!-- <h3 class="text-xl font-semibold text-blue-900 mb-6 flex items-center gap-2">
@@ -794,6 +909,8 @@
 
 <script setup>
 import { ref } from 'vue';
+
+import SiblingInfoFormConponent from './SiblingInfoFormConponent.vue';
 
 import logoUrl from '@/assets/picture/logo.png';
 
