@@ -900,11 +900,22 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <br>
+
+                                        <hr>
+
                                         <VolunteerComponent class="mt-5 rounded-lg" />
+
+                                        <hr>
 
                                         <ReasonCommentComponent class="mt-5 rounded-lg" />
 
+                                        <hr>
+
                                         <EssaySubmissionComponent class="mt-5 rounded-lg" />
+
+                                        <hr>
 
                                         <DocumentFormComponent class="mt-5 rounded-lg" />
 

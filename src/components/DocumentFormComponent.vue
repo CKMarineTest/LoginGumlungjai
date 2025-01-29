@@ -1,5 +1,5 @@
 <template>
-    <div class=" bg-gradient-to-br from-blue-50 to-blue-100 p-2 sm:p-4 md:p-6 lg:p-8">
+    <div class="">
         <div class="absolute top-0 left-0 w-32 h-32 opacity-10">
             <svg viewBox="0 0 100 100" class="w-full h-full text-blue-600">
                 <path d="M20,20 L80,20 L80,70 Q50,90 20,70 Z" fill="currentColor" />
@@ -15,9 +15,9 @@
         </div>
 
         <div class="w-full max-w-6xl mx-auto relative">
-            <div class="bg-white shadow-xl rounded-2xl overflow-hidden">
+            <div class="overflow-hidden">
                 <div
-                    class="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 p-6 text-white text-center relative">
+                    class="">
                     <div class="absolute left-4 top-1/2 -translate-y-1/2">
                         <svg viewBox="0 0 100 100" class="w-12 h-12 text-white opacity-80">
                             <rect x="20" y="20" width="60" height="70" rx="4" fill="currentColor" />
@@ -27,13 +27,13 @@
                             <path d="M30 55 H60" stroke="currentColor" stroke-width="2" />
                         </svg>
                     </div>
-                    <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight">แนบเอกสาร</h1>
+                    <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight">เอกสาร</h1>
                 </div>
             </div>
 
             <div class="mt-6 space-y-6">
                 <div
-                    class="group relative overflow-hidden bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 border border-blue-100/50">
+                    class="group relative overflow-hidden ">
 
 
                     <div class="p-4 sm:p-6 flex flex-col sm:flex-row items-center gap-4">

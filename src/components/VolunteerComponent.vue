@@ -1,30 +1,19 @@
 <template>
-    <div class=" bg-gradient-to-br from-blue-50 to-blue-100 p-2 sm:p-4 md:p-8">
+    <div class="p-2 sm:p-4 md:p-8">
         <div class="w-full max-w-7xl mx-auto">
-            <div class="bg-white shadow-xl rounded-2xl overflow-hidden">
-                <div class="bg-gradient-to-r from-blue-500 via-blue-600 to-sky-600 p-4 sm:p-6 md:p-8 relative">
+            <div class="overflow-hidden">
+                <div class="p-4 sm:p-6 md:p-8 relative">
                     <div class="absolute inset-0 opacity-20">
-                        <svg class="w-full h-full" viewBox="0 0 100 100" fill="none">
-                            <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-                                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.5" />
-                            </pattern>
-                            <rect width="100" height="100" fill="url(#grid)" />
-                        </svg>
                     </div>
-                    <h1
-                        class="text-xl sm:text-2xl md:text-3xl font-bold text-white text-center mb-2 sm:mb-3 relative z-10">
+                    <h1 class="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-center mb-2 sm:mb-4 text-shadow relative">
                         การเข้าร่วมกิจกรรมจิตอาสาต่างๆ
                     </h1>
-                    <p class="text-white/90 text-center text-sm sm:text-base relative z-10">
-                        โปรดระบุรายละเอียดกิจกรรมจิตอาสาและการบำเพ็ญประโยชน์โดยย่อ
-                    </p>
                 </div>
 
                 <div class="p-4 sm:p-6 md:p-8">
                     <div class="space-y-3 sm:space-y-4">
                         <TransitionGroup name="list">
-                            <div
-                                class="p-3 sm:p-4 bg-white rounded-lg border border-blue-100 shadow-sm hover:shadow-md transition-all duration-200">
+                            <div class="p-3 sm:p-4  ">
                                 <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
                                     <div class="flex-1">
                                         <div class="relative">
