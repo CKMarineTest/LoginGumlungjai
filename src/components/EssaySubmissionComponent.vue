@@ -19,7 +19,7 @@
 
         <div class="overflow-hidden">
             <div class="">
-                <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight">เอกสาร</h1>
+                <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight">เอกสารเรียงความ</h1>
             </div>
 
 
