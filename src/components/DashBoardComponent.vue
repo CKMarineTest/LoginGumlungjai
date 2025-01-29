@@ -12,7 +12,7 @@
                     <div class="flex items-center  justify-between">
                         <div>
                             <p class="text-lg text-gray-500">จำนวนผู้สมัคร</p>
-                            <span class="text-2xl font-semibold" ref="numberRef">{{ displayNumber }}</span>
+                            <span class="text-2xl font-semibold" ref="numberRef">{{ formatNumber }}</span>
                         </div>
                         <div class="p-2 bg-blue-100 rounded-lg">
                             <span class="text-blue-500">📄</span>
@@ -53,10 +53,7 @@
             <div class="grid grid-cols-12 gap-6">
                 <div class="col-span-4 bg-white p-4 rounded-lg shadow">
                     <div class="flex justify-between items-center mb-4">
-                        <h3 class="font-semibold">Influencer</h3>
-                        <button class="text-blue-500 text-sm hover:bg-blue-50 px-2 py-1 rounded">
-                            + Add Influencer
-                        </button>
+                        <h3 class="font-semibold">User</h3>
                     </div>
                     <div class="space-y-4">
                         <div v-for="influencer in influencers" :key="influencer.name" 
@@ -69,10 +66,6 @@
                                     <p class="font-medium">{{ influencer.name }}</p>
                                     <p class="text-sm text-gray-500">{{ influencer.projects }} Projects</p>
                                 </div>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-sm font-medium">{{ influencer.followers }}</p>
-                                <p class="text-xs text-gray-500">Followers</p>
                             </div>
                         </div>
                     </div>
@@ -91,7 +84,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch, defineProps } from 'vue';
+import { ref, onMounted, watch, defineProps, computed } from 'vue';
 import SidebarComponent from './Menu/SidebarComponent.vue';
 
 import gsap from 'gsap';
@@ -114,13 +107,16 @@ const animateNumber = () => {
     gsap.to(displayNumber, {
         duration: props.duration,
         value: props.value,
-        roundProps: 'value',
         ease: 'power1.out',
         onUpdate: () => {
-            displayNumber.value = displayNumber.value.toLocaleString();
+            displayNumber.value = Math.round(gsap.getProperty(displayNumber, "value"));
         }
     });
-}
+};
+
+const formatNumber = computed(() => displayNumber.value.toLocaleString());
+
+
 
 onMounted(() => {
     animateNumber();

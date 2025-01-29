@@ -183,74 +183,11 @@
 
                                     <div class="w-full mt-2">
                                         <label for="university" class="text-lg font-semibold text-blue-700 mb-2 block">
-                                            สถานศึกษาที่สอบติด
-                                            (สามารถค้นหาเป็นตัวย่อภาษาไทยและอังกฤษหรือชื่อเต็มของมหาวิทยาลัย) <span
-                                                class="text-red-500 text-sm"></span>
+                                            สถานศึกษาที่สอบติด <span class="text-red-500 text-sm"></span>
                                         </label>
-                                        <div class="relative">
-                                            <div
-                                                class="mt-4 p-5 lg:p-6 bg-white rounded-xl border border-blue-100 shadow-sm relative group hover:border-blue-200 transition-all duration-300">
-
-                                                <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-5">
-                                                    <div
-                                                        class="hidden sm:flex flex-shrink-0 w-12 h-12 bg-blue-50 rounded-lg items-center justify-center transition-transform duration-300 group-hover:scale-105">
-                                                        <svg class="w-6 h-6 text-blue-600" fill="none"
-                                                            stroke="currentColor" viewBox="0 0 24 24"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2"
-                                                                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
-                                                            </path>
-                                                        </svg>
-                                                    </div>
-
-                                                    <div class="flex-1 w-full">
-                                                        <div class="flex flex-wrap items-center gap-2 mb-3">
-                                                            <h3 class="text-base font-semibold text-gray-800">
-                                                                ข้อมูลสถานศึกษา</h3>
-                                                            <span
-                                                                class="px-2.5 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-md">
-                                                                สถาบันการศึกษา
-                                                            </span>
-                                                        </div>
-
-                                                        <div class="mb-4 p-3 bg-gray-50 rounded-lg">
-                                                            <div class="text-xs text-gray-500 mb-1">สถานศึกษา</div>
-                                                            <div class="text-sm text-gray-800 font-medium">
-
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                                            <div
-                                                                class="p-3 rounded-lg bg-white border border-blue-100 hover:border-blue-200 transition-all duration-200">
-                                                                <div class="flex justify-between items-center mb-2">
-                                                                    <span class="text-xs text-gray-500">รหัสสถานศึกษา
-                                                                        (ไทย)</span>
-                                                                    <span
-                                                                        class="px-1.5 py-0.5 bg-blue-50 text-blue-600 rounded text-xs font-medium">TH</span>
-                                                                </div>
-                                                                <div class="text-sm text-blue-700 font-semibold">
-
-                                                                </div>
-                                                            </div>
-
-                                                            <div
-                                                                class="p-3 rounded-lg bg-white border border-blue-100 hover:border-blue-200 transition-all duration-200">
-                                                                <div class="flex justify-between items-center mb-2">
-                                                                    <span class="text-xs text-gray-500">รหัสสถานศึกษา
-                                                                        (อังกฤษ)</span>
-                                                                    <span
-                                                                        class="px-1.5 py-0.5 bg-blue-50 text-blue-600 rounded text-xs font-medium">EN</span>
-                                                                </div>
-                                                                <div class="text-sm text-blue-700 font-semibold">
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="grid grid-cols-1 md:grid-cols-full gap-4">
+                                            <input type="text" placeholder="สถานศึกษาที่สอบติด" id="" name="" readonly
+                                                class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200">
                                         </div>
                                     </div>
 
@@ -296,17 +233,65 @@
                                                 คะแนนเฉลี่ย (จบ ม.6 ใส่เกรดจากใบปพ.1/รบ.1) <span
                                                     class="text-red-500"></span>
                                             </label>
-                                            <input type="number" id="gpa" name="gpa" readonly
-                                                class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
-                                                placeholder="เกรดเฉลี่ย">
+                                            <div class="relative">
+                                                <input type="number" id="gpa" name="gpa" v-model.number="gpa" max="4"
+                                                    @input="validateGPA"
+                                                    class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                                                    placeholder="กรอกเกรดเฉลี่ย" readonly />
+
+                                                <div class="absolute right-2 top-1/2 -translate-y-1/2">
+                                                    <button
+                                                        class="inline-flex  items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                                        <svg v-if="!selectedFile" class="w-4 h-4" fill="none"
+                                                            stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" d="M12 4v16m0-16l-4 4m4-4l4 4" />
+                                                        </svg>
+                                                        <svg v-else class="w-4 h-4" fill="none" stroke="currentColor"
+                                                            viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                        </svg>
+                                                        <span class="text-sm font-medium">
+                                                            ไฟล์เกรด
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div>
                                             <label class="text-lg font-semibold text-blue-700 mb-2 block" for="tcas">
                                                 ค่าเล่าเรียน <span class="text-red-500"></span>
                                             </label>
-                                            <input type="number" id="tcas" name="tcas" readonly
-                                                class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
-                                                placeholder="ค่าเล่าเรียน (บาท/เทอม)">
+                                            <div class="relative">
+                                                <input type="number" id="tcas" name="tcas" readonly
+                                                    class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                                                    placeholder="ค่าเล่าเรียน (บาท/เทอม)">
+
+                                                <div class="absolute right-2 top-1/2 -translate-y-1/2">
+                                                    <button
+                                                        class="inline-flex  items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                                        <svg v-if="!selectedFile" class="w-4 h-4" fill="none"
+                                                            stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" d="M12 4v16m0-16l-4 4m4-4l4 4" />
+                                                        </svg>
+                                                        <svg v-else class="w-4 h-4" fill="none" stroke="currentColor"
+                                                            viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                        </svg>
+                                                        <span class="text-sm font-medium">
+                                                            ไฟล์ค่าเทอม
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+
+
                                         </div>
                                     </div>
                                     <br>
@@ -332,7 +317,16 @@
                                                         placeholder="ระบุชื่อรายการเกียรติบัตร" />
 
                                                     <div class="w-full md:w-auto flex items-center">
-                                                        ไฟล์
+                                                        <button @click="handleDownload"
+                                                            class="inline-flex  items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 "
+                                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    stroke-width="2"
+                                                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                                            </svg>
+                                                            <span>ไฟล์เกียรติบัตร</span>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -516,30 +510,40 @@
 
                                                 <input type="number"
                                                     class="w-full sm:w-6/12 px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
-                                                    placeholder="ระบุค่าเช่าบ้านต่อเดือน" />
+                                                    placeholder="ค่าเช่าบ้านต่อเดือน" readonly />
 
                                                 <div class="flex flex-col sm:flex-row gap-4 mt-4">
-                                                    <div
-                                                        class="flex-1 flex items-center justify-center h-32 border-2 border-dashed border-blue-300 rounded-lg cursor-pointer hover:bg-blue-50 transition-all">
-                                                        <h1>ตัวอย่างรูปที่อยู่อาศัย</h1>
-                                                    </div>
+                                                    <button @click="handleDownload"
+                                                        class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 "
+                                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                                        </svg>
+                                                        <span>รูปภาพที่อยู่บ้าน</span>
+                                                    </button>
                                                 </div>
 
                                                 <div class="flex flex-col sm:flex-row gap-4 mt-4">
-                                                    <div
-                                                        class="flex-1 flex items-center justify-center h-32 border-2 border-dashed border-blue-300 rounded-lg cursor-pointer hover:bg-blue-50 transition-all">
-                                                        <h1>ตัวอย่างหลักฐานค่าใช้จ่ายค่าเช่าออกโดยสถานที่ให้เช่า</h1>
-                                                    </div>
+                                                    <button @click="handleDownload"
+                                                        class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 "
+                                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                                        </svg>
+                                                        <span>ตัวอย่างหลักฐานค่าใช้จ่ายค่าเช่าออกโดยสถานที่ให้เช่า</span>
+                                                    </button>
                                                 </div>
 
                                             </div>
                                         </div>
 
-
-
                                     </div>
 
-                                    <div class="mx-auto px-1 mt-2">
+                                    <div class="mx-auto px-1 mt-3">
                                         <h3 class="text-xl font-semibold text-blue-900 mb-6 flex items-center">
                                             ข้อมูลบิดา
                                         </h3>
@@ -854,20 +858,38 @@
                                                                             class="block text-sm font-medium text-gray-600 mb-2">
                                                                             รูปผู้ป่วย
                                                                         </label>
-                                                                        <div
-                                                                            class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-blue-500 transition-all duration-200">
-                                                                            ตัวอย่างรูปผู้ป่วย
-                                                                        </div>
+                                                                        <button @click="handleDownload"
+                                                                            class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                class="h-5 w-5 " fill="none"
+                                                                                viewBox="0 0 24 24"
+                                                                                stroke="currentColor">
+                                                                                <path stroke-linecap="round"
+                                                                                    stroke-linejoin="round"
+                                                                                    stroke-width="2"
+                                                                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                                                            </svg>
+                                                                            <span>รูปผู้ป่วย</span>
+                                                                        </button>
                                                                     </div>
                                                                     <div class="flex-1 relative">
                                                                         <label
                                                                             class="block text-sm font-medium text-gray-600 mb-2">
                                                                             ใบรับรองแพทย์
                                                                         </label>
-                                                                        <div
-                                                                            class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-blue-500 transition-all duration-200">
-                                                                            ตัวอย่างใบรับรองแพทย์
-                                                                        </div>
+                                                                        <button @click="handleDownload"
+                                                                            class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                class="h-5 w-5 " fill="none"
+                                                                                viewBox="0 0 24 24"
+                                                                                stroke="currentColor">
+                                                                                <path stroke-linecap="round"
+                                                                                    stroke-linejoin="round"
+                                                                                    stroke-width="2"
+                                                                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                                                            </svg>
+                                                                            <span>ใบรับรองแพทย์</span>
+                                                                        </button>
                                                                     </div>
                                                                 </div>
 
@@ -910,6 +932,8 @@
 import { ref } from 'vue';
 
 import SiblingInfoFormConponent from './SiblingInfoFormConponent.vue';
+
+// import { DownloadIcon } from 'lucide-vue-next';
 
 import logoUrl from '@/assets/picture/GLJ_Logo.png';
 
