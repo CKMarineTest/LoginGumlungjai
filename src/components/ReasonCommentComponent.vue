@@ -45,14 +45,10 @@
                         class="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-center mb-2 sm:mb-4 text-shadow relative">
                         ให้ผู้ขอรับทุนแสดงความคิดเห็น " ทำไมข้าพเจ้าควรได้รับทุนการศึกษาโครงการนี้ "
                     </h1>
-                    <p class="text-center text-sm sm:text-base md:text-lg opacity-90 mb-4 sm:mb-6">
-                        บรรยายรายละเอียดชัดเจนตามความจริงเพื่อประกอบพิจารณาทุนการศึกษา
-                    </p>
                     <br>
                     <div
                         class="space-y-2 bg-blue-800/30 p-4 rounded-xl text-sm sm:text-base border border-white/20">
                         <p class="flex items-center space-x-2">
-                            <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full flex-shrink-0"></span>
                             <span>Scholars,คุณหมอของกำลังใจ,กำลังใจให้พยาบาล : พิมพ์เรียงความ</span>
                         </p>
                     </div>
@@ -61,7 +57,7 @@
                 <div class="p-4 sm:p-6 md:p-8 relative">
                     <div class="group">
                         <div class="flex flex-col items-center justify-center space-y-4 sm:space-y-6 h-full">
-                            <div class="w-full max-w-3xl mx-auto p-6">
+                            <div class="w-full max-w-full mx-auto p-6">
                                 <div class="relative rounded-2xl p-[3px] transition-all duration-500"
                                     :class="{ 'shadow-lg ring-2 ring-blue-100': isFocused, 'shadow-md': !isFocused }">
 
