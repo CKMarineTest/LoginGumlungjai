@@ -30,7 +30,7 @@
                                         <div class="relative">
                                             <input type="text" class="w-full px-3 sm:px-4 h-10 sm:h-12 text-sm sm:text-base border-2 border-blue-200 rounded-lg 
                                focus:ring-2 focus:ring-blue-100 focus:border-blue-400 outline-none transition-all"
-                                                placeholder="ชื่อกิจกรรมอาสา" />
+                                                placeholder="ชื่อกิจกรรมอาสา" readonly />
 
                                             <div class="absolute right-2 top-1/2 -translate-y-1/2">
                                                 <button
