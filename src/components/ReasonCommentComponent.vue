@@ -57,7 +57,7 @@
                 <div class="p-4 sm:p-6 md:p-8 relative">
                     <div class="group">
                         <div class="flex flex-col items-center justify-center space-y-4 sm:space-y-6 h-full">
-                            <div class="w-full max-w-full mx-auto p-6">
+                            <div class="w-full max-w-full mx-auto ">
                                 <div class="relative rounded-2xl p-[3px] transition-all duration-500"
                                     :class="{ 'shadow-lg ring-2 ring-blue-100': isFocused, 'shadow-md': !isFocused }">
 
