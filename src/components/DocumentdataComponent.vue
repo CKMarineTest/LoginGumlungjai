@@ -27,7 +27,6 @@
                             class="border-2 border-dashed border-white/60 w-36 h-44 sm:w-44 sm:h-52 rounded-xl flex flex-col items-center justify-center group-hover:border-white">
                             <Camera class="w-8 h-8 text-white/80 mb-2" />
                             <span class="text-sm text-white/80">รูปถ่าย 1 นิ้ว</span>
-                            <span class="text-xs text-white/60 mt-1">คลิกเพื่ออัพโหลด</span>
                         </div>
                         <img v-else :src="photoPreview" class="w-36 h-44 sm:w-44 sm:h-52 object-cover rounded-xl"
                             alt="Preview" />
@@ -912,7 +911,7 @@ import { ref } from 'vue';
 
 import SiblingInfoFormConponent from './SiblingInfoFormConponent.vue';
 
-import logoUrl from '@/assets/picture/logo.png';
+import logoUrl from '@/assets/picture/GLJ_Logo.png';
 
 const refexample = ref('ตัวอย่าง');
 
