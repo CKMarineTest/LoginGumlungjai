@@ -21,7 +21,7 @@
             </h2>
             <p class="text-gray-500 mb-6">Choose how you'd like your interface to appear</p>
 
-            <!-- <div class="grid grid-cols-1 md:grid-cols-12 gap-6 max-w-full">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-full">
               <div v-for="mode in colorModes" :key="mode.name" class="relative cursor-pointer group"
                 @click="selectedMode = mode.name">
                 <div class="rounded-xl overflow-hidden transition-all duration-300" :class="{
@@ -40,10 +40,9 @@
                   </div>
                 </div>
               </div>
-            </div> -->
+            </div>
           </section>
 
-          <!-- Theme Section -->
           <section class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 transition-all hover:shadow-md">
             <h2 class="text-xl font-semibold text-gray-900 mb-2 flex items-center">
               <SwatchIcon class="h-5 w-5 text-indigo-500 mr-2" />
@@ -88,8 +87,8 @@ import SidebarComponent from './Menu/SidebarComponent.vue';
 import {
   CubeTransparentIcon,
   SunIcon,
-  // MoonIcon,
-  // ComputerDesktopIcon,
+  MoonIcon,
+  ComputerDesktopIcon,
   SwatchIcon,
   CheckIcon
 } from '@heroicons/vue/24/outline';
@@ -98,26 +97,26 @@ import {
 const selectedMode = ref('System Default');
 const selectedTheme = ref('Royal Heath');
 
-// const colorModes = [
-//   {
-//     name: 'Light',
-//     preview: 'bg-white',
-//     icon: SunIcon,
-//     description: 'Perfect for daytime use'
-//   },
-//   {
-//     name: 'Dark',
-//     preview: 'bg-gray-900',
-//     icon: MoonIcon,
-//     description: 'Easy on the eyes at night'
-//   },
-//   {
-//     name: 'System Default',
-//     preview: 'bg-gradient-to-r from-gray-100 to-gray-200',
-//     icon: ComputerDesktopIcon,
-//     description: 'Matches your system settings'
-//   }
-// ];
+const colorModes = [
+  {
+    name: 'Light',
+    preview: 'bg-white',
+    icon: SunIcon,
+    description: 'Perfect for daytime use'
+  },
+  {
+    name: 'Dark',
+    preview: 'bg-gray-900',
+    icon: MoonIcon,
+    description: 'Easy on the eyes at night'
+  },
+  {
+    name: 'System Default',
+    preview: 'bg-gradient-to-r from-gray-100 to-gray-200',
+    icon: ComputerDesktopIcon,
+    description: 'Matches your system settings'
+  }
+];
 
 const themes = [
   {

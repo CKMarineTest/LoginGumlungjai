@@ -62,7 +62,7 @@
                         <label class="text-lg font-semibold text-blue-700 mb-2 block" for="lastname">
                             นามสกุล <span class="text-red-500 text-sm"></span>
                         </label>
-                        <input type="text" placeholder="นามสกุล" id="lastname" name="lastname" readonly 
+                        <input type="text" placeholder="นามสกุล" id="lastname" name="lastname" readonly
                             class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200">
                     </div>
                     <div class="w-full sm:w-1/2 lg:w-1/4">
@@ -899,8 +899,14 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
+                                        <VolunteerComponent class="mt-5 rounded-lg" />
+
+                                        <ReasonCommentComponent class="mt-5 rounded-lg" />
+
+                                        <EssaySubmissionComponent class="mt-5 rounded-lg" />
+
+                                        <DocumentFormComponent class="mt-5 rounded-lg" />
 
 
                                         <!-- <h3 class="text-xl font-semibold text-blue-900 mb-6 flex items-center gap-2">
@@ -932,6 +938,10 @@
 import { ref } from 'vue';
 
 import SiblingInfoFormConponent from './SiblingInfoFormConponent.vue';
+import VolunteerComponent from './VolunteerComponent.vue';
+import EssaySubmissionComponent from './EssaySubmissionComponent.vue';
+import ReasonCommentComponent from './ReasonCommentComponent.vue';
+import DocumentFormComponent from './DocumentFormComponent.vue';
 
 // import { DownloadIcon } from 'lucide-vue-next';
 
