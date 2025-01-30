@@ -10,6 +10,8 @@
       </svg>
     </div>
 
+    <LoginSvgComponent />
+
     <div ref="loginCard" class="relative w-full max-w-[90%] sm:max-w-md md:max-w-lg lg:max-w-xl mx-auto opacity-0">
       <div class="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform 
                     -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
@@ -68,6 +70,8 @@ import router from '@/router';
 import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
 import gsap from 'gsap';
+
+import LoginSvgComponent from './Svg/LoginSvgComponent.vue';
 
 const loginCard = ref(null);
 const title = ref(null);
@@ -166,7 +170,10 @@ const LoginFailed = () => {
     "type": "error",
     "dangerouslyHTMLString": true,
     "position": "top-right",
-    "closeButton": false
+    "closeButton": false,
+    "autoClose": true,
+    "pauseOnHover": false,
+    "closeOnClick": false
   });
 };
 
@@ -183,7 +190,10 @@ const validDateLoginNullValue = () => {
     "type": "info",
     "dangerouslyHTMLString": true,
     "position": "top-right",
-    "closeButton": false
+    "closeButton": false,
+    "autoClose": true,
+    "pauseOnHover": false,
+    "closeOnClick": false,
   });
 };
 
