@@ -1,11 +1,13 @@
 <template>
 
     <div class="flex">
-        <!-- <aside class="w-16 h-screen fixed left-0 bg-gray-900"> -->
-        <!-- <SidebarComponent /> -->
-        <!-- </aside> -->
+        <aside class="w-16 h-screen fixed left-0 bg-gray-900">
+            <SidebarComponent />
+        </aside>
     </div>
     <div class="min-h-screen bg-blue-100 p-4 md:p-6 lg:p-8">
+        <br>
+        <br>
         <div class="w-full max-w-7xl mx-auto bg-white shadow-xl rounded-xl overflow-hidden">
             <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-4 text-white relative overflow-hidden">
                 <div class="flex flex-wrap justify-between items-start gap-4 relative z-10">
@@ -948,13 +950,13 @@
 <script setup>
 import { ref } from 'vue';
 
+import SidebarComponent from './Menu/SidebarComponent.vue';
 import SiblingInfoFormConponent from './SiblingInfoFormConponent.vue';
 import VolunteerComponent from './VolunteerComponent.vue';
 import EssaySubmissionComponent from './EssaySubmissionComponent.vue';
 import ReasonCommentComponent from './ReasonCommentComponent.vue';
 import DocumentFormComponent from './DocumentFormComponent.vue';
 
-// import { DownloadIcon } from 'lucide-vue-next';
 
 import logoUrl from '@/assets/picture/GLJ_Logo.png';
 
