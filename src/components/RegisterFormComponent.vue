@@ -172,7 +172,8 @@ const sortedAndFilteredData = computed(() => {
         } else {
             return aValue < bValue ? 1 : -1;
         }
-    })
+    });
+
     return result;
 });
 

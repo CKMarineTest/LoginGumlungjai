@@ -1,15 +1,6 @@
 <template>
     <div class="p-2 sm:p-4 md:p-6 lg:p-8">
         <div class="w-full max-w-6xl mx-auto relative">
-            <!-- <div class="absolute -top-4 -left-2 transform -rotate-12 hidden md:block">
-                <div
-                    class="w-16 h-24 bg-yellow-100 rounded-lg shadow-md flex flex-col items-center justify-end border-2 border-yellow-200">
-                    <div class="w-4 h-16 bg-yellow-400 relative">
-                        <div class="absolute top-0 w-full h-4 bg-pink-400 rounded-t-sm"></div>
-                        <div class="absolute bottom-0 w-full h-4 bg-gray-800 transform rotate-180"></div>
-                    </div>
-                </div>
-            </div> -->
 
             <div class="absolute -top-6 right-8 transform rotate-6 hidden md:block">
                 <div
@@ -23,22 +14,9 @@
                 </div>
             </div>
 
-            <!-- <div class="absolute top-20 -left-4 transform rotate-45 hidden lg:block">
-                <div
-                    class="w-32 h-8 bg-white rounded shadow-md border-2 border-blue-200 flex items-center justify-around">
-                    <div class="h-4 w-0.5 bg-blue-300"></div>
-                    <div class="h-3 w-0.5 bg-blue-300"></div>
-                    <div class="h-4 w-0.5 bg-blue-300"></div>
-                    <div class="h-3 w-0.5 bg-blue-300"></div>
-                    <div class="h-4 w-0.5 bg-blue-300"></div>
-                </div>
-            </div> -->
-
             <div class="overflow-hidden">
-                <div
-                    class=" p-4 sm:p-6 md:p-8 relative">
-                    <div
-                        class="">
+                <div class=" p-4 sm:p-6 md:p-8 relative">
+                    <div class="">
                     </div>
 
                     <h1
@@ -46,8 +24,7 @@
                         ให้ผู้ขอรับทุนแสดงความคิดเห็น " ทำไมข้าพเจ้าควรได้รับทุนการศึกษาโครงการนี้ "
                     </h1>
                     <br>
-                    <div
-                        class="space-y-2 bg-blue-800/30 p-4 rounded-xl text-sm sm:text-base border border-white/20">
+                    <div class="space-y-2 bg-blue-800/30 p-4 rounded-xl text-sm sm:text-base border border-white/20">
                         <p class="flex items-center space-x-2">
                             <span>Scholars,คุณหมอของกำลังใจ,กำลังใจให้พยาบาล : พิมพ์เรียงความ</span>
                         </p>
@@ -79,8 +56,7 @@
 
                                         <textarea v-model="text"
                                             class="w-full min-h-[150px] border-none outline-none resize-none text-lg bg-transparent relative z-10"
-                                            placeholder="..." @focus="isFocused = true"
-                                            @blur="isFocused = false" readonly></textarea>
+                                            placeholder="..." @focus="isFocused = true" @blur="isFocused = false" readonly></textarea>
                                     </div>
                                 </div>
                             </div>

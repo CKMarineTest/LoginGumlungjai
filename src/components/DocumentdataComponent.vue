@@ -962,6 +962,7 @@ import logoUrl from '@/assets/picture/GLJ_Logo.png';
 
 const refexample = ref('ตัวอย่าง');
 
+
 </script>
 
 <style scoped>
