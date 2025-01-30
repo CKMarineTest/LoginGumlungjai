@@ -4,7 +4,9 @@
       <SidebarComponent />
     </aside>
     <main class="flex-1 ml-16">
-      <div class="max-w-7xl mx-auto p-8">
+      <br>
+      <br>
+      <div class="max-w-full mx-auto p-8">
         <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 mb-8">
           <h1 class="text-3xl font-bold text-gray-900 flex items-center mb-2">
             <CubeTransparentIcon class="h-8 w-8 text-blue-600 mr-3" />
@@ -15,13 +17,9 @@
 
         <div class="space-y-8">
           <section class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 transition-all hover:shadow-md">
-            <h2 class="text-xl font-semibold text-gray-900 mb-2 flex items-center">
-              <SunIcon class="h-5 w-5 text-amber-500 mr-2" />
-              Color Mode
-            </h2>
-            <p class="text-gray-500 mb-6">Choose how you'd like your interface to appear</p>
+            
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-full">
+            <div class="grid grid-cols-12 md:grid-cols-12 gap-6 max-w-full">
               <div v-for="mode in colorModes" :key="mode.name" class="relative cursor-pointer group"
                 @click="selectedMode = mode.name">
                 <div class="rounded-xl overflow-hidden transition-all duration-300" :class="{
@@ -66,7 +64,6 @@
             </div>
           </section>
 
-          <!-- Save Button -->
           <div class="flex justify-end">
             <button
               class="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium shadow-sm hover:bg-blue-700 transition-colors duration-200 flex items-center"
@@ -93,7 +90,6 @@ import {
   CheckIcon
 } from '@heroicons/vue/24/outline';
 
-//   const activeTab = ref('Appearance');
 const selectedMode = ref('System Default');
 const selectedTheme = ref('Royal Heath');
 
