@@ -43,6 +43,11 @@ const routes = [
         path: '/documentdata',
         name: 'documentdata',
         component: () => import('../views/DocumentdataView.vue'),
+    },
+    {
+        path: '/printdata',
+        name: 'printdata',
+        component: () => import('../views/PrintDataView.vue'),
     }
 ]
 

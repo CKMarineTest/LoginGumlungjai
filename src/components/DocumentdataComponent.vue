@@ -39,14 +39,20 @@
             </div>
             <div class="p-8 bg-gray-50/50 border">
                 <br>
+                <div>
+                    <PrintDataComponent />
+                </div>
+            </div>
+            <div class=" p-8 bg-gray-50/50 ">
+
                 <h3 class="text-xl font-semibold text-blue-900 mb-6 flex items-center gap-2">
                     ประเภททุนการศึกษา
                 </h3>
                 <div class="relative text-red-500 text-xl">
-                    {{ refexample }}
+                    <h4>{{ refexample }}</h4>
                 </div>
-            </div>
-            <div class="divide-y divide-gray-100 p-8 bg-gray-50/50 border-b">
+                <br>
+
                 <h3 class="text-xl font-semibold text-blue-900 mb-6 flex items-center gap-2">
                     ส่วนที่ 1 ข้อมูลส่วนตัวของผู้สมัครรับทุนการศึกษา
                 </h3>
@@ -957,6 +963,7 @@ import EssaySubmissionComponent from './EssaySubmissionComponent.vue';
 import ReasonCommentComponent from './ReasonCommentComponent.vue';
 import DocumentFormComponent from './DocumentFormComponent.vue';
 
+import PrintDataComponent from './PrintDataComponent.vue';
 
 import logoUrl from '@/assets/picture/GLJ_Logo.png';
 
