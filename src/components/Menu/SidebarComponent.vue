@@ -1,10 +1,8 @@
 <template>
   <div class="flex min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-    <!-- Sidebar with improved styling -->
     <aside
       class="fixed left-0 h-screen transition-all duration-300 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white z-20 shadow-2xl"
       :class="[isExpanded ? 'w-64' : 'w-20']" @mouseenter="expandSidebar" @mouseleave="collapseSidebar">
-      <!-- Improved header with glass effect -->
       <div
         class="h-20 flex items-center justify-center bg-white/10 backdrop-blur-md border-b border-white/10 relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-75"></div>
@@ -14,24 +12,21 @@
             <div
               class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-white/70 via-white/50 to-transparent">
             </div>
-            <!-- Added subtle glow effect -->
             <div class="absolute -inset-1 bg-white/20 blur-xl -z-10"></div>
           </span>
           <span v-else class="text-2xl font-bold text-white">G</span>
         </transition>
       </div>
 
-      <!-- Improved navigation -->
       <nav class="mt-8">
         <ul class="space-y-3 px-4">
           <li v-for="item in menuItems" :key="item.label">
             <router-link :to="item.path"
-              class="flex items-center py-3.5 rounded-xl hover:bg-white/20 backdrop-blur transition-all duration-300 group relative overflow-hidden"
+              class="flex items-center py-3.5 rounded-xl  hover:bg-white/20 backdrop-blur transition-all duration-300 group relative overflow-hidden"
               :class="[
                 isExpanded ? 'px-4' : 'px-0 justify-center',
                 $route.path === item.path ? 'bg-white/25 shadow-lg' : ''
               ]">
-              <!-- Improved hover effect -->
               <div
                 class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700">
               </div>
@@ -47,7 +42,6 @@
                 </span>
               </transition>
 
-              <!-- Improved tooltip -->
               <div v-if="!isExpanded"
                 class="absolute left-full ml-3 px-4 py-2 bg-gray-900/90 backdrop-blur-sm text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap shadow-xl transform -translate-x-2 group-hover:translate-x-0">
                 {{ item.label }}
@@ -58,14 +52,11 @@
       </nav>
     </aside>
 
-    <!-- Main content area -->
     <div class="flex-1 min-w-0">
       <div class="transition-all duration-300" :class="[isExpanded ? 'ml-64' : 'ml-20']">
-        <!-- Improved header -->
         <header
           class="h-16 bg-white/80 border-b flex items-center justify-between px-8 shadow-sm fixed top-0 right-0 transition-all duration-300 backdrop-blur-md z-10"
           :class="[isExpanded ? 'left-64' : 'left-20']">
-          <!-- Improved search bar -->
           <div class="flex-1 max-w-lg">
             <div class="relative group">
               <magnifying-glass-icon
@@ -78,16 +69,13 @@
             </div>
           </div>
 
-          <!-- Improved notification and profile section -->
           <div class="flex items-center space-x-8">
-            <!-- Notification button with improved styling -->
             <div class="relative notifications-container">
               <button @click="toggleNotifications"
                 class="p-3 hover:bg-gray-100 rounded-xl relative transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 group">
                 <bell-icon class="w-5 h-5 text-gray-600 group-hover:text-blue-500 transition-colors duration-300" />
               </button>
 
-              <!-- Improved notifications dropdown -->
               <transition enter-active-class="transition duration-300 ease-out"
                 enter-from-class="transform scale-95 opacity-0" enter-to-class="transform scale-100 opacity-100"
                 leave-active-class="transition duration-200 ease-in" leave-from-class="transform scale-100 opacity-100"
@@ -106,7 +94,6 @@
               </transition>
             </div>
 
-            <!-- Improved profile section -->
             <div class="relative profile-container">
               <button @click="toggleProfileMenu"
                 class="flex items-center space-x-3 hover:bg-gray-100 rounded-xl px-4 py-2.5 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
@@ -122,7 +109,6 @@
                 </div>
               </button>
 
-              <!-- Improved profile dropdown -->
               <transition enter-active-class="transition duration-300 ease-out"
                 enter-from-class="transform scale-95 opacity-0" enter-to-class="transform scale-100 opacity-100"
                 leave-active-class="transition duration-200 ease-in" leave-from-class="transform scale-100 opacity-100"
