@@ -1,6 +1,6 @@
 <template>
     <div class="flex justify-end">
-        <button class="bg-blue-500 shadow-lg w-40 rounded-lg p-2 text-white hover:bg-blue-600">
+        <button class="bg-blue-500 shadow-lg w-40 rounded-lg p-2 text-white hover:bg-blue-600" @click="handlePrintData">
             <center>
                 <PrinterIcon class="w-10 h-10" />
                 <p class="mt-1">Print</p>
@@ -11,6 +11,10 @@
 
 <script setup>
 import { PrinterIcon } from '@heroicons/vue/24/outline';
+
+const handlePrintData = () => {
+    window.print();
+}
 </script>
 
 <style scoped>
