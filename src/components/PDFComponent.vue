@@ -478,11 +478,15 @@
 
             </section>
         </div>
+
+    </div>
+    <center>
         <button @click="generatePDF"
             class="ml-6 px-4 py-2 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700">
             ดาวน์โหลด PDF
         </button>
-    </div>
+    </center>
+    <br>
 </template>
 
 <script setup>
