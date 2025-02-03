@@ -43,21 +43,11 @@ const routes = [
         path: '/documentdata',
         name: 'documentdata',
         component: () => import('../views/DocumentdataView.vue'),
-    },
-    {
-        path: '/printdata',
-        name: 'printdata',
-        component: () => import('../views/PrintDataView.vue'),
-    },
-    {
-        path: '/pdf',
-        name: 'pdf',
-        component: () => import('../components/PDFComponent.vue'),
     }
 ]
 
 const router = createRouter({
-    history: createWebHistory('/thegift'),
+    history: createWebHistory('/thegift_backoffice'),
     routes,
 });
 
