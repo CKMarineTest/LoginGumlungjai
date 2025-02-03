@@ -441,6 +441,32 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div class="flex items-center gap-2 mt-4 mb-3">
+                    <span class="font-bold">14.</span>
+                    <div class="absolute ml-6">
+                        <span class="w-20 text-right">ผู้ข้อรับทุนได้รับความอุปการะเลี้ยงดูจาก</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 mt-4 mb-3">
+                    <div class="absolute ml-6">
+                        <span class="w-20 text-right">-</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 mt-4 mb-3">
+                    <span class="font-bold">15.</span>
+                    <div class="absolute ml-6">
+                        <span class="w-20 text-right">การเข้าร่วมกิจกรรมจิตอาสาต่างๆ ของสถานศึกษาหรือบำเพ็ญประโยชน์เพื่อสังคม โปรดระบุโดยย่อ</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 mt-4 mb-3">
+                    <div class="absolute ml-6">
+                        <span class="w-100 text-right">-</span>
+                    </div>
+                </div>
+
             </section>
         </div>
         <button @click="generatePDF"
@@ -475,6 +501,7 @@ const generatePDF = async () => {
         console.error("Error generating PDF:", error);
     }
 };
+
 </script>
 
 
