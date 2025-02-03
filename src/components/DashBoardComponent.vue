@@ -12,8 +12,7 @@
                 <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-gray-500 font-medium">จำนวนผู้สมัคร</p>
-                            <p class="text-3xl font-bold mt-2">{{ formatNumber }}</p>
+                            
                         </div>
                     </div>
                 </div>
@@ -21,8 +20,7 @@
                 <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-gray-500 font-medium">ยอดเข้าชม</p>
-                            <p class="text-3xl font-bold mt-2">1,200</p>
+                            
                         </div>
                     </div>
                 </div>
@@ -30,8 +28,7 @@
                 <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-gray-500 font-medium">อัตราการสมัคร</p>
-                            <p class="text-3xl font-bold mt-2">95%</p>
+                            
                         </div>
                     </div>
                 </div>
@@ -89,6 +86,7 @@
 </template>
 
 <script setup>
+/* eslint-disable */
 import { ref, onMounted, watch, defineProps, computed } from 'vue';
 import SidebarComponent from './Menu/SidebarComponent.vue';
 

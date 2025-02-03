@@ -14,38 +14,40 @@
                     มูลนิธิกำลังใจมีสิทธิ์ระงับทุนนั้นๆ ทันที <br> (ผู้สมัครขอรับทุนจะต้องกรอกข้อมูล<b
                         class="underline">ด้วยตัวเอง</b>อย่างละเอียดทั้งหมดเท่าที่กรอกได้)</p>
                 <hr class="border-gray-300 mb-4 mt-2" />
-                <p><b>โครงการ</b>&nbsp;....</p>
+                <p><b>โครงการ</b>&nbsp;คุณหมอของกำลังใจ</p>
                 <p><b class="underline">ส่วนที่ 1</b>&nbsp;ข้อมูลส่วนตัวของผู้สมัครรับทุนการศึกษา</p>
                 <div class="flex items-center gap-2 mb-3">
                     <span class="font-bold">1.</span>
                     <div class="absolute ml-4">
                         <span class="w-20 text-right">ชื่อ:</span>
-                        <span class="w-40 inline-block ml-2">พงศกร</span>
+                        <span class="w-40 inline-block ml-2">สมชาย</span>
                     </div>
                     <div class="absolute ml-80">
                         <span class="w-20 text-right">นามสกุล:</span>
-                        <span class="w-40 inline-block ml-2">ทองรักษ์</span>
+                        <span class="w-40 inline-block ml-2">ใจดี</span>
                     </div>
                     <div class="absolute ml-144">
                         <span class="w-20 text-right">ชื่อเล่น:</span>
-                        <span class="w-40 inline-block ml-2">ธันวา</span>
+                        <span class="w-40 inline-block ml-2">บอย</span>
                     </div>
                 </div>
+
 
                 <div class="flex items-center gap-2 mt-2 mb-6">
                     <div class="absolute ml-4">
                         <span class="w-20 text-right">วัน/เดือน/ปีเกิด:</span>
-                        <span class="w-40 inline-block ml-2">10 ธันวาคม 2550</span>
+                        <span class="w-40 inline-block ml-2">15 มกราคม 2545</span>
                     </div>
                     <div class="absolute ml-80">
                         <span class="w-20 text-right">อายุ:</span>
-                        <span class="w-40 inline-block ml-2">17 ปี</span>
+                        <span class="w-40 inline-block ml-2">20 ปี</span>
                     </div>
                     <div class="absolute ml-128">
                         <span class="w-20 text-right">เบอร์โทรศัพท์ติดต่อ:</span>
-                        <span class="w-40 inline-block ml-2">0824462690</span>
+                        <span class="w-40 inline-block ml-2">0912345678</span>
                     </div>
                 </div>
+
 
                 <div class="flex items-center gap-2 mt-2 mb-6">
                     <div class="absolute ml-4">
@@ -54,26 +56,28 @@
                     </div>
                     <div class="absolute ml-80">
                         <span class="w-20 text-right">Email:</span>
-                        <span class="w-40 inline-block ml-2">saraythxngraks25@gmail.com</span>
+                        <span class="w-40 inline-block ml-2">example@example.com</span>
                     </div>
                 </div>
+
 
                 <div class="flex items-center gap-2 mt-2 mb-6">
                     <div class="absolute ml-4">
                         <span class="w-20 text-right">ID LINE:</span>
-                        <span class="w-40 inline-block ml-2">-</span>
+                        <span class="w-40 inline-block ml-2">Example ID LINE</span>
                     </div>
                     <div class="absolute ml-80">
                         <span class="w-20 text-right">Facebook:</span>
-                        <span class="w-40 inline-block ml-2">Phongsakorn Thongrak</span>
+                        <span class="w-40 inline-block ml-2">Example Facebook</span>
                     </div>
                 </div>
+
 
                 <div class="flex items-center gap-2 mt-2 mb-1">
                     <span class="font-bold">2.</span>
                     <div class="absolute ml-4">
                         <span class="w-20 text-right">ความสามารถพิเศษ:</span>
-                        <span class="w-40 inline-block ml-2">ไม่มี</span>
+                        <span class="w-40 inline-block ml-2">เล่นกีตาร์</span>
                     </div>
                 </div>
                 <div class="flex items-center gap-2 mt-2 mb-">
@@ -84,11 +88,12 @@
                     </div>
                 </div>
 
+
                 <div class="flex items-center gap-2 mt-2 mb-">
                     <span class="font-bold">4.</span>
                     <div class="absolute ml-4">
                         <span class="w-20 text-right">งานพิเศษที่เคยทำหรือกำลังทำอยู่ (นอกเวลาการศึกษา):</span>
-                        <span class="w-40 inline-block ml-2">ไม่</span>
+                        <span class="w-40 inline-block ml-2">ทำงานพาร์ทไทม์ที่ร้านกาแฟ</span>
                     </div>
                 </div>
 
@@ -96,24 +101,26 @@
                     <span class="font-bold">5.</span>
                     <div class="absolute ml-4">
                         <span class="w-20 text-right">เคยได้รับทุนการศึกษา<b>หรือ</b>ขอรับทุนที่อื่นหรือไม่:</span>
-                        <span class="w-40 inline-block ml-2">ไม่</span>
+                        <span class="w-40 inline-block ml-2">เคยได้รับทุนจากมหาวิทยาลัย</span>
                     </div>
                 </div>
+
 
                 <div class="flex items-center gap-2 mt-2 mb-">
                     <span class="font-bold">6.</span>
                     <div class="absolute ml-4">
                         <span class="w-20 text-right">เป็นผู้กู้ กยศ. หรือไม่:</span>
-                        <span class="w-40 inline-block ml-2">ไม่</span>
+                        <span class="w-40 inline-block ml-2">ใช่</span>
                     </div>
                 </div>
-                <p class="mb-1">&nbsp;&nbsp;&nbsp;&nbsp; กู้ กยศ. เป็นค่าใช้จ่าย: </p>
+                <p class="mb-1">&nbsp;&nbsp;&nbsp;&nbsp; กู้ กยศ. เป็นค่าใช้จ่าย</p>
+
 
                 <div class="flex items-center gap-2 mt-2 mb-4">
                     <span class="font-bold">7.</span>
                     <div class="absolute ml-4">
                         <span class="w-20 text-right">สถานศึกษา(ใส่มหาวิทยาลัยที่สอบติด):</span>
-                        <span class="w-80 inline-block ml-2">มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี</span>
+                        <span class="w-80 inline-block ml-2">มหาวิทยาลัยมหิดล</span>
                     </div>
                 </div>
 
@@ -124,24 +131,25 @@
                     </div>
                     <div class="absolute ml-96">
                         <span class="w-20 text-right">ปีการศึกษา:</span>
-                        <span class="w-40 inline-block ml-2">2569</span>
+                        <span class="w-40 inline-block ml-2">2568</span>
                     </div>
                     <div class="absolute ml-144">
                         <span class="w-20 text-right">คะแนนเฉลี่ย:</span>
-                        <span class="w-40 inline-block ml-2">3.91</span>
+                        <span class="w-40 inline-block ml-2">4.00</span>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-2 mt-2 mb-6">
                     <div class="absolute ml-4">
                         <span class="w-20 text-right">คณะ:</span>
-                        <span class="w-80 inline-block ml-2">Information technology</span>
+                        <span class="w-80 inline-block ml-2">คณะแพทยศาสตร์</span>
                     </div>
                     <div class="absolute ml-96">
                         <span class="w-20 text-right">สาขา:</span>
-                        <span class="w-80 inline-block ml-2">Information technology</span>
+                        <span class="w-80 inline-block ml-2">สาขาแพทยศาสตร์</span>
                     </div>
                 </div>
+
 
                 <!-- <div class="flex items-center gap-2 mt-2 mb-6">
                     <div class="absolute ml-4">
@@ -458,7 +466,8 @@
                 <div class="flex items-center gap-2 mt-4 mb-3">
                     <span class="font-bold">15.</span>
                     <div class="absolute ml-6">
-                        <span class="w-20 text-right">การเข้าร่วมกิจกรรมจิตอาสาต่างๆ ของสถานศึกษาหรือบำเพ็ญประโยชน์เพื่อสังคม โปรดระบุโดยย่อ</span>
+                        <span class="w-20 text-right">การเข้าร่วมกิจกรรมจิตอาสาต่างๆ
+                            ของสถานศึกษาหรือบำเพ็ญประโยชน์เพื่อสังคม โปรดระบุโดยย่อ</span>
                     </div>
                 </div>
                 <div class="flex items-center gap-2 mt-4 mb-3">

@@ -12,7 +12,7 @@
             <div class="mb-8">
                 <h2 class="text-2xl font-bold text-gray-800 mb-2">ข้อมูลผู้ได้รับทุน</h2>
             </div>
-            <div class="mb-6 bg-white rounded-xl shadow-sm p-4 border border-gray-100">
+            <!-- <div class="mb-6 bg-white rounded-xl shadow-sm p-4 border border-gray-100">
                 <div class="flex flex-wrap gap-4 justify-between items-center">
                     <div class="relative flex-grow max-w-md group">
                         <input v-model="searchQuery" type="text" placeholder="ค้นหาข้อมูล..."
@@ -28,7 +28,7 @@
                     </div>
 
                 </div>
-            </div>
+            </div> -->
 
             <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
                 <table class="min-w-full divide-y divide-gray-200">
@@ -55,10 +55,10 @@
                             class="group hover:bg-blue-50/30 transition-colors duration-200">
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                                 <div class="flex items-center gap-3">
-                                    <div
+                                    <!-- <div
                                         class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-100 to-blue-200 flex items-center justify-center text-blue-700 font-medium">
                                         {{ item.name.charAt(0) }}
-                                    </div>
+                                    </div> -->
                                     {{ item.id }}
                                 </div>
                             </td>

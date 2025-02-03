@@ -11,9 +11,12 @@
 
 <script setup>
 import { PrinterIcon } from '@heroicons/vue/24/outline';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const handlePrintData = () => {
-    window.print();
+    router.push('/pdf');
 }
 </script>
 
