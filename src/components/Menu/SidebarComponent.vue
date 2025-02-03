@@ -22,7 +22,7 @@
         <ul class="space-y-3 px-4">
           <li v-for="item in menuItems" :key="item.label">
             <router-link :to="item.path"
-              class="flex items-center py-3.5 rounded-xl  hover:bg-white/20 backdrop-blur transition-all duration-300 group relative overflow-hidden"
+              class="flex items-center py-3.5 rounded-xl hover:bg-white/20 backdrop-blur transition-all duration-300 group relative overflow-hidden"
               :class="[
                 isExpanded ? 'px-4' : 'px-0 justify-center',
                 $route.path === item.path ? 'bg-white/25 shadow-lg' : ''

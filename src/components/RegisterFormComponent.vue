@@ -17,7 +17,7 @@
                 class="mb-6 bg-white rounded-xl shadow-lg p-4 border border-gray-100 transition-all duration-200 hover:shadow-md">
                 <div class="flex flex-wrap gap-4 justify-between items-center">
                     <div class="relative flex-grow max-w-md group">
-                        <input v-model="searchQuery" type="text" placeholder="ค้นหาข้อมูล..." @focus="isFocused = true"
+                        <!-- <input v-model="searchQuery" type="text" placeholder="ค้นหาข้อมูล..." @focus="isFocused = true"
                             @blur="isFocused = false" class="w-full pl-10 pr-12 py-2.5 rounded-xl border border-gray-200 
                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
                  transition-all duration-200 bg-gray-50/50 hover:bg-white" />
@@ -29,7 +29,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                             </svg>
-                        </div>
+                        </div> -->
 
                         <button v-if="searchQuery" @click="clearSearch"
                             class="absolute right-4 top-3.5 text-gray-400 hover:text-gray-600 transition-colors duration-200">

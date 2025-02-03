@@ -48,6 +48,11 @@ const routes = [
         path: '/printdata',
         name: 'printdata',
         component: () => import('../views/PrintDataView.vue'),
+    },
+    {
+        path: '/pdf',
+        name: 'pdf',
+        component: () => import('../components/PDFComponent.vue'),
     }
 ]
 
