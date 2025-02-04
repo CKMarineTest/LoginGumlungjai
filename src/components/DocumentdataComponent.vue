@@ -1160,7 +1160,8 @@
                                                                                         @click="closePatientModal">
                                                                                     </div>
 
-                                                                                    <div class="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[26rem] max-w-[90vw] p-8
+                                                                                    <div
+                                                                                        class="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[26rem] max-w-[90vw] p-8
                                                                                         transform transition-all duration-300 ease-in-out
                                                                                         hover:shadow-xl border border-gray-100 dark:border-gray-700">
                                                                                         <button
@@ -1183,7 +1184,8 @@
                                                                                             </svg>
                                                                                         </button>
 
-                                                                                        <h1 class="text-2xl font-bold text-gray-800 dark:text-white mb-8
+                                                                                        <h1
+                                                                                            class="text-2xl font-bold text-gray-800 dark:text-white mb-8
                                                                                                 text-center tracking-wide">
                                                                                             รูปผู้ป่วย
                                                                                         </h1>
@@ -1202,7 +1204,8 @@
                                                                                                     shadow-md hover:shadow-lg
                                                                                                     disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
                                                                                                     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                                                                                                <Download class="w-6 h-6 transition-transform duration-200
+                                                                                                <Download
+                                                                                                    class="w-6 h-6 transition-transform duration-200
                                                                                                     group-hover:rotate-12 group-hover:scale-110" />
                                                                                                 <span class="text-base">
                                                                                                     {{ isDownloading ?

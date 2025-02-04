@@ -32,8 +32,6 @@
 
             <div class="mt-6 space-y-6">
                 <div class="group relative overflow-hidden ">
-
-
                     <div class="p-4 sm:p-6 flex flex-col sm:flex-row items-center gap-4">
                         <button @click="openCardIdModal"
                             class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
@@ -86,23 +84,6 @@
                                         class="text-2xl font-bold text-gray-800 dark:text-white text-center tracking-wide mb-2">
                                         สำเนาบัตรประชาชน
                                     </h1>
-
-                                    <!-- <p class="text-gray-500 dark:text-gray-400 text-center mb-8">
-                                        ดาวน์โหลดสำเนาบัตรประชาชนในรูปแบบไฟล์ PDF
-                                    </p> -->
-
-                                    <!-- <div
-                                        class="mb-6 bg-gray-50 dark:bg-gray-700/30 rounded-xl p-4 flex items-center justify-between">
-                                        <div class="flex items-center gap-3">
-                                            <FileText class="w-5 h-5 text-gray-500 dark:text-gray-400" />
-                                            <div>
-                                                <p class="font-medium text-gray-700 dark:text-gray-200">บัตรประชาชน.pdf
-                                                </p>
-                                                <p class="text-sm text-gray-500 dark:text-gray-400">PDF · 0.8 MB</p>
-                                            </div>
-                                        </div>
-                                    </div> -->
-
                                     <button @click="handleCertificateDownload" :disabled="isDownloading" class="group flex items-center justify-center text-white gap-3 px-8 py-4 bg-blue-500 dark:bg-white
                                         hover:bg-blue-600 dark:hover:bg-gray-100 w-full rounded-xl
                                         transform transition-all duration-300 hover:scale-[1.02]
@@ -172,19 +153,6 @@
                                         class="text-2xl font-bold text-gray-800 dark:text-white text-center tracking-wide mb-2">
                                         สำเนาทะเบียนบ้าน
                                     </h1>
-
-                                    <!-- <div
-                                        class="mb-6 bg-gray-50 dark:bg-gray-700/30 rounded-xl p-4 flex items-center justify-between">
-                                        <div class="flex items-center gap-3">
-                                            <FileText class="w-5 h-5 text-gray-500 dark:text-gray-400" />
-                                            <div>
-                                                <p class="font-medium text-gray-700 dark:text-gray-200">ทะเบียนบ้าน.pdf
-                                                </p>
-                                                <p class="text-sm text-gray-500 dark:text-gray-400">PDF · 1.2 MB</p>
-                                            </div>
-                                        </div>
-                                    </div> -->
-
                                     <button @click="handleCertificateDownload" :disabled="isDownloading" class="group flex items-center justify-center text-white gap-3 px-8 py-4 bg-blue-500 dark:bg-white
                                     hover:bg-blue-600 dark:hover:bg-gray-100 w-full rounded-xl
                                     transform transition-all duration-300 hover:scale-[1.02]

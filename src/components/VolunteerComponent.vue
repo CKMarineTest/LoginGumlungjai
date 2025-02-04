@@ -111,22 +111,11 @@
 
                                                             <div
                                                                 class="mb-6 bg-gray-50 dark:bg-gray-700/30 rounded-xl p-4 flex items-center justify-between">
-                                                                <!-- <div class="flex items-center gap-3">
-                                                                    <Image
-                                                                        class="w-5 h-5 text-gray-500 dark:text-gray-400" />
-                                                                    <div>
-                                                                        <p
-                                                                            class="font-medium text-gray-700 dark:text-gray-200">
-                                                                            กิจกรรมจิตอาสา.zip</p>
-                                                                        <p
-                                                                            class="text-sm text-gray-500 dark:text-gray-400">
-                                                                            ZIP · 15.2 MB · 12 รูป</p>
-                                                                    </div>
-                                                                </div> -->
                                                             </div>
 
                                                             <button @click="handleCertificateDownload"
-                                                                :disabled="isDownloading" class="group text-white flex items-center justify-center gap-3 px-8 py-4 bg-blue-500 dark:bg-white
+                                                                :disabled="isDownloading"
+                                                                class="group text-white flex items-center justify-center gap-3 px-8 py-4 bg-blue-500 dark:bg-white
                                                                     hover:bg-blue-600 dark:hover:bg-gray-100 w-full rounded-xl
                                                                     transform transition-all duration-300 hover:scale-[1.02]
                                                                     shadow-sm hover:shadow-lg hover:shadow-gray-200/50 dark:hover:shadow-white/10

@@ -56,13 +56,13 @@
 
                                         <textarea v-model="text"
                                             class="w-full min-h-[150px] border-none outline-none resize-none text-lg bg-transparent relative z-10"
-                                            placeholder="..." @focus="isFocused = true" @blur="isFocused = false" readonly></textarea>
+                                            placeholder="..." @focus="isFocused = true" @blur="isFocused = false"
+                                            readonly></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

@@ -108,20 +108,6 @@
                             <div class="space-y-4">
                                 <div class="bg-white dark:bg-gray-800 rounded-xl p-4 flex items-center justify-between
                                     border border-blue-100 dark:border-gray-700 shadow-sm">
-                                    <!-- <div class="flex items-center gap-3">
-                                        <div class="p-2 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                                            <FileText class="w-6 h-6 text-gray-600 dark:text-gray-400" />
-                                        </div>
-                                        <div>
-                                            <p class="font-medium text-gray-800 dark:text-gray-200">เอกสารเรียงความ.pdf
-                                            </p>
-                                            <p class="text-sm text-gray-500 dark:text-gray-400">PDF · 2.4 MB</p>
-                                        </div>
-                                    </div>
-                                    <button
-                                        class="p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors">
-                                        <Eye class="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                                    </button> -->
                                 </div>
 
                                 <button @click="handleCertificateDownload" :disabled="isDownloading" class="group flex items-center justify-center gap-3 px-8 py-4 bg-blue-500 dark:bg-white
