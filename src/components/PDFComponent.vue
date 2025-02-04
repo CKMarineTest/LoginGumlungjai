@@ -92,8 +92,8 @@
                 <div class="flex items-center gap-2 mt-2 mb-">
                     <span class="font-bold">4.</span>
                     <div class="absolute ml-4">
-                        <span class="w-20 text-right">งานพิเศษที่เคยทำหรือกำลังทำอยู่ (นอกเวลาการศึกษา):</span>
-                        <span class="w-40 inline-block ml-2">ทำงานพาร์ทไทม์ที่ร้านกาแฟ</span>
+                        <span class="w-40 text-right">งานพิเศษที่เคยทำหรือกำลังทำอยู่ (นอกเวลาการศึกษา):</span>
+                        <span class="w-80 inline-block ml-2">ทำงานพาร์ทไทม์ที่ร้านกาแฟ</span>
                     </div>
                 </div>
 
@@ -101,7 +101,7 @@
                     <span class="font-bold">5.</span>
                     <div class="absolute ml-4">
                         <span class="w-20 text-right">เคยได้รับทุนการศึกษา<b>หรือ</b>ขอรับทุนที่อื่นหรือไม่:</span>
-                        <span class="w-40 inline-block ml-2">เคยได้รับทุนจากมหาวิทยาลัย</span>
+                        <span class="w-80 inline-block ml-2">เคยได้รับทุนจากมหาวิทยาลัย</span>
                     </div>
                 </div>
 

@@ -256,8 +256,9 @@
                                                         class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                                                         placeholder="กรอกเกรดเฉลี่ย" readonly />
 
+
                                                     <div class="absolute right-2 top-1/2 -translate-y-1/2">
-                                                        <button
+                                                        <button @click="openGPAModal"
                                                             class="inline-flex  items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                                                             <svg v-if="!selectedFile" class="w-4 h-4" fill="none"
                                                                 stroke="currentColor" viewBox="0 0 24 24">
@@ -275,6 +276,53 @@
                                                             </span>
                                                         </button>
                                                     </div>
+
+                                                    <transition enter-active-class="transition duration-300 ease-out"
+                                                        enter-from-class="opacity-0 scale-95"
+                                                        enter-to-class="opacity-100 scale-100"
+                                                        leave-active-class="transition duration-200 ease-in"
+                                                        leave-from-class="opacity-100 scale-100"
+                                                        leave-to-class="opacity-0 scale-95">
+                                                        <div v-if="isGpaModalOpen"
+                                                            class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+                                                            <div
+                                                                class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[26rem] max-w-[90vw] p-6 relative transform transition-all duration-300 ease-in-out">
+                                                                <button @click="closeGpaModal"
+                                                                    class="absolute top-4 right-4 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 transition-colors group">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        class="h-7 w-7 group-hover:rotate-90 transition-transform"
+                                                                        fill="none" viewBox="0 0 24 24"
+                                                                        stroke="currentColor">
+                                                                        <path stroke-linecap="round"
+                                                                            stroke-linejoin="round" stroke-width="2"
+                                                                            d="M6 18L18 6M6 6l12 12" />
+                                                                    </svg>
+                                                                </button>
+
+                                                                <h1
+                                                                    class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center tracking-wide">
+                                                                    เกรด
+                                                                </h1>
+
+                                                                <div class="flex justify-center">
+                                                                    <button @click="handleCertificateDownload"
+                                                                        :disabled="isDownloading" class="group flex items-center gap-3 px-6 py-3 bg-blue-500 text-white rounded-xl 
+                                                                        hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 
+                                                                        transform hover:scale-105 shadow-md hover:shadow-lg 
+                                                                        disabled:opacity-50 disabled:cursor-not-allowed 
+                                                                        focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                                                                        dark:bg-blue-600 dark:hover:bg-blue-700">
+                                                                        <Download
+                                                                            class="w-6 h-6 transition-transform group-hover:rotate-12" />
+                                                                        <span class="text-base font-semibold">
+                                                                            {{ isDownloading ? 'กำลังดาวน์โหลด...' :
+                                                                                'ดาวน์โหลด' }}
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </transition>
                                                 </div>
                                             </div>
                                             <div>
@@ -287,27 +335,82 @@
                                                         class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                                                         placeholder="ค่าเล่าเรียน (บาท/เทอม)">
 
-                                                    <div class="absolute right-2 top-1/2 -translate-y-1/2">
-                                                        <button
-                                                            class="inline-flex  items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                                                            <svg v-if="!selectedFile" class="w-4 h-4" fill="none"
-                                                                stroke="currentColor" viewBox="0 0 24 24">
-                                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                                    stroke-width="2" d="M12 4v16m0-16l-4 4m4-4l4 4" />
-                                                            </svg>
-                                                            <svg v-else class="w-4 h-4" fill="none"
-                                                                stroke="currentColor" viewBox="0 0 24 24">
-                                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                                    stroke-width="2"
-                                                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                            </svg>
-                                                            <span class="text-sm font-medium">
-                                                                ไฟล์ค่าเทอม
-                                                            </span>
-                                                        </button>
-                                                    </div>
+
+                                                    <Transition enter-active-class="transition duration-300 ease-out"
+                                                        enter-from-class="opacity-0 scale-95"
+                                                        enter-to-class="opacity-100 scale-100"
+                                                        leave-active-class="transition duration-200 ease-in"
+                                                        leave-from-class="opacity-100 scale-100"
+                                                        leave-to-class="opacity-0 scale-95">
+                                                        <div class="absolute right-2 top-1/2 -translate-y-1/2">
+                                                            <button @click="openTermFeeModal"
+                                                                class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                                                <svg v-if="!selectedFile" class="w-4 h-4" fill="none"
+                                                                    stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                                        stroke-width="2"
+                                                                        d="M12 4v16m0-16l-4 4m4-4l4 4" />
+                                                                </svg>
+                                                                <svg v-else class="w-4 h-4" fill="none"
+                                                                    stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                                        stroke-width="2"
+                                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                                </svg>
+                                                                <span class="text-sm font-medium">
+                                                                    ไฟล์ค่าเทอม
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                    </Transition>
                                                 </div>
 
+
+                                                <transition enter-active-class="transition duration-300 ease-out"
+                                                    enter-from-class="opacity-0 scale-95"
+                                                    enter-to-class="opacity-100 scale-100"
+                                                    leave-active-class="transition duration-200 ease-in"
+                                                    leave-from-class="opacity-100 scale-100"
+                                                    leave-to-class="opacity-0 scale-95">
+                                                    <div v-if="isTermFeeModalOpen"
+                                                        class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+                                                        <div
+                                                            class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[26rem] max-w-[90vw] p-6 relative transform transition-all duration-300 ease-in-out">
+                                                            <button @click="closeTermFeeModal"
+                                                                class="absolute top-4 right-4 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 transition-colors group">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    class="h-7 w-7 group-hover:rotate-90 transition-transform"
+                                                                    fill="none" viewBox="0 0 24 24"
+                                                                    stroke="currentColor">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                                        stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                                </svg>
+                                                            </button>
+
+                                                            <h1
+                                                                class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center tracking-wide">
+                                                                ค่าเทอม
+                                                            </h1>
+
+                                                            <div class="flex justify-center">
+                                                                <button @click="handleCertificateDownload"
+                                                                    :disabled="isDownloading" class="group flex items-center gap-3 px-6 py-3 bg-blue-500 text-white rounded-xl 
+                                                                        hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 
+                                                                        transform hover:scale-105 shadow-md hover:shadow-lg 
+                                                                        disabled:opacity-50 disabled:cursor-not-allowed 
+                                                                        focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                                                                        dark:bg-blue-600 dark:hover:bg-blue-700">
+                                                                    <Download
+                                                                        class="w-6 h-6 transition-transform group-hover:rotate-12" />
+                                                                    <span class="text-base font-semibold">
+                                                                        {{ isDownloading ? 'กำลังดาวน์โหลด...' :
+                                                                            'ดาวน์โหลด' }}
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </transition>
 
 
                                             </div>
@@ -335,20 +438,61 @@
                                                             placeholder="ระบุชื่อรายการเกียรติบัตร" />
 
                                                         <div class="w-full md:w-auto flex items-center">
-                                                            <button @click="handleDownload"
+                                                            <button @click="openCertificateModal"
                                                                 class="inline-flex  items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 "
-                                                                    fill="none" viewBox="0 0 24 24"
-                                                                    stroke="currentColor">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                                        stroke-width="2"
-                                                                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                                                                </svg>
+
                                                                 <span>ไฟล์เกียรติบัตร</span>
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <transition enter-active-class="transition duration-300 ease-out"
+                                                    enter-from-class="opacity-0 scale-95"
+                                                    enter-to-class="opacity-100 scale-100"
+                                                    leave-active-class="transition duration-200 ease-in"
+                                                    leave-from-class="opacity-100 scale-100"
+                                                    leave-to-class="opacity-0 scale-95">
+                                                    <div v-if="isCertificateModalOpen"
+                                                        class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+                                                        <div
+                                                            class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[26rem] max-w-[90vw] p-6 relative transform transition-all duration-300 ease-in-out">
+                                                            <button @click="closeCertificateModal"
+                                                                class="absolute top-4 right-4 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 transition-colors group">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    class="h-7 w-7 group-hover:rotate-90 transition-transform"
+                                                                    fill="none" viewBox="0 0 24 24"
+                                                                    stroke="currentColor">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                                        stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                                </svg>
+                                                            </button>
+
+                                                            <h1
+                                                                class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center tracking-wide">
+                                                                เกียรติบัตร
+                                                            </h1>
+
+                                                            <div class="flex justify-center">
+                                                                <button @click="handleCertificateDownload"
+                                                                    :disabled="isDownloading" class="group flex items-center gap-3 px-6 py-3 bg-blue-500 text-white rounded-xl 
+                                                                        hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 
+                                                                        transform hover:scale-105 shadow-md hover:shadow-lg 
+                                                                        disabled:opacity-50 disabled:cursor-not-allowed 
+                                                                        focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                                                                        dark:bg-blue-600 dark:hover:bg-blue-700">
+                                                                    <Download
+                                                                        class="w-6 h-6 transition-transform group-hover:rotate-12" />
+                                                                    <span class="text-base font-semibold">
+                                                                        {{ isDownloading ? 'กำลังดาวน์โหลด...' :
+                                                                            'ดาวน์โหลด' }}
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </transition>
+
                                             </div>
                                         </div>
                                         <div class="flex flex-wrap w-full gap-4 mt-2">
@@ -537,7 +681,7 @@
                                                         placeholder="ค่าเช่าบ้านต่อเดือน" readonly />
 
                                                     <div class="flex flex-col sm:flex-row gap-4 mt-4">
-                                                        <button @click="handleDownload"
+                                                        <button @click="openHousePictureModal"
                                                             class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 "
                                                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -549,8 +693,55 @@
                                                         </button>
                                                     </div>
 
+                                                    <transition enter-active-class="transition duration-300 ease-out"
+                                                        enter-from-class="opacity-0 scale-95"
+                                                        enter-to-class="opacity-100 scale-100"
+                                                        leave-active-class="transition duration-200 ease-in"
+                                                        leave-from-class="opacity-100 scale-100"
+                                                        leave-to-class="opacity-0 scale-95">
+                                                        <div v-if="isHousePictureModalOpen"
+                                                            class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+                                                            <div
+                                                                class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[26rem] max-w-[90vw] p-6 relative transform transition-all duration-300 ease-in-out">
+                                                                <button @click="closeHousePictureModal"
+                                                                    class="absolute top-4 right-4 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 transition-colors group">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        class="h-7 w-7 group-hover:rotate-90 transition-transform"
+                                                                        fill="none" viewBox="0 0 24 24"
+                                                                        stroke="currentColor">
+                                                                        <path stroke-linecap="round"
+                                                                            stroke-linejoin="round" stroke-width="2"
+                                                                            d="M6 18L18 6M6 6l12 12" />
+                                                                    </svg>
+                                                                </button>
+
+                                                                <h1
+                                                                    class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center tracking-wide">
+                                                                    รูปภาพที่อยู่บ้าน
+                                                                </h1>
+
+                                                                <div class="flex justify-center">
+                                                                    <button @click="handleCertificateDownload"
+                                                                        :disabled="isDownloading" class="group flex items-center gap-3 px-6 py-3 bg-blue-500 text-white rounded-xl 
+                                                                        hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 
+                                                                        transform hover:scale-105 shadow-md hover:shadow-lg 
+                                                                        disabled:opacity-50 disabled:cursor-not-allowed 
+                                                                        focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                                                                        dark:bg-blue-600 dark:hover:bg-blue-700">
+                                                                        <Download
+                                                                            class="w-6 h-6 transition-transform group-hover:rotate-12" />
+                                                                        <span class="text-base font-semibold">
+                                                                            {{ isDownloading ? 'กำลังดาวน์โหลด...' :
+                                                                                'ดาวน์โหลด' }}
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </transition>
+
                                                     <div class="flex flex-col sm:flex-row gap-4 mt-4">
-                                                        <button @click="handleDownload"
+                                                        <button @click="openHouseEvidenceModal"
                                                             class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 "
                                                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -562,6 +753,52 @@
                                                         </button>
                                                     </div>
 
+                                                    <transition enter-active-class="transition duration-300 ease-out"
+                                                        enter-from-class="opacity-0 scale-95"
+                                                        enter-to-class="opacity-100 scale-100"
+                                                        leave-active-class="transition duration-200 ease-in"
+                                                        leave-from-class="opacity-100 scale-100"
+                                                        leave-to-class="opacity-0 scale-95">
+                                                        <div v-if="isHouseEvidenceModalOpen"
+                                                            class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+                                                            <div
+                                                                class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[26rem] max-w-[90vw] p-6 relative transform transition-all duration-300 ease-in-out">
+                                                                <button @click="closeHouseEvidenceModal"
+                                                                    class="absolute top-4 right-4 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 transition-colors group">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        class="h-7 w-7 group-hover:rotate-90 transition-transform"
+                                                                        fill="none" viewBox="0 0 24 24"
+                                                                        stroke="currentColor">
+                                                                        <path stroke-linecap="round"
+                                                                            stroke-linejoin="round" stroke-width="2"
+                                                                            d="M6 18L18 6M6 6l12 12" />
+                                                                    </svg>
+                                                                </button>
+
+                                                                <h1
+                                                                    class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center tracking-wide">
+                                                                    ตัวอย่างหลักฐานค่าใช้จ่ายค่าเช่าออกโดยสถานที่ให้เช่า
+                                                                </h1>
+
+                                                                <div class="flex justify-center">
+                                                                    <button @click="handleCertificateDownload"
+                                                                        :disabled="isDownloading" class="group flex items-center gap-3 px-6 py-3 bg-blue-500 text-white rounded-xl 
+                                                                        hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 
+                                                                        transform hover:scale-105 shadow-md hover:shadow-lg 
+                                                                        disabled:opacity-50 disabled:cursor-not-allowed 
+                                                                        focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                                                                        dark:bg-blue-600 dark:hover:bg-blue-700">
+                                                                        <Download
+                                                                            class="w-6 h-6 transition-transform group-hover:rotate-12" />
+                                                                        <span class="text-base font-semibold">
+                                                                            {{ isDownloading ? 'กำลังดาวน์โหลด...' :
+                                                                                'ดาวน์โหลด' }}
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </transition>
                                                 </div>
                                             </div>
 
@@ -896,7 +1133,7 @@
                                                                                 class="block text-sm font-medium text-gray-600 mb-2">
                                                                                 รูปผู้ป่วย
                                                                             </label>
-                                                                            <button @click="handleDownload"
+                                                                            <button @click="openPatientModal"
                                                                                 class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                                     class="h-5 w-5 " fill="none"
@@ -909,13 +1146,72 @@
                                                                                 </svg>
                                                                                 <span>รูปผู้ป่วย</span>
                                                                             </button>
+
+                                                                            <transition
+                                                                                enter-active-class="transition duration-300 ease-out"
+                                                                                enter-from-class="opacity-0 scale-95"
+                                                                                enter-to-class="opacity-100 scale-100"
+                                                                                leave-active-class="transition duration-200 ease-in"
+                                                                                leave-from-class="opacity-100 scale-100"
+                                                                                leave-to-class="opacity-0 scale-95">
+                                                                                <div v-if="isPatientModalOpen"
+                                                                                    class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+                                                                                    <div
+                                                                                        class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[26rem] max-w-[90vw] p-6 relative transform transition-all duration-300 ease-in-out">
+                                                                                        <button
+                                                                                            @click="closePatientModal"
+                                                                                            class="absolute top-4 right-4 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 transition-colors group">
+                                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                                class="h-7 w-7 group-hover:rotate-90 transition-transform"
+                                                                                                fill="none"
+                                                                                                viewBox="0 0 24 24"
+                                                                                                stroke="currentColor">
+                                                                                                <path
+                                                                                                    stroke-linecap="round"
+                                                                                                    stroke-linejoin="round"
+                                                                                                    stroke-width="2"
+                                                                                                    d="M6 18L18 6M6 6l12 12" />
+                                                                                            </svg>
+                                                                                        </button>
+
+                                                                                        <h1
+                                                                                            class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center tracking-wide">
+                                                                                            รูปผู้ป่วย
+                                                                                        </h1>
+
+                                                                                        <div
+                                                                                            class="flex justify-center">
+                                                                                            <button
+                                                                                                @click="handleCertificateDownload"
+                                                                                                :disabled="isDownloading"
+                                                                                                class="group flex items-center gap-3 px-6 py-3 bg-blue-500 text-white rounded-xl 
+                                                                                                    hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 
+                                                                                                    transform hover:scale-105 shadow-md hover:shadow-lg 
+                                                                                                    disabled:opacity-50 disabled:cursor-not-allowed 
+                                                                                                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                                                                                                    dark:bg-blue-600 dark:hover:bg-blue-700">
+                                                                                                <Download
+                                                                                                    class="w-6 h-6 transition-transform group-hover:rotate-12" />
+                                                                                                <span
+                                                                                                    class="text-base font-semibold">
+                                                                                                    {{ isDownloading ?
+                                                                                                        'กำลังดาวน์โหลด...'
+                                                                                                        :
+                                                                                                        'ดาวน์โหลด' }}
+                                                                                                </span>
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </transition>
+
                                                                         </div>
                                                                         <div class="flex-1 relative">
                                                                             <label
                                                                                 class="block text-sm font-medium text-gray-600 mb-2">
                                                                                 ใบรับรองแพทย์
                                                                             </label>
-                                                                            <button @click="handleDownload"
+                                                                            <button @click="OpenMedicalModal"
                                                                                 class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                                     class="h-5 w-5 " fill="none"
@@ -929,6 +1225,61 @@
                                                                                 <span>ใบรับรองแพทย์</span>
                                                                             </button>
                                                                         </div>
+
+                                                                        <transition
+                                                                            enter-active-class="transition duration-300 ease-out"
+                                                                            enter-from-class="opacity-0 scale-95"
+                                                                            enter-to-class="opacity-100 scale-100"
+                                                                            leave-active-class="transition duration-200 ease-in"
+                                                                            leave-from-class="opacity-100 scale-100"
+                                                                            leave-to-class="opacity-0 scale-95">
+                                                                            <div v-if="isMedicalModalOpen"
+                                                                                class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+                                                                                <div
+                                                                                    class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[26rem] max-w-[90vw] p-6 relative transform transition-all duration-300 ease-in-out">
+                                                                                    <button @click="closeMedicalModal"
+                                                                                        class="absolute top-4 right-4 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 transition-colors group">
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                            class="h-7 w-7 group-hover:rotate-90 transition-transform"
+                                                                                            fill="none"
+                                                                                            viewBox="0 0 24 24"
+                                                                                            stroke="currentColor">
+                                                                                            <path stroke-linecap="round"
+                                                                                                stroke-linejoin="round"
+                                                                                                stroke-width="2"
+                                                                                                d="M6 18L18 6M6 6l12 12" />
+                                                                                        </svg>
+                                                                                    </button>
+
+                                                                                    <h1
+                                                                                        class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center tracking-wide">
+                                                                                        ใบรับรองแพทย์
+                                                                                    </h1>
+
+                                                                                    <div class="flex justify-center">
+                                                                                        <button
+                                                                                            @click="handleCertificateDownload"
+                                                                                            :disabled="isDownloading"
+                                                                                            class="group flex items-center gap-3 px-6 py-3 bg-blue-500 text-white rounded-xl 
+                                                                                                    hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 
+                                                                                                    transform hover:scale-105 shadow-md hover:shadow-lg 
+                                                                                                    disabled:opacity-50 disabled:cursor-not-allowed 
+                                                                                                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                                                                                                    dark:bg-blue-600 dark:hover:bg-blue-700">
+                                                                                            <Download
+                                                                                                class="w-6 h-6 transition-transform group-hover:rotate-12" />
+                                                                                            <span
+                                                                                                class="text-base font-semibold">
+                                                                                                {{ isDownloading ?
+                                                                                                    'กำลังดาวน์โหลด...'
+                                                                                                    :
+                                                                                                    'ดาวน์โหลด' }}
+                                                                                            </span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </transition>
                                                                     </div>
 
 
@@ -998,7 +1349,74 @@ import PrintDataComponent from './PrintDataComponent.vue';
 
 import logoUrl from '@/assets/picture/GLJ_Logo.png';
 
+import { Download } from 'lucide-vue-next';
+
 const refexample = ref('ตัวอย่าง');
+
+// modal
+const isTermFeeModalOpen = ref(false);
+const isGpaModalOpen = ref(false);
+const isCertificateModalOpen = ref(false);
+const isHousePictureModalOpen = ref(false);
+const isHouseEvidenceModalOpen = ref(false);
+const isPatientModalOpen = ref(false);
+const isMedicalModalOpen = ref(false);
+
+const openTermFeeModal = () => {
+    isTermFeeModalOpen.value = true;
+}
+
+const openGPAModal = () => {
+    isGpaModalOpen.value = true;
+}
+
+const openCertificateModal = () => {
+    isCertificateModalOpen.value = true;
+}
+
+const openHousePictureModal = () => {
+    isHousePictureModalOpen.value = true;
+}
+
+const openHouseEvidenceModal = () => {
+    isHouseEvidenceModalOpen.value = true;
+}
+
+const openPatientModal = () => {
+    isPatientModalOpen.value = true;
+}
+
+const OpenMedicalModal = () => {
+    isMedicalModalOpen.value = true;
+}
+
+const closeTermFeeModal = () => {
+    isTermFeeModalOpen.value = false;
+}
+
+const closeGpaModal = () => {
+    isGpaModalOpen.value = false;
+}
+
+const closeCertificateModal = () => {
+    isCertificateModalOpen.value = false;
+}
+
+const closeHousePictureModal = () => {
+    isHousePictureModalOpen.value = false;
+}
+
+const closeHouseEvidenceModal = () => {
+    isHouseEvidenceModalOpen.value = false;
+}
+
+const closePatientModal = () => {
+    isPatientModalOpen.value = false;
+}
+
+const closeMedicalModal = () => {
+    isMedicalModalOpen.value = false;
+}
 
 </script>
 
