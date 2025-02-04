@@ -1147,7 +1147,7 @@
                                                                                 <span>รูปผู้ป่วย</span>
                                                                             </button>
 
-                                                                            <transition
+                                                                            <Transition
                                                                                 enter-active-class="transition duration-300 ease-out"
                                                                                 enter-from-class="opacity-0 scale-95"
                                                                                 enter-to-class="opacity-100 scale-100"
@@ -1155,14 +1155,23 @@
                                                                                 leave-from-class="opacity-100 scale-100"
                                                                                 leave-to-class="opacity-0 scale-95">
                                                                                 <div v-if="isPatientModalOpen"
-                                                                                    class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-                                                                                    <div
-                                                                                        class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[26rem] max-w-[90vw] p-6 relative transform transition-all duration-300 ease-in-out">
+                                                                                    class="fixed inset-0 z-50 flex items-center justify-center">
+                                                                                    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"
+                                                                                        @click="closePatientModal">
+                                                                                    </div>
+
+                                                                                    <div class="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[26rem] max-w-[90vw] p-8
+                                                                                        transform transition-all duration-300 ease-in-out
+                                                                                        hover:shadow-xl border border-gray-100 dark:border-gray-700">
                                                                                         <button
                                                                                             @click="closePatientModal"
-                                                                                            class="absolute top-4 right-4 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 transition-colors group">
+                                                                                            class="absolute top-4 right-4 p-2 rounded-full
+                                                                                            text-gray-500 dark:text-gray-300 
+                                                                                            hover:bg-gray-100 dark:hover:bg-gray-700
+                                                                                            hover:text-gray-700 dark:hover:text-gray-100 
+                                                                                            transition-all duration-200 group">
                                                                                             <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                                class="h-7 w-7 group-hover:rotate-90 transition-transform"
+                                                                                                class="h-6 w-6 group-hover:rotate-90 transition-transform duration-200"
                                                                                                 fill="none"
                                                                                                 viewBox="0 0 24 24"
                                                                                                 stroke="currentColor">
@@ -1174,8 +1183,8 @@
                                                                                             </svg>
                                                                                         </button>
 
-                                                                                        <h1
-                                                                                            class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center tracking-wide">
+                                                                                        <h1 class="text-2xl font-bold text-gray-800 dark:text-white mb-8
+                                                                                                text-center tracking-wide">
                                                                                             รูปผู้ป่วย
                                                                                         </h1>
 
@@ -1184,26 +1193,27 @@
                                                                                             <button
                                                                                                 @click="handleCertificateDownload"
                                                                                                 :disabled="isDownloading"
-                                                                                                class="group flex items-center gap-3 px-6 py-3 bg-blue-500 text-white rounded-xl 
-                                                                                                    hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 
-                                                                                                    transform hover:scale-105 shadow-md hover:shadow-lg 
-                                                                                                    disabled:opacity-50 disabled:cursor-not-allowed 
-                                                                                                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
-                                                                                                    dark:bg-blue-600 dark:hover:bg-blue-700">
-                                                                                                <Download
-                                                                                                    class="w-6 h-6 transition-transform group-hover:rotate-12" />
-                                                                                                <span
-                                                                                                    class="text-base font-semibold">
+                                                                                                class="group flex items-center gap-3 px-6 py-3.5
+                                                                                                    bg-blue-500 hover:bg-blue-600 active:bg-blue-700
+                                                                                                    dark:bg-blue-600 dark:hover:bg-blue-700
+                                                                                                    text-white font-semibold rounded-xl
+                                                                                                    transform transition-all duration-200
+                                                                                                    hover:scale-105 hover:-translate-y-0.5
+                                                                                                    shadow-md hover:shadow-lg
+                                                                                                    disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
+                                                                                                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                                                                                <Download class="w-6 h-6 transition-transform duration-200
+                                                                                                    group-hover:rotate-12 group-hover:scale-110" />
+                                                                                                <span class="text-base">
                                                                                                     {{ isDownloading ?
                                                                                                         'กำลังดาวน์โหลด...'
-                                                                                                        :
-                                                                                                        'ดาวน์โหลด' }}
+                                                                                                        : 'ดาวน์โหลด' }}
                                                                                                 </span>
                                                                                             </button>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                            </transition>
+                                                                            </Transition>
 
                                                                         </div>
                                                                         <div class="flex-1 relative">

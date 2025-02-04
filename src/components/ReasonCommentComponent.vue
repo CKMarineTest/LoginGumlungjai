@@ -26,7 +26,7 @@
                     <br>
                     <div class="space-y-2 bg-blue-800/30 p-4 rounded-xl text-sm sm:text-base border border-white/20">
                         <p class="flex items-center space-x-2">
-                            <span>Scholars,คุณหมอของกำลังใจ,กำลังใจให้พยาบาล : พิมพ์เรียงความ</span>
+                            <span>Gumlungjai Scholars,คุณหมอของกำลังใจ,กำลังใจให้พยาบาล : พิมพ์เรียงความ</span>
                         </p>
                     </div>
                 </div>

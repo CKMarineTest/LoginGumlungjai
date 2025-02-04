@@ -56,39 +56,63 @@
                         enter-from-class="opacity-0 scale-95" enter-to-class="opacity-100 scale-100"
                         leave-active-class="transition duration-200 ease-in" leave-from-class="opacity-100 scale-100"
                         leave-to-class="opacity-0 scale-95">
-                        <div v-if="isCardIdModalOpen"
-                            class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-                            <div
-                                class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[26rem] max-w-[90vw] p-6 relative transform transition-all duration-300 ease-in-out">
-                                <button @click="closeCardIdModal"
-                                    class="absolute top-4 right-4 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 transition-colors group">
+                        <div v-if="isCardIdModalOpen" class="fixed inset-0 z-50 flex items-center justify-center">
+                            <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+
+                            <div class="relative w-[28rem] max-w-[90vw] bg-white dark:bg-gray-800 rounded-2xl 
+                                shadow-[0_0_50px_-12px_rgba(0,0,0,0.15)] dark:shadow-[0_0_50px_-12px_rgba(0,0,0,0.3)]
+                                transform transition-all duration-300 ease-in-out overflow-hidden">
+
+                                <button @click="closeCardIdModal" class="absolute top-4 right-4 p-1.5 text-gray-400 hover:text-gray-600 
+                                    dark:text-gray-500 dark:hover:text-gray-300 
+                                    hover:bg-gray-100 dark:hover:bg-gray-700/50
+                                    rounded-xl transition-all group">
                                     <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="h-7 w-7 group-hover:rotate-90 transition-transform" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        class="h-6 w-6 group-hover:rotate-90 transition-transform duration-300"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                             d="M6 18L18 6M6 6l12 12" />
                                     </svg>
                                 </button>
 
-                                <h1
-                                    class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center tracking-wide">
-                                    สำเนาบัตรประชาชน
-                                </h1>
+                                <div class="p-8">
+                                    <div class="mb-6 flex justify-center">
+                                        <div class="p-3 bg-gray-50 dark:bg-gray-700/50 rounded-2xl">
+                                            <CreditCard class="w-8 h-8 text-gray-600 dark:text-gray-300" />
+                                        </div>
+                                    </div>
 
-                                <div class="flex justify-center">
-                                    <button @click="handleCertificateDownload" :disabled="isDownloading"
-                                        class="group flex items-center gap-3 px-6 py-3 bg-blue-500 text-white rounded-xl 
-                                                                                                    hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 
-                                                                                                    transform hover:scale-105 shadow-md hover:shadow-lg 
-                                                                                                    disabled:opacity-50 disabled:cursor-not-allowed 
-                                                                                                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
-                                                                                                    dark:bg-blue-600 dark:hover:bg-blue-700">
-                                        <Download class="w-6 h-6 transition-transform group-hover:rotate-12" />
-                                        <span class="text-base font-semibold">
-                                            {{ isDownloading ?
-                                                'กำลังดาวน์โหลด...'
-                                                :
-                                                'ดาวน์โหลด' }}
+                                    <h1
+                                        class="text-2xl font-bold text-gray-800 dark:text-white text-center tracking-wide mb-2">
+                                        สำเนาบัตรประชาชน
+                                    </h1>
+
+                                    <!-- <p class="text-gray-500 dark:text-gray-400 text-center mb-8">
+                                        ดาวน์โหลดสำเนาบัตรประชาชนในรูปแบบไฟล์ PDF
+                                    </p> -->
+
+                                    <!-- <div
+                                        class="mb-6 bg-gray-50 dark:bg-gray-700/30 rounded-xl p-4 flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <FileText class="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                                            <div>
+                                                <p class="font-medium text-gray-700 dark:text-gray-200">บัตรประชาชน.pdf
+                                                </p>
+                                                <p class="text-sm text-gray-500 dark:text-gray-400">PDF · 0.8 MB</p>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+                                    <button @click="handleCertificateDownload" :disabled="isDownloading" class="group flex items-center justify-center text-white gap-3 px-8 py-4 bg-blue-500 dark:bg-white
+                                        hover:bg-blue-600 dark:hover:bg-gray-100 w-full rounded-xl
+                                        transform transition-all duration-300 hover:scale-[1.02]
+                                        shadow-sm hover:shadow-lg hover:shadow-gray-200/50 dark:hover:shadow-white/10
+                                        disabled:opacity-50 disabled:cursor-not-allowed
+                                        focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
+                                        <Download
+                                            class="w-5 h-5 transition-transform group-hover:rotate-12 group-hover:scale-110" />
+                                        <span class="font-semibold">
+                                            {{ isDownloading ? 'กำลังดาวน์โหลด...' : 'ดาวน์โหลด' }}
                                         </span>
                                     </button>
                                 </div>
@@ -118,39 +142,59 @@
                         enter-from-class="opacity-0 scale-95" enter-to-class="opacity-100 scale-100"
                         leave-active-class="transition duration-200 ease-in" leave-from-class="opacity-100 scale-100"
                         leave-to-class="opacity-0 scale-95">
-                        <div v-if="isHouseIdModalOpen"
-                            class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-                            <div
-                                class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[26rem] max-w-[90vw] p-6 relative transform transition-all duration-300 ease-in-out">
-                                <button @click="closeHouseIdModal"
-                                    class="absolute top-4 right-4 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 transition-colors group">
+                        <div v-if="isHouseIdModalOpen" class="fixed inset-0 z-50 flex items-center justify-center">
+                            <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+
+                            <div class="relative w-[28rem] max-w-[90vw] bg-white dark:bg-gray-800 rounded-2xl 
+                                shadow-[0_0_50px_-12px_rgba(0,0,0,0.15)] dark:shadow-[0_0_50px_-12px_rgba(0,0,0,0.3)]
+                                transform transition-all duration-300 ease-in-out overflow-hidden">
+
+                                <button @click="closeHouseIdModal" class="absolute top-4 right-4 p-1.5 text-gray-400 hover:text-gray-600 
+                                    dark:text-gray-500 dark:hover:text-gray-300 
+                                    hover:bg-gray-100 dark:hover:bg-gray-700/50
+                                    rounded-xl transition-all group">
                                     <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="h-7 w-7 group-hover:rotate-90 transition-transform" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        class="h-6 w-6 group-hover:rotate-90 transition-transform duration-300"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                             d="M6 18L18 6M6 6l12 12" />
                                     </svg>
                                 </button>
 
-                                <h1
-                                    class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center tracking-wide">
-                                    สำเนาทะเบียนบ้าน
-                                </h1>
+                                <div class="p-8">
+                                    <div class="mb-6 flex justify-center">
+                                        <div class="p-3 bg-gray-50 dark:bg-gray-700/50 rounded-2xl">
+                                            <Home class="w-8 h-8 text-gray-600 dark:text-gray-300" />
+                                        </div>
+                                    </div>
 
-                                <div class="flex justify-center">
-                                    <button @click="handleCertificateDownload" :disabled="isDownloading"
-                                        class="group flex items-center gap-3 px-6 py-3 bg-blue-500 text-white rounded-xl 
-                                                                                                    hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 
-                                                                                                    transform hover:scale-105 shadow-md hover:shadow-lg 
-                                                                                                    disabled:opacity-50 disabled:cursor-not-allowed 
-                                                                                                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
-                                                                                                    dark:bg-blue-600 dark:hover:bg-blue-700">
-                                        <Download class="w-6 h-6 transition-transform group-hover:rotate-12" />
-                                        <span class="text-base font-semibold">
-                                            {{ isDownloading ?
-                                                'กำลังดาวน์โหลด...'
-                                                :
-                                                'ดาวน์โหลด' }}
+                                    <h1
+                                        class="text-2xl font-bold text-gray-800 dark:text-white text-center tracking-wide mb-2">
+                                        สำเนาทะเบียนบ้าน
+                                    </h1>
+
+                                    <!-- <div
+                                        class="mb-6 bg-gray-50 dark:bg-gray-700/30 rounded-xl p-4 flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <FileText class="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                                            <div>
+                                                <p class="font-medium text-gray-700 dark:text-gray-200">ทะเบียนบ้าน.pdf
+                                                </p>
+                                                <p class="text-sm text-gray-500 dark:text-gray-400">PDF · 1.2 MB</p>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+                                    <button @click="handleCertificateDownload" :disabled="isDownloading" class="group flex items-center justify-center text-white gap-3 px-8 py-4 bg-blue-500 dark:bg-white
+                                    hover:bg-blue-600 dark:hover:bg-gray-100 w-full rounded-xl
+                                    transform transition-all duration-300 hover:scale-[1.02]
+                                    shadow-sm hover:shadow-lg hover:shadow-gray-200/50 dark:hover:shadow-white/10
+                                    disabled:opacity-50 disabled:cursor-not-allowed
+                                    focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
+                                        <Download
+                                            class="w-5 h-5 transition-transform group-hover:rotate-12 group-hover:scale-110" />
+                                        <span class="font-semibold">
+                                            {{ isDownloading ? 'กำลังดาวน์โหลด...' : 'ดาวน์โหลด' }}
                                         </span>
                                     </button>
                                 </div>
@@ -165,7 +209,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { Download } from 'lucide-vue-next';
+import { Download, Home, CreditCard } from 'lucide-vue-next';
 
 const isCardIdModalOpen = ref(false);
 const isHouseIdModalOpen = ref(false);
