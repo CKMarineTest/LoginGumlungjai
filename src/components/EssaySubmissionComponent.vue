@@ -66,9 +66,6 @@
                             <h1 class="text-3xl font-bold tracking-wide text-center text-gray-900 dark:text-white">
                                 เอกสารเรียงความ
                             </h1>
-                            <p class="mt-2 text-center text-gray-500 dark:text-gray-400">
-                                ตรวจสอบและดาวน์โหลดเอกสารของคุณ
-                            </p>
                         </div>
 
                         <div class="p-8 bg-gray-50 dark:bg-gray-900/50">
@@ -106,9 +103,9 @@
                             </div>
 
                             <div class="space-y-4">
-                                <div class="bg-white dark:bg-gray-800 rounded-xl p-4 flex items-center justify-between
+                                <!-- <div class="bg-white dark:bg-gray-800 rounded-xl p-4 flex items-center justify-between
                                     border border-blue-100 dark:border-gray-700 shadow-sm">
-                                </div>
+                                </div> -->
 
                                 <button @click="handleCertificateDownload" :disabled="isDownloading" class="group flex items-center justify-center gap-3 px-8 py-4 bg-blue-500 dark:bg-white
                                     hover:bg-blue-600 dark:hover:bg-gray-100 w-full rounded-xl
@@ -128,7 +125,6 @@
                     </div>
                 </div>
             </transition>
-
         </div>
     </div>
 </template>

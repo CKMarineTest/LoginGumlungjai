@@ -114,8 +114,7 @@
                                                             </div>
 
                                                             <button @click="handleCertificateDownload"
-                                                                :disabled="isDownloading"
-                                                                class="group text-white flex items-center justify-center gap-3 px-8 py-4 bg-blue-500 dark:bg-white
+                                                                :disabled="isDownloading" class="group text-white flex items-center justify-center gap-3 px-8 py-4 bg-blue-500 dark:bg-white
                                                                     hover:bg-blue-600 dark:hover:bg-gray-100 w-full rounded-xl
                                                                     transform transition-all duration-300 hover:scale-[1.02]
                                                                     shadow-sm hover:shadow-lg hover:shadow-gray-200/50 dark:hover:shadow-white/10

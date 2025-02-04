@@ -23,7 +23,7 @@
                             </div>
                         </div>
 
-                        <div @click="triggerPhotoUpload"
+                        <div @click="triggerPhotoUpload" 
                             class="group bg-white/10 backdrop-blur-sm p-4 rounded-2xl cursor-pointer hover:bg-white/20 transition-all w-full sm:w-auto">
                             <div v-if="!photoPreview"
                                 class="border-2 border-dashed border-white/60 w-36 h-44 sm:w-44 sm:h-52 rounded-xl flex flex-col items-center justify-center group-hover:border-white">
@@ -43,7 +43,7 @@
                         <PrintDataComponent />
                     </div>
                 </div>
-                <div class=" p-8 bg-gray-50/50 ">
+                <div class="p-8 bg-gray-50/50">
 
                     <h3 class="text-xl font-semibold text-blue-900 mb-6 flex items-center gap-2">
                         ประเภททุนการศึกษา
@@ -492,7 +492,6 @@
                                                         </div>
                                                     </div>
                                                 </transition>
-
                                             </div>
                                         </div>
                                         <div class="flex flex-wrap w-full gap-4 mt-2">
@@ -1321,21 +1320,6 @@
 
                                             <DocumentFormComponent class="mt-5 rounded-lg" />
 
-
-                                            <!-- <h3 class="text-xl font-semibold text-blue-900 mb-6 flex items-center gap-2">
-                                            สุขภาพร่างกายของสมาชิกในครอบครัวที่เจ็บป่วยหรือทุพพลภาพ
-                                        </h3>
-
-                                        <h4 class="text-lg font-semibold text-blue-700 mb-3">
-                                            ข้อมูลสุขภาพร่างกายของสมาชิกในครอบครัว
-                                        </h4> -->
-
-                                            <!-- <div
-                                            class="p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200 shadow-md">
-                                            <div class="space-y-6">
-
-                                            </div>
-                                        </div> -->
                                         </div>
                                     </div>
                                 </div>
