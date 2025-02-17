@@ -52,8 +52,8 @@
 
                         <button @click="closeEssaySubmissionModal" class="absolute top-4 right-4 p-1.5 text-gray-400 hover:text-gray-600 
                                     dark:text-gray-500 dark:hover:text-gray-300 
-                                    hover:bg-gray-100 dark:hover:bg-gray-700/50
-                                    rounded-xl transition-all group">
+                                    hover:bg-red-400 dark:hover:bg-gray-700/50
+                                    rounded-xl">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 class="h-6 w-6 group-hover:rotate-90 transition-transform duration-300" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -132,7 +132,7 @@
 <script setup>
 /* eslint-disable */
 import { ref } from 'vue';
-import { Download, FileText, Eye, ZoomIn, ZoomOut } from 'lucide-vue-next';
+import { Download, FileText, ZoomIn, ZoomOut } from 'lucide-vue-next';
 
 const isEssaySubmissionModalOpen = ref(false);
 const openEssaySubmissionModal = () => {

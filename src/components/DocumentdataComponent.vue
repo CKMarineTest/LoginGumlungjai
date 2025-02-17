@@ -23,7 +23,7 @@
                             </div>
                         </div>
 
-                        <div @click="triggerPhotoUpload" 
+                        <div @click="triggerPhotoUpload"
                             class="group bg-white/10 backdrop-blur-sm p-4 rounded-2xl cursor-pointer hover:bg-white/20 transition-all w-full sm:w-auto">
                             <div v-if="!photoPreview"
                                 class="border-2 border-dashed border-white/60 w-36 h-44 sm:w-44 sm:h-52 rounded-xl flex flex-col items-center justify-center group-hover:border-white">
@@ -1146,76 +1146,129 @@
                                                                                 <span>รูปผู้ป่วย</span>
                                                                             </button>
 
-                                                                            <Transition
-                                                                                enter-active-class="transition duration-300 ease-out"
+                                                                            <transition
+                                                                                enter-active-class="transition duration-500 ease-out"
                                                                                 enter-from-class="opacity-0 scale-95"
                                                                                 enter-to-class="opacity-100 scale-100"
-                                                                                leave-active-class="transition duration-200 ease-in"
+                                                                                leave-active-class="transition duration-300 ease-in"
                                                                                 leave-from-class="opacity-100 scale-100"
                                                                                 leave-to-class="opacity-0 scale-95">
                                                                                 <div v-if="isPatientModalOpen"
-                                                                                    class="fixed inset-0 z-50 flex items-center justify-center">
-                                                                                    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"
-                                                                                        @click="closePatientModal">
+                                                                                    class="fixed inset-0 z-50 flex items-center justify-center p-4">
+                                                                                    <div
+                                                                                        class="absolute inset-0 bg-black/40 backdrop-blur-sm">
                                                                                     </div>
 
                                                                                     <div
-                                                                                        class="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[26rem] max-w-[90vw] p-8
-                                                                                        transform transition-all duration-300 ease-in-out
-                                                                                        hover:shadow-xl border border-gray-100 dark:border-gray-700">
+                                                                                        class="relative w-[48rem] max-w-[95vw] max-h-[90vh] bg-white dark:bg-gray-900 rounded-3xl 
+                                                                                        shadow-[0_0_60px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_0_60px_-15px_rgba(0,0,0,0.3)]
+                                                                                        transform transition-all duration-300 ease-in-out overflow-hidden">
+
                                                                                         <button
                                                                                             @click="closePatientModal"
-                                                                                            class="absolute top-4 right-4 p-2 rounded-full
-                                                                                            text-gray-500 dark:text-gray-300 
-                                                                                            hover:bg-gray-100 dark:hover:bg-gray-700
-                                                                                            hover:text-gray-700 dark:hover:text-gray-100 
-                                                                                            transition-all duration-200 group">
+                                                                                            class="absolute top-4 right-4 p-1.5 text-gray-400 hover:text-gray-600 
+                                                                                                dark:text-gray-500 dark:hover:text-gray-300 
+                                                                                                hover:bg-red-400 dark:hover:bg-gray-700/50
+                                                                                                rounded-xl">
                                                                                             <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                                class="h-6 w-6 group-hover:rotate-90 transition-transform duration-200"
+                                                                                                class="h-6 w-6 group-hover:rotate-90 transition-transform duration-300"
                                                                                                 fill="none"
                                                                                                 viewBox="0 0 24 24"
                                                                                                 stroke="currentColor">
                                                                                                 <path
                                                                                                     stroke-linecap="round"
                                                                                                     stroke-linejoin="round"
-                                                                                                    stroke-width="2"
+                                                                                                    stroke-width="1.5"
                                                                                                     d="M6 18L18 6M6 6l12 12" />
                                                                                             </svg>
                                                                                         </button>
 
-                                                                                        <h1
-                                                                                            class="text-2xl font-bold text-gray-800 dark:text-white mb-8
-                                                                                                text-center tracking-wide">
-                                                                                            รูปผู้ป่วย
-                                                                                        </h1>
+                                                                                        <div
+                                                                                            class="bg-white dark:bg-gray-900 p-8 border-b border-gray-100 dark:border-gray-800">
+                                                                                            <h1
+                                                                                                class="text-3xl font-bold tracking-wide text-center text-gray-900 dark:text-white">
+                                                                                                รูปภาพผู้ป่วย
+                                                                                            </h1>
+                                                                                        </div>
 
                                                                                         <div
-                                                                                            class="flex justify-center">
-                                                                                            <button
-                                                                                                @click="handleCertificateDownload"
-                                                                                                :disabled="isDownloading"
-                                                                                                class="group flex items-center gap-3 px-6 py-3.5
-                                                                                                    bg-blue-500 hover:bg-blue-600 active:bg-blue-700
-                                                                                                    dark:bg-blue-600 dark:hover:bg-blue-700
-                                                                                                    text-white font-semibold rounded-xl
-                                                                                                    transform transition-all duration-200
-                                                                                                    hover:scale-105 hover:-translate-y-0.5
-                                                                                                    shadow-md hover:shadow-lg
-                                                                                                    disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
-                                                                                                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                                                                                                <Download
-                                                                                                    class="w-6 h-6 transition-transform duration-200
-                                                                                                    group-hover:rotate-12 group-hover:scale-110" />
-                                                                                                <span class="text-base">
-                                                                                                    {{ isDownloading ?
-                                                                                                        'กำลังดาวน์โหลด...'
-                                                                                                        : 'ดาวน์โหลด' }}
-                                                                                                </span>
-                                                                                            </button>
+                                                                                            class="p-8 bg-gray-50 dark:bg-gray-900/50">
+                                                                                            <div
+                                                                                                class="bg-white dark:bg-gray-800 rounded-2xl p-6 mb-6 shadow-sm border border-gray-100 dark:border-gray-700">
+                                                                                                <div
+                                                                                                    class="flex items-center justify-between mb-4">
+                                                                                                    <h2
+                                                                                                        class="text-lg font-semibold text-gray-800 dark:text-gray-200">
+                                                                                                        เอกสาร
+                                                                                                    </h2>
+                                                                                                    <div
+                                                                                                        class="flex gap-2">
+                                                                                                        <button
+                                                                                                            class="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                                                                                                            <ZoomIn
+                                                                                                                class="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                                                                                                        </button>
+                                                                                                        <button
+                                                                                                            class="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                                                                                                            <ZoomOut
+                                                                                                                class="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div
+                                                                                                    class="relative bg-gray-50 dark:bg-gray-700/30 rounded-xl h-[300px] overflow-hidden
+                                                                                                    border border-blue-100 dark:border-gray-700">
+                                                                                                    <div v-if="documentPreviewUrl"
+                                                                                                        class="w-full h-full">
+                                                                                                        <img :src="documentPreviewUrl"
+                                                                                                            alt="Document Preview"
+                                                                                                            class="w-full h-full object-contain" />
+                                                                                                    </div>
+                                                                                                    <div v-else
+                                                                                                        class="w-full h-full flex items-center justify-center">
+                                                                                                        <div
+                                                                                                            class="text-center">
+                                                                                                            <Image
+                                                                                                                class="w-16 h-16 mx-auto mb-4 text-gray-300 dark:text-gray-600" />
+                                                                                                            <p
+                                                                                                                class="text-gray-400 dark:text-gray-500">
+                                                                                                                ไม่พบเอกสาร
+                                                                                                            </p>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="space-y-4">
+                                                                                                <button
+                                                                                                    @click="handleCertificateDownload"
+                                                                                                    :disabled="isDownloading"
+                                                                                                    class="group flex items-center justify-center gap-3 px-8 py-4 bg-blue-500 dark:bg-white
+                                                                                                        hover:bg-blue-600 dark:hover:bg-gray-100 w-full rounded-xl
+                                                                                                        transform transition-all duration-300 hover:scale-[1.02]
+                                                                                                        shadow-sm hover:shadow-lg hover:shadow-gray-200/50 dark:hover:shadow-white/10
+                                                                                                        disabled:opacity-50 disabled:cursor-not-allowed
+                                                                                                        focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
+                                                                                                    <Download
+                                                                                                        class="w-6 h-6 text-white dark:text-gray-900 transition-transform duration-300 
+                                                                                                        group-hover:rotate-12 group-hover:scale-110" />
+                                                                                                    <span
+                                                                                                        class="text-lg font-semibold text-white dark:text-gray-900">
+                                                                                                        {{ isDownloading
+                                                                                                            ?
+                                                                                                            'กำลังดาวน์โหลด...'
+                                                                                                            :
+                                                                                                            'ดาวน์โหลดเอกสาร'
+                                                                                                        }}
+                                                                                                    </span>
+                                                                                                </button>
+
+                                                                                            </div>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                            </Transition>
+                                                                            </transition>
 
                                                                         </div>
                                                                         <div class="flex-1 relative">
@@ -1239,55 +1292,119 @@
                                                                         </div>
 
                                                                         <transition
-                                                                            enter-active-class="transition duration-300 ease-out"
+                                                                            enter-active-class="transition duration-500 ease-out"
                                                                             enter-from-class="opacity-0 scale-95"
                                                                             enter-to-class="opacity-100 scale-100"
-                                                                            leave-active-class="transition duration-200 ease-in"
+                                                                            leave-active-class="transition duration-300 ease-in"
                                                                             leave-from-class="opacity-100 scale-100"
                                                                             leave-to-class="opacity-0 scale-95">
                                                                             <div v-if="isMedicalModalOpen"
-                                                                                class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+                                                                                class="fixed inset-0 z-50 flex items-center justify-center p-4">
                                                                                 <div
-                                                                                    class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[26rem] max-w-[90vw] p-6 relative transform transition-all duration-300 ease-in-out">
+                                                                                    class="absolute inset-0 bg-black/40 backdrop-blur-sm">
+                                                                                </div>
+
+                                                                                <div
+                                                                                    class="relative w-[48rem] max-w-[95vw] max-h-[90vh] bg-white dark:bg-gray-900 rounded-3xl 
+                                                                                        shadow-[0_0_60px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_0_60px_-15px_rgba(0,0,0,0.3)]
+                                                                                        transform transition-all duration-300 ease-in-out overflow-hidden">
+
                                                                                     <button @click="closeMedicalModal"
-                                                                                        class="absolute top-4 right-4 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 transition-colors group">
+                                                                                        class="absolute top-4 right-4 p-1.5 text-gray-400 hover:text-gray-600 
+                                                                                            dark:text-gray-500 dark:hover:text-gray-300 
+                                                                                            hover:bg-red-400 dark:hover:bg-gray-700/50
+                                                                                            rounded-xl">
                                                                                         <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                            class="h-7 w-7 group-hover:rotate-90 transition-transform"
+                                                                                            class="h-6 w-6 group-hover:rotate-90 transition-transform duration-300"
                                                                                             fill="none"
                                                                                             viewBox="0 0 24 24"
                                                                                             stroke="currentColor">
                                                                                             <path stroke-linecap="round"
                                                                                                 stroke-linejoin="round"
-                                                                                                stroke-width="2"
+                                                                                                stroke-width="1.5"
                                                                                                 d="M6 18L18 6M6 6l12 12" />
                                                                                         </svg>
                                                                                     </button>
 
-                                                                                    <h1
-                                                                                        class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center tracking-wide">
-                                                                                        ใบรับรองแพทย์
-                                                                                    </h1>
+                                                                                    <div
+                                                                                        class="bg-white dark:bg-gray-900 p-8 border-b border-gray-100 dark:border-gray-800">
+                                                                                        <h1
+                                                                                            class="text-3xl font-bold tracking-wide text-center text-gray-900 dark:text-white">
+                                                                                            เอกสารใบรับรองแพทย์
+                                                                                        </h1>
+                                                                                    </div>
 
-                                                                                    <div class="flex justify-center">
-                                                                                        <button
-                                                                                            @click="handleCertificateDownload"
-                                                                                            :disabled="isDownloading"
-                                                                                            class="group flex items-center gap-3 px-6 py-3 bg-blue-500 text-white rounded-xl 
-                                                                                                    hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 
-                                                                                                    transform hover:scale-105 shadow-md hover:shadow-lg 
-                                                                                                    disabled:opacity-50 disabled:cursor-not-allowed 
-                                                                                                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
-                                                                                                    dark:bg-blue-600 dark:hover:bg-blue-700">
-                                                                                            <Download
-                                                                                                class="w-6 h-6 transition-transform group-hover:rotate-12" />
-                                                                                            <span
-                                                                                                class="text-base font-semibold">
-                                                                                                {{ isDownloading ?
-                                                                                                    'กำลังดาวน์โหลด...'
-                                                                                                    :
-                                                                                                    'ดาวน์โหลด' }}
-                                                                                            </span>
-                                                                                        </button>
+                                                                                    <div
+                                                                                        class="p-8 bg-gray-50 dark:bg-gray-900/50">
+                                                                                        <div
+                                                                                            class="bg-white dark:bg-gray-800 rounded-2xl p-6 mb-6 shadow-sm border border-gray-100 dark:border-gray-700">
+                                                                                            <div
+                                                                                                class="flex items-center justify-between mb-4">
+                                                                                                <h2
+                                                                                                    class="text-lg font-semibold text-gray-800 dark:text-gray-200">
+                                                                                                    เอกสาร
+                                                                                                </h2>
+                                                                                                <div class="flex gap-2">
+                                                                                                    <button
+                                                                                                        class="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                                                                                                        <ZoomIn
+                                                                                                            class="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                                                                                                    </button>
+                                                                                                    <button
+                                                                                                        class="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                                                                                                        <ZoomOut
+                                                                                                            class="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div
+                                                                                                class="relative bg-gray-50 dark:bg-gray-700/30 rounded-xl h-[300px] overflow-hidden
+                                                                                                    border border-blue-100 dark:border-gray-700">
+                                                                                                <div v-if="documentPreviewUrl"
+                                                                                                    class="w-full h-full">
+                                                                                                    <img :src="documentPreviewUrl"
+                                                                                                        alt="Document Preview"
+                                                                                                        class="w-full h-full object-contain" />
+                                                                                                </div>
+                                                                                                <div v-else
+                                                                                                    class="w-full h-full flex items-center justify-center">
+                                                                                                    <div
+                                                                                                        class="text-center">
+                                                                                                        <FileText
+                                                                                                            class="w-16 h-16 mx-auto mb-4 text-gray-300 dark:text-gray-600" />
+                                                                                                        <p
+                                                                                                            class="text-gray-400 dark:text-gray-500">
+                                                                                                            ไม่พบเอกสาร
+                                                                                                        </p>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="space-y-4">
+                                                                                            <button
+                                                                                                @click="handleCertificateDownload"
+                                                                                                :disabled="isDownloading"
+                                                                                                class="group flex items-center justify-center gap-3 px-8 py-4 bg-blue-500 dark:bg-white
+                                                                                                    hover:bg-blue-600 dark:hover:bg-gray-100 w-full rounded-xl
+                                                                                                    transform transition-all duration-300 hover:scale-[1.02]
+                                                                                                    shadow-sm hover:shadow-lg hover:shadow-gray-200/50 dark:hover:shadow-white/10
+                                                                                                    disabled:opacity-50 disabled:cursor-not-allowed
+                                                                                                    focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
+                                                                                                <Download
+                                                                                                    class="w-6 h-6 text-white dark:text-gray-900 transition-transform duration-300 
+                                                                                                    group-hover:rotate-12 group-hover:scale-110" />
+                                                                                                <span
+                                                                                                    class="text-lg font-semibold text-white dark:text-gray-900">
+                                                                                                    {{ isDownloading ?
+                                                                                                        'กำลังดาวน์โหลด...'
+                                                                                                        : 'ดาวน์โหลดเอกสาร'
+                                                                                                    }}
+                                                                                                </span>
+                                                                                            </button>
+
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -1344,9 +1461,10 @@ import ReasonCommentComponent from './ReasonCommentComponent.vue';
 import DocumentFormComponent from './DocumentFormComponent.vue';
 import PrintDataComponent from './PrintDataComponent.vue';
 
+import documentPreviewUrl from '@/assets/test/sick.webp';
 import logoUrl from '@/assets/picture/GLJ_Logo.png';
 
-import { Download } from 'lucide-vue-next';
+import { Download, Image, FileText } from 'lucide-vue-next';
 
 const refexample = ref('ตัวอย่าง');
 

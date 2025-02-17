@@ -48,7 +48,7 @@ const routes = [
         path: '/pdf',
         name: 'pdf',
         component: () => import('../components/PDFComponent.vue'),
-    }
+    },
 ]
 
 const router = createRouter({

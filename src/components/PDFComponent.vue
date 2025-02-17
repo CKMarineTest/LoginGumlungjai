@@ -476,6 +476,93 @@
                     </div>
                 </div>
 
+                <div class="flex items-center gap-2 mt-4 mb-3">
+                    <span class="font-bold">16.</span>
+                    <div class="absolute ml-6">
+                        <span class="w-20 text-right">กรอกข้อมูลในตารางแบบประเมินข้อมูลพื้นฐาน พร้อมแนบเอกสารตามรายละเอียดแต่ละข้อ</span>
+                    </div>
+                </div>
+
+                <table-data-component />
+
+                <div class="flex items-center gap-2 mt-4 mb-2">
+                    <span class="font-bold">17.</span>
+                    <div class="absolute ml-6">
+                        <span class="w-50 text-right">ให้ผู้ขอรับทุนแสดงความคิดเห็น "ทำไมข้าพเจ้าควรได้รับทุนการศึกษาโครงการนี้"</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="absolute ml-6">
+                        <span class="w-50 text-right">(บรรยายรายละเอียดชัดเจนตามความเป็นจริงเพื่อประกอบการพิจารณาทุนการศึกษา)</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 mt-4 mb-3">
+                    <div class="absolute ml-24">
+                        <span class="w-50 text-right">-ทุนกำลังใจสร้างครูของชาติ : เขียนเรียงความด้วยลายมือและสแกนเอกสารแนบไฟล์</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 mt-4 mb-3">
+                    <div class="absolute ml-24">
+                        <span class="w-50 text-right">-ทุน Scholars,คุณหมอของกำลังใจ,กำลังใจให้พยาบาล : พิมพ์เรียงความ</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 mt-4 mb-3">
+                    <span class="font-bold">ส่วนที่ 2 การเขียนเรียงความ</span>
+                </div>
+                <div class="flex items-center gap-2 mt-4">
+                    <span class="font-bold">คำชี้แจง</span>
+                    <div class="absolute ml-14">
+                        <span class="w-50 text-right">1.ทุนกำลังใจสร้างครูของชาติ (เขียนด้วยลายทือของตนเองเท่านั้นและสแกนแนบไฟล์)</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 mt-2 mb-3">
+                    <div class="absolute ml-14">
+                        <span class="w-50 text-right">2.ทุน Scholars,คุณหมอของกำลังใจ,กำลังใจให้พยาบาล : พิมพ์เรียงความและสแกนแนบไฟล์</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 mt-5 mb-3">
+                    <div class="absolute ml-14">
+                        <span class="w-50 text-right">3.เรียงความจำนวน 1 เรื่องตามหัวข้อที่กำหนด</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 mt-4">
+                    <div class="absolute">
+                        <span class="w-50 text-right">1)เรียงความเรื่อง</span>
+                    </div>
+                </div>
+                <br>
+                <div class="flex items-center gap-2 mt-4">
+                    <div class="absolute">
+                        <span class="w-50 text-right">3)แนบเอกสารสำคัญอ่านๆ ดังต่อไปนี้</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 mt-6">
+                    <div class="absolute ml-6">
+                        <span class="w-50 text-right">4.1 รูปถ่ายของผู้ขอรับทุน ขนาด 1 นิ้วจำนวน 1 รูป</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 mt-6">
+                    <div class="absolute ml-6">
+                        <span class="w-50 text-right">4.1 สำเนาบัตรประชาชน จำนวน 1 ฉบับ พร้อมรับรองสำเนาถูกต้อง</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 mt-6">
+                    <div class="absolute ml-6">
+                        <span class="w-50 text-right">4.3 สำเนาทะเบียนบ้าน จำนวน 1 ฉบับ พร้อมรับรองสำเนาถูกต้อง</span>
+                    </div>
+                </div>
+                <br>
+                <div class="card shadow-xl border border-gray-900 rounded-md p-5">
+                    Card    
+                </div>
+
             </section>
         </div>
 
@@ -493,6 +580,8 @@
 import { ref } from "vue";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+
+import TableDataComponent from "./TableDataComponent.vue";
 
 // import { Square } from 'lucide-vue-next';
 
