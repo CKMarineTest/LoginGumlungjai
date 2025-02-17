@@ -559,7 +559,7 @@
                     </div>
                 </div>
                 <br>
-                <div class="card shadow-xl border border-gray-900 rounded-md p-5">
+                <div class="card shadow-xl border border-gray-500 rounded-md p-5 m-5 h-[700px]">
                     Card    
                 </div>
 
