@@ -2,7 +2,7 @@
   <div class="overflow-x-auto">
     <table class="w-full border-collapse">
       <thead>
-        <tr>
+        <tr align="center">
           <th
             class="border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-700"
           >
@@ -27,7 +27,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(row, index) in tableData" :key="index">
+        <tr v-for="(row, index) in tableData" :key="index" align="center">
           <td class="border border-gray-300 px-4 py-3">{{ row.component }}</td>
           <td class="border border-gray-300 px-4 py-3">{{ row.indicator }}</td>
           <td class="border border-gray-300 px-4 py-3" colspan="2">
@@ -123,7 +123,7 @@ const tableData = ref([
     applicantData: "ค่าใช้จ่ายในการเล่าเรี่ยนต่อปีของตนเอง",
     requiredDocs: [
         "หน้า TCAS ของการสมัครในคณะที่เลือกแล้วพร้อมแนบเอกสารค่าเล่าเรียน"
-    ]
+    ],
   }
 ]);
 </script>
