@@ -106,32 +106,6 @@
 
             <div class="flex items-center justify-between">
               <div class="flex items-center">
-                <!-- <div class="relative">
-                  <input
-                    id="remember-me"
-                    v-model="rememberMe"
-                    type="checkbox"
-                    class="peer sr-only"
-                  />
-                  <label
-                    for="remember-me"
-                    class="flex h-5 w-5 cursor-pointer items-center justify-center rounded-md border-2 border-gray-300 bg-white transition-all duration-300 ease-in-out hover:border-blue-500 peer-checked:border-blue-600 peer-checked:bg-blue-600 peer-focus:ring-2 peer-focus:ring-blue-500 peer-focus:ring-offset-2"
-                  >
-                    <svg
-                      class="h-3 w-3 text-white opacity-0 transition-opacity duration-300 ease-in-out peer-checked:opacity-100"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="3"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </label>
-                </div> -->
                 <label
                   for="remember-me"
                   class="ml-3 cursor-pointer select-none text-sm font-medium text-gray-700 transition-colors duration-300 ease-in-out hover:text-blue-600"
