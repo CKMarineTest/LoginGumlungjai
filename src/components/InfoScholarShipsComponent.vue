@@ -385,7 +385,7 @@ const data = ref([
   {
     id_card: "USR001",
     name: "สมชาย ใจดี",
-    phone: "0824462690",
+    phone: "5555555555",
     scholarship: "โครงการกำลังใจสร้างครูของชาติ",
     registerdate: "1 มีนาคม 2568",
     // status: "ตรวจเสร็จสิ้น",
@@ -401,7 +401,7 @@ const data = ref([
   {
     id_card: "USR003",
     name: "มานี มีเงิน",
-    phone: "5555555555",
+    phone: "2255112365",
     scholarship: "โครงการทุน Gumlungjai Scholarship",
     registerdate: "2 มีนาคม 2568",
     // status: "ตรวจเสร็จสิ้น",
