@@ -59,10 +59,10 @@
           :class="[isExpanded ? 'left-64' : 'left-20']">
           <div class="flex-1 max-w-lg">
             <div class="relative group">
-              <magnifying-glass-icon
-                class="w-5 h-5 absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 transition-colors duration-300 group-hover:text-blue-500" />
-              <input type="text" v-model="searchQuery" placeholder="ค้นหา..."
-                class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 bg-gray-50/50 hover:bg-white/90">
+              <!-- <magnifying-glass-icon
+                class="w-5 h-5 absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 transition-colors duration-300 group-hover:text-blue-500" /> -->
+              <!-- <input type="text" v-model="searchQuery" placeholder="ค้นหา..."
+                class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 bg-gray-50/50 hover:bg-white/90"> -->
               <div
                 class="absolute inset-0 border border-transparent group-hover:border-blue-100 rounded-xl pointer-events-none transition-colors duration-300">
               </div>
@@ -166,7 +166,7 @@ import {
   Cog6ToothIcon,
   BellIcon,
   ChevronDownIcon,
-  MagnifyingGlassIcon,
+  // MagnifyingGlassIcon,
   DocumentIcon,
   UserIcon,
   IdentificationIcon
@@ -176,7 +176,7 @@ const router = useRouter();
 const isExpanded = ref(false);
 const showNotifications = ref(false);
 const showProfileMenu = ref(false);
-const searchQuery = ref('');
+// const searchQuery = ref('');
 const userName = ref('พงศกร ทองรักษ์');
 
 const menuItems = ref([

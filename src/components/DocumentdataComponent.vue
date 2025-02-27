@@ -2231,6 +2231,21 @@
                     </div>
                   </div>
                 </div>
+                <br />
+                <div class="flex justify-center space-x-4">
+                  <button
+                    @click="editDocument"
+                    class="bg-yellow-500 flex items-center gap-2 p-4 px-4 rounded-lg text-white hover:bg-yellow-600 transition ease"
+                  >
+                    <Edit /> แก้ไขเอกสาร
+                  </button>
+                  <button
+                    @click="submitCheck"
+                    class="bg-green-600 flex items-center gap-2 p-4 px-4 rounded-lg text-white hover:bg-green-700 transition ease"
+                  >
+                    <Check /> ยืนยันการตรวจสอบ
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -2254,13 +2269,29 @@ import PrintDataComponent from "./PrintDataComponent.vue";
 import documentPreviewUrl from "@/assets/test/sick.webp";
 import logoUrl from "@/assets/picture/GLJ_Logo.png";
 
-import { Download, Image, FileText } from "lucide-vue-next";
+import { Download, Image, FileText, Edit, Check } from "lucide-vue-next";
+import Swal from "sweetalert2";
 
 import { useFormStore } from "@/stores/formStore";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const formStore = useFormStore();
 
 const refexample = ref("ตัวอย่าง");
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  },
+});
 
 // modal
 const isTermFeeModalOpen = ref(false);
@@ -2325,6 +2356,24 @@ const closePatientModal = () => {
 
 const closeMedicalModal = () => {
   isMedicalModalOpen.value = false;
+};
+
+const editDocument = () => {
+  Toast.fire({
+    icon: "success",
+    title: "ปรับสถานะแก้ไขเอกสาร",
+  }).then(() => {
+    router.push('/registerform')
+  });
+}
+
+const submitCheck = () => {
+  Toast.fire({
+    icon: "success",
+    title: "ยืนยันการตรวจสอบเอกสารสำเร็จ",
+  }).then(() => {
+    router.push('/registerform')
+  });
 };
 </script>
 

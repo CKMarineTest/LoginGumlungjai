@@ -1,10 +1,9 @@
 <template>
-  <div
-    class="min-h-screen w-full bg-blue-100 flex"
-  >
+  <div class="min-h-screen w-full bg-blue-100 flex">
     <aside class="w-20 fixed left-0 top-0 bottom-0 bg-gray-900 shadow-lg z-10">
       <SidebarComponent />
     </aside>
+
     <main class="flex-1 ml-20 p-4 md:p-6 lg:p-8">
       <br />
       <br />
@@ -26,7 +25,7 @@
               v-model="searchQuery"
               type="text"
               placeholder="ค้นหาผู้สมัคร..."
-              class="pl-10 pr-4 py-3 w-full md:w-72 rounded-xl border border-gray-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all duration-300 outline-none"
+              class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 bg-gray-50/50 hover:bg-white/90"
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -51,11 +50,11 @@
           <div
             class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transform transition hover:scale-105 duration-300"
           >
-            <div class="flex justify-between items-center">
+            <div @click="filterByStatus()" class="flex justify-between items-center cursor-pointer">
               <div>
                 <p class="text-gray-500 text-sm">ผู้สมัครทั้งหมด</p>
                 <p class="text-2xl font-bold text-gray-800">
-                  {{ data.length }}
+                  {{ data.length }} คน
                 </p>
               </div>
               <div class="bg-blue-100 p-3 rounded-lg">
@@ -80,15 +79,17 @@
           <div
             class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transform transition hover:scale-105 duration-300"
           >
-            <div class="flex justify-between items-center">
+            <div @click="filterByStatus('แก้ไขเอกสาร')" class="flex justify-between items-center cursor-pointer">
               <div>
-                <p class="text-gray-500 text-sm">ตรวจเสร็จสิ้น</p>
-                <p class="text-2xl font-bold text-gray-800">{{ statusCounts['ตรวจเสร็จสิ้น'] || 0 }}</p>
+                <p class="text-gray-500 text-sm">ต้องแก้ไข</p>
+                <p class="text-2xl font-bold text-gray-800">
+                  {{ statusCounts["แก้ไขเอกสาร"] || 0 }} คน
+                </p>
               </div>
-              <div class="bg-green-100 p-3 rounded-lg">
+              <div class="bg-red-100 p-3 rounded-lg">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6 text-green-600"
+                  class="h-6 w-6 text-red-600"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -97,7 +98,7 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
                   />
                 </svg>
               </div>
@@ -107,10 +108,12 @@
           <div
             class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transform transition hover:scale-105 duration-300"
           >
-            <div class="flex justify-between items-center">
+            <div @click="filterByStatus('รอดำเนินการ')" class="flex justify-between items-center cursor-pointer">
               <div>
                 <p class="text-gray-500 text-sm">รอดำเนินการ</p>
-                <p class="text-2xl font-bold text-gray-800">{{ statusCounts['รอดำเนินการ'] || 0 }}</p>
+                <p class="text-2xl font-bold text-gray-800">
+                  {{ statusCounts["รอดำเนินการ"] || 0 }} คน
+                </p>
               </div>
               <div class="bg-yellow-100 p-3 rounded-lg">
                 <svg
@@ -134,15 +137,17 @@
           <div
             class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transform transition hover:scale-105 duration-300"
           >
-            <div class="flex justify-between items-center">
+            <div @click="filterByStatus('ตรวจเสร็จสิ้น')" class="flex justify-between items-center cursor-pointer">
               <div>
-                <p class="text-gray-500 text-sm">ต้องแก้ไข</p>
-                <p class="text-2xl font-bold text-gray-800">{{ statusCounts['แก้ไขเอกสาร'] || 0 }}</p>
+                <p class="text-gray-500 text-sm">ตรวจเสร็จสิ้น</p>
+                <p class="text-2xl font-bold text-gray-800">
+                  {{ statusCounts['ตรวจเสร็จสิ้น'] || 0 }} คน
+                </p>
               </div>
-              <div class="bg-red-100 p-3 rounded-lg">
+              <div class="bg-green-100 p-3 rounded-lg">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6 text-red-600"
+                  class="h-6 w-6 text-green-600"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -151,7 +156,7 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
               </div>
@@ -165,7 +170,10 @@
           <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
               <thead>
-                <tr class="bg-gradient-to-r from-blue-50 to-white" align="center">
+                <tr
+                  class="bg-gradient-to-r from-blue-50 to-white"
+                  align="center"
+                >
                   <th
                     v-for="header in headers"
                     :key="header.key"
@@ -200,7 +208,6 @@
                   v-for="item in sortedAndFilteredData"
                   :key="item.id_card"
                   class="group hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-transparent transition-all duration-300"
-                  
                 >
                   <td class="px-6 py-5 whitespace-nowrap text-sm">
                     <div class="flex items-center gap-3">
@@ -419,6 +426,7 @@ import router from "@/router";
 const searchQuery = ref("");
 const sortKey = ref("id_card");
 const sortOrder = ref("asc");
+const filteredStatus = ref(null);
 
 const headers = [
   { key: "id_card", label: "รหัสประจำตัวประชาชน" },
@@ -482,6 +490,10 @@ const statusCounts = computed(() => {
 const sortedAndFilteredData = computed(() => {
   let result = [...data.value];
 
+  if(filteredStatus.value) {
+    result = result.filter(item => item.status === filteredStatus.value)
+  }
+
   if (searchQuery.value) {
     result = result.filter((item) =>
       Object.values(item).some((value) =>
@@ -503,6 +515,10 @@ const sortedAndFilteredData = computed(() => {
 
   return result;
 });
+
+const filterByStatus = (status) => {
+    filteredStatus.value = status;
+}
 
 const sortBy = (key) => {
   if (sortKey.value === key) {
