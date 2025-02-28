@@ -86,9 +86,17 @@
               class="flex justify-between items-center cursor-pointer"
             >
               <div>
-                <p class="text-gray-500 text-sm">โครงการกำลังใจสร้างครูของชาติ</p>
+                <p class="text-gray-500 text-sm">
+                  โครงการกำลังใจสร้างครูของชาติ
+                </p>
                 <p class="text-2xl font-bold text-gray-800">
-                    {{ data.filter(item => item.scholarship === 'โครงการกำลังใจสร้างครูของชาติ').length }} คน
+                  {{
+                    data.filter(
+                      (item) =>
+                        item.scholarship === "โครงการกำลังใจสร้างครูของชาติ"
+                    ).length
+                  }}
+                  คน
                 </p>
               </div>
               <div class="bg-blue-100 p-3 rounded-lg">
@@ -107,7 +115,13 @@
               <div>
                 <p class="text-gray-500 text-sm">โครงการทุนคุณหมอของกำลังใจ</p>
                 <p class="text-2xl font-bold text-gray-800">
-                  {{ data.filter(item => item.scholarship === 'โครงการทุนคุณหมอของกำลังใจ').length }} คน
+                  {{
+                    data.filter(
+                      (item) =>
+                        item.scholarship === "โครงการทุนคุณหมอของกำลังใจ"
+                    ).length
+                  }}
+                  คน
                 </p>
               </div>
               <div class="bg-green-100 p-3 rounded-lg">
@@ -126,7 +140,13 @@
               <div>
                 <p class="text-gray-500 text-sm">โครงการทุนกำลังใจให้พยาบาล</p>
                 <p class="text-2xl font-bold text-gray-800">
-                  {{ data.filter(item => item.scholarship === "โครงการทุนกำลังใจให้พยาบาล").length }} คน
+                  {{
+                    data.filter(
+                      (item) =>
+                        item.scholarship === "โครงการทุนกำลังใจให้พยาบาล"
+                    ).length
+                  }}
+                  คน
                 </p>
               </div>
               <div class="bg-yellow-100 p-3 rounded-lg">
@@ -143,9 +163,17 @@
               class="flex justify-between items-center cursor-pointer"
             >
               <div>
-                <p class="text-gray-500 text-sm">โครงการทุน Gumlungjai Scholarship</p>
+                <p class="text-gray-500 text-sm">
+                  โครงการทุน Gumlungjai Scholarship
+                </p>
                 <p class="text-2xl font-bold text-gray-800">
-                    {{ data.filter(item => item.scholarship === "โครงการทุน Gumlungjai Scholarship").length }} คน
+                  {{
+                    data.filter(
+                      (item) =>
+                        item.scholarship === "โครงการทุน Gumlungjai Scholarship"
+                    ).length
+                  }}
+                  คน
                 </p>
               </div>
               <div class="bg-pink-100 p-3 rounded-lg">
@@ -162,9 +190,17 @@
               class="flex justify-between items-center cursor-pointer"
             >
               <div>
-                <p class="text-gray-500 text-sm">โครงการทุนนักจิตวิทยาสร้างกำลังใจ</p>
+                <p class="text-gray-500 text-sm">
+                  โครงการทุนนักจิตวิทยาสร้างกำลังใจ
+                </p>
                 <p class="text-2xl font-bold text-gray-800">
-                  {{ data.filter(item => item.scholarship === "โครงการทุนนักจิตวิทยาสร้างกำลังใจ").length }} คน
+                  {{
+                    data.filter(
+                      (item) =>
+                        item.scholarship === "โครงการทุนนักจิตวิทยาสร้างกำลังใจ"
+                    ).length
+                  }}
+                  คน
                 </p>
               </div>
               <div class="bg-purple-100 p-3 rounded-lg">
@@ -365,7 +401,13 @@ import { ref, computed } from "vue";
 import { DocumentTextIcon } from "@heroicons/vue/24/outline";
 import SidebarComponent from "./Menu/SidebarComponent.vue";
 import router from "@/router";
-import { LibraryBig, Pill, Hospital, GraduationCap, MessageCircleMore } from "lucide-vue-next";
+import {
+  LibraryBig,
+  Pill,
+  Hospital,
+  GraduationCap,
+  MessageCircleMore,
+} from "lucide-vue-next";
 
 const searchQuery = ref("");
 const sortKey = ref("id_card");
@@ -378,7 +420,7 @@ const headers = [
   { key: "phone", label: "เบอร์โทรศัพท์" },
   { key: "scholarship", label: "ชื่อทุน" },
   { key: "registerdate", label: "วันที่สมัคร" },
-//   { key: "status", label: "สถานะ" },
+  //   { key: "status", label: "สถานะ" },
 ];
 
 const data = ref([
@@ -431,8 +473,10 @@ const sortedAndFilteredData = computed(() => {
     result = result.filter((item) => item.status === filteredStatus.value);
   }
 
-  if(filteredScholarship.value) {
-    result = result.filter((item) => item.scholarship === filteredScholarship.value);
+  if (filteredScholarship.value) {
+    result = result.filter(
+      (item) => item.scholarship === filteredScholarship.value
+    );
   }
 
   if (searchQuery.value) {
@@ -460,8 +504,8 @@ const sortedAndFilteredData = computed(() => {
 const filteredScholarship = ref(null);
 
 const filterByScholarship = (scholarship) => {
-    filteredScholarship.value = scholarship;
-}
+  filteredScholarship.value = scholarship;
+};
 
 const sortBy = (key) => {
   if (sortKey.value === key) {

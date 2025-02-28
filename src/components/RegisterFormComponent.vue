@@ -24,7 +24,7 @@
             <input
               v-model="searchQuery"
               type="text"
-              placeholder="ค้นหาผู้สมัคร..."
+              placeholder="ค้นหา..."
               class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 bg-gray-50/50 hover:bg-white/90"
             />
             <svg
@@ -518,16 +518,16 @@ const sortedAndFilteredData = computed(() => {
 
 const filterByStatus = (status) => {
     filteredStatus.value = status;
-}
+};
 
 const sortBy = (key) => {
-  if (sortKey.value === key) {
+  if(sortKey.value === key) {
     sortOrder.value = sortOrder.value === "asc" ? "desc" : "asc";
-  } else {
+  }else {
     sortKey.value = key;
     sortOrder.value = "asc";
   }
-};
+}
 
 const formatPhone = (phone) => {
   if (phone.length === 10) {
