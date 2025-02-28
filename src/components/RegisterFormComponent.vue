@@ -50,7 +50,10 @@
           <div
             class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transform transition hover:scale-105 duration-300"
           >
-            <div @click="filterByStatus()" class="flex justify-between items-center cursor-pointer">
+            <div
+              @click="filterByStatus()"
+              class="flex justify-between items-center cursor-pointer"
+            >
               <div>
                 <p class="text-gray-500 text-sm">ผู้สมัครทั้งหมด</p>
                 <p class="text-2xl font-bold text-gray-800">
@@ -79,7 +82,10 @@
           <div
             class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transform transition hover:scale-105 duration-300"
           >
-            <div @click="filterByStatus('แก้ไขเอกสาร')" class="flex justify-between items-center cursor-pointer">
+            <div
+              @click="filterByStatus('แก้ไขเอกสาร')"
+              class="flex justify-between items-center cursor-pointer"
+            >
               <div>
                 <p class="text-gray-500 text-sm">ต้องแก้ไข</p>
                 <p class="text-2xl font-bold text-gray-800">
@@ -108,7 +114,10 @@
           <div
             class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transform transition hover:scale-105 duration-300"
           >
-            <div @click="filterByStatus('รอดำเนินการ')" class="flex justify-between items-center cursor-pointer">
+            <div
+              @click="filterByStatus('รอดำเนินการ')"
+              class="flex justify-between items-center cursor-pointer"
+            >
               <div>
                 <p class="text-gray-500 text-sm">รอดำเนินการ</p>
                 <p class="text-2xl font-bold text-gray-800">
@@ -137,11 +146,14 @@
           <div
             class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transform transition hover:scale-105 duration-300"
           >
-            <div @click="filterByStatus('ตรวจเสร็จสิ้น')" class="flex justify-between items-center cursor-pointer">
+            <div
+              @click="filterByStatus('ตรวจเสร็จสิ้น')"
+              class="flex justify-between items-center cursor-pointer"
+            >
               <div>
                 <p class="text-gray-500 text-sm">ตรวจเสร็จสิ้น</p>
                 <p class="text-2xl font-bold text-gray-800">
-                  {{ statusCounts['ตรวจเสร็จสิ้น'] || 0 }} คน
+                  {{ statusCounts["ตรวจเสร็จสิ้น"] || 0 }} คน
                 </p>
               </div>
               <div class="bg-green-100 p-3 rounded-lg">
@@ -490,8 +502,8 @@ const statusCounts = computed(() => {
 const sortedAndFilteredData = computed(() => {
   let result = [...data.value];
 
-  if(filteredStatus.value) {
-    result = result.filter(item => item.status === filteredStatus.value)
+  if (filteredStatus.value) {
+    result = result.filter((item) => item.status === filteredStatus.value);
   }
 
   if (searchQuery.value) {
@@ -517,17 +529,17 @@ const sortedAndFilteredData = computed(() => {
 });
 
 const filterByStatus = (status) => {
-    filteredStatus.value = status;
+  filteredStatus.value = status;
 };
 
 const sortBy = (key) => {
-  if(sortKey.value === key) {
+  if (sortKey.value === key) {
     sortOrder.value = sortOrder.value === "asc" ? "desc" : "asc";
-  }else {
+  } else {
     sortKey.value = key;
     sortOrder.value = "asc";
   }
-}
+};
 
 const formatPhone = (phone) => {
   if (phone.length === 10) {
