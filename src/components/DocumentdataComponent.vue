@@ -6,6 +6,9 @@
     <div class="flex-1 bg-blue-100 p-4 md:p-6 lg:p-8">
       <br />
       <br />
+      <div>
+        <PrintDataComponent />
+      </div>
       <div
         class="w-full max-w-7xl mx-auto bg-white shadow-xl rounded-xl overflow-hidden"
       >
@@ -61,12 +64,6 @@
                 accept="image/*"
               />
             </div>
-          </div>
-        </div>
-        <div class="p-8 bg-gray-50/50 border">
-          <br />
-          <div>
-            <PrintDataComponent />
           </div>
         </div>
         <div class="p-8 bg-gray-50/50">
@@ -739,74 +736,120 @@
                       </div>
                     </div>
                     <br />
-                    <div
-                      class="p-4 md:p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-md"
-                    >
+                    <div class="container mx-auto">
                       <h4
                         class="text-base md:text-lg font-semibold text-blue-700 mb-4"
                       >
                         ข้อมูลเกียรติบัตร
                       </h4>
-                      <div class="space-y-4">
+
+                      <div class="overflow-x-auto shadow-md rounded-lg">
+                        <table class="w-full border-collapse bg-white">
+                          <thead>
+                            <tr class="bg-blue-500 text-white">
+                              <th class="px-4 py-3 text-left">ลำดับ</th>
+                              <th class="px-4 py-3 text-left">ระดับ</th>
+                              <th class="px-4 py-3 text-left">
+                                รายการเกียรติบัตร
+                              </th>
+                              <th class="px-4 py-3 text-center">ไฟล์</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr
+                              v-for="(certificate, index) in certificates"
+                              :key="index"
+                              class="border-b hover:bg-blue-50 transition-colors"
+                            >
+                              <td class="px-4 py-3">
+                                <div
+                                  class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-sm"
+                                >
+                                  {{ index + 1 }}
+                                </div>
+                              </td>
+                              <td class="px-4 py-3">
+                                <input
+                                  type="text"
+                                  v-model="certificate.level"
+                                  placeholder="ระดับ"
+                                  readonly
+                                  class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
+                                />
+                              </td>
+                              <td class="px-4 py-3">
+                                <input
+                                  type="text"
+                                  v-model="certificate.name"
+                                  readonly
+                                  class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
+                                  placeholder="ระบุชื่อรายการเกียรติบัตร"
+                                />
+                              </td>
+                              <td class="px-4 py-3 text-center">
+                                <button
+                                  @click="openCertificateModal(index)"
+                                  class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                >
+                                  <span>ไฟล์เกียรติบัตร</span>
+                                </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <!-- Modal -->
+                      <transition
+                        enter-active-class="transition duration-300 ease-out"
+                        enter-from-class="opacity-0 scale-95"
+                        enter-to-class="opacity-100 scale-100"
+                        leave-active-class="transition duration-200 ease-in"
+                        leave-from-class="opacity-100 scale-100"
+                        leave-to-class="opacity-0 scale-95"
+                      >
                         <div
-                          class="bg-white rounded-xl p-3 md:p-4 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300"
+                          v-if="isCertificateModalOpen"
+                          class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
                         >
                           <div
-                            class="flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-4"
+                            class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[26rem] max-w-[90vw] p-6 relative transform transition-all duration-300 ease-in-out"
                           >
-                            <div
-                              class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-sm md:text-base"
+                            <button
+                              @click="closeCertificateModal"
+                              class="absolute top-4 right-4 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 transition-colors group"
                             >
-                              1
-                            </div>
-
-                            <input
-                              type="text"
-                              placeholder="ระดับ"
-                              readonly
-                              class="w-full md:w-4/12 px-3 md:px-4 h-10 md:h-12 text-base md:text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
-                            />
-
-                            <input
-                              type="text"
-                              readonly
-                              class="w-full md:w-4/12 px-3 md:px-4 h-10 md:h-12 text-base md:text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
-                              placeholder="ระบุชื่อรายการเกียรติบัตร"
-                            />
-
-                            <div class="w-full md:w-auto flex items-center">
-                              <button
-                                @click="openCertificateModal"
-                                class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-7 w-7 group-hover:rotate-90 transition-transform"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
                               >
-                                <span>ไฟล์เกียรติบัตร</span>
-                              </button>
-                            </div>
-                          </div>
-                        </div>
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M6 18L18 6M6 6l12 12"
+                                />
+                              </svg>
+                            </button>
 
-                        <transition
-                          enter-active-class="transition duration-300 ease-out"
-                          enter-from-class="opacity-0 scale-95"
-                          enter-to-class="opacity-100 scale-100"
-                          leave-active-class="transition duration-200 ease-in"
-                          leave-from-class="opacity-100 scale-100"
-                          leave-to-class="opacity-0 scale-95"
-                        >
-                          <div
-                            v-if="isCertificateModalOpen"
-                            class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
-                          >
-                            <div
-                              class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[26rem] max-w-[90vw] p-6 relative transform transition-all duration-300 ease-in-out"
+                            <h1
+                              class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center tracking-wide"
                             >
+                              เกียรติบัตร
+                            </h1>
+
+                            <div class="flex justify-center">
                               <button
-                                @click="closeCertificateModal"
-                                class="absolute top-4 right-4 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 transition-colors group"
+                                @click="handleCertificateDownload"
+                                :disabled="isDownloading"
+                                class="group flex items-center gap-3 px-6 py-3 bg-blue-500 text-white rounded-xl hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-blue-600 dark:hover:bg-blue-700"
                               >
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
-                                  class="h-7 w-7 group-hover:rotate-90 transition-transform"
+                                  class="w-6 h-6 transition-transform group-hover:rotate-12"
                                   fill="none"
                                   viewBox="0 0 24 24"
                                   stroke="currentColor"
@@ -815,39 +858,21 @@
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
                                     stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12"
+                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                                   />
                                 </svg>
+                                <span class="text-base font-semibold">
+                                  {{
+                                    isDownloading
+                                      ? "กำลังดาวน์โหลด..."
+                                      : "ดาวน์โหลด"
+                                  }}
+                                </span>
                               </button>
-
-                              <h1
-                                class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center tracking-wide"
-                              >
-                                เกียรติบัตร
-                              </h1>
-
-                              <div class="flex justify-center">
-                                <button
-                                  @click="handleCertificateDownload"
-                                  :disabled="isDownloading"
-                                  class="group flex items-center gap-3 px-6 py-3 bg-blue-500 text-white rounded-xl hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-blue-600 dark:hover:bg-blue-700"
-                                >
-                                  <Download
-                                    class="w-6 h-6 transition-transform group-hover:rotate-12"
-                                  />
-                                  <span class="text-base font-semibold">
-                                    {{
-                                      isDownloading
-                                        ? "กำลังดาวน์โหลด..."
-                                        : "ดาวน์โหลด"
-                                    }}
-                                  </span>
-                                </button>
-                              </div>
                             </div>
                           </div>
-                        </transition>
-                      </div>
+                        </div>
+                      </transition>
                     </div>
                     <div class="flex flex-wrap w-full gap-4 mt-2">
                       <div class="w-full sm:w-full lg:w-full">
@@ -1182,6 +1207,29 @@
                               </svg>
                               <span>รูปภาพที่อยู่บ้าน</span>
                             </button>
+
+                            <button
+                              @click="openHouseEvidenceModal"
+                              class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-5 w-5"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                                />
+                              </svg>
+                              <span
+                                >ตัวอย่างหลักฐานค่าใช้จ่ายค่าเช่าออกโดยสถานที่ให้เช่า</span
+                              >
+                            </button>
                           </div>
 
                           <transition
@@ -1246,31 +1294,6 @@
                               </div>
                             </div>
                           </transition>
-
-                          <div class="flex flex-col sm:flex-row gap-4 mt-4">
-                            <button
-                              @click="openHouseEvidenceModal"
-                              class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                            >
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-5 w-5"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                              >
-                                <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  stroke-width="2"
-                                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                                />
-                              </svg>
-                              <span
-                                >ตัวอย่างหลักฐานค่าใช้จ่ายค่าเช่าออกโดยสถานที่ให้เช่า</span
-                              >
-                            </button>
-                          </div>
 
                           <transition
                             enter-active-class="transition duration-300 ease-out"
@@ -1875,172 +1898,6 @@
                                       <label
                                         class="block text-sm font-medium text-gray-600 mb-2"
                                       >
-                                        รูปผู้ป่วย
-                                      </label>
-                                      <button
-                                        @click="openPatientModal"
-                                        class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                                      >
-                                        <svg
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          class="h-5 w-5"
-                                          fill="none"
-                                          viewBox="0 0 24 24"
-                                          stroke="currentColor"
-                                        >
-                                          <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                                          />
-                                        </svg>
-                                        <span>รูปผู้ป่วย</span>
-                                      </button>
-
-                                      <transition
-                                        enter-active-class="transition duration-500 ease-out"
-                                        enter-from-class="opacity-0 scale-95"
-                                        enter-to-class="opacity-100 scale-100"
-                                        leave-active-class="transition duration-300 ease-in"
-                                        leave-from-class="opacity-100 scale-100"
-                                        leave-to-class="opacity-0 scale-95"
-                                      >
-                                        <div
-                                          v-if="isPatientModalOpen"
-                                          class="fixed inset-0 z-50 flex items-center justify-center p-4"
-                                        >
-                                          <div
-                                            class="absolute inset-0 bg-black/40 backdrop-blur-sm"
-                                          ></div>
-
-                                          <div
-                                            class="relative w-[48rem] max-w-[95vw] max-h-[90vh] bg-white dark:bg-gray-900 rounded-3xl shadow-[0_0_60px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_0_60px_-15px_rgba(0,0,0,0.3)] transform transition-all duration-300 ease-in-out overflow-hidden"
-                                          >
-                                            <button
-                                              @click="closePatientModal"
-                                              class="absolute top-4 right-4 p-1.5 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 hover:bg-red-400 dark:hover:bg-gray-700/50 rounded-xl"
-                                            >
-                                              <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                class="h-6 w-6 group-hover:rotate-90 transition-transform duration-300"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke="currentColor"
-                                              >
-                                                <path
-                                                  stroke-linecap="round"
-                                                  stroke-linejoin="round"
-                                                  stroke-width="1.5"
-                                                  d="M6 18L18 6M6 6l12 12"
-                                                />
-                                              </svg>
-                                            </button>
-
-                                            <div
-                                              class="bg-white dark:bg-gray-900 p-8 border-b border-gray-100 dark:border-gray-800"
-                                            >
-                                              <h1
-                                                class="text-3xl font-bold tracking-wide text-center text-gray-900 dark:text-white"
-                                              >
-                                                รูปภาพผู้ป่วย
-                                              </h1>
-                                            </div>
-
-                                            <div
-                                              class="p-8 bg-gray-50 dark:bg-gray-900/50"
-                                            >
-                                              <div
-                                                class="bg-white dark:bg-gray-800 rounded-2xl p-6 mb-6 shadow-sm border border-gray-100 dark:border-gray-700"
-                                              >
-                                                <div
-                                                  class="flex items-center justify-between mb-4"
-                                                >
-                                                  <h2
-                                                    class="text-lg font-semibold text-gray-800 dark:text-gray-200"
-                                                  >
-                                                    เอกสาร
-                                                  </h2>
-                                                  <div class="flex gap-2">
-                                                    <button
-                                                      class="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                                                    >
-                                                      <ZoomIn
-                                                        class="w-5 h-5 text-gray-600 dark:text-gray-400"
-                                                      />
-                                                    </button>
-                                                    <button
-                                                      class="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                                                    >
-                                                      <ZoomOut
-                                                        class="w-5 h-5 text-gray-600 dark:text-gray-400"
-                                                      />
-                                                    </button>
-                                                  </div>
-                                                </div>
-
-                                                <div
-                                                  class="relative bg-gray-50 dark:bg-gray-700/30 rounded-xl h-[300px] overflow-hidden border border-blue-100 dark:border-gray-700"
-                                                >
-                                                  <div
-                                                    v-if="documentPreviewUrl"
-                                                    class="w-full h-full"
-                                                  >
-                                                    <img
-                                                      :src="documentPreviewUrl"
-                                                      alt="Document Preview"
-                                                      class="w-full h-full object-contain"
-                                                    />
-                                                  </div>
-                                                  <div
-                                                    v-else
-                                                    class="w-full h-full flex items-center justify-center"
-                                                  >
-                                                    <div class="text-center">
-                                                      <Image
-                                                        class="w-16 h-16 mx-auto mb-4 text-gray-300 dark:text-gray-600"
-                                                      />
-                                                      <p
-                                                        class="text-gray-400 dark:text-gray-500"
-                                                      >
-                                                        ไม่พบเอกสาร
-                                                      </p>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                              </div>
-
-                                              <div class="space-y-4">
-                                                <button
-                                                  @click="
-                                                    handleCertificateDownload
-                                                  "
-                                                  :disabled="isDownloading"
-                                                  class="group flex items-center justify-center gap-3 px-8 py-4 bg-blue-500 dark:bg-white hover:bg-blue-600 dark:hover:bg-gray-100 w-full rounded-xl transform transition-all duration-300 hover:scale-[1.02] shadow-sm hover:shadow-lg hover:shadow-gray-200/50 dark:hover:shadow-white/10 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
-                                                >
-                                                  <Download
-                                                    class="w-6 h-6 text-white dark:text-gray-900 transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110"
-                                                  />
-                                                  <span
-                                                    class="text-lg font-semibold text-white dark:text-gray-900"
-                                                  >
-                                                    {{
-                                                      isDownloading
-                                                        ? "กำลังดาวน์โหลด..."
-                                                        : "ดาวน์โหลดเอกสาร"
-                                                    }}
-                                                  </span>
-                                                </button>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </transition>
-                                    </div>
-                                    <div class="flex-1 relative">
-                                      <label
-                                        class="block text-sm font-medium text-gray-600 mb-2"
-                                      >
                                         ใบรับรองแพทย์
                                       </label>
                                       <button
@@ -2269,7 +2126,7 @@ import PrintDataComponent from "./PrintDataComponent.vue";
 import documentPreviewUrl from "@/assets/test/sick.webp";
 import logoUrl from "@/assets/picture/GLJ_Logo.png";
 
-import { Download, Image, FileText, Edit, Check } from "lucide-vue-next";
+import { Download, FileText, Edit, Check } from "lucide-vue-next";
 import Swal from "sweetalert2";
 
 import { useFormStore } from "@/stores/formStore";
@@ -2299,7 +2156,6 @@ const isGpaModalOpen = ref(false);
 const isCertificateModalOpen = ref(false);
 const isHousePictureModalOpen = ref(false);
 const isHouseEvidenceModalOpen = ref(false);
-const isPatientModalOpen = ref(false);
 const isMedicalModalOpen = ref(false);
 
 const openTermFeeModal = () => {
@@ -2320,10 +2176,6 @@ const openHousePictureModal = () => {
 
 const openHouseEvidenceModal = () => {
   isHouseEvidenceModalOpen.value = true;
-};
-
-const openPatientModal = () => {
-  isPatientModalOpen.value = true;
 };
 
 const OpenMedicalModal = () => {
@@ -2350,30 +2202,44 @@ const closeHouseEvidenceModal = () => {
   isHouseEvidenceModalOpen.value = false;
 };
 
-const closePatientModal = () => {
-  isPatientModalOpen.value = false;
-};
-
 const closeMedicalModal = () => {
   isMedicalModalOpen.value = false;
 };
 
 const editDocument = () => {
-  Toast.fire({
-    icon: "success",
-    title: "ปรับสถานะแก้ไขเอกสาร",
-  }).then(() => {
-    router.push('/registerform')
-  });
-}
+  // Toast.fire({
+  //   icon: "success",
+  //   title: "ปรับสถานะแก้ไขเอกสาร",
+  // }).then(() => {
+  //   router.push("/registerform");
+  // });
+
+  router.push(
+    "/registerform"
+  ).then(() => {
+    Toast.fire({
+      icon: "success",
+      title: "ปรับสถานะแก้ไขเอกสาร",
+    })
+  })
+};
 
 const submitCheck = () => {
-  Toast.fire({
-    icon: "success",
-    title: "ยืนยันการตรวจสอบเอกสารสำเร็จ",
-  }).then(() => {
-    router.push('/registerform')
-  });
+  // Toast.fire({
+  //   icon: "success",
+  //   title: "ยืนยันการตรวจสอบเอกสารสำเร็จ",
+  // }).then(() => {
+  //   router.push("/registerform");
+  // });
+
+  router.push(
+    "/registerform"
+  ).then(() => {
+    Toast.fire({
+      icon: "success",
+      title: "ยืนยันการตรวจสอบเอกสารสำเร็จ",
+    })
+  })
 };
 </script>
 

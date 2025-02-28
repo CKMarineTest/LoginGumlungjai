@@ -8,7 +8,7 @@
         <div class="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-75"></div>
         <transition name="fade" mode="out-in">
           <span v-if="isExpanded" class="text-2xl font-bold text-white tracking-wider relative">
-            <span class="relative z-10">GumLungjai</span>
+            <span class="relative z-10">THE GIFT</span>
             <div
               class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-white/70 via-white/50 to-transparent">
             </div>
