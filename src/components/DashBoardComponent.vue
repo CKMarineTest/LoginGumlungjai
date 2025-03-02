@@ -1,24 +1,403 @@
 <template>
-    <div class="flex min-h-screen">
+    <!-- <div class="flex min-h-screen bg-gray-50"> -->
         <aside class="w-16 h-screen fixed left-0 bg-gray-900">
             <SidebarComponent />
         </aside>
 
+        <div class="ml-16 flex-1 overflow-hidden bg-blue-100">
+            <br>
+            <br>
 
-    </div>
+            <main class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                    <div class="bg-white rounded-lg shadow p-6 flex items-center">
+                        <div class="rounded-full bg-blue-100 p-3 mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-sm">ผู้สมัครทั้งหมด</p>
+                            <h2 class="text-2xl font-bold text-gray-800">{{ formatNumber }}</h2>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow p-6 flex items-center">
+                        <div class="rounded-full bg-green-100 p-3 mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-sm"></p>
+                            <h2 class="text-2xl font-bold text-gray-800"></h2>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow p-6 flex items-center">
+                        <div class="rounded-full bg-purple-100 p-3 mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2zM10 8.5a.5.5 0 11-1 0 .5.5 0 011 0zm5 5a.5.5 0 11-1 0 .5.5 0 011 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-sm"></p>
+                            <h2 class="text-2xl font-bold text-gray-800"></h2>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow p-6 flex items-center">
+                        <div class="rounded-full bg-yellow-100 p-3 mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-600" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-sm"></p>
+                            <h2 class="text-2xl font-bold text-gray-800"></h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-white rounded-lg shadow p-6 lg:col-span-2">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-semibold text-gray-800"></h3>
+                            <div class="flex space-x-2">
+                                <button
+                                    class="px-3 py-1 text-sm rounded border border-gray-300 text-gray-700 hover:bg-gray-50">วันนี้</button>
+                                <button
+                                    class="px-3 py-1 text-sm rounded border border-gray-300 bg-blue-50 text-blue-700">สัปดาห์นี้</button>
+                                <button
+                                    class="px-3 py-1 text-sm rounded border border-gray-300 text-gray-700 hover:bg-gray-50">เดือนนี้</button>
+                            </div>
+                        </div>
+                        <div class="h-64 flex items-end justify-between px-2">
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="w-full bg-blue-500 rounded-t-lg" style="height: 40%"></div>
+                                <span class="text-xs mt-1 text-gray-500">ม.ค.</span>
+                            </div>
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="w-full bg-blue-500 rounded-t-lg" style="height: 60%"></div>
+                                <span class="text-xs mt-1 text-gray-500">ก.พ.</span>
+                            </div>
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="w-full bg-blue-500 rounded-t-lg" style="height: 45%"></div>
+                                <span class="text-xs mt-1 text-gray-500">มี.ค.</span>
+                            </div>
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="w-full bg-blue-500 rounded-t-lg" style="height: 70%"></div>
+                                <span class="text-xs mt-1 text-gray-500">เม.ย.</span>
+                            </div>
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="w-full bg-blue-500 rounded-t-lg" style="height: 65%"></div>
+                                <span class="text-xs mt-1 text-gray-500">พ.ค.</span>
+                            </div>
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="w-full bg-blue-500 rounded-t-lg" style="height: 50%"></div>
+                                <span class="text-xs mt-1 text-gray-500">มิ.ย.</span>
+                            </div>
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="w-full bg-blue-500 rounded-t-lg" style="height: 80%"></div>
+                                <span class="text-xs mt-1 text-gray-500">ก.ค.</span>
+                            </div>
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="w-full bg-blue-500 rounded-t-lg" style="height: 90%"></div>
+                                <span class="text-xs mt-1 text-gray-500">ส.ค.</span>
+                            </div>
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="w-full bg-blue-500 rounded-t-lg" style="height: 75%"></div>
+                                <span class="text-xs mt-1 text-gray-500">ก.ย.</span>
+                            </div>
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="w-full bg-blue-500 rounded-t-lg" style="height: 85%"></div>
+                                <span class="text-xs mt-1 text-gray-500">ต.ค.</span>
+                            </div>
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="w-full bg-blue-500 rounded-t-lg" style="height: 55%"></div>
+                                <span class="text-xs mt-1 text-gray-500">พ.ย.</span>
+                            </div>
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="w-full bg-blue-500 rounded-t-lg" style="height: 95%"></div>
+                                <span class="text-xs mt-1 text-gray-500">ธ.ค.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">ประเภททุน</h3>
+                        <div class="h-64 flex items-center justify-center">
+                            <div class="relative h-48 w-48">
+                                <div class="absolute inset-0 rounded-full border-8 border-blue-500"
+                                    style="clip-path: polygon(50% 50%, 100% 50%, 100% 0, 50% 0);"></div>
+                                <div class="absolute inset-0 rounded-full border-8 border-green-500"
+                                    style="clip-path: polygon(50% 50%, 50% 0, 0 0, 0 50%);"></div>
+                                <div class="absolute inset-0 rounded-full border-8 border-purple-500"
+                                    style="clip-path: polygon(50% 50%, 0 50%, 0 100%, 30% 100%);"></div>
+                                <div class="absolute inset-0 rounded-full border-8 border-yellow-500"
+                                    style="clip-path: polygon(50% 50%, 30% 100%, 100% 100%, 100% 75%);"></div>
+                                <div class="absolute inset-0 rounded-full border-8 border-red-500"
+                                    style="clip-path: polygon(50% 50%, 100% 75%, 100% 50%);"></div>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="bg-white rounded-full h-32 w-32"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mt-4">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
+                                <span class="text-sm text-gray-600">ทุนกำลังใจสร้างครูของชาติ (30%)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                                <span class="text-sm text-gray-600">ทุนคุณหมอของกำลังใจ (25%)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-purple-500 rounded-full mr-2"></div>
+                                <span class="text-sm text-gray-600">ทุน Gumlungjai Scholar (20%)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                                <span class="text-sm text-gray-600">ทุนกำลังใจให้พยาบาล (15%)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                                <span class="text-sm text-gray-600">ทุนนักจิตวิทยาสร้างกำลังใจ (10%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow overflow-hidden">
+                    <div class="p-6 border-b border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-800"></h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        </th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        </th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        </th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        </th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        </th>
+                                    <th
+                                        class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900"></div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div
+                                                class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center mr-3">
+                                                <span class="text-xs text-gray-600"></span>
+                                            </div>
+                                            <div class="text-sm font-medium text-gray-900"></div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-500"></div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span
+                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"></span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="#" class="text-blue-600 hover:text-blue-900"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900"></div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div
+                                                class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center mr-3">
+                                                <span class="text-xs text-gray-600"></span>
+                                            </div>
+                                            <div class="text-sm font-medium text-gray-900"></div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-500"></div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span
+                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800"></span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="#" class="text-blue-600 hover:text-blue-900"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900"></div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div
+                                                class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center mr-3">
+                                                <span class="text-xs text-gray-600"></span>
+                                            </div>
+                                            <div class="text-sm font-medium text-gray-900"></div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-500"></div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span
+                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800"></span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="#" class="text-blue-600 hover:text-blue-900"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900"></div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div
+                                                class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center mr-3">
+                                                <span class="text-xs text-gray-600"></span>
+                                            </div>
+                                            <div class="text-sm font-medium text-gray-900"></div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-500"></div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span
+                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"></span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="#" class="text-blue-600 hover:text-blue-900"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900"></div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div
+                                                class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center mr-3">
+                                                <span class="text-xs text-gray-600"></span>
+                                            </div>
+                                            <div class="text-sm font-medium text-gray-900"></div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-500"></div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span
+                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"></span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="#" class="text-blue-600 hover:text-blue-900"></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="px-6 py-4 border-t border-gray-200 bg-gray-50">
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm text-gray-500">
+                                
+                            </div>
+                            <div class="flex space-x-2">
+                                <button
+                                    class="px-3 py-1 text-sm rounded border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+                                    disabled>
+                                    ก่อนหน้า
+                                </button>
+                                <button
+                                    class="px-3 py-1 text-sm rounded border border-gray-300 bg-white text-blue-700 hover:bg-blue-50">
+                                    1
+                                </button>
+                                <button
+                                    class="px-3 py-1 text-sm rounded border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
+                                    2
+                                </button>
+                                <button
+                                    class="px-3 py-1 text-sm rounded border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
+                                    3
+                                </button>
+                                <button
+                                    class="px-3 py-1 text-sm rounded border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
+                                    4
+                                </button>
+                                <button
+                                    class="px-3 py-1 text-sm rounded border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
+                                    5
+                                </button>
+                                <button
+                                    class="px-3 py-1 text-sm rounded border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
+                                    ถัดไป
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    <!-- </div> -->
 </template>
 
 <script setup>
 /* eslint-disable */
 import { ref, onMounted, watch, defineProps, computed } from 'vue';
 import SidebarComponent from './Menu/SidebarComponent.vue';
-
 import gsap from 'gsap';
 
 const props = defineProps({
     value: {
         type: Number,
-        required: true
+        default: 5,
+        required: false
     },
     duration: {
         type: Number,
@@ -47,8 +426,7 @@ onMounted(() => {
 
 watch(() => props.value, () => {
     animateNumber();
-})
-
+});
 </script>
 
 <style scoped>
