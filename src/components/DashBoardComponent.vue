@@ -1,5 +1,5 @@
 <template>
-  <aside class="w-16 h-screen fixed left-0 bg-gray-900">
+  <aside class="w-16 z-10 h-screen fixed left-0 bg-gray-900">
     <SidebarComponent />
   </aside>
 
@@ -510,18 +510,21 @@ const totalData = totalDataWeek + totalDataDay + totalDataMonth;
 
 const timeFilter = ref('week');
 
-const chartData = ref({
-  labels: chartDatasets.week.labels,
+const chartData = computed(() => ({
+  labels: chartDatasets[timeFilter.value].labels,
   datasets: [{
-    label: 'จำนวนผู้สมัคร',
-    data: chartDatasets.week.data,
+    label: timeFilter.value === 'today' ? 'จำนวนผู้สมัครวันนี้' :
+           timeFilter.value === 'week' ? 'จำนวนผู้สมัครสัปดาห์นี้' :
+           'จำนวนผู้สมัครเดือนนี้',
+    data: chartDatasets[timeFilter.value].data,
     backgroundColor: 'rgba(59, 130, 246, 0.7)',
     borderColor: 'rgb(59, 130, 246)',
     borderWidth: 1,
     borderRadius: 4,
     maxBarThickness: 50
   }]
-});
+}));
+
 
 const chartOptions = ref({
   responsive: true,

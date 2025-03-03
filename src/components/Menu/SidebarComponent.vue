@@ -1,5 +1,5 @@
 <template>
-  <div class="flex min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+  <div class="flex min-h-screen z-10 bg-gradient-to-br from-gray-50 to-gray-100">
     <aside
       class="fixed left-0 h-screen transition-all duration-300 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white z-20 shadow-2xl"
       :class="[isExpanded ? 'w-64' : 'w-20']" @mouseenter="expandSidebar" @mouseleave="collapseSidebar">

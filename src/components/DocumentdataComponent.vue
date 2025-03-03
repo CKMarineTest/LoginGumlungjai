@@ -1,6 +1,6 @@
 <template>
   <div class="flex min-h-screen">
-    <aside class="w-16 bg-gray-900">
+    <aside class="w-16 z-100 bg-gray-900">
       <SidebarComponent />
     </aside>
     <div class="flex-1 bg-blue-100 p-4 md:p-6 lg:p-8">
