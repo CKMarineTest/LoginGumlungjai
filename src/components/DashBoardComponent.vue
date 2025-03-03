@@ -8,7 +8,7 @@
     <br />
     <main class="p-6">
       <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6 cursor-pointer"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6 cursor-pointer overflow-hidden"
       >
         <div
           class="bg-white rounded-xl shadow-sm p-6 flex items-center transform transition hover:scale-105 duration-300"
@@ -277,7 +277,7 @@
         </div>
       </div>
 
-      <div class="bg-white rounded-lg shadow overflow-hidden">
+      <!-- <div class="bg-white rounded-lg shadow overflow-hidden">
         <div class="p-6 border-b border-gray-200">
           <h3 class="text-lg font-semibold text-gray-800"></h3>
         </div>
@@ -507,7 +507,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </main>
   </div>
 </template>
@@ -543,7 +543,7 @@ const chartDatasets = {
     data: [18, 25, 45, 30, 38, 28],
   },
   week: {
-    labels: ["จันทร์", "อังคาร", "พุธ", "พฤหัส", "ศุกร์", "เสาร์", "อาทิตย์"],
+    labels: ["จันทร์", "อังคาร", "พุธ", "พฤหัสบดี", "ศุกร์", "เสาร์", "อาทิตย์"],
     data: [40, 35, 60, 75, 65, 25, 30],
   },
   month: {
@@ -583,34 +583,33 @@ const chartData = computed(() => ({
       backgroundColor:
         timeFilter.value === "week"
           ? [
-              "rgba(255, 221, 51, 0.8)", // จันทร์ (สีเหลือง)
-              "rgba(255, 105, 180, 0.8)", // อังคาร (สีชมพู)
-              "rgba(76, 175, 80, 0.8)",  // พุธ (สีเขียว)
-              "rgba(255, 152, 0, 0.8)",  // พฤหัส (สีส้ม)
-              "rgba(33, 150, 243, 0.8)", // ศุกร์ (สีฟ้า)
-              "rgba(156, 39, 176, 0.8)", // เสาร์ (สีม่วง)
-              "rgba(244, 67, 54, 0.8)",  // อาทิตย์ (สีแดง)
+              "rgba(255, 221, 51, 0.8)",
+              "rgba(255, 105, 180, 0.8)",
+              "rgba(76, 175, 80, 0.8)",
+              "rgba(255, 152, 0, 0.8)",
+              "rgba(33, 150, 243, 0.8)",
+              "rgba(156, 39, 176, 0.8)",
+              "rgba(244, 67, 54, 0.8)",
             ]
-          : ["rgba(255, 87, 34, 0.8)"], // ถ้าไม่ใช่สัปดาห์ จะใช้สีเดียว
+          : ["rgba(255, 87, 34, 0.8)"],
       borderColor:
         timeFilter.value === "week"
           ? [
-              "rgb(255, 221, 51)", // จันทร์ (สีเหลือง)
-              "rgb(255, 105, 180)", // อังคาร (สีชมพู)
-              "rgb(76, 175, 80)",   // พุธ (สีเขียว)
-              "rgb(255, 152, 0)",   // พฤหัส (สีส้ม)
-              "rgb(33, 150, 243)",  // ศุกร์ (สีฟ้า)
-              "rgb(156, 39, 176)",  // เสาร์ (สีม่วง)
-              "rgb(244, 67, 54)",   // อาทิตย์ (สีแดง)
+              "rgb(255, 221, 51)",
+              "rgb(255, 105, 180)",
+              "rgb(76, 175, 80)",   
+              "rgb(255, 152, 0)", 
+              "rgb(33, 150, 243)", 
+              "rgb(156, 39, 176)", 
+              "rgb(244, 67, 54)",   
             ]
-          : ["rgb(255, 87, 34)"], // ถ้าไม่ใช่สัปดาห์ จะใช้สีเดียว
+          : ["rgb(255, 87, 34)"], 
       borderWidth: 1,
       borderRadius: 4,
       maxBarThickness: 50,
     },
   ],
 }));
-
 
 const chartOptions = ref({
   responsive: true,
@@ -681,7 +680,7 @@ const updateChartData = () => {
 const setTimeFilter = (filter) => {
   timeFilter.value = filter;
   updateChartData();
-};
+}
 
 const router = useRouter();
 
@@ -733,7 +732,7 @@ watch(
     animateNumber(newValue);
   },
   { immediate: true }
-);
+)
 
 watch(timeFilter, () => {
   updateChartData();
