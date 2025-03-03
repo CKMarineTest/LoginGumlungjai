@@ -3,7 +3,7 @@
     <SidebarComponent />
   </aside>
 
-  <div class="ml-16 flex-1 overflow-hidden bg-blue-100">
+  <div class="ml-16 flex-1 min-h-screen overflow-hidden bg-blue-100">
     <br />
     <br />
     <main class="p-6">
@@ -276,248 +276,16 @@
           </div>
         </div>
       </div>
-
-      <!-- <div class="bg-white rounded-lg shadow overflow-hidden">
-        <div class="p-6 border-b border-gray-200">
-          <h3 class="text-lg font-semibold text-gray-800"></h3>
-        </div>
-        <div class="overflow-x-auto">
-          <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
-              <tr>
-                <th
-                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                ></th>
-                <th
-                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                ></th>
-                <th
-                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                ></th>
-                <th
-                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                ></th>
-                <th
-                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                ></th>
-                <th
-                  class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
-                ></th>
-              </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-              <tr>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900"></div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex items-center">
-                    <div
-                      class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center mr-3"
-                    >
-                      <span class="text-xs text-gray-600"></span>
-                    </div>
-                    <div class="text-sm font-medium text-gray-900"></div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-500"></div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <span
-                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
-                  ></span>
-                </td>
-                <td
-                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                ></td>
-                <td
-                  class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-                >
-                  <a href="#" class="text-blue-600 hover:text-blue-900"></a>
-                </td>
-              </tr>
-              <tr>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900"></div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex items-center">
-                    <div
-                      class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center mr-3"
-                    >
-                      <span class="text-xs text-gray-600"></span>
-                    </div>
-                    <div class="text-sm font-medium text-gray-900"></div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-500"></div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <span
-                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800"
-                  ></span>
-                </td>
-                <td
-                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                ></td>
-                <td
-                  class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-                >
-                  <a href="#" class="text-blue-600 hover:text-blue-900"></a>
-                </td>
-              </tr>
-              <tr>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900"></div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex items-center">
-                    <div
-                      class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center mr-3"
-                    >
-                      <span class="text-xs text-gray-600"></span>
-                    </div>
-                    <div class="text-sm font-medium text-gray-900"></div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-500"></div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <span
-                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800"
-                  ></span>
-                </td>
-                <td
-                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                ></td>
-                <td
-                  class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-                >
-                  <a href="#" class="text-blue-600 hover:text-blue-900"></a>
-                </td>
-              </tr>
-              <tr>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900"></div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex items-center">
-                    <div
-                      class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center mr-3"
-                    >
-                      <span class="text-xs text-gray-600"></span>
-                    </div>
-                    <div class="text-sm font-medium text-gray-900"></div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-500"></div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <span
-                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"
-                  ></span>
-                </td>
-                <td
-                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                ></td>
-                <td
-                  class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-                >
-                  <a href="#" class="text-blue-600 hover:text-blue-900"></a>
-                </td>
-              </tr>
-              <tr>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900"></div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex items-center">
-                    <div
-                      class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center mr-3"
-                    >
-                      <span class="text-xs text-gray-600"></span>
-                    </div>
-                    <div class="text-sm font-medium text-gray-900"></div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-500"></div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <span
-                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
-                  ></span>
-                </td>
-                <td
-                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                ></td>
-                <td
-                  class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-                >
-                  <a href="#" class="text-blue-600 hover:text-blue-900"></a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="px-6 py-4 border-t border-gray-200 bg-gray-50">
-          <div class="flex items-center justify-between">
-            <div class="text-sm text-gray-500"></div>
-            <div class="flex space-x-2">
-              <button
-                class="px-3 py-1 text-sm rounded border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50"
-                disabled
-              >
-                ก่อนหน้า
-              </button>
-              <button
-                class="px-3 py-1 text-sm rounded border border-gray-300 bg-white text-blue-700 hover:bg-blue-50"
-              >
-                1
-              </button>
-              <button
-                class="px-3 py-1 text-sm rounded border border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
-              >
-                2
-              </button>
-              <button
-                class="px-3 py-1 text-sm rounded border border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
-              >
-                3
-              </button>
-              <button
-                class="px-3 py-1 text-sm rounded border border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
-              >
-                4
-              </button>
-              <button
-                class="px-3 py-1 text-sm rounded border border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
-              >
-                5
-              </button>
-              <button
-                class="px-3 py-1 text-sm rounded border border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
-              >
-                ถัดไป
-              </button>
-            </div>
-          </div>
-        </div>
-      </div> -->
     </main>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, watch, defineProps, computed } from "vue";
-import SidebarComponent from "./Menu/SidebarComponent.vue";
-import gsap from "gsap";
 import { useRouter } from "vue-router";
+import gsap from "gsap";
 import { Bar } from "vue-chartjs";
+import SidebarComponent from "./Menu/SidebarComponent.vue";
 import {
   Chart as ChartJS,
   Title,
@@ -528,215 +296,72 @@ import {
   LinearScale,
 } from "chart.js";
 
-ChartJS.register(
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale
-);
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
 const chartDatasets = {
-  today: {
-    labels: ["08:00", "10:00", "12:00", "14:00", "16:00", "18:00"],
-    data: [18, 25, 45, 30, 38, 28],
-  },
-  week: {
-    labels: ["จันทร์", "อังคาร", "พุธ", "พฤหัสบดี", "ศุกร์", "เสาร์", "อาทิตย์"],
-    data: [40, 35, 60, 75, 65, 25, 30],
-  },
-  month: {
-    labels: ["สัปดาห์ 1", "สัปดาห์ 2", "สัปดาห์ 3", "สัปดาห์ 4"],
-    data: [150, 180, 210, 190],
-  },
+  today: { labels: ["08:00", "10:00", "12:00", "14:00", "16:00", "18:00"], data: [18, 25, 45, 30, 38, 28] },
+  week: { labels: ["จันทร์", "อังคาร", "พุธ", "พฤหัสบดี", "ศุกร์", "เสาร์", "อาทิตย์"], data: [40, 35, 60, 75, 65, 25, 30] },
+  month: { labels: ["สัปดาห์ 1", "สัปดาห์ 2", "สัปดาห์ 3", "สัปดาห์ 4"], data: [150, 180, 210, 190] },
 };
 
-const totalDataWeek = chartDatasets.week.data.reduce(
-  (sum, value) => sum + value,
-  0
-);
-const totalDataDay = chartDatasets.today.data.reduce(
-  (sum, value) => sum + value,
-  0
-);
-const totalDataMonth = chartDatasets.month.data.reduce(
-  (sum, value) => sum + value,
-  0
-);
-
-const totalData = totalDataWeek + totalDataDay + totalDataMonth;
+const calculateTotal = (dataset) => dataset.reduce((sum, value) => sum + value, 0);
+const totalData = Object.values(chartDatasets).reduce((sum, dataset) => sum + calculateTotal(dataset.data), 0);
 
 const timeFilter = ref("week");
-
 const chartData = computed(() => ({
   labels: chartDatasets[timeFilter.value].labels,
-  datasets: [
-    {
-      label:
-        timeFilter.value === "today"
-          ? "จำนวนผู้สมัครวันนี้"
-          : timeFilter.value === "week"
-          ? "จำนวนผู้สมัครสัปดาห์นี้"
-          : "จำนวนผู้สมัครเดือนนี้",
-      data: chartDatasets[timeFilter.value].data,
-      backgroundColor:
-        timeFilter.value === "week"
-          ? [
-              "rgba(255, 221, 51, 0.8)",
-              "rgba(255, 105, 180, 0.8)",
-              "rgba(76, 175, 80, 0.8)",
-              "rgba(255, 152, 0, 0.8)",
-              "rgba(33, 150, 243, 0.8)",
-              "rgba(156, 39, 176, 0.8)",
-              "rgba(244, 67, 54, 0.8)",
-            ]
-          : ["rgba(255, 87, 34, 0.8)"],
-      borderColor:
-        timeFilter.value === "week"
-          ? [
-              "rgb(255, 221, 51)",
-              "rgb(255, 105, 180)",
-              "rgb(76, 175, 80)",   
-              "rgb(255, 152, 0)", 
-              "rgb(33, 150, 243)", 
-              "rgb(156, 39, 176)", 
-              "rgb(244, 67, 54)",   
-            ]
-          : ["rgb(255, 87, 34)"], 
-      borderWidth: 1,
-      borderRadius: 4,
-      maxBarThickness: 50,
-    },
-  ],
+  datasets: [{
+    label: `จำนวนผู้สมัคร${timeFilter.value === "today" ? "วันนี้" : timeFilter.value === "week" ? "สัปดาห์นี้" : "เดือนนี้"}`,
+    data: chartDatasets[timeFilter.value].data,
+    backgroundColor: timeFilter.value === "week" ? [
+      "rgba(255, 221, 51, 0.8)", "rgba(255, 105, 180, 0.8)", "rgba(76, 175, 80, 0.8)",
+      "rgba(255, 152, 0, 0.8)", "rgba(33, 150, 243, 0.8)", "rgba(156, 39, 176, 0.8)", "rgba(244, 67, 54, 0.8)"
+    ] : ["rgba(255, 87, 34, 0.8)"],
+    borderColor: timeFilter.value === "week" ? [
+      "rgb(255, 221, 51)", "rgb(255, 105, 180)", "rgb(76, 175, 80)",
+      "rgb(255, 152, 0)", "rgb(33, 150, 243)", "rgb(156, 39, 176)", "rgb(244, 67, 54)"
+    ] : ["rgb(255, 87, 34)"],
+    borderWidth: 1,
+    borderRadius: 4,
+    maxBarThickness: 50,
+  }],
 }));
 
 const chartOptions = ref({
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
-    legend: {
-      display: true,
-      position: "top",
-      labels: {
-        font: {
-          family: "Sarabun, sans-serif",
-        },
-      },
-    },
-    tooltip: {
-      backgroundColor: "rgba(0, 0, 0, 0.8)",
-      titleFont: {
-        family: "Sarabun, sans-serif",
-      },
-      bodyFont: {
-        family: "Sarabun, sans-serif",
-      },
-    },
+    legend: { display: true, position: "top", labels: { font: { family: "Sarabun, sans-serif" } } },
+    tooltip: { backgroundColor: "rgba(0, 0, 0, 0.8)", titleFont: { family: "Sarabun, sans-serif" }, bodyFont: { family: "Sarabun, sans-serif" } },
   },
   scales: {
-    y: {
-      beginAtZero: true,
-      grid: {
-        color: "rgba(0, 0, 0, 0.05)",
-        borderDash: [5, 5],
-      },
-      ticks: {
-        font: {
-          family: "Sarabun, sans-serif",
-        },
-      },
-    },
-    x: {
-      grid: {
-        display: false,
-      },
-      ticks: {
-        font: {
-          family: "Sarabun, sans-serif",
-        },
-      },
-    },
+    y: { beginAtZero: true, grid: { color: "rgba(0, 0, 0, 0.05)", borderDash: [5, 5] }, ticks: { font: { family: "Sarabun, sans-serif" } } },
+    x: { grid: { display: false }, ticks: { font: { family: "Sarabun, sans-serif" } } },
   },
-  animation: {
-    duration: 500,
-  },
+  animation: { duration: 500 },
 });
 
-const updateChartData = () => {
-  const selectedData = chartDatasets[timeFilter.value];
-  chartData.value.labels = [...selectedData.labels];
-  chartData.value.datasets[0].data = [...selectedData.data];
-
-  if (timeFilter.value === "today") {
-    chartData.value.datasets[0].label = "จำนวนผู้สมัครวันนี้";
-  } else if (timeFilter.value === "week") {
-    chartData.value.datasets[0].label = "จำนวนผู้สมัครสัปดาห์นี้";
-  } else if (timeFilter.value === "month") {
-    chartData.value.datasets[0].label = "จำนวนผู้สมัครเดือนนี้";
-  }
-};
-
-const setTimeFilter = (filter) => {
-  timeFilter.value = filter;
-  updateChartData();
-}
+const setTimeFilter = (filter) => { timeFilter.value = filter; };
 
 const router = useRouter();
-
-const props = defineProps({
-  value: {
-    type: Number,
-    default: 5,
-    required: false,
-  },
-  duration: {
-    type: Number,
-    default: 2,
-  },
-  totalData: {
-    type: Number,
-    default: 0,
-  },
-});
-
+const props = defineProps({ value: { type: Number, default: 5 }, duration: { type: Number, default: 2 }, totalData: { type: Number, default: 0 } });
 const displayNumber = ref(0);
+const formatNumber = computed(() => displayNumber.value.toLocaleString());
 
 const animateNumber = (targetValue) => {
   gsap.to(displayNumber, {
     duration: props.duration,
     value: targetValue,
     ease: "power1.out",
-    onUpdate: () => {
-      displayNumber.value = Math.round(
-        gsap.getProperty(displayNumber, "value")
-      );
-    },
+    onUpdate: () => { displayNumber.value = Math.round(gsap.getProperty(displayNumber, "value")); },
   });
 };
 
-const formatNumber = computed(() => displayNumber.value.toLocaleString());
+const handleGotoRegisterForm = () => { router.push("/registerform"); };
 
-const handleGotoRegisterForm = () => {
-  router.push("/registerform");
-};
-
-onMounted(() => {
-  updateChartData();
-  animateNumber(totalData);
-});
-
-watch(
-  () => props.totalData,
-  (newValue) => {
-    animateNumber(newValue);
-  },
-  { immediate: true }
-)
-
-watch(timeFilter, () => {
-  updateChartData();
-});
+onMounted(() => { animateNumber(totalData); });
+watch(() => props.totalData, (newValue) => { animateNumber(newValue); }, { immediate: true });
+watch(timeFilter, () => {});
 </script>
 
 <style scoped>
