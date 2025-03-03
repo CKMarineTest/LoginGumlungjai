@@ -116,39 +116,89 @@
         <div class="bg-white rounded-lg shadow p-6 lg:col-span-2">
           <div class="flex justify-between items-center mb-4">
             <h3 class="text-lg font-semibold text-gray-800">สถิติการสมัคร</h3>
-            <div class="flex space-x-2">
+            <div
+              class="flex items-center space-x-3 p-2 bg-gray-50 rounded-lg shadow-sm"
+            >
               <button
                 @click="setTimeFilter('today')"
                 :class="[
-                  'px-3 py-1 text-sm rounded border border-gray-300',
+                  'px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 shadow-sm',
                   timeFilter === 'today'
-                    ? 'bg-blue-50 text-blue-700'
-                    : 'text-gray-700 hover:bg-gray-50',
+                    ? 'bg-blue-600 text-white hover:bg-blue-700'
+                    : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-100',
                 ]"
               >
-                วันนี้
+                <span class="flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                  วันนี้
+                </span>
               </button>
               <button
                 @click="setTimeFilter('week')"
                 :class="[
-                  'px-3 py-1 text-sm rounded border border-gray-300',
+                  'px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 shadow-sm',
                   timeFilter === 'week'
-                    ? 'bg-blue-50 text-blue-700'
-                    : 'text-gray-700 hover:bg-gray-50',
+                    ? 'bg-blue-600 text-white hover:bg-blue-700'
+                    : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-100',
                 ]"
               >
-                สัปดาห์นี้
+                <span class="flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                    />
+                  </svg>
+                  สัปดาห์นี้
+                </span>
               </button>
               <button
                 @click="setTimeFilter('month')"
                 :class="[
-                  'px-3 py-1 text-sm rounded border border-gray-300',
+                  'px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 shadow-sm',
                   timeFilter === 'month'
-                    ? 'bg-blue-50 text-blue-700'
-                    : 'text-gray-700 hover:bg-gray-50',
+                    ? 'bg-blue-600 text-white hover:bg-blue-700'
+                    : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-100',
                 ]"
               >
-                เดือนนี้
+                <span class="flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                  เดือนนี้
+                </span>
               </button>
             </div>
           </div>
@@ -475,8 +525,8 @@ import {
   Legend,
   BarElement,
   CategoryScale,
-  LinearScale
-} from 'chart.js';
+  LinearScale,
+} from "chart.js";
 
 ChartJS.register(
   Title,
@@ -489,42 +539,65 @@ ChartJS.register(
 
 const chartDatasets = {
   today: {
-    labels: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00'],
-    data: [18, 25, 45, 30, 38, 28]
+    labels: ["08:00", "10:00", "12:00", "14:00", "16:00", "18:00"],
+    data: [18, 25, 45, 30, 38, 28],
   },
   week: {
-    labels: ['จันทร์', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์', 'อาทิตย์'],
-    data: [40, 35, 60, 75, 65, 25, 30]
+    labels: ["จันทร์", "อังคาร", "พุธ", "พฤหัส", "ศุกร์", "เสาร์", "อาทิตย์"],
+    data: [40, 35, 60, 75, 65, 25, 30],
   },
   month: {
-    labels: ['สัปดาห์ 1', 'สัปดาห์ 2', 'สัปดาห์ 3', 'สัปดาห์ 4'],
-    data: [150, 180, 210, 190]
-  }
+    labels: ["สัปดาห์ 1", "สัปดาห์ 2", "สัปดาห์ 3", "สัปดาห์ 4"],
+    data: [150, 180, 210, 190],
+  },
 };
 
-const totalDataWeek = chartDatasets.week.data.reduce((sum, value) => sum + value, 0);
-const totalDataDay = chartDatasets.today.data.reduce((sum ,value) => sum + value, 0);
-const totalDataMonth = chartDatasets.month.data.reduce((sum, value) => sum + value, 0);
+const totalDataWeek = chartDatasets.week.data.reduce(
+  (sum, value) => sum + value,
+  0
+);
+const totalDataDay = chartDatasets.today.data.reduce(
+  (sum, value) => sum + value,
+  0
+);
+const totalDataMonth = chartDatasets.month.data.reduce(
+  (sum, value) => sum + value,
+  0
+);
 
 const totalData = totalDataWeek + totalDataDay + totalDataMonth;
 
-const timeFilter = ref('week');
+const timeFilter = ref("week");
 
 const chartData = computed(() => ({
   labels: chartDatasets[timeFilter.value].labels,
-  datasets: [{
-    label: timeFilter.value === 'today' ? 'จำนวนผู้สมัครวันนี้' :
-           timeFilter.value === 'week' ? 'จำนวนผู้สมัครสัปดาห์นี้' :
-           'จำนวนผู้สมัครเดือนนี้',
-    data: chartDatasets[timeFilter.value].data,
-    backgroundColor: 'rgba(59, 130, 246, 0.7)',
-    borderColor: 'rgb(59, 130, 246)',
-    borderWidth: 1,
-    borderRadius: 4,
-    maxBarThickness: 50
-  }]
+  datasets: [
+    {
+      label:
+        timeFilter.value === "today"
+          ? "จำนวนผู้สมัครวันนี้"
+          : timeFilter.value === "week"
+          ? "จำนวนผู้สมัครสัปดาห์นี้"
+          : "จำนวนผู้สมัครเดือนนี้",
+      data: chartDatasets[timeFilter.value].data,
+      backgroundColor:
+        timeFilter.value === "today"
+          ? "rgba(255, 204, 0, 0.8)"  // สีทองอ่อนสำหรับวันนี้
+          : timeFilter.value === "week"
+          ? "rgba(28, 169, 201, 0.8)"  // สีฟ้าครามสำหรับสัปดาห์นี้
+          : "rgba(255, 105, 97, 0.8)", // สีส้มอมชมพูสำหรับเดือนนี้
+      borderColor:
+        timeFilter.value === "today"
+          ? "rgb(255, 174, 0)"  // สีขอบทองอ่อนสำหรับวันนี้
+          : timeFilter.value === "week"
+          ? "rgb(18, 129, 154)"  // สีขอบฟ้าครามสำหรับสัปดาห์นี้
+          : "rgb(255, 67, 34)", // สีขอบส้มอมชมพูสำหรับเดือนนี้
+      borderWidth: 2,  // เพิ่มความหนาของขอบ
+      borderRadius: 4,
+      maxBarThickness: 50,
+    },
+  ],
 }));
-
 
 const chartOptions = ref({
   responsive: true,
@@ -532,63 +605,63 @@ const chartOptions = ref({
   plugins: {
     legend: {
       display: true,
-      position: 'top',
+      position: "top",
       labels: {
         font: {
-          family: 'Sarabun, sans-serif'
-        }
-      }
+          family: "Sarabun, sans-serif",
+        },
+      },
     },
     tooltip: {
-      backgroundColor: 'rgba(0, 0, 0, 0.8)',
+      backgroundColor: "rgba(0, 0, 0, 0.8)",
       titleFont: {
-        family: 'Sarabun, sans-serif'
+        family: "Sarabun, sans-serif",
       },
       bodyFont: {
-        family: 'Sarabun, sans-serif'
-      }
-    }
+        family: "Sarabun, sans-serif",
+      },
+    },
   },
   scales: {
     y: {
       beginAtZero: true,
       grid: {
-        color: 'rgba(0, 0, 0, 0.05)',
-        borderDash: [5, 5]
+        color: "rgba(0, 0, 0, 0.05)",
+        borderDash: [5, 5],
       },
       ticks: {
         font: {
-          family: 'Sarabun, sans-serif'
-        }
-      }
+          family: "Sarabun, sans-serif",
+        },
+      },
     },
     x: {
       grid: {
-        display: false
+        display: false,
       },
       ticks: {
         font: {
-          family: 'Sarabun, sans-serif'
-        }
-      }
-    }
+          family: "Sarabun, sans-serif",
+        },
+      },
+    },
   },
   animation: {
-    duration: 500
-  }
+    duration: 500,
+  },
 });
 
 const updateChartData = () => {
   const selectedData = chartDatasets[timeFilter.value];
   chartData.value.labels = [...selectedData.labels];
-  chartData.value.datasets[0].data = [...selectedData.data]; 
+  chartData.value.datasets[0].data = [...selectedData.data];
 
-  if (timeFilter.value === 'today') {
-    chartData.value.datasets[0].label = 'จำนวนผู้สมัครวันนี้';
-  } else if (timeFilter.value === 'week') {
-    chartData.value.datasets[0].label = 'จำนวนผู้สมัครสัปดาห์นี้';
-  } else if (timeFilter.value === 'month') {
-    chartData.value.datasets[0].label = 'จำนวนผู้สมัครเดือนนี้';
+  if (timeFilter.value === "today") {
+    chartData.value.datasets[0].label = "จำนวนผู้สมัครวันนี้";
+  } else if (timeFilter.value === "week") {
+    chartData.value.datasets[0].label = "จำนวนผู้สมัครสัปดาห์นี้";
+  } else if (timeFilter.value === "month") {
+    chartData.value.datasets[0].label = "จำนวนผู้สมัครเดือนนี้";
   }
 };
 
@@ -612,7 +685,7 @@ const props = defineProps({
   totalData: {
     type: Number,
     default: 0,
-  }
+  },
 });
 
 const displayNumber = ref(0);
@@ -623,7 +696,9 @@ const animateNumber = (targetValue) => {
     value: targetValue,
     ease: "power1.out",
     onUpdate: () => {
-      displayNumber.value = Math.round(gsap.getProperty(displayNumber, "value"));
+      displayNumber.value = Math.round(
+        gsap.getProperty(displayNumber, "value")
+      );
     },
   });
 };
@@ -639,9 +714,13 @@ onMounted(() => {
   animateNumber(totalData);
 });
 
-watch(() => props.totalData, (newValue) => {
-  animateNumber(newValue);
-}, { immediate: true });
+watch(
+  () => props.totalData,
+  (newValue) => {
+    animateNumber(newValue);
+  },
+  { immediate: true }
+);
 
 watch(timeFilter, () => {
   updateChartData();
