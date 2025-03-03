@@ -49,6 +49,11 @@ const routes = [
         name: 'pdf',
         component: () => import('../components/PDFComponent.vue'),
     },
+    {
+        path: '/sendscore',
+        name: 'sendscore',
+        component: () => import('../views/SendScoreView.vue'),
+    }
 ]
 
 const router = createRouter({
