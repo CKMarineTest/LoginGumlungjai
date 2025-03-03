@@ -1,5 +1,4 @@
 <template>
-  <!-- <div class="flex min-h-screen bg-gray-50"> -->
   <aside class="w-16 h-screen fixed left-0 bg-gray-900">
     <SidebarComponent />
   </aside>
@@ -461,7 +460,6 @@
       </div>
     </main>
   </div>
-  <!-- </div> -->
 </template>
 
 <script setup>
@@ -503,6 +501,12 @@ const chartDatasets = {
     data: [150, 180, 210, 190]
   }
 };
+
+const totalDataWeek = chartDatasets.week.data.reduce((sum, value) => sum + value, 0);
+const totalDataDay = chartDatasets.today.data.reduce((sum ,value) => sum + value, 0);
+const totalDataMonth = chartDatasets.month.data.reduce((sum, value) => sum + value, 0);
+
+const totalData = totalDataWeek + totalDataDay + totalDataMonth;
 
 const timeFilter = ref('week');
 
@@ -602,19 +606,21 @@ const props = defineProps({
     type: Number,
     default: 2,
   },
+  totalData: {
+    type: Number,
+    default: 0,
+  }
 });
 
 const displayNumber = ref(0);
 
-const animateNumber = () => {
+const animateNumber = (targetValue) => {
   gsap.to(displayNumber, {
     duration: props.duration,
-    value: props.value,
+    value: targetValue,
     ease: "power1.out",
     onUpdate: () => {
-      displayNumber.value = Math.round(
-        gsap.getProperty(displayNumber, "value")
-      );
+      displayNumber.value = Math.round(gsap.getProperty(displayNumber, "value"));
     },
   });
 };
@@ -627,15 +633,12 @@ const handleGotoRegisterForm = () => {
 
 onMounted(() => {
   updateChartData();
-  animateNumber();
+  animateNumber(totalData);
 });
 
-watch(
-  () => props.value,
-  () => {
-    animateNumber();
-  }
-);
+watch(() => props.totalData, (newValue) => {
+  animateNumber(newValue);
+}, { immediate: true });
 
 watch(timeFilter, () => {
   updateChartData();
