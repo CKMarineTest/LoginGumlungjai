@@ -97,6 +97,7 @@
                   >รหัสผ่านปัจจุบัน</label
                 >
                 <input
+                  v-model="currentPassword"
                   type="password"
                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 />
@@ -106,6 +107,7 @@
                   >รหัสผ่านใหม่</label
                 >
                 <input
+                  v-model="newPassword"
                   type="password"
                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 />
@@ -115,10 +117,12 @@
                   >ยืนยันรหัสผ่านใหม่</label
                 >
                 <input
+                  v-model="confirmNewPassword"
                   type="password"
                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 />
               </div>
+              <button @click="submit">Change</button>
             </div>
           </div>
         </div>
@@ -186,7 +190,26 @@
 import { ref } from "vue";
 import SidebarComponent from "./Menu/SidebarComponent.vue";
 
-const activeSection = ref("profile");
+const activeSection = ref("security");
+
+const currentPassword = ref("");
+const newPassword = ref("");
+const confirmNewPassword = ref("");
+
+const submit = () => {
+
+  if(!confirmNewPassword.value || !newPassword.value || !currentPassword.value){
+    alert("Enter Password");
+  }
+
+  if (confirmNewPassword.value !== newPassword.value) {
+    alert("Password don't match");
+  }
+
+  console.log("Current Password", currentPassword.value);
+  console.log("New Password", newPassword.value);
+  console.log("Confirm Password", confirmNewPassword.value);
+};
 
 const settingsMenu = [
   {

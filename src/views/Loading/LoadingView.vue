@@ -22,7 +22,7 @@ const props = defineProps({
     },
 });
 
-const is_show = computed(() => props.is_show)
+const is_show = computed(() => props.is_show);
 
 </script>
 
