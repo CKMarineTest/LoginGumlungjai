@@ -48,130 +48,114 @@
           class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8"
         >
           <div
-            class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transform transition hover:scale-105 duration-300"
+            class="bg-white rounded-xl shadow-lg p-6 cursor-pointer flex items-center transform transition hover:scale-105 duration-300 border-l-4 border-blue-600"
+            @click="filterByStatus()"
           >
-            <div
-              @click="filterByStatus()"
-              class="flex justify-between items-center cursor-pointer"
-            >
-              <div>
-                <p class="text-gray-500 text-sm">ผู้สมัครทั้งหมด</p>
-                <p class="text-2xl font-bold text-gray-800">
-                  {{ data.length }} คน
-                </p>
-              </div>
-              <div class="bg-blue-100 p-3 rounded-lg">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6 text-blue-600"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                  />
-                </svg>
-              </div>
+            <div class="rounded-full bg-blue-100 p-4 mr-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 text-blue-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                />
+              </svg>
+            </div>
+            <div>
+              <p class="text-gray-500 text-sm font-medium">ผู้สมัครทั้งหมด</p>
+              <h2 class="text-3xl font-bold text-gray-800">
+                {{ data.length }}
+              </h2>
             </div>
           </div>
 
           <div
-            class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transform transition hover:scale-105 duration-300"
+            class="bg-white rounded-xl shadow-lg p-6 cursor-pointer flex items-center transform transition hover:scale-105 duration-300 border-l-4 border-red-600"
+            @click="filterByStatus('แก้ไขเอกสาร')"
           >
-            <div
-              @click="filterByStatus('แก้ไขเอกสาร')"
-              class="flex justify-between items-center cursor-pointer"
-            >
-              <div>
-                <p class="text-gray-500 text-sm">ต้องแก้ไข</p>
-                <p class="text-2xl font-bold text-gray-800">
-                  {{ statusCounts["แก้ไขเอกสาร"] || 0 }} คน
-                </p>
-              </div>
-              <div class="bg-red-100 p-3 rounded-lg">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6 text-red-600"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                  />
-                </svg>
-              </div>
+            <div class="bg-red-100 p-4 mr-4 rounded-full">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 text-red-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                />
+              </svg>
+            </div>
+            <div>
+              <p class="text-gray-500 text-sm font-medium">ที่ต้องแก้ไข</p>
+              <h2 class="text-3xl font-bold text-gray-800">
+                {{ statusCounts["แก้ไขเอกสาร"] || 0 }} คน
+              </h2>
             </div>
           </div>
 
           <div
-            class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transform transition hover:scale-105 duration-300"
+            class="bg-white rounded-xl shadow-lg p-6 cursor-pointer flex items-center transform transition hover:scale-105 duration-300 border-l-4 border-yellow-500"
+            @click="filterByStatus('รอดำเนินการ')"
           >
-            <div
-              @click="filterByStatus('รอดำเนินการ')"
-              class="flex justify-between items-center cursor-pointer"
-            >
-              <div>
-                <p class="text-gray-500 text-sm">รอดำเนินการ</p>
-                <p class="text-2xl font-bold text-gray-800">
-                  {{ statusCounts["รอดำเนินการ"] || 0 }} คน
-                </p>
-              </div>
-              <div class="bg-yellow-100 p-3 rounded-lg">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6 text-yellow-600"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
+            <div class="bg-yellow-100 p-4 mr-4 rounded-full">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 text-yellow-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </div>
+            <div>
+              <p class="text-gray-500 text-sm font-medium">รอดำเนินการ</p>
+              <h2 class="text-3xl font-bold text-gray-800">
+                {{ statusCounts["รอดำเนินการ"] || 0 }} คน
+              </h2>
             </div>
           </div>
 
           <div
-            class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transform transition hover:scale-105 duration-300"
+            class="bg-white rounded-xl shadow-lg p-6 cursor-pointer flex items-center transform transition hover:scale-105 duration-300 border-l-4 border-green-500"
+            @click="filterByStatus('ตรวจเสร็จสิ้น')"
           >
-            <div
-              @click="filterByStatus('ตรวจเสร็จสิ้น')"
-              class="flex justify-between items-center cursor-pointer"
-            >
-              <div>
-                <p class="text-gray-500 text-sm">ตรวจเสร็จสิ้น</p>
-                <p class="text-2xl font-bold text-gray-800">
-                  {{ statusCounts["ตรวจเสร็จสิ้น"] || 0 }} คน
-                </p>
-              </div>
-              <div class="bg-green-100 p-3 rounded-lg">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6 text-green-600"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
+            <div class="bg-green-100 p-4 mr-4 rounded-full">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 text-green-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </div>
+            <div>
+              <p class="text-gray-500 text-sm font-medium">ตรวจเสร็จสิ้น</p>
+              <h2 class="text-3xl font-bold text-gray-800">
+                {{ statusCounts["ตรวจเสร็จสิ้น"] || 0 }} คน
+              </h2>
             </div>
           </div>
         </div>

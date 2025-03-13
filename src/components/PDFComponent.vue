@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-center items-center py-10">
     <div ref="contentRef" class="pdf-content w-[210mm] bg-white p-6 shadow-md">
-      <img src="../assets/picture/logo.png" style="width: auto; height: 80px" />
+      <img src="../assets/picture/GLJ_H.png" style="width: auto; height: 80px" />
       <header class="text-center mb-6">
         <strong>เลขที่ใบสมัคร</strong>
         <span class="bg-yellow-200 px-2 rounded-md">0001/2568</span>
@@ -30,7 +30,7 @@
           <span class="font-bold">1.</span>
           <div class="absolute ml-4">
             <span class="w-20 text-right">ชื่อ:</span>
-            <span class="w-40 inline-block ml-2">สมชาย</span>
+            <span class="w-40 inline-block ml-2">{{ name }}</span>
           </div>
           <div class="absolute ml-80">
             <span class="w-20 text-right">นามสกุล:</span>
@@ -644,6 +644,8 @@ import html2canvas from "html2canvas";
 import TableDataComponent from "./TableDataComponent.vue";
 
 // import { Square } from 'lucide-vue-next';
+
+const name = ref("สมชาย");
 
 const contentRef = ref(null);
 
