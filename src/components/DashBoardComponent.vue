@@ -168,10 +168,6 @@
                   </svg>
                   รายชื่อทุนทั้งหมดที่เปิดรับ
                 </h2>
-                <p class="text-blue-100 ml-11">
-                  ค้นหาทุนการศึกษาที่เหมาะสมกับคุณ
-                  เพื่อโอกาสทางการศึกษาที่ดียิ่งขึ้น
-                </p>
               </div>
 
               <div class="relative z-10 flex items-center">
@@ -420,7 +416,7 @@
                 <div class="bg-gray-100 h-2 w-full">
                   <div
                     class="bg-blue-500 h-2 rounded-r-full"
-                    :style="`width: ${item.timeLeftPercentage || '65'}%`"
+                    :style="`width: ${item.timeLeftPercentage || '100'}%`"
                   ></div>
                 </div>
               </div>
