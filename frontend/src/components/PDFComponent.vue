@@ -156,7 +156,7 @@
         <div class="flex items-center gap-2 mt-2 mb-6">
           <div class="absolute ml-4">
             <span class="w-20 text-right">คณะ:</span>
-            <span class="w-80 inline-block ml-2"></span>
+            <span class="w-80 inline-block ml-2">{{ data.faculty }}</span>
           </div>
           <div class="absolute ml-96">
             <span class="w-20 text-right">สาขา:</span>
@@ -167,11 +167,11 @@
         <div class="flex items-center gap-2 mt-2 mb-2">
           <div class="absolute ml-4">
             <span class="w-20 text-right">เบอร์โทรศัพท์:</span>
-            <span class="w-20 inline-block ml-2">0000000000</span>
+            <span class="w-20 inline-block ml-2">{{ data.Mobile }}</span>
           </div>
           <div class="absolute ml-96">
             <span class="w-20 text-right">Email:</span>
-            <span class="w-20 inline-block ml-2">0000000000</span>
+            <span class="w-20 inline-block ml-2">{{ data.email }}</span>
           </div>
         </div>
 
@@ -185,38 +185,38 @@
         <div class="flex items-center gap-2 mt-2 mb-5">
           <div class="absolute ml-4">
             <span class="w-20 text-right">บ้านเลขที่:</span>
-            <span class="w-10 inline-block ml-2">22/6</span>
+            <span class="w-10 inline-block ml-2">{{ data.permanentHomeid}}</span>
           </div>
           <div class="absolute ml-32">
             <span class="w-20 text-right">หมู่ที่:</span>
-            <span class="w-10 inline-block ml-2">2</span>
+            <span class="w-10 inline-block ml-2">{{ data.permanentGroupHomeid}}</span>
           </div>
           <div class="absolute ml-64">
             <span class="w-20 text-right">ตรอก/ซอย:</span>
-            <span class="w-10 inline-block ml-2">-</span>
+            <span class="w-10 inline-block ml-2">{{ data.permanentsoi }}</span>
           </div>
           <div class="absolute ml-128">
             <span class="w-20 text-right">ถนน:</span>
-            <span class="w-10 inline-block ml-2">-</span>
+            <span class="w-10 inline-block ml-2">{{ data.permanentroad }}</span>
           </div>
         </div>
 
         <div class="flex items-center gap-2 mt-2">
           <div class="absolute ml-4">
             <span class="w-20 text-right">แขวง/ตำบล:</span>
-            <span class="w-20 inline-block ml-2">บ้านเกาะ</span>
+            <span class="w-20 inline-block ml-2">{{ data.SubDistrict2 }}</span>
           </div>
           <div class="absolute ml-64">
             <span class="w-20 text-right">เขต/อำเภอ:</span>
-            <span class="w-10 inline-block ml-2">เมือง</span>
+            <span class="w-20 inline-block ml-2">{{ data.District2 }}</span>
           </div>
           <div class="absolute ml-96">
             <span class="w-20 text-right">จังหวัด:</span>
-            <span class="w-10 inline-block ml-2">สมุทรสาคร</span>
+            <span class="w-20 inline-block ml-2">{{ data.Province2 }}</span>
           </div>
           <div class="absolute ml-144">
             <span class="w-20 text-right">รหัสไปรษณีย์:</span>
-            <span class="w-10 inline-block ml-2">74000</span>
+            <span class="w-10 inline-block ml-2">{{ data.zipcode2 }}</span>
           </div>
         </div>
 
@@ -230,19 +230,19 @@
         <div class="flex items-center gap-2 mt-2 mb-5">
           <div class="absolute ml-4">
             <span class="w-20 text-right">บ้านเลขที่:</span>
-            <span class="w-10 inline-block ml-2">22/6</span>
+            <span class="w-10 inline-block ml-2">{{ currentHomeid }}</span>
           </div>
           <div class="absolute ml-32">
             <span class="w-20 text-right">หมู่ที่:</span>
-            <span class="w-10 inline-block ml-2">2</span>
+            <span class="w-10 inline-block ml-2">{{ currentGroupHomeid }}</span>
           </div>
           <div class="absolute ml-64">
             <span class="w-20 text-right">ตรอก/ซอย:</span>
-            <span class="w-10 inline-block ml-2">-</span>
+            <span class="w-10 inline-block ml-2">{{ currentsoi }}</span>
           </div>
           <div class="absolute ml-128">
             <span class="w-20 text-right">ถนน:</span>
-            <span class="w-10 inline-block ml-2">-</span>
+            <span class="w-10 inline-block ml-2">{{ currentroad }}</span>
           </div>
         </div>
 
