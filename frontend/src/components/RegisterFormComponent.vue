@@ -70,7 +70,7 @@
             <div>
               <p class="text-gray-500 text-sm font-medium">ผู้สมัครทั้งหมด</p>
               <h2 class="text-3xl font-bold text-gray-800">
-                {{ data.length }}
+                {{ dataArray.length }}
               </h2>
             </div>
           </div>
@@ -201,7 +201,7 @@
               </thead>
               <tbody class="divide-y divide-gray-100">
                 <tr
-                  v-for="item in sortedAndFilteredData"
+                  v-for="item in dataArray"
                   :key="item.id_card"
                   class="group hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-transparent transition-all duration-300"
                 >
@@ -210,10 +210,10 @@
                       <div
                         class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-100 via-blue-200 to-blue-100 flex items-center justify-center text-blue-700 font-semibold shadow-sm transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
                       >
-                        {{ item.name.charAt(0) }}
+                        {{ item.FirstName ? item.FirstName.charAt(0) : "N/A" }}
                       </div>
                       <span class="font-medium text-gray-700">{{
-                        item.id_card
+                        item.idcard
                       }}</span>
                     </div>
                   </td>
@@ -221,14 +221,14 @@
                     <span
                       class="text-sm font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200"
                     >
-                      {{ item.name }}
+                      {{ item.FirstName }} {{ item.LastName  }}
                     </span>
                   </td>
                   <td class="px-6 py-5 whitespace-nowrap">
                     <span
                       class="text-sm text-gray-600 hover:text-blue-600 transition-colors duration-200"
                     >
-                      {{ formatPhone(item.phone) }}
+                      {{ formatPhone(item.Mobile) }}
                     </span>
                   </td>
                   <td class="px-6 py-5 whitespace-nowrap max-w-xs truncate">
@@ -236,16 +236,16 @@
                       class="text-sm text-gray-600 hover:text-blue-600 transition-colors duration-200"
                       :title="item.scholarship"
                     >
-                      {{ item.scholarship }}
+                      {{ item.Project_Name }}
                     </span>
                   </td>
-                  <td class="px-6 py-5 whitespace-nowrap">
+                  <!-- <td class="px-6 py-5 whitespace-nowrap">
                     <span
                       class="text-sm text-gray-600 hover:text-blue-600 transition-colors duration-200"
                     >
                       {{ item.registerdate }}
                     </span>
-                  </td>
+                  </td> -->
                   <td class="px-6 py-5 whitespace-nowrap">
                     <span
                       v-if="item.status === 'ตรวจเสร็จสิ้น'"
@@ -288,7 +288,7 @@
                       {{ item.status }}
                     </span>
                     <span
-                      v-else-if="item.status.includes('แก้ไข')"
+                      v-else-if="item.status && item.status.includes('แก้ไข')"
                       class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800 border border-red-200"
                     >
                       <svg
@@ -311,13 +311,13 @@
                       v-else
                       class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 border border-blue-200"
                     >
-                      {{ item.status }}
+                      {{ item.status || "N/A" }}
                     </span>
                   </td>
                   <td class="px-6 py-5 whitespace-nowrap text-right">
                     <div class="flex items-center justify-end gap-3">
                       <button
-                        @click="documentData"
+                        @click="goToDocument(item.idcard)"
                         class="p-2.5 text-blue-600 rounded-xl hover:bg-blue-100 transition-all duration-200 hover:scale-110 hover:shadow-sm"
                         title="ดูเอกสาร"
                       >
@@ -355,10 +355,10 @@
             <p class="text-sm text-gray-600 mb-4 sm:mb-0">
               แสดง
               <span class="font-medium text-gray-900">{{
-                sortedAndFilteredData.length
+                dataArray.length
               }}</span>
               รายการ จากทั้งหมด
-              <span class="font-medium text-gray-900">{{ data.length }}</span>
+              <span class="font-medium text-gray-900">{{ dataArray.length }}</span>
               รายการ
             </p>
             <div class="flex gap-2">
@@ -414,11 +414,15 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
+import axios from "axios";
 import { DocumentTextIcon } from "@heroicons/vue/24/outline";
 import SidebarComponent from "./Menu/SidebarComponent.vue";
 import router from "@/router";
 
+// ใช้ ref เพื่อเก็บข้อมูล
+const data = ref([]);
+const dataArray = ref([]);
 const searchQuery = ref("");
 const sortKey = ref("id_card");
 const sortOrder = ref("asc");
@@ -429,88 +433,90 @@ const headers = [
   { key: "name", label: "ชื่อ - นามสกุล" },
   { key: "phone", label: "เบอร์โทรศัพท์" },
   { key: "scholarship", label: "ชื่อทุน" },
-  { key: "registerdate", label: "วันที่สมัคร" },
+  // { key: "registerdate", label: "วันที่สมัคร" },
   { key: "status", label: "สถานะ" },
 ];
 
-const data = ref([
-  {
-    id_card: "USR001",
-    name: "สมชาย ใจดี",
-    phone: "5555555555",
-    scholarship: "โครงการกำลังใจสร้างครูของชาติ",
-    registerdate: "1 มีนาคม 2568",
-    status: "ตรวจเสร็จสิ้น",
-  },
-  {
-    id_card: "USR002",
-    name: "สมหญิง รักดี",
-    phone: "0123456789",
-    scholarship: "โครงการทุนคุณหมอของกำลังใจ",
-    registerdate: "1 มีนาคม 2568",
-    status: "รอดำเนินการ",
-  },
-  {
-    id_card: "USR003",
-    name: "มานี มีเงิน",
-    phone: "2255112365",
-    scholarship: "โครงการทุน Gumlungjai Scholarship",
-    registerdate: "2 มีนาคม 2568",
-    status: "ตรวจเสร็จสิ้น",
-  },
-  {
-    id_card: "USR004",
-    name: "สมศรี ศรีสุข",
-    phone: "4561234562",
-    scholarship: "โครงการทุนกำลังใจให้พยาบาล",
-    registerdate: "3 มีนาคม 2568",
-    status: "แก้ไขเอกสาร",
-  },
-  {
-    id_card: "USR005",
-    name: "สมพร พรเพียง",
-    phone: "0931235523",
-    scholarship: "โครงการทุนนักจิตวิทยาสร้างกำลังใจ",
-    registerdate: "4 มีนาคม 2568",
-    status: "รอดำเนินการ",
-  },
-]);
+const fetchData = async () => {
+  const baseUrl = process.env.VUE_APP_API_URL + "/api/getEfilling";
+  // console.log(process.env.VUE_APP_API_URL);
+  try {
+    const response = await axios.get(baseUrl);
+    if (response.data && Array.isArray(response.data.data)) {
+      dataArray.value = response.data.data;  // Set the data to the reactive variable
+    } else {
+      console.error('API response is not an array or is missing the data array');
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    data.value = [];
+  }
+};
 
+onMounted(() => {
+  fetchData();
+});
+
+// Fix for statusCounts to ensure it handles non-array data safely
 const statusCounts = computed(() => {
+  // Ensure data.value is an array before using reduce
+  if (!Array.isArray(data.value)) {
+    return {};
+  }
+
   return data.value.reduce((acc, item) => {
-    acc[item.status] = (acc[item.status] || 0) + 1;
+    if (item && item.status) {
+      acc[item.status] = (acc[item.status] || 0) + 1;
+    }
     return acc;
   }, {});
 });
 
-const sortedAndFilteredData = computed(() => {
-  let result = [...data.value];
+// const sortedAndFilteredData = computed(() => {
+//   // Ensure data.value is an array before proceeding
+//   if (!Array.isArray(data.value)) {
+//     return [];
+//   }
 
-  if (filteredStatus.value) {
-    result = result.filter((item) => item.status === filteredStatus.value);
-  }
+//   let result = [...data.value];
 
-  if (searchQuery.value) {
-    result = result.filter((item) =>
-      Object.values(item).some((value) =>
-        String(value).toLowerCase().includes(searchQuery.value.toLowerCase())
-      )
-    );
-  }
+//   if (filteredStatus.value) {
+//     result = result.filter(
+//       (item) => item && item.status === filteredStatus.value
+//     );
+//   }
 
-  result.sort((a, b) => {
-    const aValue = a[sortKey.value];
-    const bValue = b[sortKey.value];
+//   if (searchQuery.value) {
+//     result = result.filter((item) => {
+//       if (!item) return false;
 
-    if (sortOrder.value === "asc") {
-      return aValue > bValue ? 1 : -1;
-    } else {
-      return aValue < bValue ? 1 : -1;
-    }
-  });
+//       return Object.values(item).some(
+//         (value) =>
+//           value &&
+//           String(value).toLowerCase().includes(searchQuery.value.toLowerCase())
+//       );
+//     });
+//   }
 
-  return result;
-});
+//   result.sort((a, b) => {
+//     if (!a || !b) return 0;
+
+//     const aValue = a[sortKey.value];
+//     const bValue = b[sortKey.value];
+
+//     if (!aValue && !bValue) return 0;
+//     if (!aValue) return 1;
+//     if (!bValue) return -1;
+
+//     if (sortOrder.value === "asc") {
+//       return aValue > bValue ? 1 : -1;
+//     } else {
+//       return aValue < bValue ? 1 : -1;
+//     }
+//   });
+
+//   return result;
+// });
 
 const filterByStatus = (status) => {
   filteredStatus.value = status;
@@ -526,6 +532,8 @@ const sortBy = (key) => {
 };
 
 const formatPhone = (phone) => {
+  if (!phone) return "N/A";
+
   if (phone.length === 10) {
     return `${phone.substring(0, 3)}-${phone.substring(3, 6)}-${phone.substring(
       6
@@ -534,7 +542,12 @@ const formatPhone = (phone) => {
   return phone;
 };
 
-const documentData = () => {
-  router.push("/documentdata");
+const goToDocument = (idCard) => {
+  if (idCard) {
+    router.push({ name: 'documentdatabyid', params: { idcard: idCard } });
+  } else {
+    console.error("ID Card is missing!");
+  }
 };
+
 </script>

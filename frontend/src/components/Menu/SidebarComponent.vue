@@ -52,10 +52,10 @@
       </nav>
     </aside>
 
-    <div class="flex-1 min-w-0">
+    <div class="flex-1 min-w-0 z-100">
       <div class="transition-all duration-300" :class="[isExpanded ? 'ml-64' : 'ml-20']">
         <header
-          class="h-16 bg-white/80 border-b flex items-center justify-between px-8 shadow-sm fixed top-0 right-0 transition-all duration-300 backdrop-blur-md z-10"
+          class="h-16 bg-white/80 border-b z-100 flex items-center justify-between px-8 shadow-sm fixed top-0 right-0 transition-all duration-300 backdrop-blur-md z-10"
           :class="[isExpanded ? 'left-64' : 'left-20']">
           <div class="flex-1 max-w-lg">
             <div class="relative group">
@@ -109,7 +109,7 @@
                 </div>
               </button>
 
-              <transition enter-active-class="transition duration-300 ease-out"
+              <transition enter-active-class="transition duration-300 ease-out z-1000"
                 enter-from-class="transform scale-95 opacity-0" enter-to-class="transform scale-100 opacity-100"
                 leave-active-class="transition duration-200 ease-in" leave-from-class="transform scale-100 opacity-100"
                 leave-to-class="transform scale-95 opacity-0">

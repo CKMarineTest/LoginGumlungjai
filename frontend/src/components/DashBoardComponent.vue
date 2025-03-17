@@ -798,6 +798,7 @@
 <script setup>
 import { ref, onMounted, watch, defineProps, computed, nextTick } from "vue";
 import { useRouter } from "vue-router";
+import axios from 'axios';
 import gsap from "gsap";
 import { Bar } from "vue-chartjs";
 import SidebarComponent from "./Menu/SidebarComponent.vue";
@@ -979,13 +980,16 @@ const closeModal = () => {
   );
 };
 
+const data = ref([]);
+const dataArray = ref([]);
+
 const router = useRouter();
 const props = defineProps({
   value: { type: Number, default: 5 },
   duration: { type: Number, default: 2 },
   totalData: { type: Number, default: 0 },
 });
-const displayNumber = ref(0);
+const displayNumber = ref(dataArray.value.length);
 const formatNumber = computed(() => displayNumber.value.toLocaleString());
 
 const animateNumber = (targetValue) => {
@@ -1000,6 +1004,26 @@ const animateNumber = (targetValue) => {
     },
   });
 };
+
+const fetchData = async () => {
+  const baseUrl = process.env.VUE_APP_API_URL + "/api/getEfilling";
+  // console.log(process.env.VUE_APP_API_URL);
+  try {
+    const response = await axios.get(baseUrl);
+    if (response.data && Array.isArray(response.data.data)) {
+      dataArray.value = response.data.data;  // Set the data to the reactive variable
+    } else {
+      console.error('API response is not an array or is missing the data array');
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    data.value = [];
+  }
+};
+
+onMounted(() => {
+  fetchData();
+});
 
 const scholarship = [
   {

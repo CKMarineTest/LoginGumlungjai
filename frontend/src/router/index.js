@@ -53,6 +53,16 @@ const routes = [
         path: '/sendscore',
         name: 'sendscore',
         component: () => import('../views/SendScoreView.vue'),
+    },
+    {
+        path: '/documentdata/:idcard',
+        name: 'documentdatabyid',
+        component: () => import('../views/DocumentdataView.vue'),
+    },
+    {
+        path: '/pdf/:idcard',
+        name: 'pdfbyid',
+        component: () => import('../components/PDFComponent.vue'),
     }
 ]
 

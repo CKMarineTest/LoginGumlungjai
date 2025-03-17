@@ -26,19 +26,20 @@
           <b class="underline">ส่วนที่ 1</b
           >&nbsp;ข้อมูลส่วนตัวของผู้สมัครรับทุนการศึกษา
         </p>
+        <div v-for="(data) in dataArray" :key="data.idcard">
         <div class="flex items-center gap-2 mb-3">
           <span class="font-bold">1.</span>
           <div class="absolute ml-4">
             <span class="w-20 text-right">ชื่อ:</span>
-            <span class="w-40 inline-block ml-2">{{ name }}</span>
+            <span class="w-40 inline-block ml-2">{{ data.FirstName }}</span>
           </div>
           <div class="absolute ml-80">
             <span class="w-20 text-right">นามสกุล:</span>
-            <span class="w-40 inline-block ml-2">ใจดี</span>
+            <span class="w-40 inline-block ml-2">{{ data.LastName }}</span>
           </div>
           <div class="absolute ml-144">
             <span class="w-20 text-right">ชื่อเล่น:</span>
-            <span class="w-40 inline-block ml-2">บอย</span>
+            <span class="w-40 inline-block ml-2">{{ data.NickName }}</span>
           </div>
         </div>
 
@@ -49,33 +50,33 @@
           </div>
           <div class="absolute ml-80">
             <span class="w-20 text-right">อายุ:</span>
-            <span class="w-40 inline-block ml-2">20 ปี</span>
+            <span class="w-40 inline-block ml-2">{{ data.Age }} ปี</span>
           </div>
           <div class="absolute ml-128">
             <span class="w-20 text-right">เบอร์โทรศัพท์ติดต่อ:</span>
-            <span class="w-40 inline-block ml-2">0912345678</span>
+            <span class="w-40 inline-block ml-2">{{ data.Mobile }}</span>
           </div>
         </div>
 
         <div class="flex items-center gap-2 mt-2 mb-6">
           <div class="absolute ml-4">
             <span class="w-20 text-right">เบอร์โทรศัพท์ติดต่อ(สำรอง):</span>
-            <span class="w-40 inline-block ml-2">-</span>
+            <span class="w-40 inline-block ml-2">{{ data.Mobile2 }}</span>
           </div>
           <div class="absolute ml-80">
             <span class="w-20 text-right">Email:</span>
-            <span class="w-40 inline-block ml-2">example@example.com</span>
+            <span class="w-40 inline-block ml-2">{{ data.email }}</span>
           </div>
         </div>
 
         <div class="flex items-center gap-2 mt-2 mb-6">
           <div class="absolute ml-4">
             <span class="w-20 text-right">ID LINE:</span>
-            <span class="w-40 inline-block ml-2">Example ID LINE</span>
+            <span class="w-40 inline-block ml-2">{{ data.lineId }}</span>
           </div>
           <div class="absolute ml-80">
             <span class="w-20 text-right">Facebook:</span>
-            <span class="w-40 inline-block ml-2">Example Facebook</span>
+            <span class="w-40 inline-block ml-2">{{ data.facebook }}</span>
           </div>
         </div>
 
@@ -83,16 +84,16 @@
           <span class="font-bold">2.</span>
           <div class="absolute ml-4">
             <span class="w-20 text-right">ความสามารถพิเศษ:</span>
-            <span class="w-40 inline-block ml-2">เล่นกีตาร์</span>
+            <span class="w-40 inline-block ml-2">{{ data.special }}</span>
           </div>
         </div>
-        <div class="flex items-center gap-2 mt-2 mb-">
+        <!-- <div class="flex items-center gap-2 mt-2 mb-">
           <span class="font-bold">3.</span>
           <div class="absolute ml-4">
             <span class="w-20 text-right">สุขภาพของผู้รับทุน:</span>
             <span class="w-40 inline-block ml-2">สุขภาพสมบูรณ์แข็งแรง</span>
           </div>
-        </div>
+        </div> -->
 
         <div class="flex items-center gap-2 mt-2 mb-">
           <span class="font-bold">4.</span>
@@ -133,33 +134,33 @@
             <span class="w-20 text-right"
               >สถานศึกษา(ใส่มหาวิทยาลัยที่สอบติด):</span
             >
-            <span class="w-80 inline-block ml-2">มหาวิทยาลัยมหิดล</span>
+            <span class="w-80 inline-block ml-2">{{ data.universityName }}</span>
           </div>
         </div>
 
         <div class="flex items-center gap-2 mt-2 mb-6">
           <div class="absolute ml-4">
             <span class="w-20 text-right">ชั้น:</span>
-            <span class="w-80 inline-block ml-2">ปี 1</span>
+            <span class="w-80 inline-block ml-2">ปี {{ data.floor }}</span>
           </div>
           <div class="absolute ml-96">
             <span class="w-20 text-right">ปีการศึกษา:</span>
-            <span class="w-40 inline-block ml-2">2568</span>
+            <span class="w-40 inline-block ml-2">{{ data.year }}</span>
           </div>
           <div class="absolute ml-144">
             <span class="w-20 text-right">คะแนนเฉลี่ย:</span>
-            <span class="w-40 inline-block ml-2">4.00</span>
+            <span class="w-40 inline-block ml-2">{{ data.gpa }}</span>
           </div>
         </div>
 
         <div class="flex items-center gap-2 mt-2 mb-6">
           <div class="absolute ml-4">
             <span class="w-20 text-right">คณะ:</span>
-            <span class="w-80 inline-block ml-2">คณะแพทยศาสตร์</span>
+            <span class="w-80 inline-block ml-2"></span>
           </div>
           <div class="absolute ml-96">
             <span class="w-20 text-right">สาขา:</span>
-            <span class="w-80 inline-block ml-2">สาขาแพทยศาสตร์</span>
+            <span class="w-80 inline-block ml-2">{{ data.major }}</span>
           </div>
         </div>
 
@@ -515,6 +516,7 @@
             >
           </div>
         </div>
+      </div>
 
         <table-data-component />
 
@@ -637,15 +639,21 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+/* eslint-disable */
+import { ref, onMounted } from "vue";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import axios from 'axios';
 
 import TableDataComponent from "./TableDataComponent.vue";
 
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+
 // import { Square } from 'lucide-vue-next';
 
-const name = ref("สมชาย");
+const idcard = route.params.idcard;
 
 const contentRef = ref(null);
 
@@ -700,6 +708,33 @@ const generatePDF = async () => {
     console.error("Error generating PDF:", error);
   }
 };
+
+const data = ref([]);
+const dataArray = ref([]);
+
+const fetchData = async () => {
+  const baseUrl =
+    process.env.VUE_APP_API_URL + `/api/getEfillingByIdCard/${idcard}`;
+  // console.log(process.env.VUE_APP_API_URL);
+  try {
+    const response = await axios.get(baseUrl);
+    if (response.data && Array.isArray(response.data.data)) {
+      dataArray.value = response.data.data; // Set the data to the reactive variable
+      console.log(response.data.data)
+    } else {
+      console.error(
+        "API response is not an array or is missing the data array"
+      );
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    data.value = [];
+  }
+};
+
+onMounted(() => {
+  fetchData();
+});
 
 
 

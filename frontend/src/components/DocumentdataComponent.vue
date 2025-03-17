@@ -7,7 +7,17 @@
       <br />
       <br />
       <div>
-        <PrintDataComponent />
+        <div class="flex justify-end">
+          <button
+            class="bg-blue-500 shadow-lg w-20 rounded-lg p-2 text-white hover:bg-blue-600"
+            @click="handlePrintData(idcard)"
+          >
+            <center>
+              <PrinterIcon class="w-10 h-10" />
+              <p class="mt-1">Print</p>
+            </center>
+          </button>
+        </div>
       </div>
       <div
         class="w-full max-w-7xl mx-auto bg-white shadow-xl rounded-xl overflow-hidden"
@@ -16,7 +26,7 @@
           class="bg-gradient-to-r from-blue-600 to-indigo-600 p-4 text-white relative overflow-hidden"
         >
           <div
-            class="flex flex-wrap justify-between items-start gap-4 relative z-10"
+            class="flex flex-wrap justify-between items-start gap-4 relative"
           >
             <div class="flex items-center gap-6 w-full sm:w-auto">
               <div
@@ -52,7 +62,7 @@
               </div>
               <img
                 v-else
-                :src="photoPreview"
+                :src="pic"
                 class="w-36 h-44 sm:w-44 sm:h-52 object-cover rounded-xl"
                 alt="Preview"
               />
@@ -66,14 +76,20 @@
             </div>
           </div>
         </div>
-        <div class="p-8 bg-gray-50/50">
+        <div
+          class="p-8 bg-gray-50/50"
+          v-for="item in dataArray"
+          :key="item.idcard"
+        >
           <h3
             class="text-xl font-semibold text-blue-900 mb-6 flex items-center gap-2"
           >
             ประเภททุนการศึกษา
           </h3>
-          <div class="relative text-red-500 text-xl">
-            <h4>{{ refexample }}</h4>
+          <div class="relative underline text-xl">
+            <h4 class="bg-yellow-200 p-3 rounded-lg w-4/12">
+              {{ item.Project_Name }}
+            </h4>
           </div>
           <br />
 
@@ -95,7 +111,7 @@
                 type="text"
                 placeholder="ชื่อ"
                 id="name"
-                v-model="formStore.name"
+                v-model="item.FirstName"
                 name="name"
                 readonly
                 class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
@@ -113,7 +129,7 @@
                 placeholder="นามสกุล"
                 id="lastname"
                 name="lastname"
-                v-model="formStore.lastName"
+                v-model="item.LastName"
                 readonly
                 class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
               />
@@ -130,7 +146,7 @@
                 placeholder="ชื่อเล่น"
                 id="nickname"
                 name="nickname"
-                v-model="formStore.nickname"
+                v-model="item.NickName"
                 readonly
                 class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
               />
@@ -150,7 +166,7 @@
                 placeholder="วันเดือนปีเกิด"
                 id="dob"
                 name="dob"
-                v-model="formStore.dob"
+                v-model="item.BirthDate"
                 readonly
                 class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
               />
@@ -167,7 +183,7 @@
                 placeholder="อายุ"
                 id="age"
                 name="age"
-                v-model="formStore.age"
+                v-model="item.Age"
                 readonly
                 class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
               />
@@ -185,7 +201,7 @@
                 id="phone"
                 maxlength="10"
                 name="phone"
-                v-model="formStore.phone"
+                v-model="item.Mobile"
                 readonly
                 class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
               />
@@ -203,7 +219,7 @@
                 placeholder="เลขบัตรประชาชน"
                 id="idcard"
                 name="idcard"
-                v-model="formStore.idcard"
+                v-model="idcard"
                 readonly
                 class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
               />
@@ -224,7 +240,7 @@
                   maxlength="10"
                   name="phone2"
                   readonly
-                  v-model="formStore.phone2"
+                  v-model="item.Mobile2"
                   id="phone2"
                   class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
                 />
@@ -242,7 +258,7 @@
                   id="email"
                   @blur="validateEmail"
                   name="email"
-                  v-model="formStore.email"
+                  v-model="item.email"
                   readonly
                   class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
                 />
@@ -259,7 +275,7 @@
                   placeholder="ไอดีไลน์"
                   id="lineId"
                   name="lineId"
-                  v-model="formStore.lineId"
+                  v-model="item.lineId"
                   readonly
                   class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
                 />
@@ -275,7 +291,7 @@
                   type="text"
                   placeholder="Facebook"
                   id="facebook"
-                  v-model="formStore.facebook"
+                  v-model="item.facebook"
                   name="facebook"
                   readonly
                   class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
@@ -292,7 +308,7 @@
                   id="special"
                   name="special"
                   rows="4"
-                  v-model="formStore.special"
+                  v-model="item.special"
                   readonly
                   class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
                   placeholder="ความสามารถพิเศษ"
@@ -314,7 +330,7 @@
                     placeholder="งานพิเศษ"
                     id="specialWork"
                     name="specialWork"
-                    v-model="formStore.specialWork"
+                    v-model="item.specialWork"
                     readonly
                     class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
                   />
@@ -353,7 +369,7 @@
                         type="text"
                         placeholder="การกู้กยศ."
                         id=""
-                        v-model="formStore.loaning"
+                        v-model="item.loaning"
                         name=""
                         readonly
                         class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
@@ -373,7 +389,7 @@
                         placeholder="กู้กยศ. เป็นค่าใช้จ่าย"
                         id=""
                         name=""
-                        v-model="formStore.loaningType"
+                        v-model="item.loaningType"
                         readonly
                         class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
                       />
@@ -393,7 +409,7 @@
                           placeholder="สถานศึกษาที่สอบติด"
                           id=""
                           name=""
-                          v-model="formStore.selectedUniversity"
+                          v-model="item.universityName"
                           readonly
                           class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
                         />
@@ -413,7 +429,7 @@
                           id="faculty"
                           name="faculty"
                           readonly
-                          v-model="formStore.faculty"
+                          v-model="item.faculty"
                           class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                           placeholder="คณะ"
                         />
@@ -431,7 +447,7 @@
                           id="major"
                           name="major"
                           readonly
-                          v-model="formStore.major"
+                          v-model="item.major"
                           class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                           placeholder="สาขา"
                         />
@@ -452,7 +468,7 @@
                           type="text"
                           id="floor"
                           name="floor"
-                          v-model="formStore.floor"
+                          v-model="item.floor"
                           readonly
                           class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                           placeholder="ชั้นปี"
@@ -469,7 +485,7 @@
                           type="text"
                           id="floor"
                           name="floor"
-                          v-model="formStore.academicYear"
+                          v-model="item.year"
                           readonly
                           class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                           placeholder="ปีการศึกษา"
@@ -488,8 +504,8 @@
                             type="number"
                             id="gpa"
                             name="gpa"
-                            v-model="formStore.gpa"
-                            v-model.number="gpa"
+                            v-model="item.GPA"
+                            v-model.number="item.GPA"
                             max="4"
                             @input="validateGPA"
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -615,7 +631,7 @@
                             id="tcas"
                             name="tcas"
                             readonly
-                            v-model="formStore.tcas"
+                            v-model="item.tcas"
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             placeholder="ค่าเล่าเรียน (บาท/เทอม)"
                           />
@@ -897,7 +913,7 @@
                               type="text"
                               placeholder="บ้านเลขที่"
                               id="homeid"
-                              v-model="formStore.permanentHomeid"
+                              v-model="item.permanentHomeid"
                               readonly
                               class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
@@ -913,7 +929,7 @@
                               type="text"
                               placeholder="หมู่ที่"
                               id="grouphomeid"
-                              v-model="formStore.permanentGroupHomeid"
+                              v-model="item.permanentGroupHomeid"
                               readonly
                               class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
@@ -930,7 +946,7 @@
                               type="text"
                               placeholder="ตรอก/ซอย"
                               id="soi"
-                              v-model="formStore.permanentsoi"
+                              v-model="item.permanentsoi"
                               name="soi"
                               readonly
                               class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -947,7 +963,7 @@
                               type="text"
                               placeholder="ถนน"
                               id="road"
-                              v-model="formStore.permanetroad"
+                              v-model="item.permanentroad"
                               name="road"
                               readonly
                               class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -968,7 +984,7 @@
                               type="text"
                               placeholder="จังหวัด"
                               id="province"
-                              v-model="formStore.selectedProvince"
+                              v-model="item.Province2"
                               readonly
                               name="province"
                               class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -987,7 +1003,7 @@
                               placeholder="อำเภอ"
                               id="district"
                               name="district"
-                              v-model="formStore.selectedDistrict"
+                              v-model="item.District2"
                               readonly
                               class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
@@ -1005,6 +1021,7 @@
                               placeholder="ตำบล"
                               id="subdistrict"
                               readonly
+                              v-model="item.SubDistrict2"
                               name="subdistrict"
                               class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
@@ -1021,6 +1038,7 @@
                               type="text"
                               placeholder="รหัสไปรษณีย์"
                               id="zip_code"
+                              v-model="item.zipcode2"
                               readonly
                               name="zip_code"
                               class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -1049,6 +1067,7 @@
                               placeholder="บ้านเลขที่"
                               id="homeid"
                               readonly
+                              v-model="item.currentHomeid"
                               class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
                           </div>
@@ -1063,6 +1082,7 @@
                               type="text"
                               placeholder="หมู่ที่"
                               id="grouphomeid"
+                              v-model="item.currentGroupHomeid"
                               readonly
                               class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
@@ -1080,6 +1100,7 @@
                               placeholder="ตรอก/ซอย"
                               id="soi"
                               name="soi"
+                              v-model="item.currentsoi"
                               readonly
                               class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
@@ -1096,6 +1117,7 @@
                               placeholder="ถนน"
                               id="road"
                               name="road"
+                              v-model="item.currentroad"
                               readonly
                               class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
@@ -1116,6 +1138,7 @@
                               placeholder="จังหวัด"
                               id="province"
                               readonly
+                              v-model="item.Province"
                               name="province"
                               class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
@@ -1133,6 +1156,7 @@
                               placeholder="อำเภอ"
                               id="district"
                               name="district"
+                              v-model="item.Districts"
                               readonly
                               class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
@@ -1151,6 +1175,7 @@
                               id="subdistrict"
                               readonly
                               name="subdistrict"
+                              v-model="item.SubDistricts"
                               class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
                           </div>
@@ -1167,6 +1192,7 @@
                               placeholder="รหัสไปรษณีย์"
                               id="zip_code"
                               readonly
+                              v-model="item.zipcode1"
                               name="zip_code"
                               class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
@@ -1184,6 +1210,7 @@
                             class="w-full sm:w-6/12 px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
                             placeholder="ค่าเช่าบ้านต่อเดือน"
                             readonly
+                            v-model="item.homeRentCost"
                           />
 
                           <div class="flex flex-col sm:flex-row gap-4 mt-4">
@@ -1382,7 +1409,7 @@
                             type="text"
                             id="fatherName"
                             placeholder="ชื่อบิดา นาย"
-                            v-model="formStore.fatherName"
+                            v-model="item.fatherName"
                             readonly
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                           />
@@ -1400,7 +1427,7 @@
                             type="text"
                             id="fatherLastName"
                             placeholder="นามสกุล"
-                            v-model="formStore.fatherLastName"
+                            v-model="item.fatherLastName"
                             readonly
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                           />
@@ -1417,7 +1444,7 @@
                           <input
                             type="number"
                             id="fatherAge"
-                            v-model="formStore.fatherAge"
+                            v-model="item.fatherAge"
                             placeholder="อายุ"
                             readonly
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -1436,7 +1463,7 @@
                           <input
                             type="text"
                             id="faterJob"
-                            v-model="formStore.fatherJob"
+                            v-model="item.fatherJob"
                             placeholder="อาชีพ"
                             readonly
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -1454,7 +1481,7 @@
                           <input
                             type="text"
                             id="fatherWorkPlace"
-                            v-model="formStore.fatherWorkPlace"
+                            v-model="item.fatherWorkPlace"
                             placeholder="สถานที่ทำงาน"
                             readonly
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -1474,7 +1501,7 @@
                           <input
                             type="number"
                             readonly
-                            v-model="formStore.fatherSalary"
+                            v-model="item.fatherSalary"
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             placeholder="รายได้ต่อเดือนบิดา"
                           />
@@ -1501,7 +1528,7 @@
                           <input
                             type="text"
                             id="motherName"
-                            v-model="formStore.motherName"
+                            v-model="item.motherName"
                             placeholder="ชื่อมารดา"
                             readonly
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -1519,7 +1546,7 @@
                           <input
                             type="text"
                             id="motherLastname"
-                            v-model="formStore.motherLastName"
+                            v-model="item.motherLastName"
                             placeholder="นามสกุล"
                             readonly
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -1536,7 +1563,7 @@
                           </label>
                           <input
                             type="number"
-                            v-model="formStore.motherAge"
+                            v-model="item.motherAge"
                             id="motherAge"
                             placeholder="อายุ"
                             readonly
@@ -1557,7 +1584,7 @@
                           <input
                             type="text"
                             id="motherJob"
-                            v-model="formStore.motherJob"
+                            v-model="item.motherJob"
                             placeholder="อาชีพ"
                             readonly
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -1575,7 +1602,7 @@
                           <input
                             type="text"
                             id="motherWorkPlace"
-                            v-model="formStore.motherWorkPlace"
+                            v-model="item.motherWorkPlace"
                             placeholder="สถานที่ทำงาน"
                             readonly
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -1596,7 +1623,7 @@
                           <input
                             type="number"
                             id="motherSalary"
-                            v-model="formStore.motherSalary"
+                            v-model="item.motherSalary"
                             name="motherSalary"
                             readonly
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -1623,7 +1650,7 @@
                           <input
                             type="text"
                             id="parentName"
-                            v-model="formStore.parentName"
+                            v-model="item.parentName"
                             placeholder="ชื่อผู้ปกครอง"
                             readonly
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -1641,7 +1668,7 @@
                           <input
                             type="text"
                             id="parentLastname"
-                            v-model="formStore.parentLastname"
+                            v-model="item.parentLastName"
                             placeholder="นามสกุล"
                             readonly
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -1659,7 +1686,7 @@
                           <input
                             type="number"
                             id="parentAge"
-                            v-model="formStore.parentAge"
+                            v-model="item.parentAge"
                             placeholder="อายุ"
                             readonly
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -1679,7 +1706,7 @@
                           <input
                             type="text"
                             id="parentJob"
-                            v-model="formStore.parentJob"
+                            v-model="item.parentJob"
                             placeholder="อาชีพ"
                             readonly
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -1697,7 +1724,7 @@
                           <input
                             type="text"
                             id="parentWorkPlace"
-                            v-model="formStore.parentWorkPlace"
+                            v-model="item.parentWorkPlace"
                             placeholder="สถานที่ทำงาน"
                             readonly
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -1717,7 +1744,7 @@
                           <input
                             type="number"
                             id="parentSalary"
-                            v-model="formStore.parentSalary"
+                            v-model="item.parentSalary"
                             name="parentSalary"
                             readonly
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -1745,7 +1772,7 @@
                           <input
                             type="text"
                             id="siblingCount"
-                            v-model="formStore.siblingCount"
+                            v-model="item.siblingCount"
                             placeholder="จำนวนพี่น้อง"
                             readonly
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -1763,7 +1790,7 @@
                           <input
                             type="text"
                             id="siblingMan"
-                            v-model="formStore.siblingMan"
+                            v-model="item.siblingMan"
                             placeholder="ชาย (คน)"
                             readonly
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -1781,7 +1808,7 @@
                           <input
                             type="text"
                             id="siblingWomen"
-                            v-model="formStore.siblingWomen"
+                            v-model="item.siblingWomen"
                             placeholder="หญิง (คน)"
                             readonly
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -1801,7 +1828,7 @@
                           <input
                             type="text"
                             id="siblingCountRegister"
-                            v-model="formStore.siblingCountRegister"
+                            v-model="item.siblingCountRegister"
                             readonly
                             placeholder="ผู้สมัครเป็นบุตรคนที่"
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -1820,7 +1847,7 @@
                           <input
                             type="text"
                             id="siblingStudying"
-                            v-model="formStore.sublingStudying"
+                            v-model="item.siblingStudying"
                             readonly
                             placeholder="จำนวนพี่น้องที่กำลังศึกษาอยู่"
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
@@ -2113,7 +2140,8 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import axios from "axios";
 
 import SidebarComponent from "./Menu/SidebarComponent.vue";
 import SiblingInfoFormConponent from "./SiblingInfoFormConponent.vue";
@@ -2121,22 +2149,25 @@ import VolunteerComponent from "./VolunteerComponent.vue";
 import EssaySubmissionComponent from "./EssaySubmissionComponent.vue";
 import ReasonCommentComponent from "./ReasonCommentComponent.vue";
 import DocumentFormComponent from "./DocumentFormComponent.vue";
-import PrintDataComponent from "./PrintDataComponent.vue";
 
 import documentPreviewUrl from "@/assets/test/sick.webp";
 import logoUrl from "@/assets/picture/GLJ_Logo.png";
 
 import { Download, FileText, Edit, Check } from "lucide-vue-next";
+import { PrinterIcon } from "@heroicons/vue/24/outline";
+import { useRouter } from "vue-router";
 import Swal from "sweetalert2";
 
 import { useFormStore } from "@/stores/formStore";
-import { useRouter } from "vue-router";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+
+const idcard = route.params.idcard;
 
 const router = useRouter();
 
 const formStore = useFormStore();
-
-const refexample = ref("ตัวอย่าง");
 
 const Toast = Swal.mixin({
   toast: true,
@@ -2149,6 +2180,40 @@ const Toast = Swal.mixin({
     toast.onmouseleave = Swal.resumeTimer;
   },
 });
+
+const data = ref([]);
+const dataArray = ref([]);
+
+const fetchData = async () => {
+  const baseUrl =
+    process.env.VUE_APP_API_URL + `/api/getEfillingByIdCard/${idcard}`;
+  // console.log(process.env.VUE_APP_API_URL);
+  try {
+    const response = await axios.get(baseUrl);
+    if (response.data && Array.isArray(response.data.data)) {
+      dataArray.value = response.data.data; // Set the data to the reactive variable
+    } else {
+      console.error(
+        "API response is not an array or is missing the data array"
+      );
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    data.value = [];
+  }
+};
+
+onMounted(() => {
+  fetchData();
+});
+
+const handlePrintData = (idCard) => {
+  if (idCard) {
+    router.push({ name: "pdfbyid", params: { idcard: idCard } });
+  } else {
+    console.error("ID Card is missing!");
+  }
+};
 
 // modal
 const isTermFeeModalOpen = ref(false);
@@ -2214,14 +2279,12 @@ const editDocument = () => {
   //   router.push("/registerform");
   // });
 
-  router.push(
-    "/registerform"
-  ).then(() => {
+  router.push("/registerform").then(() => {
     Toast.fire({
       icon: "success",
       title: "ปรับสถานะแก้ไขเอกสาร",
-    })
-  })
+    });
+  });
 };
 
 const submitCheck = () => {
@@ -2232,14 +2295,12 @@ const submitCheck = () => {
   //   router.push("/registerform");
   // });
 
-  router.push(
-    "/registerform"
-  ).then(() => {
+  router.push("/registerform").then(() => {
     Toast.fire({
       icon: "success",
       title: "ยืนยันการตรวจสอบเอกสารสำเร็จ",
-    })
-  })
+    });
+  });
 };
 </script>
 
