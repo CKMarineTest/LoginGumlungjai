@@ -42,7 +42,7 @@
             <div>
               <p class="text-gray-500 text-sm font-medium">ผู้สมัครทั้งหมด</p>
               <h2 class="text-3xl font-bold text-gray-800">
-                {{ formatNumber }}
+                {{ dataArray.length }}
               </h2>
             </div>
           </div>
@@ -612,115 +612,30 @@
               </p>
             </div>
             <div class="h-64 relative flex items-center justify-center">
-              <div class="relative h-48 w-48">
-                <svg viewBox="0 0 36 36" class="w-full h-full">
-                  <path
-                    class="animate-dash-1 fill-transparent"
-                    stroke-dasharray="30 100"
-                    stroke-dashoffset="0"
-                    stroke-width="3.8"
-                    stroke="#4F46E5"
-                    d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831"
-                  />
-                  <path
-                    class="animate-dash-2 fill-transparent"
-                    stroke-dasharray="25 100"
-                    stroke-dashoffset="30"
-                    stroke-width="3.8"
-                    stroke="#10B981"
-                    d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831"
-                  />
-                  <path
-                    class="animate-dash-3 fill-transparent"
-                    stroke-dasharray="20 100"
-                    stroke-dashoffset="55"
-                    stroke-width="3.8"
-                    stroke="#8B5CF6"
-                    d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831"
-                  />
-                  <path
-                    class="animate-dash-4 fill-transparent"
-                    stroke-dasharray="15 100"
-                    stroke-dashoffset="75"
-                    stroke-width="3.8"
-                    stroke="#FBBF24"
-                    d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831"
-                  />
-                  <path
-                    class="animate-dash-5 fill-transparent"
-                    stroke-dasharray="10 100"
-                    stroke-dashoffset="90"
-                    stroke-width="3.8"
-                    stroke="#EF4444"
-                    d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831"
-                  />
-                </svg>
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <div
-                    class="bg-white rounded-full h-32 w-32 flex items-center justify-center shadow-inner"
-                  >
-                    <div class="text-center">
-                      <div class="text-xl font-bold text-blue-600">
-                        {{ formatNumber }}
-                      </div>
-                      <div class="text-xs text-gray-500">ผู้สมัครทั้งหมด</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <canvas ref="chartCanvas" width="300" height="300"></canvas>
             </div>
             <div class="grid grid-cols-1 gap-3 mt-4">
-              <div class="flex items-center p-2 rounded-lg hover:bg-gray-50">
-                <div class="w-4 h-4 bg-indigo-600 rounded-full mr-3"></div>
-                <span class="text-sm text-gray-700 font-medium flex-1"
-                  >ทุนกำลังใจสร้างครูของชาติ</span
+              <div
+                v-for="(item, index) in scholarshipData"
+                :key="index"
+                class="flex items-center p-2 rounded-lg hover:bg-gray-50"
+              >
+                <div
+                  class="w-4 h-4 rounded-full mr-3"
+                  :style="{ backgroundColor: item.color }"
+                ></div>
+                <span class="text-sm text-gray-700 font-medium flex-1">{{
+                  item.name
+                }}</span>
+                <span class="text-sm font-bold text-gray-800"
+                  >{{ item.percentage }}%</span
                 >
-                <span class="text-sm font-bold text-gray-800">30%</span>
-              </div>
-              <div class="flex items-center p-2 rounded-lg hover:bg-gray-50">
-                <div class="w-4 h-4 bg-green-600 rounded-full mr-3"></div>
-                <span class="text-sm text-gray-700 font-medium flex-1"
-                  >ทุนคุณหมอของกำลังใจ</span
-                >
-                <span class="text-sm font-bold text-gray-800">25%</span>
-              </div>
-              <div class="flex items-center p-2 rounded-lg hover:bg-gray-50">
-                <div class="w-4 h-4 bg-purple-600 rounded-full mr-3"></div>
-                <span class="text-sm text-gray-700 font-medium flex-1"
-                  >ทุน Gumlungjai Scholar</span
-                >
-                <span class="text-sm font-bold text-gray-800">20%</span>
-              </div>
-              <div class="flex items-center p-2 rounded-lg hover:bg-gray-50">
-                <div class="w-4 h-4 bg-yellow-500 rounded-full mr-3"></div>
-                <span class="text-sm text-gray-700 font-medium flex-1"
-                  >ทุนกำลังใจให้พยาบาล</span
-                >
-                <span class="text-sm font-bold text-gray-800">15%</span>
-              </div>
-              <div class="flex items-center p-2 rounded-lg hover:bg-gray-50">
-                <div class="w-4 h-4 bg-red-500 rounded-full mr-3"></div>
-                <span class="text-sm text-gray-700 font-medium flex-1"
-                  >ทุนนักจิตวิทยาสร้างกำลังใจ</span
-                >
-                <span class="text-sm font-bold text-gray-800">10%</span>
               </div>
             </div>
           </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-
           <RegisterModalComponent />
 
           <div
@@ -775,7 +690,7 @@
 </template>
 
 <script setup>
- /* eslint-disable */ 
+/* eslint-disable */
 import { ref, onMounted, watch, defineProps, computed, nextTick } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
@@ -792,6 +707,8 @@ import {
   LinearScale,
 } from "chart.js";
 
+import { Chart } from "chart.js/auto";
+
 ChartJS.register(
   Title,
   Tooltip,
@@ -802,8 +719,6 @@ ChartJS.register(
 );
 
 import RegisterModalComponent from "./RegisterModalComponent.vue";
-
-
 
 const chartDatasets = {
   today: {
@@ -906,6 +821,96 @@ const chartOptions = ref({
     },
   },
   animation: { duration: 500 },
+});
+
+const scholarshipData = [
+  { name: 'ทุนกำลังใจสร้างครูของชาติ', percentage: 30, color: '#4F46E5' },
+  { name: 'ทุนคุณหมอของกำลังใจ', percentage: 25, color: '#10B981' },
+  { name: 'ทุน Gumlungjai Scholar', percentage: 20, color: '#8B5CF6' },
+  { name: 'ทุนกำลังใจให้พยาบาล', percentage: 15, color: '#FBBF24' },
+  { name: 'ทุนนักจิตวิทยาสร้างกำลังใจ', percentage: 10, color: '#EF4444' }
+];
+
+const chartCanvas = ref(null);
+
+onMounted(() => {
+  const ctx = chartCanvas.value.getContext('2d');
+  
+  const chart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: scholarshipData.map(item => item.name),
+      datasets: [{
+        data: scholarshipData.map(item => item.percentage),
+        backgroundColor: scholarshipData.map(item => item.color),
+        borderColor: scholarshipData.map(item => item.color),
+        borderWidth: 1,
+        hoverOffset: 10,
+        cutout: '65%'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return `${context.label}: ${context.raw}%`;
+            }
+          },
+          backgroundColor: 'rgba(255, 255, 255, 0.9)',
+          titleColor: '#334155',
+          bodyColor: '#334155',
+          borderColor: '#e2e8f0',
+          borderWidth: 1,
+          padding: 10,
+          titleFont: {
+            size: 14,
+            weight: 'bold'
+          },
+          bodyFont: {
+            size: 12
+          }
+        }
+      },
+      animation: {
+        animateScale: true,
+        animateRotate: true
+      }
+    }
+  });
+
+  Chart.register({
+    id: 'centerText',
+    afterDraw: function(chart) {
+      const width = chart.width;
+      const height = chart.height;
+      const ctx = chart.ctx;
+      
+      ctx.restore();
+      ctx.font = "bold 16px Arial";
+      ctx.fillStyle = "#4F46E5";
+      ctx.textBaseline = "middle";
+      
+      const sum = scholarshipData.reduce((acc, item) => acc + item.percentage, 0);
+      const text = `${sum}`;
+      // const textWidth = ctx.measureText(text).width;
+      
+      // ctx.fillText(text, width / 2 - textWidth / 2, height / 2 - 10);
+      
+      ctx.font = "12px Arial";
+      ctx.fillStyle = "#6B7280";
+      const subText = "";
+      const subTextWidth = ctx.measureText(subText).width;
+      
+      ctx.fillText(subText, width / 2 - subTextWidth / 2, height / 2 + 10);
+      ctx.save();
+    }
+  });
 });
 
 const setTimeFilter = (filter) => {

@@ -15,17 +15,18 @@ async function getEfillingController(req, res) {
 }
 
 async function getEfillingByIdCardController(req, res) {
+  // ตรวจสอบว่า idCard มีค่าหรือไม่
   if (!req.params.idCard) {
     return res
       .status(400)
       .json({ success: false, message: "idCard is required" });
   }
 
-  const { idCard } = req.params; 
+  const { idCard } = req.params; // ดึง idCard จาก URL parameter
 
   try {
+    // สมมติว่า getEfillingByIdCard เป็นฟังก์ชันที่ดึงข้อมูลจากฐานข้อมูล
     const data = await getEfillingByIdCard(idCard);
-
     if (data.length > 0) {
       res.status(200).json({ success: true, data });
     } else {
