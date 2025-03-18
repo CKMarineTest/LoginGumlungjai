@@ -131,19 +131,68 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+/* eslint-disable */
+import { ref, onMounted } from "vue";
+import { useAuthStore } from "./../stores/authStore";
+import { useFormStore } from "@/stores/formStore";
 import { useRouter } from "vue-router";
+import Swal from "sweetalert2";
 
 import GLJ_LOGO from "@/assets/picture/GLJ_H.png";
 
 const router = useRouter();
-
+const isLoading = ref(false);
 const username = ref("");
 const password = ref("");
+const errorMessage = ref("");
+const showPassword = ref(false);
 
-const handleLogin = () => {
-  router.push("/Dashboard");
+const formStore = useFormStore();
+
+const handleLogin = async () => {
+  errorMessage.value = "";
+  isLoading.value = true;
+
+  const authStore = useAuthStore();
+
+  try {
+    // Check data before sending
+    console.log("Login Data:", {
+      username: username.value,
+      Password: password.value
+    });
+
+    const loginSuccess = await authStore.login(
+      username.value,
+      password.value,
+      router
+    );
+
+    if (loginSuccess) {
+      Swal.fire({
+        icon: "success",
+        title: "เข้าสู่ระบบสำเร็จ",
+        text: "ยินดีต้อนรับ!",
+        showConfirmButton: false,
+        timer: 1500,
+      }).then(() => {
+        formStore.setName(username.value);
+        router.push('/Dashboard')
+      })
+    }
+  } catch (error) {
+    // console.error("Login failed:", error.response?.data || error.message);
+    // errorMessage.value = "เกิดข้อผิดพลาด กรุณาลองใหม่";
+    Swal.fire({
+      icon: "error",
+      title: "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง",
+      // text: "ไม่สามารถเข้าสู่ระบบได้ กรุณาลองใหม่ในภายหลัง",
+    });
+  } finally {
+    isLoading.value = false;
+  }
 };
+
 </script>
 
 <style scoped>

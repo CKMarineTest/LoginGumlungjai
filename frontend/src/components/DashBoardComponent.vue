@@ -470,7 +470,6 @@
             <div
               class="border-t border-gray-200 px-8 py-6 flex justify-between items-center bg-white"
             >
-
               <div class="flex space-x-3">
                 <button
                   @click="closeModal"
@@ -721,28 +720,8 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-          <div
-            class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white flex flex-col items-center justify-center hover:from-blue-600 hover:to-blue-700 transition-all cursor-pointer"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-12 w-12 mb-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-              />
-            </svg>
-            <h3 class="text-lg font-bold mb-1">รายงานสรุป</h3>
-            <p class="text-sm text-blue-100 text-center">
-              ดูรายงานสรุปข้อมูลทุนทั้งหมด
-            </p>
-          </div>
+
+          <RegisterModalComponent />
 
           <div
             class="bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white flex flex-col items-center justify-center hover:from-purple-600 hover:to-purple-700 transition-all cursor-pointer"
@@ -796,9 +775,10 @@
 </template>
 
 <script setup>
+ /* eslint-disable */ 
 import { ref, onMounted, watch, defineProps, computed, nextTick } from "vue";
 import { useRouter } from "vue-router";
-import axios from 'axios';
+import axios from "axios";
 import gsap from "gsap";
 import { Bar } from "vue-chartjs";
 import SidebarComponent from "./Menu/SidebarComponent.vue";
@@ -820,6 +800,10 @@ ChartJS.register(
   CategoryScale,
   LinearScale
 );
+
+import RegisterModalComponent from "./RegisterModalComponent.vue";
+
+
 
 const chartDatasets = {
   today: {
@@ -1011,9 +995,11 @@ const fetchData = async () => {
   try {
     const response = await axios.get(baseUrl);
     if (response.data && Array.isArray(response.data.data)) {
-      dataArray.value = response.data.data;  // Set the data to the reactive variable
+      dataArray.value = response.data.data; // Set the data to the reactive variable
     } else {
-      console.error('API response is not an array or is missing the data array');
+      console.error(
+        "API response is not an array or is missing the data array"
+      );
     }
   } catch (error) {
     console.error("Error fetching data:", error);

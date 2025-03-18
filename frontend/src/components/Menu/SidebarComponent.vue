@@ -116,8 +116,8 @@
                 <div v-if="showProfileMenu"
                   class="absolute right-0 mt-4 w-60 bg-white rounded-xl shadow-xl border py-2 z-30">
                   <div class="px-4 py-3 border-b">
-                    <p class="text-sm font-medium text-gray-900">{{ userName }}</p>
-                    <p class="text-xs text-gray-500 mt-1">ผู้ใช้งานระบบ</p>
+                    <p class="text-sm font-medium text-gray-900"><b class="text-gray-500">ชื่อผู้ใช้ :</b> {{ userName }}</p>
+                    <!-- <p class="text-xs text-gray-500 mt-1">ผู้ใช้งานระบบ</p> -->
                   </div>
                   <div class="py-2">
                     <a href="#"
@@ -172,12 +172,16 @@ import {
   IdentificationIcon
 } from '@heroicons/vue/24/outline';
 
+// import { useFormStore } from '@/stores/formStore';
+
+// const formStore = useFormStore();
+
 const router = useRouter();
 const isExpanded = ref(false);
 const showNotifications = ref(false);
 const showProfileMenu = ref(false);
 // const searchQuery = ref('');
-const userName = ref('พงศกร ทองรักษ์');
+const userName = ref("Name");
 
 const menuItems = ref([
   { icon: ChartBarIcon, label: 'Dashboard', path: '/dashboard' },

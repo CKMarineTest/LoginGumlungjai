@@ -158,6 +158,12 @@ export const useFormStore = defineStore("form", {
     sickDetail: "",
   }),
   actions: {
+    setName(firstName) {
+      this.name = firstName;
+    },  
+    setLastName(lastName) {
+      this.lastName = lastName;
+    },
     saveForm() {
       localStorage.setItem("formData", JSON.stringify(this.$state));
     },

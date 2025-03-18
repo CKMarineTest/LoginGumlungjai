@@ -6,6 +6,8 @@ const path = require('path');
 const fs = require('fs');
 
 const efillingRoutes = require('./routes/efilling.routes');
+const registerRoutes = require('./routes/register.routes');
+const authRoutes = require('./routes/auth.routes');
 
 dotenv.config();
 
@@ -18,6 +20,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api', efillingRoutes);
+app.use('/api', registerRoutes);
+app.use('/api', authRoutes);
 
 const PORT = 8099;
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));

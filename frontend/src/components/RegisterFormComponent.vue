@@ -126,7 +126,7 @@
             <div>
               <p class="text-gray-500 text-sm font-medium">รอดำเนินการ</p>
               <h2 class="text-3xl font-bold text-gray-800">
-                {{ statusCounts["รอดำเนินการ"] || 0 }} คน
+                <!-- {{ item.Efilling_statusID.length || 0 }} คน -->
               </h2>
             </div>
           </div>
@@ -248,7 +248,7 @@
                   </td> -->
                   <td class="px-6 py-5 whitespace-nowrap">
                     <span
-                      v-if="item.status === 'ตรวจเสร็จสิ้น'"
+                      v-if="item.Efilling_statusID === 5"
                       class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 border border-green-200"
                     >
                       <svg
@@ -265,10 +265,10 @@
                           d="M5 13l4 4L19 7"
                         />
                       </svg>
-                      {{ item.status }}
+                      ตรวจเสร็จสิ้น
                     </span>
                     <span
-                      v-else-if="item.status === 'รอดำเนินการ'"
+                      v-else-if="item.Efilling_statusID === 3"
                       class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800 border border-yellow-200"
                     >
                       <svg
@@ -285,10 +285,10 @@
                           d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                         />
                       </svg>
-                      {{ item.status }}
+                      รอดำเนินการ
                     </span>
                     <span
-                      v-else-if="item.status && item.status.includes('แก้ไข')"
+                      v-else-if="item.Efilling_statusID === 2"
                       class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800 border border-red-200"
                     >
                       <svg
@@ -305,7 +305,7 @@
                           d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
                         />
                       </svg>
-                      {{ item.status }}
+                      แก้ไขเอกสาร
                     </span>
                     <span
                       v-else
