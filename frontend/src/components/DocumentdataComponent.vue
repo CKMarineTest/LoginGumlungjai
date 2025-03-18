@@ -86,10 +86,17 @@
           >
             ประเภททุนการศึกษา
           </h3>
-          <div class="relative underline text-xl">
-            <h4 class="bg-yellow-200 p-3 rounded-lg w-4/12">
-              {{ item.Project_Name }}
+          <div class="relative my-6">
+            <h4
+              class="inline-block text-xl font-semibold bg-blue-100 px-6 py-4 rounded-lg shadow-lg border-l-4 border-blue-600 text-blue-900"
+            >
+              <span class="flex items-center">
+                {{ item.Project_Name }}
+              </span>
             </h4>
+            <div
+              class="absolute h-1.5 bg-gradient-to-r from-blue-600 to-transparent w-full bottom-0 left-0"
+            ></div>
           </div>
           <br />
 
@@ -1891,6 +1898,8 @@
 
                                 <div
                                   class="grid grid-cols-1 md:grid-cols-2 gap-4"
+                                  v-for="item in dataArray"
+                                  :key="item.idcard"
                                 >
                                   <div>
                                     <label
@@ -1901,6 +1910,7 @@
                                     <input
                                       type="text"
                                       readonly
+                                      v-model="item.isSickType"
                                       class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                                     />
 
@@ -1917,6 +1927,7 @@
                                       cols="50"
                                       placeholder=""
                                       maxlength="250"
+                                      v-model="item.sickDetail"
                                     ></textarea>
                                   </div>
 
@@ -2103,7 +2114,10 @@
 
                       <hr />
 
-                      <ReasonCommentComponent class="mt-5 rounded-lg" />
+                      <ReasonCommentComponent
+                        class="mt-5 rounded-lg"
+                        :idcard="idcard"
+                      />
 
                       <hr />
 
