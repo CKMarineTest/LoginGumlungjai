@@ -169,11 +169,11 @@
                 วัน/เดือน/ปีเกิด <span class="text-red-500 text-sm"></span>
               </label>
               <input
-                type="date"
+                type="text"
                 placeholder="วันเดือนปีเกิด"
                 id="dob"
                 name="dob"
-                v-model="item.BirthDate"
+                :value="formatDate(item.BirthDate)"
                 readonly
                 class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
               />
@@ -243,7 +243,9 @@
                 </label>
                 <input
                   type="tel"
-                  placeholder="เบอร์โทรศัพท์ติดต่อ (สำรอง)"
+                  :placeholder="
+                    item.Mobile2 ? 'เบอร์โทรศัพท์ติดต่อ (สำรอง)' : 'ไม่ได้ระบุ'
+                  "
                   maxlength="10"
                   name="phone2"
                   readonly
@@ -780,7 +782,8 @@
                           </thead>
                           <tbody>
                             <tr
-                              v-for="(cer) in dataArray" :key="cer.idcard"
+                              v-for="cer in dataArray"
+                              :key="cer.idcard"
                               class="border-b hover:bg-blue-50 transition-colors"
                             >
                               <td class="px-4 py-3">
@@ -2120,7 +2123,10 @@
 
                       <hr />
 
-                      <EssaySubmissionComponent class="mt-5 rounded-lg" :idcard="idcard" />
+                      <EssaySubmissionComponent
+                        class="mt-5 rounded-lg"
+                        :idcard="idcard"
+                      />
 
                       <hr />
 
@@ -2216,36 +2222,54 @@ const fetchData = async () => {
   // }
 
   const data = new URLSearchParams();
-  data.append('card_id', idcard);
+  data.append("card_id", idcard);
 
+  const url = process.env.VUE_APP_API_URL + "/efilling/GetEfilling";
 
-  const url =
-      process.env.VUE_APP_API_URL + "/efilling/GetEfilling";
-
-    axios
-      .post(url, data, {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      })
-      .then((response) => {
-            if (response.data && Array.isArray(response.data.data)) {
-              dataArray.value = response.data.data; // Set the data to the reactive variable
-            } else {
-              console.error(
-                "API response is not an array or is missing the data array"
-              );
-            }
-
-      })
-      .catch((error) => {
-        Swal.fire({
-          icon: "error",
-          title: "Server Error",
-          text: error,
-        });
-        return false;
+  axios
+    .post(url, data, {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    })
+    .then((response) => {
+      if (response.data && Array.isArray(response.data.data)) {
+        dataArray.value = response.data.data; // Set the data to the reactive variable
+      } else {
+        console.error(
+          "API response is not an array or is missing the data array"
+        );
+      }
+    })
+    .catch((error) => {
+      Swal.fire({
+        icon: "error",
+        title: "Server Error",
+        text: error,
       });
+      return false;
+    });
+};
+
+const formatDate = (dateString) => {
+  // ตรวจสอบว่าเป็นวันที่ที่ถูกต้อง
+  const date = new Date(dateString);
+
+  if (isNaN(date.getTime())) {
+    console.error("Invalid Date");
+    return "";
+  }
+
+  const year = date.getFullYear(); // ได้ปีในรูปแบบ ค.ศ.
+  const monthName = new Intl.DateTimeFormat("th-TH", { month: "long" }).format(
+    date
+  );
+  const day = date.getDate();
+
+  // ปรับปีให้เป็นปี พ.ศ. โดยไม่ต้องลบ 543
+  const adjustedYear = year;
+
+  return `${day} ${monthName} ${adjustedYear}`; // แสดงผลในรูปแบบ วัน เดือน ปี พ.ศ.
 };
 
 onMounted(() => {
@@ -2317,7 +2341,6 @@ const closeMedicalModal = () => {
 };
 
 const editDocument = () => {
-
   router.push("/registerform").then(() => {
     Toast.fire({
       icon: "success",
@@ -2327,7 +2350,6 @@ const editDocument = () => {
 };
 
 const submitCheck = () => {
-
   router.push("/registerform").then(() => {
     Toast.fire({
       icon: "success",

@@ -36,12 +36,13 @@
         </h1>
       </div>
 
-      <div class="relative my-6" v-for="(item) in dataArray" :key="item.idcard">
+      <div class="relative my-6" v-for="item in dataArray" :key="item.idcard">
         <h4
           class="inline-block text-xl font-semibold bg-blue-100 px-6 py-4 rounded-lg shadow-lg border-l-4 border-blue-600 text-blue-900"
         >
           <span class="flex items-center">
-            <p class="text-md">หัวข้อเรียงความ</p> &nbsp; <b>{{ item.topic }}</b>
+            <p class="text-md">หัวข้อเรียงความ</p>
+            &nbsp; <b>{{ item.topic }}</b>
           </span>
         </h4>
         <div
@@ -172,7 +173,8 @@
                     />
                   </div>
                   <div
-                     v-for="(item) in dataArray" :key="item.idcard"
+                    v-for="item in dataArray"
+                    :key="item.idcard"
                     class="w-full h-full flex items-center justify-center"
                   >
                     <div class="text-center">
@@ -223,7 +225,6 @@ import { ref, onMounted, defineProps } from "vue";
 import axios from "axios";
 import { Download, FileText, ZoomIn, ZoomOut } from "lucide-vue-next";
 
-const data = ref([]);
 const dataArray = ref([]);
 
 const props = defineProps({
@@ -231,22 +232,34 @@ const props = defineProps({
 });
 
 const fetchData = async () => {
-  const baseUrl =
-    process.env.VUE_APP_API_URL + `/api/getEfillingByIdCard/${props.idcard}`;
-  // console.log(process.env.VUE_APP_API_URL);
-  try {
-    const response = await axios.get(baseUrl);
-    if (response.data && Array.isArray(response.data.data)) {
-      dataArray.value = response.data.data; // Set the data to the reactive variable
-    } else {
-      console.error(
-        "API response is not an array or is missing the data array"
-      );
-    }
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    data.value = [];
-  }
+  const data = new URLSearchParams();
+  data.append("card_id", props.idcard);
+
+  const url = process.env.VUE_APP_API_URL + "/efilling/GetEfilling";
+
+  axios
+    .post(url, data, {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    })
+    .then((response) => {
+      if (response.data && Array.isArray(response.data.data)) {
+        dataArray.value = response.data.data; // Set the data to the reactive variable
+      } else {
+        console.error(
+          "API response is not an array or is missing the data array"
+        );
+      }
+    })
+    .catch((error) => {
+      Swal.fire({
+        icon: "error",
+        title: "Server Error",
+        text: error,
+      });
+      return false;
+    });
 };
 
 onMounted(() => {

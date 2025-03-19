@@ -204,7 +204,7 @@
         <div class="flex items-center gap-2 mt-2">
           <div class="absolute ml-4">
             <span class="w-20 text-right">แขวง/ตำบล:</span>
-            <span class="w-20 inline-block ml-2">{{ data.SubDistrict2 }}</span>
+            <span class="w-40 inline-block ml-2">{{ data.SubDistrict2 }}</span>
           </div>
           <div class="absolute ml-64">
             <span class="w-20 text-right">เขต/อำเภอ:</span>
@@ -230,38 +230,38 @@
         <div class="flex items-center gap-2 mt-2 mb-5">
           <div class="absolute ml-4">
             <span class="w-20 text-right">บ้านเลขที่:</span>
-            <span class="w-10 inline-block ml-2">{{ currentHomeid }}</span>
+            <span class="w-10 inline-block ml-2">{{ data.currentHomeid }}</span>
           </div>
           <div class="absolute ml-32">
             <span class="w-20 text-right">หมู่ที่:</span>
-            <span class="w-10 inline-block ml-2">{{ currentGroupHomeid }}</span>
+            <span class="w-10 inline-block ml-2">{{ data.currentGroupHomeid }}</span>
           </div>
           <div class="absolute ml-64">
             <span class="w-20 text-right">ตรอก/ซอย:</span>
-            <span class="w-10 inline-block ml-2">{{ currentsoi }}</span>
+            <span class="w-10 inline-block ml-2">{{ data.currentsoi }}</span>
           </div>
           <div class="absolute ml-128">
             <span class="w-20 text-right">ถนน:</span>
-            <span class="w-10 inline-block ml-2">{{ currentroad }}</span>
+            <span class="w-10 inline-block ml-2">{{ data.currentroad }}</span>
           </div>
         </div>
 
         <div class="flex items-center gap-2 mt-2">
           <div class="absolute ml-4">
             <span class="w-20 text-right">แขวง/ตำบล:</span>
-            <span class="w-20 inline-block ml-2">บ้านเกาะ</span>
+            <span class="w-20 inline-block ml-2">{{ data.currentSubDistrict }}</span>
           </div>
           <div class="absolute ml-64">
             <span class="w-20 text-right">เขต/อำเภอ:</span>
-            <span class="w-10 inline-block ml-2">เมือง</span>
+            <span class="w-10 inline-block ml-2"></span>
           </div>
           <div class="absolute ml-96">
             <span class="w-20 text-right">จังหวัด:</span>
-            <span class="w-10 inline-block ml-2">สมุทรสาคร</span>
+            <span class="w-10 inline-block ml-2"></span>
           </div>
           <div class="absolute ml-144">
             <span class="w-20 text-right">รหัสไปรษณีย์:</span>
-            <span class="w-10 inline-block ml-2">74000</span>
+            <span class="w-10 inline-block ml-2"></span>
           </div>
         </div>
 
@@ -276,30 +276,30 @@
         <div class="flex items-center gap-2 mt-2 mb-5">
           <div class="absolute ml-6">
             <span class="w-20 text-right">บิดาชื่อนาย:</span>
-            <span class="w-40 inline-block ml-2">Lorem, ipsum.</span>
+            <span class="w-40 inline-block ml-2">{{ data.fatherName }}</span>
           </div>
           <div class="absolute ml-96">
             <span class="w-20 text-right">นามสกุล:</span>
-            <span class="w-40 inline-block ml-2">Lorem, ipsum.</span>
+            <span class="w-40 inline-block ml-2">{{ data.fatherLastName }}</span>
           </div>
           <div class="absolute ml-144">
             <span class="w-20 text-right">อายุ:</span>
-            <span class="w-10 inline-block ml-2">- ปี</span>
+            <span class="w-10 inline-block ml-2">{{ data.fatherAge }} ปี</span>
           </div>
         </div>
 
         <div class="flex items-center gap-2 mt-2 mb-5">
           <div class="absolute ml-6">
             <span class="w-20 text-right">อาชีพ:</span>
-            <span class="w-40 inline-block ml-2">Lorem, ipsum.</span>
+            <span class="w-40 inline-block ml-2">{{ data.fatherJob }}</span>
           </div>
           <div class="absolute ml-64">
             <span class="w-20 text-right">สถานที่ทำงาน:</span>
-            <span class="w-40 inline-block ml-2">Lorem, ipsum.</span>
+            <span class="w-40 inline-block ml-2">{{ data.fatherWorkPlace }}</span>
           </div>
           <div class="absolute ml-144">
             <span class="w-20 text-right">รายได้ต่อเดือน:</span>
-            <span class="w-10 inline-block ml-2">- บาท</span>
+            <span class="w-20 inline-block ml-2">{{ data.fatherSalary }} บาท</span>
           </div>
         </div>
 
@@ -314,30 +314,30 @@
         <div class="flex items-center gap-2 mt-2 mb-5">
           <div class="absolute ml-6">
             <span class="w-20 text-right">มารดาชื่อ นาง/นางสาว:</span>
-            <span class="w-40 inline-block ml-2">Lorem, ipsum.</span>
+            <span class="w-40 inline-block ml-2">{{ data.motherName }}</span>
           </div>
           <div class="absolute ml-96">
             <span class="w-20 text-right">นามสกุล:</span>
-            <span class="w-40 inline-block ml-2">Lorem, ipsum.</span>
+            <span class="w-40 inline-block ml-2">{{ data.motherLastName }}</span>
           </div>
           <div class="absolute ml-144">
             <span class="w-20 text-right">อายุ:</span>
-            <span class="w-10 inline-block ml-2">- ปี</span>
+            <span class="w-10 inline-block ml-2">{{ data.motherAge }} ปี</span>
           </div>
         </div>
 
         <div class="flex items-center gap-2 mt-2 mb-5">
           <div class="absolute ml-6">
             <span class="w-20 text-right">อาชีพ:</span>
-            <span class="w-40 inline-block ml-2">Lorem, ipsum.</span>
+            <span class="w-40 inline-block ml-2">{{ data.motherJob }}</span>
           </div>
           <div class="absolute ml-64">
             <span class="w-20 text-right">สถานที่ทำงาน:</span>
-            <span class="w-40 inline-block ml-2">Lorem, ipsum.</span>
+            <span class="w-40 inline-block ml-2">{{ data.motherWorkPlace }}</span>
           </div>
           <div class="absolute ml-144">
             <span class="w-20 text-right">รายได้ต่อเดือน:</span>
-            <span class="w-10 inline-block ml-2">- บาท</span>
+            <span class="w-20 inline-block ml-2">{{ data.motherSalary }} บาท</span>
           </div>
         </div>
 
@@ -355,30 +355,30 @@
         <div class="flex items-center gap-2 mt-2 mb-5">
           <div class="absolute ml-6">
             <span class="w-20 text-right">ผู้ปกครองชื่อ นาย/นาง/นางสาว:</span>
-            <span class="w-40 inline-block ml-2">Lorem, ipsum.</span>
+            <span class="w-40 inline-block ml-2">{{ data.parentName }}</span>
           </div>
           <div class="absolute ml-96">
             <span class="w-20 text-right">นามสกุล:</span>
-            <span class="w-40 inline-block ml-2">Lorem, ipsum.</span>
+            <span class="w-40 inline-block ml-2">{{ data.parentLastName }}</span>
           </div>
           <div class="absolute ml-144">
             <span class="w-20 text-right">อายุ:</span>
-            <span class="w-10 inline-block ml-2">- ปี</span>
+            <span class="w-10 inline-block ml-2">{{ data.parentAge }} ปี</span>
           </div>
         </div>
 
         <div class="flex items-center gap-2 mt-2 mb-5">
           <div class="absolute ml-6">
             <span class="w-20 text-right">อาชีพ:</span>
-            <span class="w-40 inline-block ml-2">Lorem, ipsum.</span>
+            <span class="w-40 inline-block ml-2">{{ data.parentJob }}</span>
           </div>
           <div class="absolute ml-64">
             <span class="w-20 text-right">สถานที่ทำงาน:</span>
-            <span class="w-40 inline-block ml-2">Lorem, ipsum.</span>
+            <span class="w-40 inline-block ml-2">{{ data.parentWorkPlace }}</span>
           </div>
           <div class="absolute ml-144">
             <span class="w-20 text-right">รายได้ต่อเดือน:</span>
-            <span class="w-10 inline-block ml-2">- บาท</span>
+            <span class="w-20 inline-block ml-2">{{ data.parentSalary }} บาท</span>
           </div>
         </div>
 
@@ -386,22 +386,22 @@
           <span class="font-bold">13.</span>
           <div class="absolute ml-6">
             <span class="w-20 text-right">ผู้สมัครมีพี่น้อง (รวมตัวเอง):</span>
-            <span class="w-20 inline-block ml-2">00 คน</span>
+            <span class="w-20 inline-block ml-2">{{ data.siblingCount }} คน</span>
           </div>
 
           <div class="absolute ml-64">
             <span class="w-20 text-right">เป็นชาย:</span>
-            <span class="w-20 inline-block ml-2">00 คน</span>
+            <span class="w-20 inline-block ml-2">{{ data.siblingMan }} คน</span>
           </div>
 
           <div class="absolute ml-96">
             <span class="w-20 text-right">เป็นหญิง:</span>
-            <span class="w-20 inline-block ml-2">00 คน</span>
+            <span class="w-20 inline-block ml-2">{{ data.siblingWomen }} คน</span>
           </div>
 
           <div class="absolute ml-128">
             <span class="w-20 text-right">ผู้สมัครเป็นบุตรคนที่:</span>
-            <span class="w-20 inline-block ml-2">00 </span>
+            <span class="w-20 inline-block ml-2">{{ data.siblingCountRegister }} คน</span>
           </div>
         </div>
 
@@ -410,9 +410,10 @@
             <span class="w-20 text-right"
               >จำนวนพี่น้องที่กำลังศึกษาอยู่(รวมตัวเอง):</span
             >
-            <span class="w-20 inline-block ml-2">00 คน</span>
+            <span class="w-20 inline-block ml-2">{{ data.siblingStudying }} คน</span>
           </div>
         </div>
+        <br>
         <div class="mb-4 mt-4">
           <p class="font-bold text-gray-800">
             โปรดระบุเกี่ยวกับพี่น้องของผู้ขอรับทุนรวมตัวเองตามลำดับในตารางดังนี้
@@ -709,27 +710,40 @@ const generatePDF = async () => {
   }
 };
 
-const data = ref([]);
 const dataArray = ref([]);
 
 const fetchData = async () => {
-  const baseUrl =
-    process.env.VUE_APP_API_URL + `/api/getEfillingByIdCard/${idcard}`;
-  // console.log(process.env.VUE_APP_API_URL);
-  try {
-    const response = await axios.get(baseUrl);
-    if (response.data && Array.isArray(response.data.data)) {
-      dataArray.value = response.data.data; // Set the data to the reactive variable
-      console.log(response.data.data)
-    } else {
-      console.error(
-        "API response is not an array or is missing the data array"
-      );
-    }
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    data.value = [];
-  }
+  const data = new URLSearchParams();
+  data.append('card_id', idcard);
+
+
+  const url =
+      process.env.VUE_APP_API_URL + "/efilling/GetEfilling";
+
+    axios
+      .post(url, data, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      })
+      .then((response) => {
+            if (response.data && Array.isArray(response.data.data)) {
+              dataArray.value = response.data.data; // Set the data to the reactive variable
+            } else {
+              console.error(
+                "API response is not an array or is missing the data array"
+              );
+            }
+
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Server Error",
+          text: error,
+        });
+        return false;
+      });
 };
 
 onMounted(() => {

@@ -107,6 +107,7 @@
 <script setup>
 import { ref, onMounted, defineProps } from "vue";
 import axios from "axios";
+import Swal from 'sweetalert2';
 
 const props = defineProps({
   idcard: String,
@@ -117,21 +118,34 @@ const dataArray = ref([]);
 const isFocused = ref(false);
 
 const fetchData = async () => {
-  const baseUrl =
-    process.env.VUE_APP_API_URL + `/api/getEfillingByIdCard/${props.idcard}`;
-  try {
-    const response = await axios.get(baseUrl);
-    if (response.data && Array.isArray(response.data.data)) {
-      dataArray.value = response.data.data; // Set the data to the reactive variable
-    } else {
-      console.error(
-        "API response is not an array or is missing the data array"
-      );
-    }
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    dataArray.value = [];
-  }
+  const data = new URLSearchParams();
+  data.append("card_id", props.idcard);
+
+  const url = process.env.VUE_APP_API_URL + "/efilling/GetEfilling";
+
+  axios
+    .post(url, data, {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    })
+    .then((response) => {
+      if (response.data && Array.isArray(response.data.data)) {
+        dataArray.value = response.data.data; // Set the data to the reactive variable
+      } else {
+        console.error(
+          "API response is not an array or is missing the data array"
+        );
+      }
+    })
+    .catch((error) => {
+      Swal.fire({
+        icon: "error",
+        title: "Server Error",
+        text: error,
+      });
+      return false;
+    });
 };
 
 onMounted(() => {
