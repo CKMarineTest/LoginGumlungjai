@@ -1,9 +1,8 @@
-const express = require('express');
-const router = express.Router();
-const { getEfillingController, getEfillingByIdCardController, getEfillingPhotoController } = require('../controllers/efilling.controller');
+module.exports = app => {
+    
+    const efilling = require('../controllers/efilling.controller');
+  
+    app.post('/efilling/GetlistEfilling', efilling.GetlistEfillingController);
+    app.post('/efilling/GetEfilling', efilling.GetEfillingController);
 
-router.get('/getEfilling', getEfillingController);
-router.get('/getEfillingByIdCard/:idCard', getEfillingByIdCardController);
-router.get('/getEfillingPhoto/:idCard', getEfillingPhotoController);
-
-module.exports = router;
+  };

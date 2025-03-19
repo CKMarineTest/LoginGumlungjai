@@ -1,7 +1,7 @@
 const sql = require('mssql');
 const config = require("../config/Mssql.config");
 
-async function getEfilling() {
+async function getEfillingService() {
   try {
     const pool = await sql.connect(config);
     const result = await pool.request().query("SELECT * FROM efilling");
@@ -12,7 +12,7 @@ async function getEfilling() {
   }
 }
 
-async function getEfillingByIdCard(idCard) {
+async function getEfillingByIdCardService(idCard) {
   try {
     const pool = await sql.connect(config);
     const result = await pool.request()
@@ -25,17 +25,4 @@ async function getEfillingByIdCard(idCard) {
   }
 }
 
-async function getEfillingPhoto(idCard) {
-  try {
-    const pool = await sql.connect(config);
-    const result = await pool.request()
-      .input('idCard', sql.NVarChar, idCard)
-      .query('SELECT photo FROM efilling WHERE idcard = @idCard');
-    return result.recordset;
-  }catch(error){
-    console.error(`Photo Query Error:`, error);
-    throw error;
-  }
-}
-
-module.exports = { getEfilling, getEfillingByIdCard, getEfillingPhoto };
+module.exports = { getEfillingService, getEfillingByIdCardService };

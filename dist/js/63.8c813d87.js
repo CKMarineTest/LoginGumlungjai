@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunkfrontend"]=self["webpackChunkfrontend"]||[]).push([[63],{4625:function(n,e,t){t.r(e),t.d(e,{default:function(){return f}});var u=t(6768),r=t(3751),s={__name:"SettingComponent",setup(n){return(n,e)=>((0,u.uX)(),(0,u.CE)(u.FK,null,[(0,u.Lk)("div",null,[(0,u.bF)(r.A)]),e[0]||(e[0]=(0,u.Lk)("div",null," Setting Page ",-1))],64))}};const a=s;var l=a;const i={class:"flex"};var c={__name:"SettingViews",setup(n){return(n,e)=>((0,u.uX)(),(0,u.CE)("div",i,[(0,u.bF)(l)]))}};const o=c;var f=o}}]);
-//# sourceMappingURL=63.8c813d87.js.map

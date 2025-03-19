@@ -4,7 +4,7 @@ exports.createUserController = async (req, res) => {
     try {
         let user_data = req.body; 
 
-        const user = await registerService.createUser(user_data);
+        const user = await registerService.createUserService(user_data);
 
         res.status(200).json({
             success: true,

@@ -3,10 +3,10 @@ const config = require('../config/Mssql.config');
 const bcrypt = require('bcryptjs');
 
 module.exports = {
-    createUser,
+    createUserService,
 }
 
-async function createUser(data){
+async function createUserService(data){
     const poolPromise = await sql.connect(config);
     const transaction = new sql.Transaction(poolPromise);
 
