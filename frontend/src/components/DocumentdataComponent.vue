@@ -2214,10 +2214,9 @@ const fetchData = async () => {
   //   console.error("Error fetching data:", error);
   //   data.value = [];
   // }
-  const data = {
-    card_id: '1739900371072',
-  };
 
+  const data = new URLSearchParams();
+  data.append('card_id', idcard);
 
 
   const url =
@@ -2230,7 +2229,14 @@ const fetchData = async () => {
         },
       })
       .then((response) => {
-        console.log("Upload successful:", response.data);
+            if (response.data && Array.isArray(response.data.data)) {
+              dataArray.value = response.data.data; // Set the data to the reactive variable
+            } else {
+              console.error(
+                "API response is not an array or is missing the data array"
+              );
+            }
+
       })
       .catch((error) => {
         Swal.fire({
@@ -2311,12 +2317,6 @@ const closeMedicalModal = () => {
 };
 
 const editDocument = () => {
-  // Toast.fire({
-  //   icon: "success",
-  //   title: "ปรับสถานะแก้ไขเอกสาร",
-  // }).then(() => {
-  //   router.push("/registerform");
-  // });
 
   router.push("/registerform").then(() => {
     Toast.fire({
@@ -2327,14 +2327,6 @@ const editDocument = () => {
 };
 
 const submitCheck = () => {
-  // Toast.fire({
-  //   icon: "success",
-  //   title: "ยืนยันการตรวจสอบเอกสารสำเร็จ",
-  // }).then(() => {
-  //   router.push("/registerform");
-  // });
-
-  
 
   router.push("/registerform").then(() => {
     Toast.fire({

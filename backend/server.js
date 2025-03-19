@@ -8,8 +8,9 @@ const fs = require('fs');
 dotenv.config();
 
 const app = express();
-app.use(express.json());
 app.use(cors({ origin: '*' }));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
     res.json("API Gumlungjai ");
