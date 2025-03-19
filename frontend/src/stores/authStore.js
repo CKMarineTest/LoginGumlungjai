@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 
-const baseUrl = process.env.VUE_APP_API_URL + "/api/auth/login";
+const baseUrl = process.env.VUE_APP_API_URL + "/auth/login";
 
 export const useAuthStore = defineStore("auth", {
   // <-- 'auth' as the id
