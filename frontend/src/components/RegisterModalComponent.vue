@@ -23,19 +23,16 @@
     </p>
   </div>
 
-  <!-- Modal -->
   <Teleport to="body">
     <div
       v-if="isModalOpen"
       class="fixed inset-0 flex items-center justify-center z-50 p-4"
     >
-      <!-- Backdrop with blur -->
       <div
         class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm transition-opacity"
         @click="isModalOpen = false"
       ></div>
 
-      <!-- Modal Content -->
       <div
         class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl z-10 transform transition-all duration-300"
         :class="{
@@ -43,7 +40,6 @@
           'opacity-0 scale-95': !isModalOpen,
         }"
       >
-        <!-- Header with gradient background -->
         <div
           class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-t-2xl px-8 py-6 flex items-center justify-between text-white"
         >
@@ -316,7 +312,7 @@ const submitForm = async () => {
   }
 
   try {
-    const url = process.env.VUE_APP_API_URL + "/api/createUser";
+    const url = process.env.VUE_APP_API_URL + "/register/createUser";
 
     const response = await axios.post(
       url,

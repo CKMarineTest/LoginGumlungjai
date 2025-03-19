@@ -438,10 +438,10 @@ const headers = [
 ];
 
 const fetchData = async () => {
-  const baseUrl = process.env.VUE_APP_API_URL + "/api/getEfilling";
+  const baseUrl = process.env.VUE_APP_API_URL + "/efilling/GetlistEfilling";
   // console.log(process.env.VUE_APP_API_URL);
   try {
-    const response = await axios.get(baseUrl);
+    const response = await axios.post(baseUrl);
     if (response.data && Array.isArray(response.data.data)) {
       dataArray.value = response.data.data;  // Set the data to the reactive variable
     } else {

@@ -780,8 +780,7 @@
                           </thead>
                           <tbody>
                             <tr
-                              v-for="(certificate, index) in certificates"
-                              :key="index"
+                              v-for="(cer) in dataArray" :key="cer.idcard"
                               class="border-b hover:bg-blue-50 transition-colors"
                             >
                               <td class="px-4 py-3">
@@ -794,7 +793,7 @@
                               <td class="px-4 py-3">
                                 <input
                                   type="text"
-                                  v-model="certificate.level"
+                                  v-model="cer.level"
                                   placeholder="ระดับ"
                                   readonly
                                   class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
@@ -803,7 +802,7 @@
                               <td class="px-4 py-3">
                                 <input
                                   type="text"
-                                  v-model="certificate.name"
+                                  v-model="cer.level"
                                   readonly
                                   class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
                                   placeholder="ระบุชื่อรายการเกียรติบัตร"
@@ -2121,7 +2120,7 @@
 
                       <hr />
 
-                      <EssaySubmissionComponent class="mt-5 rounded-lg" />
+                      <EssaySubmissionComponent class="mt-5 rounded-lg" :idcard="idcard" />
 
                       <hr />
 
@@ -2195,26 +2194,52 @@ const Toast = Swal.mixin({
   },
 });
 
-const data = ref([]);
+// const data = ref([]);
 const dataArray = ref([]);
 
 const fetchData = async () => {
-  const baseUrl =
-    process.env.VUE_APP_API_URL + `/api/getEfillingByIdCard/${idcard}`;
-  // console.log(process.env.VUE_APP_API_URL);
-  try {
-    const response = await axios.get(baseUrl);
-    if (response.data && Array.isArray(response.data.data)) {
-      dataArray.value = response.data.data; // Set the data to the reactive variable
-    } else {
-      console.error(
-        "API response is not an array or is missing the data array"
-      );
-    }
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    data.value = [];
-  }
+  // const baseUrl =
+  //   process.env.VUE_APP_API_URL + `/api/getEfillingByIdCard/${idcard}`;
+  // // console.log(process.env.VUE_APP_API_URL);
+  // try {
+  //   const response = await axios.get(baseUrl);
+  //   if (response.data && Array.isArray(response.data.data)) {
+  //     dataArray.value = response.data.data; // Set the data to the reactive variable
+  //   } else {
+  //     console.error(
+  //       "API response is not an array or is missing the data array"
+  //     );
+  //   }
+  // } catch (error) {
+  //   console.error("Error fetching data:", error);
+  //   data.value = [];
+  // }
+  const data = {
+    card_id: '1739900371072',
+  };
+
+
+
+  const url =
+      process.env.VUE_APP_API_URL + "/efilling/GetEfilling";
+
+    axios
+      .post(url, data, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      })
+      .then((response) => {
+        console.log("Upload successful:", response.data);
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Server Error",
+          text: error,
+        });
+        return false;
+      });
 };
 
 onMounted(() => {
