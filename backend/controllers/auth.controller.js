@@ -1,4 +1,4 @@
-const Efilling = require('../service/efilling.service');
+const auth = require('../service/auth.service');
 
   exports.loginController = async (req,res) => {
     try {
@@ -10,7 +10,7 @@ const Efilling = require('../service/efilling.service');
         return res.status(400).json({ message: 'Username and password are required' });
       }
       // Attempt to login the user
-      const { user, token } = await Efilling.authService(username, Password);
+      const { user, token } = await auth.authService(username, Password);
 
       // Send the success response with user details and token
       res.status(200).json({
