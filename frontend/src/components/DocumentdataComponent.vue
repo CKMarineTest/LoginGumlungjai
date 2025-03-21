@@ -89,7 +89,7 @@
           </h3>
           <div class="relative my-6">
             <h4
-              class="inline-block text-xl font-semibold bg-blue-100 px-6 py-4 rounded-xl shadow-lg border-l-4 border-blue-600 text-blue-900"
+              class="inline-block text-xl font-semibold bg-blue-100 px-6 py-4 rounded-lg shadow-lg border-l-4 border-blue-600 text-blue-900"
             >
               <span class="flex items-center">
                 {{ item.Project_Name }}
