@@ -63,6 +63,11 @@ const routes = [
         path: '/pdf/:idcard',
         name: 'pdfbyid',
         component: () => import('../components/PDFComponent.vue'),
+    },
+    {
+        path: '/user',
+        name: 'user',
+        component: () => import('../components/UserTableComponent.vue'),
     }
 ]
 

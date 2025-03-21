@@ -19,6 +19,7 @@ app.get('/', (req, res) => {
 require('../backend/routes/auth.routes')(app);
 require('../backend/routes/register.routes')(app);
 require('../backend/routes/efilling.routes')(app);
+require('../backend/routes/user.routes')(app);
 
 const PORT = 8096;
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));

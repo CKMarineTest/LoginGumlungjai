@@ -8,15 +8,15 @@
       <br />
       <div>
         <div class="flex justify-end">
-          <button
-            class="bg-blue-500 shadow-lg w-20 rounded-lg p-2 text-white hover:bg-blue-600"
+          <!-- <button
+            class="bg-blue-500 shadow-lg w-20 rounded-xl p-2 text-white hover:bg-blue-600"
             @click="handlePrintData(idcard)"
           >
             <center>
               <PrinterIcon class="w-10 h-10" />
               <p class="mt-1">Print</p>
             </center>
-          </button>
+          </button> -->
         </div>
       </div>
       <div
@@ -53,7 +53,7 @@
               @click="triggerPhotoUpload"
               class="group bg-white/10 backdrop-blur-sm p-4 rounded-2xl cursor-pointer hover:bg-white/20 transition-all w-full sm:w-auto"
             >
-              <div
+              <!-- <div
                 v-if="!photoPreview"
                 class="border-2 border-dashed border-white/60 w-36 h-44 sm:w-44 sm:h-52 rounded-xl flex flex-col items-center justify-center group-hover:border-white"
               >
@@ -66,13 +66,14 @@
                 class="w-36 h-44 sm:w-44 sm:h-52 object-cover rounded-xl"
                 alt="Preview"
               />
-              <input
-                type="file"
-                ref="photoInput"
-                class="hidden"
-                @change="handlePhotoUpload"
-                accept="image/*"
-              />
+               -->
+              <div v-for="pic in dataArray" :key="pic.idcard">
+                <img
+                  :src="`https://web.mrgshrimp.com/thegiftapi/${pic.photo}`"
+                  class="w-36 h-44 sm:w-44 sm:h-52 object-cover rounded-xl"
+                  alt="Preview"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -88,7 +89,7 @@
           </h3>
           <div class="relative my-6">
             <h4
-              class="inline-block text-xl font-semibold bg-blue-100 px-6 py-4 rounded-lg shadow-lg border-l-4 border-blue-600 text-blue-900"
+              class="inline-block text-xl font-semibold bg-blue-100 px-6 py-4 rounded-xl shadow-lg border-l-4 border-blue-600 text-blue-900"
             >
               <span class="flex items-center">
                 {{ item.Project_Name }}
@@ -121,7 +122,7 @@
                 v-model="item.FirstName"
                 name="name"
                 readonly
-                class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
+                class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
               />
             </div>
             <div class="w-full sm:w-1/2 lg:w-1/3">
@@ -138,7 +139,7 @@
                 name="lastname"
                 v-model="item.LastName"
                 readonly
-                class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
+                class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
               />
             </div>
             <div class="w-full sm:w-1/2 lg:w-1/4">
@@ -155,7 +156,7 @@
                 name="nickname"
                 v-model="item.NickName"
                 readonly
-                class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
+                class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
               />
             </div>
           </div>
@@ -175,7 +176,7 @@
                 name="dob"
                 :value="formatDate(item.BirthDate)"
                 readonly
-                class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
+                class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
               />
             </div>
             <div class="w-full sm:w-1/2 lg:w-1/3">
@@ -192,7 +193,7 @@
                 name="age"
                 v-model="item.Age"
                 readonly
-                class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
+                class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
               />
             </div>
             <div class="w-full sm:w-1/2 lg:w-1/3">
@@ -210,7 +211,7 @@
                 name="phone"
                 v-model="item.Mobile"
                 readonly
-                class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
+                class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
               />
             </div>
             <div class="w-full sm:w-1/3 lg:w-1/3">
@@ -228,7 +229,7 @@
                 name="idcard"
                 v-model="idcard"
                 readonly
-                class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
+                class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
               />
             </div>
 
@@ -251,7 +252,7 @@
                   readonly
                   v-model="item.Mobile2"
                   id="phone2"
-                  class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
+                  class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
                 />
               </div>
               <div class="w-full sm:w-1/3 lg:w-1/3">
@@ -269,7 +270,7 @@
                   name="email"
                   v-model="item.email"
                   readonly
-                  class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
+                  class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
                 />
               </div>
               <div class="w-full sm:w-1/2 lg:w-1/4">
@@ -286,7 +287,7 @@
                   name="lineId"
                   v-model="item.lineId"
                   readonly
-                  class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
+                  class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
                 />
               </div>
               <div class="w-full sm:w-1/2 lg:w-1/2">
@@ -303,7 +304,7 @@
                   v-model="item.facebook"
                   name="facebook"
                   readonly
-                  class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
+                  class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
                 />
               </div>
               <div class="w-full sm:w-1/1 lg:w-1/1">
@@ -319,7 +320,7 @@
                   rows="4"
                   v-model="item.special"
                   readonly
-                  class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
+                  class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
                   placeholder="ความสามารถพิเศษ"
                 ></textarea>
               </div>
@@ -341,7 +342,7 @@
                     name="specialWork"
                     v-model="item.specialWork"
                     readonly
-                    class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
+                    class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
                   />
                 </div>
                 <div class="w-full sm:w-1/1 lg:w-1/1 mt-2">
@@ -360,7 +361,7 @@
                       v-model="formStore.scholarship"
                       name="scholarship"
                       readonly
-                      class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
+                      class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
                     />
                   </div>
 
@@ -373,35 +374,89 @@
                       <span class="text-red-500 text-sm"></span>
                     </label>
 
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div
+                      class="grid grid-cols-1 md:grid-cols-4 gap-4"
+                      v-if="item.loaning !== 'no'"
+                    >
                       <input
                         type="text"
                         placeholder="การกู้กยศ."
                         id=""
-                        v-model="item.loaning"
+                        value="ใช่"
                         name=""
                         readonly
-                        class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
+                        class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
                       />
                     </div>
 
-                    <label
-                      class="text-lg font-semibold text-blue-700 mb-2 block"
-                      for=""
-                    >
-                      กู้กยศ.เป็นค่าใช้จ่าย
-                      <span class="text-red-500 text-sm"></span>
-                    </label>
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                      <input
-                        type="text"
-                        placeholder="กู้กยศ. เป็นค่าใช้จ่าย"
-                        id=""
-                        name=""
-                        v-model="item.loaningType"
-                        readonly
-                        class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
-                      />
+                    <div v-else class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                      <div
+                        class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl text-gray-500 bg-gray-100 flex items-center"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-6 w-6 mr-2"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </svg>
+                        <span>ไม่ได้กู้กยศ.</span>
+                      </div>
+                    </div>
+                    <div v-if="item.loaning === 'yes'">
+                      <label
+                        class="text-lg font-semibold text-blue-700 mb-2 block"
+                        for=""
+                      >
+                        กู้กยศ.เป็นค่าใช้จ่าย
+                        <span class="text-red-500 text-sm"></span>
+                      </label>
+                      <div
+                        class="grid grid-cols-1 md:grid-cols-4 gap-4"
+                        v-if="item.expenseBoth !== null"
+                      >
+                        <input
+                          type="text"
+                          placeholder="กู้กยศ. เป็นค่าใช้จ่าย"
+                          id=""
+                          value="ทั้ง 2 ประเภท"
+                          readonly
+                          class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
+                        />
+                      </div>
+                      <div
+                        class="grid grid-cols-1 md:grid-cols-4 gap-4"
+                        v-if="item.expenseFee !== null"
+                      >
+                        <input
+                          type="text"
+                          placeholder="กู้กยศ. เป็นค่าใช้จ่าย"
+                          id=""
+                          value="ค่าธรรมเนียม"
+                          readonly
+                          class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
+                        />
+                      </div>
+                      <div
+                        class="grid grid-cols-1 md:grid-cols-4 gap-4"
+                        v-if="item.expenseLiving !== null"
+                      >
+                        <input
+                          type="text"
+                          placeholder="กู้กยศ. เป็นค่าใช้จ่าย"
+                          id=""
+                          value="ค่าครองชีพ"
+                          readonly
+                          class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
+                        />
+                      </div>
                     </div>
 
                     <div class="w-full mt-2">
@@ -420,7 +475,7 @@
                           name=""
                           v-model="item.universityName"
                           readonly
-                          class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
+                          class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200"
                         />
                       </div>
                     </div>
@@ -439,7 +494,7 @@
                           name="faculty"
                           readonly
                           v-model="item.faculty"
-                          class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                          class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                           placeholder="คณะ"
                         />
                       </div>
@@ -457,7 +512,7 @@
                           name="major"
                           readonly
                           v-model="item.major"
-                          class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                          class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                           placeholder="สาขา"
                         />
                       </div>
@@ -479,7 +534,7 @@
                           name="floor"
                           v-model="item.floor"
                           readonly
-                          class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                          class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                           placeholder="ชั้นปี"
                         />
                       </div>
@@ -496,7 +551,7 @@
                           name="floor"
                           v-model="item.year"
                           readonly
-                          class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                          class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                           placeholder="ปีการศึกษา"
                         />
                       </div>
@@ -517,7 +572,7 @@
                             v-model.number="item.GPA"
                             max="4"
                             @input="validateGPA"
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             placeholder="กรอกเกรดเฉลี่ย"
                             readonly
                           />
@@ -527,7 +582,7 @@
                           >
                             <button
                               @click="openGPAModal"
-                              class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                              class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                             >
                               <svg
                                 v-if="!selectedFile"
@@ -604,9 +659,17 @@
                                   เกรด
                                 </h1>
 
+                                <img
+                                  :src="`https://web.mrgshrimp.com/thegiftapi/${item.transcriptFilePath}`"
+                                  class="w-36 h-44 sm:w-44 sm:h-52 object-cover rounded-xl"
+                                  alt="Preview"
+                                />
+
                                 <div class="flex justify-center">
                                   <button
-                                    @click="handleCertificateDownload"
+                                    @click="
+                                      handleDownLoad(item.transcriptFilePath)
+                                    "
                                     :disabled="isDownloading"
                                     class="group flex items-center gap-3 px-6 py-3 bg-blue-500 text-white rounded-xl hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-blue-600 dark:hover:bg-blue-700"
                                   >
@@ -632,7 +695,7 @@
                           class="text-lg font-semibold text-blue-700 mb-2 block"
                           for="tcas"
                         >
-                          ค่าเล่าเรียน <span class="text-red-500"></span>
+                          ค่าเล่าเรียน (บาท/เทอม)<span class="text-red-500"></span>
                         </label>
                         <div class="relative">
                           <input
@@ -641,7 +704,7 @@
                             name="tcas"
                             readonly
                             v-model="item.tcas"
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             placeholder="ค่าเล่าเรียน (บาท/เทอม)"
                           />
 
@@ -658,7 +721,44 @@
                             >
                               <button
                                 @click="openTermFeeModal"
-                                class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                              >
+                                <svg
+                                  v-if="!selectedFile"
+                                  class="w-4 h-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 4v16m0-16l-4 4m4-4l4 4"
+                                  />
+                                </svg>
+                                <svg
+                                  v-else
+                                  class="w-4 h-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                  />
+                                </svg>
+                                <span class="text-sm font-medium">
+                                  ไฟล์ TCAS
+                                </span>
+                              </button>
+                              &nbsp;
+                              <button
+                                @click="openTcas2Modal"
+                                class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                               >
                                 <svg
                                   v-if="!selectedFile"
@@ -695,6 +795,8 @@
                             </div>
                           </Transition>
                         </div>
+
+                        
 
                         <transition
                           enter-active-class="transition duration-300 ease-out"
@@ -734,12 +836,12 @@
                               <h1
                                 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center tracking-wide"
                               >
-                                ค่าเทอม
+                                TCAS
                               </h1>
 
                               <div class="flex justify-center">
                                 <button
-                                  @click="handleCertificateDownload"
+                                  @click="handleDownLoad(item.tcasFilePath)"
                                   :disabled="isDownloading"
                                   class="group flex items-center gap-3 px-6 py-3 bg-blue-500 text-white rounded-xl hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-blue-600 dark:hover:bg-blue-700"
                                 >
@@ -758,6 +860,70 @@
                             </div>
                           </div>
                         </transition>
+
+                        <transition
+                          enter-active-class="transition duration-300 ease-out"
+                          enter-from-class="opacity-0 scale-95"
+                          enter-to-class="opacity-100 scale-100"
+                          leave-active-class="transition duration-200 ease-in"
+                          leave-from-class="opacity-100 scale-100"
+                          leave-to-class="opacity-0 scale-95"
+                        >
+                          <div
+                            v-if="isTcas2ModalOpen"
+                            class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
+                          >
+                            <div
+                              class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[26rem] max-w-[90vw] p-6 relative transform transition-all duration-300 ease-in-out"
+                            >
+                              <button
+                                @click="closeTcas2Modal"
+                                class="absolute top-4 right-4 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 transition-colors group"
+                              >
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  class="h-7 w-7 group-hover:rotate-90 transition-transform"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                >
+                                  <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"
+                                  />
+                                </svg>
+                              </button>
+
+                              <h1
+                                class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center tracking-wide"
+                              >
+                                ไฟล์ค่าเทอม
+                              </h1>
+
+                              <div class="flex justify-center">
+                                <button
+                                  @click="handleDownLoad(item.tcasFile2Path)"
+                                  :disabled="isDownloading"
+                                  class="group flex items-center gap-3 px-6 py-3 bg-blue-500 text-white rounded-xl hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-blue-600 dark:hover:bg-blue-700"
+                                >
+                                  <Download
+                                    class="w-6 h-6 transition-transform group-hover:rotate-12"
+                                  />
+                                  <span class="text-base font-semibold">
+                                    {{
+                                      isDownloading
+                                        ? "กำลังดาวน์โหลด..."
+                                        : "ดาวน์โหลด"
+                                    }}
+                                  </span>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </transition>
+
                       </div>
                     </div>
                     <br />
@@ -768,7 +934,7 @@
                         ข้อมูลเกียรติบัตร
                       </h4>
 
-                      <div class="overflow-x-auto shadow-md rounded-lg">
+                      <div class="overflow-x-auto shadow-md rounded-xl">
                         <table class="w-full border-collapse bg-white">
                           <thead>
                             <tr class="bg-blue-500 text-white">
@@ -799,7 +965,7 @@
                                   v-model="cer.level"
                                   placeholder="ระดับ"
                                   readonly
-                                  class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
+                                  class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
                                 />
                               </td>
                               <td class="px-4 py-3">
@@ -807,14 +973,14 @@
                                   type="text"
                                   v-model="cer.level"
                                   readonly
-                                  class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
+                                  class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
                                   placeholder="ระบุชื่อรายการเกียรติบัตร"
                                 />
                               </td>
                               <td class="px-4 py-3 text-center">
                                 <button
                                   @click="openCertificateModal(index)"
-                                  class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                  class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                                 >
                                   <span>ไฟล์เกียรติบัตร</span>
                                 </button>
@@ -899,6 +1065,7 @@
                         </div>
                       </transition>
                     </div>
+                    <br />
                     <div class="flex flex-wrap w-full gap-4 mt-2">
                       <div class="w-full sm:w-full lg:w-full">
                         <h3
@@ -924,7 +1091,7 @@
                               id="homeid"
                               v-model="item.permanentHomeid"
                               readonly
-                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
                           </div>
 
@@ -940,7 +1107,7 @@
                               id="grouphomeid"
                               v-model="item.permanentGroupHomeid"
                               readonly
-                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
                           </div>
 
@@ -958,7 +1125,7 @@
                               v-model="item.permanentsoi"
                               name="soi"
                               readonly
-                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
                           </div>
 
@@ -975,7 +1142,7 @@
                               v-model="item.permanentroad"
                               name="road"
                               readonly
-                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
                           </div>
                         </div>
@@ -996,7 +1163,7 @@
                               v-model="item.Province2"
                               readonly
                               name="province"
-                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
                           </div>
 
@@ -1014,7 +1181,7 @@
                               name="district"
                               v-model="item.District2"
                               readonly
-                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
                           </div>
 
@@ -1032,7 +1199,7 @@
                               readonly
                               v-model="item.SubDistrict2"
                               name="subdistrict"
-                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
                           </div>
 
@@ -1050,10 +1217,11 @@
                               v-model="item.zipcode2"
                               readonly
                               name="zip_code"
-                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
                           </div>
                         </div>
+                        <br />
                         <h3
                           class="text-xl font-semibold text-blue-900 mb-2 flex items-center mt-2"
                           for="currentAddress"
@@ -1077,7 +1245,7 @@
                               id="homeid"
                               readonly
                               v-model="item.currentHomeid"
-                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
                           </div>
 
@@ -1093,7 +1261,7 @@
                               id="grouphomeid"
                               v-model="item.currentGroupHomeid"
                               readonly
-                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
                           </div>
 
@@ -1111,7 +1279,7 @@
                               name="soi"
                               v-model="item.currentsoi"
                               readonly
-                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
                           </div>
 
@@ -1128,7 +1296,7 @@
                               name="road"
                               v-model="item.currentroad"
                               readonly
-                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
                           </div>
                         </div>
@@ -1149,7 +1317,7 @@
                               readonly
                               v-model="item.Province"
                               name="province"
-                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
                           </div>
 
@@ -1167,7 +1335,7 @@
                               name="district"
                               v-model="item.Districts"
                               readonly
-                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
                           </div>
 
@@ -1185,7 +1353,7 @@
                               readonly
                               name="subdistrict"
                               v-model="item.SubDistricts"
-                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
                           </div>
 
@@ -1203,20 +1371,22 @@
                               readonly
                               v-model="item.zipcode1"
                               name="zip_code"
-                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             />
                           </div>
                         </div>
                         <div class="mt-4">
                           <h3
+                            v-if="item.isRenthouse === 'yes'"
                             class="text-lg font-semibold gap-2 text-blue-700 mb-2 flex items-center"
                           >
                             ค่าเช่าบ้านต่อเดือน
                           </h3>
 
                           <input
+                            v-if="item.isRenthouse === 'yes'"
                             type="number"
-                            class="w-full sm:w-6/12 px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
+                            class="w-full sm:w-6/12 px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
                             placeholder="ค่าเช่าบ้านต่อเดือน"
                             readonly
                             v-model="item.homeRentCost"
@@ -1225,7 +1395,7 @@
                           <div class="flex flex-col sm:flex-row gap-4 mt-4">
                             <button
                               @click="openHousePictureModal"
-                              class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                              class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -1245,8 +1415,9 @@
                             </button>
 
                             <button
+                              v-if="item.isRenthouse === 'yes'"
                               @click="openHouseEvidenceModal"
-                              class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                              class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -1311,7 +1482,11 @@
 
                                 <div class="flex justify-center">
                                   <button
-                                    @click="handleCertificateDownload"
+                                    @click="
+                                      handleDownLoad(
+                                        item.currentFileHomePicPath
+                                      )
+                                    "
                                     :disabled="isDownloading"
                                     class="group flex items-center gap-3 px-6 py-3 bg-blue-500 text-white rounded-xl hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-blue-600 dark:hover:bg-blue-700"
                                   >
@@ -1374,7 +1549,7 @@
 
                                 <div class="flex justify-center">
                                   <button
-                                    @click="handleCertificateDownload"
+                                    @click="handleDownLoad(item.homeRentPath)"
                                     :disabled="isDownloading"
                                     class="group flex items-center gap-3 px-6 py-3 bg-blue-500 text-white rounded-xl hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-blue-600 dark:hover:bg-blue-700"
                                   >
@@ -1420,7 +1595,7 @@
                             placeholder="ชื่อบิดา นาย"
                             v-model="item.fatherName"
                             readonly
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                           />
                         </div>
 
@@ -1438,7 +1613,7 @@
                             placeholder="นามสกุล"
                             v-model="item.fatherLastName"
                             readonly
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                           />
                         </div>
 
@@ -1456,7 +1631,7 @@
                             v-model="item.fatherAge"
                             placeholder="อายุ"
                             readonly
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                           />
                         </div>
                       </div>
@@ -1475,7 +1650,7 @@
                             v-model="item.fatherJob"
                             placeholder="อาชีพ"
                             readonly
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                           />
                         </div>
 
@@ -1493,7 +1668,7 @@
                             v-model="item.fatherWorkPlace"
                             placeholder="สถานที่ทำงาน"
                             readonly
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                           />
                         </div>
                       </div>
@@ -1511,11 +1686,95 @@
                             type="number"
                             readonly
                             v-model="item.fatherSalary"
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             placeholder="รายได้ต่อเดือนบิดา"
                           />
                         </div>
                       </div>
+                      <br />
+                      <button
+                        @click="openFatherSlipFileModal"
+                        class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-5 w-5"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                          />
+                        </svg>
+                        <span>เอกสารเงินเดือนบิดา</span>
+                      </button>
+
+                      <transition
+                        enter-active-class="transition duration-300 ease-out"
+                        enter-from-class="opacity-0 scale-95"
+                        enter-to-class="opacity-100 scale-100"
+                        leave-active-class="transition duration-200 ease-in"
+                        leave-from-class="opacity-100 scale-100"
+                        leave-to-class="opacity-0 scale-95"
+                      >
+                        <div
+                          v-if="isFatherModalOpen"
+                          class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
+                        >
+                          <div
+                            class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[26rem] max-w-[90vw] p-6 relative transform transition-all duration-300 ease-in-out"
+                          >
+                            <button
+                              @click="closeFatherModal"
+                              class="absolute top-4 right-4 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 transition-colors group"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-7 w-7 group-hover:rotate-90 transition-transform"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M6 18L18 6M6 6l12 12"
+                                />
+                              </svg>
+                            </button>
+
+                            <h1
+                              class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center tracking-wide"
+                            >
+                              เอกสารเงินเดือนบิดา
+                            </h1>
+
+                            <div class="flex justify-center">
+                              <button
+                                @click="handleDownLoad(item.fatherSlipFilePath)"
+                                :disabled="isDownloading"
+                                class="group flex items-center gap-3 px-6 py-3 bg-blue-500 text-white rounded-xl hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-blue-600 dark:hover:bg-blue-700"
+                              >
+                                <Download
+                                  class="w-6 h-6 transition-transform group-hover:rotate-12"
+                                />
+                                <span class="text-base font-semibold">
+                                  {{
+                                    isDownloading
+                                      ? "กำลังดาวน์โหลด..."
+                                      : "ดาวน์โหลด"
+                                  }}
+                                </span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </transition>
 
                       <h3
                         class="text-xl font-semibold text-blue-900 mt-8 mb-6 flex items-center gap-2"
@@ -1540,7 +1799,7 @@
                             v-model="item.motherName"
                             placeholder="ชื่อมารดา"
                             readonly
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                           />
                         </div>
 
@@ -1558,7 +1817,7 @@
                             v-model="item.motherLastName"
                             placeholder="นามสกุล"
                             readonly
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                           />
                         </div>
 
@@ -1576,7 +1835,7 @@
                             id="motherAge"
                             placeholder="อายุ"
                             readonly
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                           />
                         </div>
                       </div>
@@ -1596,7 +1855,7 @@
                             v-model="item.motherJob"
                             placeholder="อาชีพ"
                             readonly
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                           />
                         </div>
 
@@ -1614,7 +1873,7 @@
                             v-model="item.motherWorkPlace"
                             placeholder="สถานที่ทำงาน"
                             readonly
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                           />
                         </div>
                       </div>
@@ -1635,130 +1894,258 @@
                             v-model="item.motherSalary"
                             name="motherSalary"
                             readonly
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                             placeholder="รายได้ต่อเดือนมารดา"
                           />
                         </div>
                       </div>
-                      <h3
-                        class="text-xl font-semibold text-blue-900 mt-8 mb-6 flex items-center gap-2"
+                      <br>
+                      <button
+                        @click="openMotherSlipModal"
+                        class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                       >
-                        ผู้ขอรับทุนได้รับความอุปการะเลี้ยงดูจาก
-                      </h3>
-                      <div
-                        class="grid grid-cols-1 sm:grid-cols-2 mb-2 lg:grid-cols-3 gap-4"
-                      >
-                        <div>
-                          <label
-                            for="parentName"
-                            class="block text-lg font-semibold text-blue-700 mb-2"
-                          >
-                            ผู้ปกครองชิ่อ นาย / นาง / นางสาว
-                            <span class="text-red-500 text-sm align-top"></span>
-                          </label>
-                          <input
-                            type="text"
-                            id="parentName"
-                            v-model="item.parentName"
-                            placeholder="ชื่อผู้ปกครอง"
-                            readonly
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-5 w-5"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                           />
-                        </div>
+                        </svg>
+                        <span>เอกสารเงินเดือนมารดา</span>
+                      </button>
 
-                        <div>
-                          <label
-                            for="parentLastname"
-                            class="block text-lg font-semibold text-blue-700 mb-2"
+                      <transition
+                            enter-active-class="transition duration-300 ease-out"
+                            enter-from-class="opacity-0 scale-95"
+                            enter-to-class="opacity-100 scale-100"
+                            leave-active-class="transition duration-200 ease-in"
+                            leave-from-class="opacity-100 scale-100"
+                            leave-to-class="opacity-0 scale-95"
                           >
-                            นามสกุล
-                            <span class="text-red-500 text-sm align-top"></span>
-                          </label>
-                          <input
-                            type="text"
-                            id="parentLastname"
-                            v-model="item.parentLastName"
-                            placeholder="นามสกุล"
-                            readonly
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
-                          />
-                        </div>
+                            <div
+                              v-if="isMotherModalOpen"
+                              class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
+                            >
+                              <div
+                                class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-[26rem] max-w-[90vw] p-6 relative transform transition-all duration-300 ease-in-out"
+                              >
+                                <button
+                                  @click="closeMotherSlipModal"
+                                  class="absolute top-4 right-4 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 transition-colors group"
+                                >
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-7 w-7 group-hover:rotate-90 transition-transform"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                  >
+                                    <path
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M6 18L18 6M6 6l12 12"
+                                    />
+                                  </svg>
+                                </button>
 
-                        <div>
-                          <label
-                            for="parentAge"
-                            class="block text-lg font-semibold text-blue-700 mb-2"
-                          >
-                            อายุ
-                            <span class="text-red-500 text-sm align-top"></span>
-                          </label>
-                          <input
-                            type="number"
-                            id="parentAge"
-                            v-model="item.parentAge"
-                            placeholder="อายุ"
-                            readonly
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
-                          />
-                        </div>
-                      </div>
+                                <h1
+                                  class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center tracking-wide"
+                                >
+                                  เอกสารเงินเดือนมารดา
+                                </h1>
 
-                      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-                        <div>
-                          <label
-                            for="parentJob"
-                            class="block text-lg font-semibold text-blue-700 mb-2"
-                          >
-                            อาชีพ
-                            <span class="text-red-500 text-sm align-top"></span>
-                          </label>
-                          <input
-                            type="text"
-                            id="parentJob"
-                            v-model="item.parentJob"
-                            placeholder="อาชีพ"
-                            readonly
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
-                          />
-                        </div>
+                                <div class="flex justify-center">
+                                  <button
+                                    @click="handleDownLoad(item.motherSlipFilePath)"
+                                    :disabled="isDownloading"
+                                    class="group flex items-center gap-3 px-6 py-3 bg-blue-500 text-white rounded-xl hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-blue-600 dark:hover:bg-blue-700"
+                                  >
+                                    <Download
+                                      class="w-6 h-6 transition-transform group-hover:rotate-12"
+                                    />
+                                    <span class="text-base font-semibold">
+                                      {{
+                                        isDownloading
+                                          ? "กำลังดาวน์โหลด..."
+                                          : "ดาวน์โหลด"
+                                      }}
+                                    </span>
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </transition>
 
-                        <div>
-                          <label
-                            for="parentWorkPlace"
-                            class="block text-lg font-semibold text-blue-700 mb-2"
+                      <div v-if="item.isSupport">
+                        <h3
+                          class="text-xl font-semibold text-blue-900 mt-8 mb-6 flex items-center gap-2"
+                        >
+                          ผู้ขอรับทุนได้รับความอุปการะเลี้ยงดูจาก
+                        </h3>
+                        <div v-if="item.isSupport === 'other'">
+                          <div
+                            class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl text-gray-500 bg-gray-100 flex items-center"
                           >
-                            สถานที่ทำงาน
-                            <span class="text-red-500 text-sm align-top"></span>
-                          </label>
-                          <input
-                            type="text"
-                            id="parentWorkPlace"
-                            v-model="item.parentWorkPlace"
-                            placeholder="สถานที่ทำงาน"
-                            readonly
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
-                          />
-                        </div>
-                      </div>
+                            <span v-if="item.isSupport === 'other'"
+                              >ญาติหรือผู้อื่น</span
+                            >
+                          </div>
+                          <br />
+                          <div
+                            class="grid grid-cols-1 sm:grid-cols-2 mb-2 lg:grid-cols-3 gap-4"
+                          >
+                            <div>
+                              <label
+                                for="parentName"
+                                class="block text-lg font-semibold text-blue-700 mb-2"
+                              >
+                                ผู้ปกครองชื่อ นาย / นาง / นางสาว
+                                <span
+                                  class="text-red-500 text-sm align-top"
+                                ></span>
+                              </label>
+                              <input
+                                type="text"
+                                id="parentName"
+                                v-model="item.parentName"
+                                placeholder="ชื่อผู้ปกครอง"
+                                readonly
+                                class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                              />
+                            </div>
 
-                      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-4">
-                        <div>
-                          <label
-                            for="parentSalary"
-                            class="block text-lg font-semibold text-blue-700 mb-2"
+                            <div>
+                              <label
+                                for="parentLastname"
+                                class="block text-lg font-semibold text-blue-700 mb-2"
+                              >
+                                นามสกุล
+                                <span
+                                  class="text-red-500 text-sm align-top"
+                                ></span>
+                              </label>
+                              <input
+                                type="text"
+                                id="parentLastname"
+                                v-model="item.parentLastName"
+                                placeholder="นามสกุล"
+                                readonly
+                                class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                              />
+                            </div>
+
+                            <div>
+                              <label
+                                for="parentAge"
+                                class="block text-lg font-semibold text-blue-700 mb-2"
+                              >
+                                อายุ
+                                <span
+                                  class="text-red-500 text-sm align-top"
+                                ></span>
+                              </label>
+                              <input
+                                type="number"
+                                id="parentAge"
+                                v-model="item.parentAge"
+                                placeholder="อายุ"
+                                readonly
+                                class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                              />
+                            </div>
+                          </div>
+
+                          <div
+                            class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4"
                           >
-                            รายได้ต่อเดือน
-                            <span class="text-red-500 text-sm align-top"></span>
-                          </label>
-                          <input
-                            type="number"
-                            id="parentSalary"
-                            v-model="item.parentSalary"
-                            name="parentSalary"
-                            readonly
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
-                            placeholder="รายได้ต่อเดือนผู้ปกครอง"
-                          />
+                            <div>
+                              <label
+                                for="parentJob"
+                                class="block text-lg font-semibold text-blue-700 mb-2"
+                              >
+                                อาชีพ
+                                <span
+                                  class="text-red-500 text-sm align-top"
+                                ></span>
+                              </label>
+                              <input
+                                type="text"
+                                id="parentJob"
+                                v-model="item.parentJob"
+                                placeholder="อาชีพ"
+                                readonly
+                                class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                              />
+                            </div>
+
+                            <div>
+                              <label
+                                for="parentWorkPlace"
+                                class="block text-lg font-semibold text-blue-700 mb-2"
+                              >
+                                สถานที่ทำงาน
+                                <span
+                                  class="text-red-500 text-sm align-top"
+                                ></span>
+                              </label>
+                              <input
+                                type="text"
+                                id="parentWorkPlace"
+                                v-model="item.parentWorkPlace"
+                                placeholder="สถานที่ทำงาน"
+                                readonly
+                                class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                              />
+                            </div>
+                          </div>
+
+                          <div
+                            class="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-4"
+                          >
+                            <div>
+                              <label
+                                for="parentSalary"
+                                class="block text-lg font-semibold text-blue-700 mb-2"
+                              >
+                                รายได้ต่อเดือน
+                                <span
+                                  class="text-red-500 text-sm align-top"
+                                ></span>
+                              </label>
+                              <input
+                                type="number"
+                                id="parentSalary"
+                                v-model="item.parentSalary"
+                                name="parentSalary"
+                                readonly
+                                class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                                placeholder="รายได้ต่อเดือนผู้ปกครอง"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          v-else
+                          class="grid grid-cols-1 md:grid-cols-4 gap-4"
+                        >
+                          <div
+                            class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl text-gray-500 bg-gray-100 flex items-center"
+                          >
+                            <span v-if="item.isSupport === 'parent'"
+                              >บิดา/มารดา</span
+                            >
+                            <span v-if="item.isSupport === 'me'"
+                              >เลี้ยงดูตนเอง</span
+                            >
+                          </div>
                         </div>
                       </div>
 
@@ -1767,103 +2154,134 @@
                       >
                         ข้อมูลพี่น้อง
                       </h3>
-                      <div
-                        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
-                      >
-                        <div>
-                          <label
-                            for="siblingCount"
-                            class="block text-lg font-semibold text-blue-700 mb-2"
-                          >
-                            ผู้สมัครมีพี่น้อง (รวมตัวเอง)
-                            <span class="text-red-500 text-sm align-top"></span>
-                          </label>
-                          <input
-                            type="text"
-                            id="siblingCount"
-                            v-model="item.siblingCount"
-                            placeholder="จำนวนพี่น้อง"
-                            readonly
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
-                          />
+                      <div v-if="item.isSibling === 'yes'">
+                        <div
+                          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+                        >
+                          <div>
+                            <label
+                              for="siblingCount"
+                              class="block text-lg font-semibold text-blue-700 mb-2"
+                            >
+                              ผู้สมัครมีพี่น้อง (รวมตัวเอง)
+                              <span
+                                class="text-red-500 text-sm align-top"
+                              ></span>
+                            </label>
+                            <input
+                              type="text"
+                              id="siblingCount"
+                              v-model="item.siblingCount"
+                              placeholder="จำนวนพี่น้อง"
+                              readonly
+                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                            />
+                          </div>
+
+                          <div>
+                            <label
+                              for="siblingMan"
+                              class="block text-lg font-semibold text-blue-700 mb-2"
+                            >
+                              ชาย (คน)
+                              <span
+                                class="text-red-500 text-sm align-top"
+                              ></span>
+                            </label>
+                            <input
+                              type="text"
+                              id="siblingMan"
+                              v-model="item.siblingMan"
+                              placeholder="ชาย (คน)"
+                              readonly
+                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                            />
+                          </div>
+
+                          <div>
+                            <label
+                              for="siblingWomen"
+                              class="block text-lg font-semibold text-blue-700 mb-2"
+                            >
+                              หญิง (คน)
+                              <span
+                                class="text-red-500 text-sm align-top"
+                              ></span>
+                            </label>
+                            <input
+                              type="text"
+                              id="siblingWomen"
+                              v-model="item.siblingWomen"
+                              placeholder="หญิง (คน)"
+                              readonly
+                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                            />
+                          </div>
                         </div>
 
-                        <div>
-                          <label
-                            for="siblingMan"
-                            class="block text-lg font-semibold text-blue-700 mb-2"
-                          >
-                            ชาย (คน)
-                            <span class="text-red-500 text-sm align-top"></span>
-                          </label>
-                          <input
-                            type="text"
-                            id="siblingMan"
-                            v-model="item.siblingMan"
-                            placeholder="ชาย (คน)"
-                            readonly
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
-                          />
-                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                          <div>
+                            <label
+                              for="siblingCountRegister"
+                              class="block text-lg font-semibold text-blue-700 mb-2"
+                            >
+                              ผู้สมัครเป็นบุตรคนที่
+                              <span
+                                class="text-red-500 text-sm align-top"
+                              ></span>
+                            </label>
+                            <input
+                              type="text"
+                              id="siblingCountRegister"
+                              v-model="item.siblingCountRegister"
+                              readonly
+                              placeholder="ผู้สมัครเป็นบุตรคนที่"
+                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                            />
+                          </div>
 
-                        <div>
-                          <label
-                            for="siblingWomen"
-                            class="block text-lg font-semibold text-blue-700 mb-2"
+                          <div>
+                            <label
+                              for="siblingStudying"
+                              class="block text-lg font-semibold text-blue-700 mb-2"
+                            >
+                              จำนวนพี่น้องที่กำลังศึกษาอยู่ (รวมตัวเอง)<span
+                                class="text-red-500 text-sm align-top"
+                              ></span>
+                            </label>
+                            <input
+                              type="text"
+                              id="siblingStudying"
+                              v-model="item.siblingStudying"
+                              readonly
+                              placeholder="จำนวนพี่น้องที่กำลังศึกษาอยู่"
+                              class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                            />
+                          </div>
+                        </div>
+                        <SiblingInfoFormConponent />
+                      </div>
+                      <div v-else class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div
+                          class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl text-gray-500 bg-gray-100 flex items-center"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6 mr-2"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
                           >
-                            หญิง (คน)
-                            <span class="text-red-500 text-sm align-top"></span>
-                          </label>
-                          <input
-                            type="text"
-                            id="siblingWomen"
-                            v-model="item.siblingWomen"
-                            placeholder="หญิง (คน)"
-                            readonly
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
-                          />
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          </svg>
+                          <span>ไม่มีพี่น้อง</span>
                         </div>
                       </div>
-
-                      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-                        <div>
-                          <label
-                            for="siblingCountRegister"
-                            class="block text-lg font-semibold text-blue-700 mb-2"
-                          >
-                            ผู้สมัครเป็นบุตรคนที่
-                            <span class="text-red-500 text-sm align-top"></span>
-                          </label>
-                          <input
-                            type="text"
-                            id="siblingCountRegister"
-                            v-model="item.siblingCountRegister"
-                            readonly
-                            placeholder="ผู้สมัครเป็นบุตรคนที่"
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
-                          />
-                        </div>
-
-                        <div>
-                          <label
-                            for="siblingStudying"
-                            class="block text-lg font-semibold text-blue-700 mb-2"
-                          >
-                            จำนวนพี่น้องที่กำลังศึกษาอยู่ (รวมตัวเอง)<span
-                              class="text-red-500 text-sm align-top"
-                            ></span>
-                          </label>
-                          <input
-                            type="text"
-                            id="siblingStudying"
-                            v-model="item.siblingStudying"
-                            readonly
-                            placeholder="จำนวนพี่น้องที่กำลังศึกษาอยู่"
-                            class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
-                          />
-                        </div>
-                      </div>
-                      <SiblingInfoFormConponent />
 
                       <div class="mt-6">
                         <h4
@@ -1878,7 +2296,7 @@
                         </h4>
 
                         <div
-                          class="p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200 shadow-md"
+                          class="p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl border border-blue-200 shadow-md"
                         >
                           <div class="space-y-6">
                             <div class="relative">
@@ -1913,7 +2331,7 @@
                                       type="text"
                                       readonly
                                       v-model="item.isSickType"
-                                      class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
+                                      class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
                                     />
 
                                     <label
@@ -1924,7 +2342,7 @@
 
                                     <textarea
                                       readonly
-                                      class="w-full md:w-12/12 px-3 md:px-4 h-40 text-base md:text-lg border-2 border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
+                                      class="w-full md:w-12/12 px-3 md:px-4 h-40 text-base md:text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
                                       rows="5"
                                       cols="50"
                                       placeholder=""
@@ -1942,7 +2360,7 @@
                                       </label>
                                       <button
                                         @click="OpenMedicalModal"
-                                        class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                        class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                                       >
                                         <svg
                                           xmlns="http://www.w3.org/2000/svg"
@@ -2112,25 +2530,25 @@
 
                       <hr />
 
-                      <VolunteerComponent class="mt-5 rounded-lg" />
+                      <VolunteerComponent class="mt-5 rounded-xl" />
 
                       <hr />
 
                       <ReasonCommentComponent
-                        class="mt-5 rounded-lg"
+                        class="mt-5 rounded-xl"
                         :idcard="idcard"
                       />
 
                       <hr />
 
                       <EssaySubmissionComponent
-                        class="mt-5 rounded-lg"
+                        class="mt-5 rounded-xl"
                         :idcard="idcard"
                       />
 
                       <hr />
 
-                      <DocumentFormComponent class="mt-5 rounded-lg" />
+                      <DocumentFormComponent class="mt-5 rounded-xl" />
                     </div>
                   </div>
                 </div>
@@ -2138,13 +2556,13 @@
                 <div class="flex justify-center space-x-4">
                   <button
                     @click="editDocument"
-                    class="bg-yellow-500 flex items-center gap-2 p-4 px-4 rounded-lg text-white hover:bg-yellow-600 transition ease"
+                    class="bg-yellow-500 flex items-center gap-2 p-4 px-4 rounded-xl text-white hover:bg-yellow-600 transition ease"
                   >
                     <Edit /> แก้ไขเอกสาร
                   </button>
                   <button
                     @click="submitCheck"
-                    class="bg-green-600 flex items-center gap-2 p-4 px-4 rounded-lg text-white hover:bg-green-700 transition ease"
+                    class="bg-green-600 flex items-center gap-2 p-4 px-4 rounded-xl text-white hover:bg-green-700 transition ease"
                   >
                     <Check /> ยืนยันการตรวจสอบ
                   </button>
@@ -2173,7 +2591,7 @@ import documentPreviewUrl from "@/assets/test/sick.webp";
 import logoUrl from "@/assets/picture/GLJ_Logo.png";
 
 import { Download, FileText, Edit, Check } from "lucide-vue-next";
-import { PrinterIcon } from "@heroicons/vue/24/outline";
+// import { PrinterIcon } from "@heroicons/vue/24/outline";
 import { useRouter } from "vue-router";
 import Swal from "sweetalert2";
 
@@ -2199,6 +2617,8 @@ const Toast = Swal.mixin({
     toast.onmouseleave = Swal.resumeTimer;
   },
 });
+
+// const photoPreview = 'https://web.mrgshrimp.com/thegiftapi/${item.photo}';
 
 // const data = ref([]);
 const dataArray = ref([]);
@@ -2251,6 +2671,24 @@ const fetchData = async () => {
     });
 };
 
+const activities = ref([]);
+
+const fetchActivityData = async () => {
+  const url = process.env.VUE_APP_API_URL + "/efilling/GetActivity";
+
+  try {
+    const { data } = axios.post(url, {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+
+    activities.value = data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+
 const formatDate = (dateString) => {
   // ตรวจสอบว่าเป็นวันที่ที่ถูกต้อง
   const date = new Date(dateString);
@@ -2274,15 +2712,16 @@ const formatDate = (dateString) => {
 
 onMounted(() => {
   fetchData();
+  fetchActivityData();
 });
 
-const handlePrintData = (idCard) => {
-  if (idCard) {
-    router.push({ name: "pdfbyid", params: { idcard: idCard } });
-  } else {
-    console.error("ID Card is missing!");
-  }
-};
+// const handlePrintData = (idCard) => {
+//   if (idCard) {
+//     router.push({ name: "pdfbyid", params: { idcard: idCard } });
+//   } else {
+//     console.error("ID Card is missing!");
+//   }
+// };
 
 // modal
 const isTermFeeModalOpen = ref(false);
@@ -2291,10 +2730,25 @@ const isCertificateModalOpen = ref(false);
 const isHousePictureModalOpen = ref(false);
 const isHouseEvidenceModalOpen = ref(false);
 const isMedicalModalOpen = ref(false);
+const isFatherModalOpen = ref(false);
+const isMotherModalOpen = ref(false);
+const isTcas2ModalOpen = ref(false);
 
 const openTermFeeModal = () => {
   isTermFeeModalOpen.value = true;
 };
+
+const openFatherSlipFileModal = () => {
+  isFatherModalOpen.value = true;
+};
+
+const openTcas2Modal = () => {
+  isTcas2ModalOpen.value = true;
+}
+
+const closeTcas2Modal = () => {
+  isTcas2ModalOpen.value = false;
+}
 
 const openGPAModal = () => {
   isGpaModalOpen.value = true;
@@ -2316,8 +2770,20 @@ const OpenMedicalModal = () => {
   isMedicalModalOpen.value = true;
 };
 
+const openMotherSlipModal = () => {
+  isMotherModalOpen.value = true;
+}
+
+const closeMotherSlipModal = () => {
+  isMotherModalOpen.value = false;
+}
+
 const closeTermFeeModal = () => {
   isTermFeeModalOpen.value = false;
+};
+
+const closeFatherModal = () => {
+  isFatherModalOpen.value = false;
 };
 
 const closeGpaModal = () => {
@@ -2349,11 +2815,29 @@ const editDocument = () => {
   });
 };
 
+// const isDownloadingTranscriptFile = ref(false);
+// const imageTranscriptUrl = process.env.VUE_APP_API_URL + '/public/files/image/output_image_20250320T125822568Z.jpg'
+// const imageTranscriptUrl = `https://web.mrgshrimp.com/thegiftapi/public/files/image/output_image_20250320T125822568Z.jpg`;
+
+const handleDownLoad = (filePath) => {
+  try {
+    const link = document.createElement("a");
+    // link.href = process.env.VUE_APP_API_URL + '/public/files/image/' + filePath // ใช้ URL ที่ดึงมาจาก API
+    link.href = "https://web.mrgshrimp.com/thegiftapi/" + filePath; // ใช้ URL ที่ดึงมาจาก API
+    link.setAttribute("download", "transcript.pdf");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  } catch (error) {
+    console.error("Error downloading file:", error);
+  }
+};
+
 const submitCheck = () => {
   router.push("/registerform").then(() => {
     Toast.fire({
       icon: "success",
-      title: "ยืนยันการตรวจสอบเอกสารสำเร็จ",
+      title: "ยืนยันการตรวสอบเอกสารสำเร็จ",
     });
   });
 };
