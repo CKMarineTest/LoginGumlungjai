@@ -948,8 +948,8 @@
                           </thead>
                           <tbody>
                             <tr
-                              v-for="cer in dataArray"
-                              :key="cer.idcard"
+                              v-for="(cer, index) in cerArray"
+                              :key="cer.cr_id"
                               class="border-b hover:bg-blue-50 transition-colors"
                             >
                               <td class="px-4 py-3">
@@ -962,7 +962,7 @@
                               <td class="px-4 py-3">
                                 <input
                                   type="text"
-                                  v-model="cer.level"
+                                  v-model="cer.c_level"
                                   placeholder="ระดับ"
                                   readonly
                                   class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
@@ -971,7 +971,7 @@
                               <td class="px-4 py-3">
                                 <input
                                   type="text"
-                                  v-model="cer.level"
+                                  v-model="cer.cername"
                                   readonly
                                   class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
                                   placeholder="ระบุชื่อรายการเกียรติบัตร"
@@ -990,7 +990,6 @@
                         </table>
                       </div>
 
-                      <!-- Modal -->
                       <transition
                         enter-active-class="transition duration-300 ease-out"
                         enter-from-class="opacity-0 scale-95"
@@ -1034,7 +1033,7 @@
 
                             <div class="flex justify-center">
                               <button
-                                @click="handleCertificateDownload"
+                                @click="handleDownLoad(cer.filePath)"
                                 :disabled="isDownloading"
                                 class="group flex items-center gap-3 px-6 py-3 bg-blue-500 text-white rounded-xl hover:bg-blue-600 active:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-blue-600 dark:hover:bg-blue-700"
                               >
@@ -2318,8 +2317,8 @@
 
                                 <div
                                   class="grid grid-cols-1 md:grid-cols-2 gap-4"
-                                  v-for="item in dataArray"
-                                  :key="item.idcard"
+                                  v-for="item in medArray"
+                                  :key="item.Sick_ID"
                                 >
                                   <div>
                                     <label
@@ -2530,7 +2529,7 @@
 
                       <hr />
 
-                      <VolunteerComponent class="mt-5 rounded-xl" />
+                      <VolunteerComponent class="mt-5 rounded-xl" :idcard="idcard" />
 
                       <hr />
 
@@ -2618,10 +2617,9 @@ const Toast = Swal.mixin({
   },
 });
 
-// const photoPreview = 'https://web.mrgshrimp.com/thegiftapi/${item.photo}';
-
-// const data = ref([]);
 const dataArray = ref([]);
+const cerArray = ref([]);
+const medArray = ref([]);
 
 const fetchData = async () => {
   const data = new URLSearchParams();
@@ -2638,6 +2636,8 @@ const fetchData = async () => {
     .then((response) => {
 
         dataArray.value = response.data.data.main; // Set the data to the reactive variable
+        cerArray.value = response.data.data.certificate;
+        medArray.value = response.data.data.familyMedicalHistory;
 
     })
     .catch((error) => {
