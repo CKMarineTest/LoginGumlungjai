@@ -17,7 +17,7 @@ async function getEfillingByIdCardService(idCard) {
     const pool = await sql.connect(config);
     const result = await pool.request()
       .input('idCard', sql.NVarChar, idCard)
-      .query("SELECT * FROM efilling WHERE idcard = @idCard");
+      .query("SELECT E_ID, Project_ID, Project_Name, FirstName, LastName, NickName, BirthDate, Age, Mobile, idcard, Mobile2, email, lineId, facebook, special, floor, year, GPA, fatherName, fatherLastName, fatherAge, fatherJob, fatherWorkPlace, fatherSalary, fatherStatus, motherName, motherLastName, motherAge, motherJob, motherWorkPlace, motherSalary, motherStatus, hasSibling, parentName, parentLastName, parentAge, parentJob, parentWorkPlace, parentSalary, siblingCount, siblingMan, siblingWomen, siblingCountRegister, siblingStudying, oldHomeid, oldGroupHomeid, oldsoi, oldroad, salaryWork, uploadFile, faculty, major, parentRelation, showModal, diseaseDetails, selectedUniversity, selectedYear, loaning, expenseType, expenseFee, expenseLiving, expenseBoth, homeRentCost, isRenthouse, nationals, religion, subdistrict,case when  specialWork = 'hasSpecialWork' then 'มีการทำงานพิเศษ' when 'no' then 'ไม่มีการทำงานพิเศษ', scholarshipStatus, location, otherHealthStatus, tcas, photo, sameAddress, currentHomeid, currentGroupHomeid, currentsoi, currentroad, permanentHomeid, permanentGroupHomeid, permanentsoi, permanentroad, Province, Districts, SubDistricts, Province2, District2, SubDistrict2, isSupport, isSick, scholarshipgumlungjai, scholarshipother, reasoncomment, haveCertificate, haveVolunteer, topic, isAgree, isSickType, sickDetail, Efilling_statusID, universityName, zipcode1, zipcode2, transcriptFilePath, tcasFilePath, tcasFile2Path, currentFileHomePicPath, homeRentPath, fatherSlipFilePath, motherSlipFilePath, medCertPath FROM Efilling WHERE idcard = @idCard");
     return result.recordset;
   }catch(error) {
     console.error(`Datbase Query Error:`, error);
@@ -43,7 +43,7 @@ async function getEfilling_certificate(E_ID) {
     const pool = await sql.connect(config);
     const result = await pool.request()
       .input('E_ID', sql.NVarChar, E_ID)
-      .query("SELECT  cr_id,cername,c_level,filepath,E_ID FROM Efilling_certificate where E_ID = @E_ID");
+      .query("SELECT  cr_id,cername,case when c_level = 'national'  then 'ระดับชาติ' when c_level = 'province' then 'ระดับจังหวัด' END as c_level,filepath,E_ID FROM Efilling_certificate where E_ID = @E_ID");
     return result.recordset;
   }catch(error) {
     console.error(`Datbase Query Error:`, error);
