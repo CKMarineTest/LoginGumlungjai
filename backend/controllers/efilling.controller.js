@@ -13,30 +13,33 @@ exports.GetlistEfillingController = async (req, res) => {
 exports.GetEfillingController = async (req, res) => {
     let  idCard  = req.body.card_id
 
-    const data = await Efilling.getEfillingByIdCardService(idCard);
+    const dataFetched = await Efilling.getEfillingByIdCardService(idCard);
 
     // Check if data has been successfully fetched and contains E_ID
-    if (data && data[0].E_ID) {
+    if (dataFetched && dataFetched[0].E_ID) {
         // Fetch related data using E_ID
-        const dataActive = await Efilling.getEfilling_Activity(data[0].E_ID.toString());
-        const dataCertificate = await Efilling.getEfilling_certificate(data[0].E_ID.toString());
-        const dataFamilyMedicalHistory = await Efilling.getefilling_family_medical_history(data[0].E_ID.toString());
-        const dataScholarship = await Efilling.getEfilling_scholarship(data[0].E_ID.toString());
-        const dataSiblings = await Efilling.getefilling_siblings(data[0].E_ID.toString());
-        const dataWork = await Efilling.getEfilling_Work(data[0].E_ID.toString());
-
+        const dataActive = await Efilling.getEfilling_Activity(dataFetched[0].E_ID.toString());
+        const dataCertificate = await Efilling.getEfilling_certificate(dataFetched[0].E_ID.toString());
+        const dataFamilyMedicalHistory = await Efilling.getefilling_family_medical_history(dataFetched[0].E_ID.toString());
+        const dataScholarship = await Efilling.getEfilling_scholarship(dataFetched[0].E_ID.toString());
+        const dataSiblings = await Efilling.getefilling_siblings(dataFetched[0].E_ID.toString());
+        const dataWork = await Efilling.getEfilling_Work(dataFetched[0].E_ID.toString());
+    
         // Add fetched data as properties to the main data object
-        data.active = dataActive;
-        data.certificate = dataCertificate;
-        data.familyMedicalHistory = dataFamilyMedicalHistory;
-        data.scholarship = dataScholarship;
-        data.siblings = dataSiblings;
-        data.work = dataWork;
-
-        res.status(200).json({ success: true, data: data });
-
-        // Now `data` contains all the additional information
-        // console.log('Complete Data:', data);
+        let completeData = {
+            main: dataFetched,
+            active: dataActive,
+            certificate: dataCertificate,
+            familyMedicalHistory: dataFamilyMedicalHistory,
+            scholarship: dataScholarship,
+            siblings: dataSiblings,
+            work: dataWork
+        };
+    
+        res.status(200).json({ success: true, data: completeData });
+    
+        // Now `completeData` contains all the additional information
+        // console.log('Complete Data:', completeData);
     } else {
         console.log('No valid data found for the given idCard or missing E_ID.');
         res.status(500).json({ success: false, message: "Internal Server Error" });
