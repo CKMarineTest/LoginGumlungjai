@@ -17,14 +17,14 @@ exports.GetEfillingController = async (req, res) => {
     const data = await Efilling.getEfillingByIdCardService(idCard);
 
     // Check if data has been successfully fetched and contains E_ID
-    if (data && data.E_ID) {
+    if (data && data[0].E_ID) {
         // Fetch related data using E_ID
-        const dataActive = await Efilling.getEfilling_Activity(data.E_ID);
-        const dataCertificate = await Efilling.getEfilling_certificate(data.E_ID);
-        const dataFamilyMedicalHistory = await Efilling.getefilling_family_medical_history(data.E_ID);
-        const dataScholarship = await Efilling.getEfilling_scholarship(data.E_ID);
-        const dataSiblings = await Efilling.getefilling_siblings(data.E_ID);
-        const dataWork = await Efilling.getEfilling_Work(data.E_ID);
+        const dataActive = await Efilling.getEfilling_Activity(data[0].E_ID.toString());
+        const dataCertificate = await Efilling.getEfilling_certificate(data[0].E_ID.toString());
+        const dataFamilyMedicalHistory = await Efilling.getefilling_family_medical_history(data[0].E_ID.toString());
+        const dataScholarship = await Efilling.getEfilling_scholarship(data[0].E_ID.toString());
+        const dataSiblings = await Efilling.getefilling_siblings(data[0].E_ID.toString());
+        const dataWork = await Efilling.getEfilling_Work(data[0].E_ID.toString());
 
         // Add fetched data as properties to the main data object
         data.active = dataActive;
