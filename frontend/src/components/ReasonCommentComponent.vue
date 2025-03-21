@@ -130,8 +130,8 @@ const fetchData = async () => {
       },
     })
     .then((response) => {
-      if (response.data && Array.isArray(response.data.data)) {
-        dataArray.value = response.data.data; // Set the data to the reactive variable
+      if (response.data && Array.isArray(response.data.data.main)) {
+        dataArray.value = response.data.data.main; // Set the data to the reactive variable
       } else {
         console.error(
           "API response is not an array or is missing the data array"

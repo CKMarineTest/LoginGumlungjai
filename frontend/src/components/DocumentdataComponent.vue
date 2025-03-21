@@ -2636,15 +2636,9 @@ const fetchData = async () => {
       },
     })
     .then((response) => {
-      console.log("AAAA",response)
-/*       if (response.data && Array.isArray(response.data.data)) {
-        dataArray.value = response.data.data; // Set the data to the reactive variable
-        console.log(response.data);
-      } else {
-        console.error(
-          "API response is not an array or is missing the data array"
-        );
-      } */
+
+        dataArray.value = response.data.data.main; // Set the data to the reactive variable
+
     })
     .catch((error) => {
       Swal.fire({
