@@ -11,7 +11,6 @@ exports.GetlistEfillingController = async (req, res) => {
 };
 
 exports.GetEfillingController = async (req, res) => {
-  try {
     let  idCard  = req.body.card_id
 
     const data = await Efilling.getEfillingByIdCardService(idCard);
@@ -34,16 +33,13 @@ exports.GetEfillingController = async (req, res) => {
         data.siblings = dataSiblings;
         data.work = dataWork;
 
+        res.status(200).json({ success: true, data: data });
+
         // Now `data` contains all the additional information
-        console.log('Complete Data:', data);
+        // console.log('Complete Data:', data);
     } else {
         console.log('No valid data found for the given idCard or missing E_ID.');
+        res.status(500).json({ success: false, message: "Internal Server Error" });
     }
-
-    res.status(200).json({ success: true, data });
-  } catch (error) {
-    console.error("Error in getEfillingController:", error);
-    res.status(500).json({ success: false, message: "Internal Server Error" });
-  }
 };
 

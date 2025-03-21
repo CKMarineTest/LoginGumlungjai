@@ -8,7 +8,7 @@
       <br />
       <div>
         <div class="flex justify-end">
-          <!-- <button
+          <button
             class="bg-blue-500 shadow-lg w-20 rounded-xl p-2 text-white hover:bg-blue-600"
             @click="handlePrintData(idcard)"
           >
@@ -16,7 +16,7 @@
               <PrinterIcon class="w-10 h-10" />
               <p class="mt-1">Print</p>
             </center>
-          </button> -->
+          </button>
         </div>
       </div>
       <div
@@ -2591,7 +2591,7 @@ import documentPreviewUrl from "@/assets/test/sick.webp";
 import logoUrl from "@/assets/picture/GLJ_Logo.png";
 
 import { Download, FileText, Edit, Check } from "lucide-vue-next";
-// import { PrinterIcon } from "@heroicons/vue/24/outline";
+import { PrinterIcon } from "@heroicons/vue/24/outline";
 import { useRouter } from "vue-router";
 import Swal from "sweetalert2";
 
@@ -2624,23 +2624,6 @@ const Toast = Swal.mixin({
 const dataArray = ref([]);
 
 const fetchData = async () => {
-  // const baseUrl =
-  //   process.env.VUE_APP_API_URL + `/api/getEfillingByIdCard/${idcard}`;
-  // // console.log(process.env.VUE_APP_API_URL);
-  // try {
-  //   const response = await axios.get(baseUrl);
-  //   if (response.data && Array.isArray(response.data.data)) {
-  //     dataArray.value = response.data.data; // Set the data to the reactive variable
-  //   } else {
-  //     console.error(
-  //       "API response is not an array or is missing the data array"
-  //     );
-  //   }
-  // } catch (error) {
-  //   console.error("Error fetching data:", error);
-  //   data.value = [];
-  // }
-
   const data = new URLSearchParams();
   data.append("card_id", idcard);
 
@@ -2655,6 +2638,7 @@ const fetchData = async () => {
     .then((response) => {
       if (response.data && Array.isArray(response.data.data)) {
         dataArray.value = response.data.data; // Set the data to the reactive variable
+        console.log(response.data);
       } else {
         console.error(
           "API response is not an array or is missing the data array"
@@ -2669,24 +2653,6 @@ const fetchData = async () => {
       });
       return false;
     });
-};
-
-const activities = ref([]);
-
-const fetchActivityData = async () => {
-  const url = process.env.VUE_APP_API_URL + "/efilling/GetActivity";
-
-  try {
-    const { data } = axios.post(url, {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    });
-
-    activities.value = data;
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
 };
 
 const formatDate = (dateString) => {
@@ -2712,16 +2678,15 @@ const formatDate = (dateString) => {
 
 onMounted(() => {
   fetchData();
-  fetchActivityData();
 });
 
-// const handlePrintData = (idCard) => {
-//   if (idCard) {
-//     router.push({ name: "pdfbyid", params: { idcard: idCard } });
-//   } else {
-//     console.error("ID Card is missing!");
-//   }
-// };
+const handlePrintData = (idCard) => {
+  if (idCard) {
+    router.push({ name: "pdfbyid", params: { idcard: idCard } });
+  } else {
+    console.error("ID Card is missing!");
+  }
+};
 
 // modal
 const isTermFeeModalOpen = ref(false);
@@ -2815,15 +2780,10 @@ const editDocument = () => {
   });
 };
 
-// const isDownloadingTranscriptFile = ref(false);
-// const imageTranscriptUrl = process.env.VUE_APP_API_URL + '/public/files/image/output_image_20250320T125822568Z.jpg'
-// const imageTranscriptUrl = `https://web.mrgshrimp.com/thegiftapi/public/files/image/output_image_20250320T125822568Z.jpg`;
-
 const handleDownLoad = (filePath) => {
   try {
     const link = document.createElement("a");
-    // link.href = process.env.VUE_APP_API_URL + '/public/files/image/' + filePath // ใช้ URL ที่ดึงมาจาก API
-    link.href = "https://web.mrgshrimp.com/thegiftapi/" + filePath; // ใช้ URL ที่ดึงมาจาก API
+    link.href = "https://web.mrgshrimp.com/thegiftapi2/" + filePath;
     link.setAttribute("download", "transcript.pdf");
     document.body.appendChild(link);
     link.click();

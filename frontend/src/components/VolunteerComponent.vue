@@ -25,8 +25,7 @@
               <tbody>
                 <TransitionGroup name="list" tag="tbody">
                   <tr
-                    v-for="(activity, index) in activities"
-                    :key="activity.E_ID"
+        
                     class="border-b hover:bg-blue-50 transition-colors"
                   >
                     <td class="px-4 py-3">
@@ -39,7 +38,6 @@
                     <td class="px-4 py-3 w-1/2">
                       <input
                         type="text"
-                        v-model="activity.Activity_Name"
                         class="w-full px-3 sm:px-4 h-10 sm:h-12 text-sm sm:text-base border-2 border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-100 focus:border-blue-400 outline-none transition-all"
                         placeholder="ชื่อกิจกรรมอาสา"
                         readonly
@@ -48,7 +46,6 @@
                     <td class="px-4 py-3">
                       <input
                         type="text"
-                        v-model="activity.hours"
                         class="w-full px-3 sm:px-4 h-10 sm:h-12 text-sm sm:text-base border-2 border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-100 focus:border-blue-400 outline-none transition-all"
                         placeholder="จำนวนชั่วโมง"
                         readonly
@@ -74,37 +71,17 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import axios from 'axios';
-
-const activities = ref([]);
-
-const fetchData = async () => {
-  const url = process.env.VUE_APP_API_URL + '/efilling/GetActivity';
-
-  try {
-    const { data } = await axios.post(url, { E_ID: 9 });
-    activities.value = data;
-  }catch (error) {
-    console.error(error);
-  }
-}
+import { ref } from 'vue';
 
 const isVolunteerModalOpen = ref(false);
-const selectedActivity = ref(null);
 
-function openVolunteerModal(index) {
-  selectedActivity.value = activities.value[index];
+function openVolunteerModal() {
   isVolunteerModalOpen.value = true;
 }
 
 // function closeVolunteerModal() {
 //   isVolunteerModalOpen.value = false;
 // }
-
-onMounted(() => {
-  fetchData();
-})
 </script>
 
 <style scoped>
