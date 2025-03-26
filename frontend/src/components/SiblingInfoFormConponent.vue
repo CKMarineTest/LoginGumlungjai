@@ -75,7 +75,10 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+/* eslint-disable */
+import { ref, defineProps, onMounted } from "vue";
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const siblings = ref([
   {
@@ -109,6 +112,41 @@ const rowTwoFields = [
   { name: "income", label: "รายได้", type: "number", placeholder: "รายได้" },
   { name: "status", label: "สถานภาพ", type: "text", placeholder: "สถานภาพ" },
 ];
+
+const props = defineProps({
+  idcard: String,
+});
+
+const siblingArray = ref([]);
+
+const fetchData = async () => {
+  const data = new URLSearchParams();
+  data.append("card_id", idcard);
+
+  const url = process.env.VUE_APP_API_URL + "/efilling/GetEfilling";
+
+  axios
+    .post(url, data, {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    })
+    .then((response) => {
+      siblingArray.value = response.data.data.siblings;
+    })
+    .catch((error) => {
+      Swal.fire({
+        icon: "error",
+        title: "Server Error",
+        text: error,
+      });
+      return false;
+    });
+};
+
+onMounted(() => {
+  fetchData();
+})
 </script>
 
 <style scoped>
