@@ -43,7 +43,7 @@ async function getEfilling_certificate(E_ID) {
     const pool = await sql.connect(config);
     const result = await pool.request()
       .input('E_ID', sql.NVarChar, E_ID)
-      .query("SELECT  cr_id,cername,case when c_level = 'national'  then 'ระดับชาติ' when c_level = 'province' then 'ระดับจังหวัด' END as c_level,filepath,E_ID FROM Efilling_certificate where E_ID = @E_ID");
+      .query("SELECT  cr_id,cername,case when c_level = 'national'  then 'ระดับชาติ' when c_level = 'province' then 'ระดับจังหวัด' when c_level = 'region' then 'ระดับภูมิภาค' END as c_level,filepath,E_ID FROM Efilling_certificate where E_ID = @E_ID");
     return result.recordset;
   }catch(error) {
     console.error(`Datbase Query Error:`, error);
