@@ -192,17 +192,12 @@
                       class="h-0.5 w-0 group-hover:w-full bg-blue-500 transition-all duration-300"
                     ></div>
                   </th>
-                  <th
-                    class="px-6 py-5 text-right text-sm font-semibold text-gray-700 tracking-wider"
-                  >
-                    จัดการ
-                  </th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-100">
                 <tr
                   v-for="item in dataArray"
-                  :key="item.id_card"
+                  :key="item"
                   class="group hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-transparent transition-all duration-300"
                 >
                   <td class="px-6 py-5 whitespace-nowrap text-sm">
@@ -210,10 +205,10 @@
                       <div
                         class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-100 via-blue-200 to-blue-100 flex items-center justify-center text-blue-700 font-semibold shadow-sm transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
                       >
-                        {{ item.FirstName ? item.FirstName.charAt(0) : "N/A" }}
+                        {{ item.su_firstname ? item.su_firstname.charAt(0) : "N/A" }}
                       </div>
                       <span class="font-medium text-gray-700">{{
-                        item.idcard
+                        item.card_id
                       }}</span>
                     </div>
                   </td>
@@ -221,128 +216,8 @@
                     <span
                       class="text-sm font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200"
                     >
-                      {{ item.FirstName }} {{ item.LastName }}
+                      {{ item.su_firstname }} {{ item.su_lastname }}
                     </span>
-                  </td>
-                  <td class="px-6 py-5 whitespace-nowrap">
-                    <span
-                      class="text-sm text-gray-600 hover:text-blue-600 transition-colors duration-200"
-                    >
-                      {{ formatPhone(item.Mobile) }}
-                    </span>
-                  </td>
-                  <td class="px-6 py-5 whitespace-nowrap max-w-xs truncate">
-                    <span
-                      class="text-sm text-gray-600 hover:text-blue-600 transition-colors duration-200"
-                      :title="item.scholarship"
-                    >
-                      {{ item.Project_Name }}
-                    </span>
-                  </td>
-                  <!-- <td class="px-6 py-5 whitespace-nowrap">
-                      <span
-                        class="text-sm text-gray-600 hover:text-blue-600 transition-colors duration-200"
-                      >
-                        {{ item.registerdate }}
-                      </span>
-                    </td> -->
-                  <td class="px-6 py-5 whitespace-nowrap">
-                    <span
-                      v-if="item.Efilling_statusID === 5"
-                      class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 border border-green-200"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-4 w-4 mr-1"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                      ตรวจเสร็จสิ้น
-                    </span>
-                    <span
-                      v-else-if="item.Efilling_statusID === 3"
-                      class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800 border border-yellow-200"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-4 w-4 mr-1"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
-                      รอดำเนินการ
-                    </span>
-                    <span
-                      v-else-if="item.Efilling_statusID === 2"
-                      class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800 border border-red-200"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-4 w-4 mr-1"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                        />
-                      </svg>
-                      แก้ไขเอกสาร
-                    </span>
-                    <span
-                      v-else
-                      class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 border border-blue-200"
-                    >
-                      {{ item.status || "N/A" }}
-                    </span>
-                  </td>
-                  <td class="px-6 py-5 whitespace-nowrap text-right">
-                    <div class="flex items-center justify-end gap-3">
-                      <button
-                        @click="goToDocument(item.idcard)"
-                        class="p-2.5 text-blue-600 rounded-xl hover:bg-blue-100 transition-all duration-200 hover:scale-110 hover:shadow-sm"
-                        title="ดูเอกสาร"
-                      >
-                        <DocumentTextIcon class="h-5 w-5" />
-                      </button>
-                      <button
-                        class="p-2.5 text-green-600 rounded-xl hover:bg-green-100 transition-all duration-200 hover:scale-110 hover:shadow-sm"
-                        title="แก้ไขข้อมูล"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                          />
-                        </svg>
-                      </button>
-                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -418,9 +293,7 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import axios from "axios";
-import { DocumentTextIcon } from "@heroicons/vue/24/outline";
 import SidebarComponent from "./Menu/SidebarComponent.vue";
-import router from "@/router";
 
 // ใช้ ref เพื่อเก็บข้อมูล
 const data = ref([]);
@@ -433,14 +306,10 @@ const filteredStatus = ref(null);
 const headers = [
   { key: "id_card", label: "รหัสประจำตัวประชาชน" },
   { key: "name", label: "ชื่อ - นามสกุล" },
-  { key: "phone", label: "เบอร์โทรศัพท์" },
-  { key: "scholarship", label: "ชื่อทุน" },
-  // { key: "registerdate", label: "วันที่สมัคร" },
-  { key: "status", label: "สถานะ" },
 ];
 
 const fetchData = async () => {
-  const baseUrl = process.env.VUE_APP_API_URL + "/efilling/GetlistEfilling";
+  const baseUrl = process.env.VUE_APP_API_URL + "/user/getuser";
   // console.log(process.env.VUE_APP_API_URL);
   try {
     const response = await axios.post(baseUrl);
@@ -532,25 +401,6 @@ const sortBy = (key) => {
   } else {
     sortKey.value = key;
     sortOrder.value = "asc";
-  }
-};
-
-const formatPhone = (phone) => {
-  if (!phone) return "N/A";
-
-  if (phone.length === 10) {
-    return `${phone.substring(0, 3)}-${phone.substring(3, 6)}-${phone.substring(
-      6
-    )}`;
-  }
-  return phone;
-};
-
-const goToDocument = (idCard) => {
-  if (idCard) {
-    router.push({ name: "documentdatabyid", params: { idcard: idCard } });
-  } else {
-    console.error("ID Card is missing!");
   }
 };
 </script>

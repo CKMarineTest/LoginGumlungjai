@@ -169,7 +169,7 @@ import {
   // MagnifyingGlassIcon,
   DocumentIcon,
   UserIcon,
-  IdentificationIcon
+  IdentificationIcon,
 } from '@heroicons/vue/24/outline';
 
 // import { useFormStore } from '@/stores/formStore';
@@ -187,6 +187,7 @@ const menuItems = ref([
   { icon: ChartBarIcon, label: 'Dashboard', path: '/dashboard' },
   { icon: DocumentIcon, label: 'ใบสมัคร', path: '/registerform' },
   { icon: IdentificationIcon, label: 'ข้อมูลผู้ที่ได้รับทุน', path: '/infoscholarship' },
+  { icon: UserIcon, label: 'ข้อมูลผู้ใช้', path: '/user' },
   { icon: Cog6ToothIcon, label: 'ตั้งค่า', path: '/setting' },
 ]);
 
