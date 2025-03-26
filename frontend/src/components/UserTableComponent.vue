@@ -1,12 +1,12 @@
 <template>
   <div class="min-h-screen w-full bg-blue-100 flex">
-    <aside class="w-20 fixed left-0 top-0 bottom-0 bg-gray-900 shadow-lg z-10">
+    <aside class="w-20 fixed left-0 top-0 bottom-0 bg-gray-900 shadow-lg">
       <SidebarComponent />
     </aside>
 
     <main class="flex-1 ml-20 p-4 md:p-6 lg:p-8">
-      <br />
-      <br />
+      <br>
+      <br>
       <div class="w-full max-w-full mx-auto">
         <div
           class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between"
@@ -44,124 +44,9 @@
           </div>
         </div>
 
+        <!-- Table Section -->
         <div
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8"
-        >
-          <div
-            class="bg-white rounded-xl shadow-lg p-6 cursor-pointer flex items-center transform transition hover:scale-105 duration-300 border-l-4 border-blue-600"
-            @click="filterByStatus()"
-          >
-            <div class="rounded-full bg-blue-100 p-4 mr-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6 text-blue-600"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-                />
-              </svg>
-            </div>
-            <div>
-              <p class="text-gray-500 text-sm font-medium">ผู้สมัครทั้งหมด</p>
-              <h2 class="text-3xl font-bold text-gray-800">
-                {{ dataArray.length }}
-              </h2>
-            </div>
-          </div>
-
-          <div
-            class="bg-white rounded-xl shadow-lg p-6 cursor-pointer flex items-center transform transition hover:scale-105 duration-300 border-l-4 border-red-600"
-            @click="filterByStatus('แก้ไขเอกสาร')"
-          >
-            <div class="bg-red-100 p-4 mr-4 rounded-full">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6 text-red-600"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                />
-              </svg>
-            </div>
-            <div>
-              <p class="text-gray-500 text-sm font-medium">ที่ต้องแก้ไข</p>
-              <h2 class="text-3xl font-bold text-gray-800">
-                {{ statusCounts["แก้ไขเอกสาร"] || 0 }} คน
-              </h2>
-            </div>
-          </div>
-
-          <div
-            class="bg-white rounded-xl shadow-lg p-6 cursor-pointer flex items-center transform transition hover:scale-105 duration-300 border-l-4 border-yellow-500"
-            @click="filterByStatus('รอดำเนินการ')"
-          >
-            <div class="bg-yellow-100 p-4 mr-4 rounded-full">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6 text-yellow-600"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-            </div>
-            <div>
-              <p class="text-gray-500 text-sm font-medium">รอดำเนินการ</p>
-              <h2 class="text-3xl font-bold text-gray-800">
-                <!-- {{ item.Efilling_statusID.length || 0 }} คน -->
-              </h2>
-            </div>
-          </div>
-
-          <div
-            class="bg-white rounded-xl shadow-lg p-6 cursor-pointer flex items-center transform transition hover:scale-105 duration-300 border-l-4 border-green-500"
-            @click="filterByStatus('ตรวจเสร็จสิ้น')"
-          >
-            <div class="bg-green-100 p-4 mr-4 rounded-full">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6 text-green-600"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-            </div>
-            <div>
-              <p class="text-gray-500 text-sm font-medium">ตรวจเสร็จสิ้น</p>
-              <h2 class="text-3xl font-bold text-gray-800">
-                {{ statusCounts["ตรวจเสร็จสิ้น"] || 0 }} คน
-              </h2>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-lg w-full"
+          class="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden"
         >
           <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
@@ -174,77 +59,85 @@
                     v-for="header in headers"
                     :key="header.key"
                     class="px-6 py-5 text-left text-sm font-semibold text-gray-700 tracking-wider cursor-pointer group transition-colors duration-200"
-                    @click="sortBy(header.key)"
                   >
-                    <div
-                      class="flex items-center gap-2 group-hover:text-blue-600"
-                    >
-                      {{ header.label }}
-                      <span
-                        v-if="sortKey === header.key"
-                        class="transition-transform duration-300 text-blue-500"
-                        :class="sortOrder === 'asc' ? 'rotate-0' : 'rotate-180'"
-                      >
-                        ↑
-                      </span>
-                    </div>
-                    <div
-                      class="h-0.5 w-0 group-hover:w-full bg-blue-500 transition-all duration-300"
-                    ></div>
+                    {{ header.label }}
                   </th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-100">
                 <tr
                   v-for="item in dataArray"
-                  :key="item"
+                  :key="item.su_id"
                   class="group hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-transparent transition-all duration-300"
                 >
                   <td class="px-6 py-5 whitespace-nowrap text-sm">
                     <div class="flex items-center gap-3">
                       <div
-                        class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-100 via-blue-200 to-blue-100 flex items-center justify-center text-blue-700 font-semibold shadow-sm transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
+                        class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-100 via-blue-200 to-blue-100 flex items-center justify-center text-blue-700 font-semibold shadow-sm"
                       >
-                        {{ item.su_firstname ? item.su_firstname.charAt(0) : "N/A" }}
+                        {{
+                          item.su_firstname
+                            ? item.su_firstname.charAt(0)
+                            : "N/A"
+                        }}
                       </div>
-                      <span class="font-medium text-gray-700">{{
-                        item.card_id
-                      }}</span>
+                      <span class="font-medium text-gray-700">
+                        {{ item.card_id }}
+                      </span>
                     </div>
                   </td>
                   <td class="px-6 py-5 whitespace-nowrap">
-                    <span
-                      class="text-sm font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200"
-                    >
+                    <span class="text-sm font-medium text-gray-900">
                       {{ item.su_firstname }} {{ item.su_lastname }}
                     </span>
+                  </td>
+                  <td class="px-6 py-5 whitespace-nowrap text-right">
+                    <button
+                      @click="openDeleteModal(item)"
+                      class="group z-2 relative px-4 py-2 text-red-600 hover:text-white rounded-lg font-medium flex items-center gap-2 transition-all duration-300 overflow-hidden border border-red-300 hover:border-red-600 bg-white hover:bg-red-500 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-opacity-50"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 transition-transform group-hover:rotate-12 group-hover:scale-110"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M3 6h18" />
+                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                      </svg>
+                      <span class="relative">ลบ</span>
+                      <span
+                        class="absolute inset-0 bg-red-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300"
+                      ></span>
+                    </button>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
+        </div>
 
+        <div
+          v-if="selectedUserToDelete"
+          class="fixed inset-0 bg-black/50 flex items-center justify-center"
+        >
           <div
-            class="bg-gradient-to-r from-gray-50 to-white px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between border-t border-gray-100"
+            class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6 space-y-6"
           >
-            <p class="text-sm text-gray-600 mb-4 sm:mb-0">
-              แสดง
-              <span class="font-medium text-gray-900">{{
-                dataArray.length
-              }}</span>
-              รายการ จากทั้งหมด
-              <span class="font-medium text-gray-900">{{
-                dataArray.length
-              }}</span>
-              รายการ
-            </p>
-            <div class="flex gap-2">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl font-bold text-gray-800">ยืนยันการลบ</h3>
               <button
-                class="px-4 py-2 rounded-xl border border-gray-200 bg-white text-gray-600 font-medium hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1"
+                @click="closeDeleteModal"
+                class="text-gray-500 hover:text-gray-800 transition-colors"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-4 w-4"
+                  class="h-6 w-6"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -253,23 +146,19 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M15 19l-7-7 7-7"
+                    d="M6 18L18 6M6 6l12 12"
                   />
                 </svg>
-                ก่อนหน้า
               </button>
-              <button
-                class="px-4 py-2 rounded-xl bg-blue-600 text-white font-medium hover:bg-blue-700 transition-all duration-200 shadow-sm hover:shadow"
+            </div>
+
+            <div class="text-center">
+              <div
+                class="mx-auto mb-4 w-16 h-16 bg-red-100 rounded-full flex items-center justify-center"
               >
-                1
-              </button>
-              <button
-                class="px-4 py-2 rounded-xl border border-gray-200 bg-white text-gray-600 font-medium hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center gap-1"
-              >
-                ถัดไป
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-4 w-4"
+                  class="h-8 w-8 text-red-600"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -278,9 +167,29 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M9 5l7 7-7 7"
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
                   />
                 </svg>
+              </div>
+              <p class="text-gray-600 mb-2">คุณแน่ใจหรือไม่ว่าต้องการลบ</p>
+              <p class="font-semibold text-gray-800">
+                {{ selectedUserToDelete.su_firstname }}
+                {{ selectedUserToDelete.su_lastname }}
+              </p>
+            </div>
+
+            <div class="flex justify-center space-x-4">
+              <button
+                @click="closeDeleteModal"
+                class="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                ยกเลิก
+              </button>
+              <button
+                @click="confirmDelete"
+                class="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+              >
+                ลบข้อมูล
               </button>
             </div>
           </div>
@@ -291,30 +200,29 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import axios from "axios";
 import SidebarComponent from "./Menu/SidebarComponent.vue";
+import Swal from "sweetalert2";
 
-// ใช้ ref เพื่อเก็บข้อมูล
-const data = ref([]);
+// State management
 const dataArray = ref([]);
 const searchQuery = ref("");
-const sortKey = ref("id_card");
-const sortOrder = ref("asc");
-const filteredStatus = ref(null);
+const selectedUserToDelete = ref(null);
 
 const headers = [
   { key: "id_card", label: "รหัสประจำตัวประชาชน" },
   { key: "name", label: "ชื่อ - นามสกุล" },
+  { key: "action", label: "จัดการ" },
 ];
 
+// Data fetching
 const fetchData = async () => {
   const baseUrl = process.env.VUE_APP_API_URL + "/user/getuser";
-  // console.log(process.env.VUE_APP_API_URL);
   try {
     const response = await axios.post(baseUrl);
     if (response.data && Array.isArray(response.data.data)) {
-      dataArray.value = response.data.data; // Set the data to the reactive variable
+      dataArray.value = response.data.data;
     } else {
       console.error(
         "API response is not an array or is missing the data array"
@@ -322,85 +230,49 @@ const fetchData = async () => {
     }
   } catch (error) {
     console.error("Error fetching data:", error);
-    data.value = [];
   }
 };
 
+// Delete user methods
+const openDeleteModal = (user) => {
+  selectedUserToDelete.value = user;
+};
+
+const closeDeleteModal = () => {
+  selectedUserToDelete.value = null;
+};
+
+const confirmDelete = async () => {
+  if (selectedUserToDelete.value) {
+    try {
+      const baseUrl = process.env.VUE_APP_API_URL + "/user/deleteuser";
+      const response = await axios.post(baseUrl, {
+        su_id: selectedUserToDelete.value.su_id,
+      });
+
+      if (response.data.success) {
+        dataArray.value = dataArray.value.filter(
+          (user) => user.su_id !== selectedUserToDelete.value.su_id
+        );
+        Swal.fire({
+          icon: "success",
+          title: "ลบข้อมูลสำเร็จ",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        closeDeleteModal();
+      } else {
+        alert("เกิดข้อผิดพลาดในการลบข้อมูล");
+      }
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      alert("เกิดข้อผิดพลาดในการลบข้อมูล");
+    }
+  }
+};
+
+// Lifecycle hook
 onMounted(() => {
   fetchData();
 });
-
-// Fix for statusCounts to ensure it handles non-array data safely
-const statusCounts = computed(() => {
-  // Ensure data.value is an array before using reduce
-  if (!Array.isArray(data.value)) {
-    return {};
-  }
-
-  return data.value.reduce((acc, item) => {
-    if (item && item.status) {
-      acc[item.status] = (acc[item.status] || 0) + 1;
-    }
-    return acc;
-  }, {});
-});
-
-// const sortedAndFilteredData = computed(() => {
-//   // Ensure data.value is an array before proceeding
-//   if (!Array.isArray(data.value)) {
-//     return [];
-//   }
-
-//   let result = [...data.value];
-
-//   if (filteredStatus.value) {
-//     result = result.filter(
-//       (item) => item && item.status === filteredStatus.value
-//     );
-//   }
-
-//   if (searchQuery.value) {
-//     result = result.filter((item) => {
-//       if (!item) return false;
-
-//       return Object.values(item).some(
-//         (value) =>
-//           value &&
-//           String(value).toLowerCase().includes(searchQuery.value.toLowerCase())
-//       );
-//     });
-//   }
-
-//   result.sort((a, b) => {
-//     if (!a || !b) return 0;
-
-//     const aValue = a[sortKey.value];
-//     const bValue = b[sortKey.value];
-
-//     if (!aValue && !bValue) return 0;
-//     if (!aValue) return 1;
-//     if (!bValue) return -1;
-
-//     if (sortOrder.value === "asc") {
-//       return aValue > bValue ? 1 : -1;
-//     } else {
-//       return aValue < bValue ? 1 : -1;
-//     }
-//   });
-
-//   return result;
-// });
-
-const filterByStatus = (status) => {
-  filteredStatus.value = status;
-};
-
-const sortBy = (key) => {
-  if (sortKey.value === key) {
-    sortOrder.value = sortOrder.value === "asc" ? "desc" : "asc";
-  } else {
-    sortKey.value = key;
-    sortOrder.value = "asc";
-  }
-};
 </script>

@@ -3072,7 +3072,8 @@ const idcard = route.params.idcard;
 
 const router = useRouter();
 
-const imageUrl = "https://web.mrgshrimp.com/thegiftapi/";
+// const imageUrl = "https://web.mrgshrimp.com/thegiftapi/";
+const imageUrl = "http://localhost:8096/";
 
 //const formStore = useFormStore();
 

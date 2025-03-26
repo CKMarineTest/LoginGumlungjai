@@ -10,3 +10,15 @@ exports.GetUserController = async (req, res) => {
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
+
+exports.DeleteUserController = async (req, res) => {
+  try {
+    const { su_id } = req.body;
+    const data = await UserService.deleteUserService(su_id);
+    console.log("Data in Controller:", data);
+    res.status(200).json({ success: true, data });
+  } catch (error) {
+    console.error("Error in deleteEfillingController:", error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+}
