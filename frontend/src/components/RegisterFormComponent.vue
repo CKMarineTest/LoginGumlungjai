@@ -201,7 +201,7 @@
               </thead>
               <tbody class="divide-y divide-gray-100">
                 <tr
-                  v-for="item in dataArray"
+                  v-for="item in filteredData"
                   :key="item.id_card"
                   class="group hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-transparent transition-all duration-300"
                 >
@@ -452,6 +452,19 @@ const fetchData = async () => {
     data.value = [];
   }
 };
+
+const filteredData = computed(() => {
+  return dataArray.value.filter(data => {
+    const query = searchQuery.value.toLowerCase();
+    return (
+      String(data.idcard).includes(query) ||
+      data.FirstName.toLowerCase().includes(query) ||
+      data.LastName.toLowerCase().includes(query) ||
+      data.Mobile.toLowerCase().includes(query) ||
+      data.Project_Name.toLowerCase().includes(query)
+    )
+  })
+})
 
 onMounted(() => {
   fetchData();

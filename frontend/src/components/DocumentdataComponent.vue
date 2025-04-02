@@ -391,7 +391,7 @@
                     </tbody>
                   </table>
                 </div>
-
+                
                 <br />
                 <div class="w-full sm:w-1/1 lg:w-1/1 mt-2">
                   <label
@@ -415,7 +415,7 @@
 
                   <br />
 
-                  <div class="overflow-x-auto shadow-md rounded-xl">
+                  <div class="overflow-x-auto shadow-md rounded-xl" v-if="item.scholarshipStatus === 'no'">
                     <table class="w-full border-collapse bg-white">
                       <thead>
                         <tr class="bg-blue-500 text-white">

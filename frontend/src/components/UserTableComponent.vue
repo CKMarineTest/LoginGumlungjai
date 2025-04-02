@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen w-full bg-blue-100 flex">
-    <aside class="w-20 fixed left-0 top-0 bottom-0 bg-gray-900 shadow-lg">
+    <aside class="w-20 fixed z-10 left-0 top-0 bottom-0 bg-gray-900 shadow-lg">
       <SidebarComponent />
     </aside>
 
@@ -17,7 +17,6 @@
             >
               ข้อมูลผู้สมัคร
             </h2>
-            <p class="text-gray-500">จัดการข้อมูลผู้สมัครทุนการศึกษาทั้งหมด</p>
           </div>
 
           <div class="relative mt-4 md:mt-0">
@@ -44,7 +43,33 @@
           </div>
         </div>
 
-        <!-- Table Section -->
+        <div
+            class="bg-white rounded-xl z-0 w-2/12 shadow-lg p-6 cursor-pointer flex items-center transform transition hover:scale-105 duration-300 border-l-4 border-blue-600"
+          >
+            <div class="rounded-full bg-blue-100 p-4 mr-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 text-blue-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                />
+              </svg>
+            </div>
+            <div>
+              <p class="text-gray-500 text-sm font-medium">ผู้สมัครเข้าระบบทั้งหมด</p>
+              <h2 class="text-3xl font-bold text-gray-800">
+                {{ dataArray.length }} คน
+              </h2>
+            </div>
+          </div>
+          <br>
         <div
           class="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden"
         >
@@ -66,7 +91,7 @@
               </thead>
               <tbody class="divide-y divide-gray-100">
                 <tr
-                  v-for="item in dataArray"
+                  v-for="item in filteredUsers"
                   :key="item.su_id"
                   class="group hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-transparent transition-all duration-300"
                 >
@@ -94,7 +119,7 @@
                   <td class="px-6 py-5 whitespace-nowrap text-right">
                     <button
                       @click="openDeleteModal(item)"
-                      class="group z-2 relative px-4 py-2 text-red-600 hover:text-white rounded-lg font-medium flex items-center gap-2 transition-all duration-300 overflow-hidden border border-red-300 hover:border-red-600 bg-white hover:bg-red-500 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-opacity-50"
+                      class="group z-0 relative px-4 py-2 text-red-600 hover:text-white rounded-lg font-medium flex items-center gap-2 transition-all duration-300 overflow-hidden border border-red-300 hover:border-red-600 bg-white hover:bg-red-500 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-opacity-50"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -200,7 +225,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import axios from "axios";
 import SidebarComponent from "./Menu/SidebarComponent.vue";
 import Swal from "sweetalert2";
@@ -216,7 +241,6 @@ const headers = [
   { key: "action", label: "จัดการ" },
 ];
 
-// Data fetching
 const fetchData = async () => {
   const baseUrl = process.env.VUE_APP_API_URL + "/user/getuser";
   try {
@@ -233,7 +257,17 @@ const fetchData = async () => {
   }
 };
 
-// Delete user methods
+const filteredUsers = computed(() => {
+  return dataArray.value.filter(user => {
+    const query = searchQuery.value.toLowerCase();
+    return (
+      String(user.card_id).includes(query) ||
+      user.su_firstname.toLowerCase().includes(query) ||
+      user.su_lastname.toLowerCase().includes(query)
+    )
+  })
+})
+
 const openDeleteModal = (user) => {
   selectedUserToDelete.value = user;
 };

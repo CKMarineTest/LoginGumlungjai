@@ -68,7 +68,7 @@
             </div>
             <div>
               <p class="text-gray-500 text-sm font-medium">ผ่านการคัดเลือก</p>
-              <h2 class="text-3xl font-bold text-gray-800">246</h2>
+              <h2 class="text-3xl font-bold text-gray-800"></h2>
             </div>
           </div>
 
@@ -93,7 +93,7 @@
             </div>
             <div>
               <p class="text-gray-500 text-sm font-medium">รอพิจารณา</p>
-              <h2 class="text-3xl font-bold text-gray-800">158</h2>
+              <h2 class="text-3xl font-bold text-gray-800"></h2>
             </div>
           </div>
 
@@ -995,12 +995,13 @@ const animateNumber = (targetValue) => {
 };
 
 const fetchData = async () => {
-  const baseUrl = process.env.VUE_APP_API_URL + "/api/getEfilling";
+  const baseUrl = process.env.VUE_APP_API_URL + "/efilling/GetlistEfilling";
   // console.log(process.env.VUE_APP_API_URL);
   try {
-    const response = await axios.get(baseUrl);
+    const response = await axios.post(baseUrl);
     if (response.data && Array.isArray(response.data.data)) {
       dataArray.value = response.data.data; // Set the data to the reactive variable
+      console.log(dataArray.value);
     } else {
       console.error(
         "API response is not an array or is missing the data array"
