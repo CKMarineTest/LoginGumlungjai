@@ -42,7 +42,7 @@
             <div>
               <p class="text-gray-500 text-sm font-medium">ผู้สมัครทั้งหมด</p>
               <h2 class="text-3xl font-bold text-gray-800">
-                {{ dataArray.length }}
+                {{ dataArray.length }} <span class="text-md">คน</span>
               </h2>
             </div>
           </div>
@@ -120,7 +120,7 @@
             <div>
               <p class="text-gray-500 text-sm font-medium">ทุนที่เปิดรับ</p>
               <h2 class="text-3xl font-bold text-gray-800">
-                {{ scholarship.length }}
+                {{ scholarship.length }} ทุน
               </h2>
               <p class="text-yellow-600 text-xs mt-1 font-medium">
                 เปิดรับถึง 30 เม.ย.

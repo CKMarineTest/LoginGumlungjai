@@ -87,7 +87,7 @@
 
             <div>
               <button type="submit"
-                class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300 transform hover:scale-[1.02]"
+                class="bg-blue-600 border-2 border-blue-600 p-3 w-full rounded-lg text-white hover:bg-transparent hover:text-blue-600 transition-all duration-300 flex items-center justify-center"
                 :class="{ 'opacity-75 cursor-not-allowed': isLoading }" :disabled="isLoading">
                 <svg v-if="isLoading" class="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
                   xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -115,7 +115,6 @@ import { useRouter } from "vue-router";
 import { useToastService } from "@/lib/toastService";
 
 import GLJ_LOGO from "@/assets/picture/GLJ_H.png";
-import Swal from "sweetalert2";
 
 const { showSuccess, showError, showInfo } = useToastService();
 
