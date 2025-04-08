@@ -117,11 +117,11 @@
                 
                 <div class="w-9 h-9 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center text-white text-sm font-medium shadow-lg transition-transform duration-300 group-hover:scale-105 relative overflow-hidden">
                   <div class="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent transform rotate-45"></div>
-                  <div class="relative z-10">{{ userName[0] }}</div>
+                  <div class="relative z-10">{{ fullName[0] }}</div>
                 </div>
                 
                 <div class="flex items-center">
-                  <span class="text-sm font-medium text-gray-700">{{ userName }}</span>
+                  <span class="text-sm font-medium text-gray-700">{{ fullName }}</span>
                   <ChevronDownIcon class="w-4 h-4 ml-2 text-gray-500 transition-transform duration-300"
                     :class="{ 'rotate-180': showProfileMenu }" />
                 </div>
@@ -139,7 +139,7 @@
                   
                   <div class="px-4 py-3 border-b">
                     <p class="text-sm font-medium text-gray-900"><b class="text-gray-500">ชื่อผู้ใช้ :</b> {{ userName }}</p>
-                    <p class="text-xs text-gray-500 mt-1">ผู้ใช้งานระบบ</p>
+                    <p class="text-xs text-gray-500 mt-1" v-if="authStore.user.Sr_id === 1">แอดมินระบบ</p>
                   </div>
                   
                   <div class="py-2">
@@ -194,15 +194,38 @@ import {
   DocumentIcon,
   UserIcon,
   IdentificationIcon,
-  ArrowRightOnRectangleIcon
+  ComputerDesktopIcon
 } from '@heroicons/vue/24/outline';
+
+import { useToastService } from '@/lib/toastService';
+
+import { useAuthStore } from '@/stores/authStore';
+const authStore = useAuthStore();
+
+const username = computed(() => authStore.user?.username || 'ไม่ทราบชื่อ');
+const userName = ref(username.value);
+
+const fullName = computed(() => {
+  return authStore.user
+    ? `${authStore.user.su_firstname} ${authStore.user.su_lastname}`
+    : "ไม่ทราบชื่อ"
+})
+
+watch(username, (newUsername) => {
+  userName.value = newUsername;
+})
+
+const { showSuccess } = useToastService();
+
+const showSuccessToast = (message) => {
+  showSuccess(message);
+}
 
 const router = useRouter();
 const route = useRoute();
 const isExpanded = ref(true);
 const showNotifications = ref(false);
 const showProfileMenu = ref(false);
-const userName = ref("Name");
 
 const pageTitles = {
   '/dashboard': 'แดชบอร์ด',
@@ -222,6 +245,7 @@ const menuItems = ref([
   { icon: DocumentIcon, label: 'ใบสมัคร', path: '/registerform' },
   { icon: IdentificationIcon, label: 'ข้อมูลผู้ที่ได้รับทุน', path: '/infoscholarship' },
   { icon: UserIcon, label: 'ข้อมูลผู้ใช้', path: '/user' },
+  { icon: ComputerDesktopIcon, label: 'ข้อมูลแอดมิน', path: '/admin'},
   { icon: Cog6ToothIcon, label: 'ตั้งค่า', path: '/setting' },
 ]);
 
@@ -257,6 +281,7 @@ const handleRouteSetting = () => {
 const handleLogout = () => {
   document.body.classList.add('fade-out');
   setTimeout(() => {
+    showSuccessToast("ออกจากระบบสำเร็จ");
     router.push('/login');
   }, 300);
 };
@@ -289,6 +314,8 @@ onMounted(() => {
   document.addEventListener('click', handleClickOutside);
   window.addEventListener('resize', handleResize);
   document.addEventListener('keydown', handleKeyDown);
+
+  authStore.loadUser();
   
   handleResize();
 });

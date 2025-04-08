@@ -550,7 +550,7 @@
                         <span class="text-red-500 text-sm"></span>
                       </label>
                       <div
-                        class="grid grid-cols-1 md:grid-cols-4 gap-4"
+                        class="grid grid-cols-3 md:grid-cols-4 gap-4"
                         v-if="item.expenseBoth !== null"
                       >
                         <input
@@ -1345,6 +1345,9 @@
                       >
                         ข้อมูลบิดา
                       </h3>
+                      <div class="p-3 rounded-lg shadow-lg bg-green-400 w-2/12 text-dark-900 items-center" v-if="item.fatherStatus === 'alive'">บิดามีชีวิต</div>
+                      <div class="p-3 rounded-lg shadow-lg bg-gray-400 w-2/12 text-white items-center" v-if="item.fatherStatus === 'deceased'">บิดาเสียชีวิต</div>
+                      <br>
                       <div
                         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
                       >
@@ -1485,7 +1488,9 @@
                       >
                         ข้อมูลมารดา
                       </h3>
-
+                      <div class="p-3 rounded-lg shadow-lg bg-green-400 w-2/12 text-dark-900 items-center" v-if="item.motherStatus === 'alive'">มารดามีชีวิต</div>
+                      <div class="p-3 rounded-lg shadow-lg bg-gray-400 w-2/12 text-white items-center" v-if="item.motherStatus === 'deceased'">มารดาเสียชีวิต</div>
+                      <br>
                       <div
                         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
                       >
@@ -3116,7 +3121,7 @@ const fetchData = async () => {
       Workhistory.value = response.data.data.work;
       scholarship.value = response.data.data.scholarship;
       activeArray.value = response.data.data.active;
-      siblingArray.value = response.data.data.siblings;
+      siblingArray.value = response.data.data.siblings;0
     })
     .catch((error) => {
       Swal.fire({

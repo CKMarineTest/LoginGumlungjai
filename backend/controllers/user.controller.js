@@ -11,6 +11,17 @@ exports.GetUserController = async (req, res) => {
   }
 };
 
+exports.GetAdminController = async (req, res) => {
+  try {
+    const data = await UserService.getAdminService();
+    console.log("Data in Controller:", data);
+    res.status(200).json({ success: true, data });
+  } catch (error) {
+    console.error("Error fetching data", error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+}
+
 exports.DeleteUserController = async (req, res) => {
   try {
     const { su_id } = req.body;

@@ -82,13 +82,36 @@ async function getefilling_siblings(E_ID) {
     const pool = await sql.connect(config);
     const result = await pool.request()
       .input('E_ID', sql.NVarChar, E_ID)
-      .query("SELECT sb_id,sb_name,sb_age,education,occupation,sb_status,income,E_ID FROM efilling_siblings where E_ID = @E_ID");
+      .query(`
+        SELECT 
+          sb_id,
+          sb_name,
+          sb_age,
+          education,
+          occupation,
+          sb_status,
+          CASE sb_status
+            WHEN 'FS01' THEN N'โสด'
+            WHEN 'FS02' THEN N'แต่งงานและอยู่ด้วยกัน'
+            WHEN 'FS03' THEN N'แต่งงานแต่ไม่ได้อยู่ด้วยกัน'
+            WHEN 'FS04' THEN N'ไม่แต่งงานแต่อยู่ด้วยกัน'
+            WHEN 'FS05' THEN N'หม้าย'
+            WHEN 'FS06' THEN N'หย่าร้าง/แยกทาง/เลิกกัน'
+            ELSE N'ไม่ทราบสถานะ'
+          END AS sb_status_text,
+          income,
+          E_ID
+        FROM efilling_siblings 
+        WHERE E_ID = @E_ID
+      `);
+      console.log(result.recordset);
     return result.recordset;
-  }catch(error) {
-    console.error(`Datbase Query Error:`, error);
-    throw error
+  } catch (error) {
+    console.error(`Database Query Error:`, error);
+    throw error;
   }
 }
+
 
 async function getEfilling_Work(E_ID) {
   try {

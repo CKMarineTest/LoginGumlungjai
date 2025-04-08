@@ -266,7 +266,7 @@
             </div>
             <div class="max-h-96 overflow-y-auto px-8 py-4">
               <div
-                v-for="(item, index) in scholarship"
+                v-for="(item, index) in filteredData"
                 :key="index"
                 class="mb-4 bg-white border border-gray-200 hover:border-blue-300 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden"
               >
@@ -846,7 +846,7 @@ onMounted(() => {
         borderColor: scholarshipData.map(item => item.color),
         borderWidth: 1,
         hoverOffset: 10,
-        cutout: '65%'
+        cutout: "65%",
       }]
     },
     options: {
@@ -1016,6 +1016,18 @@ const fetchData = async () => {
 onMounted(() => {
   fetchData();
 });
+
+const searchQuery = ref("");
+
+const filteredData = computed(() => {
+  return scholarship.filter(data => {
+    const query = searchQuery.value.toLowerCase();
+    return (
+      data.id.toLowerCase().includes(query) ||
+      data.scholarship.toLowerCase().includes(query)
+    )
+  })
+})
 
 const scholarship = [
   {

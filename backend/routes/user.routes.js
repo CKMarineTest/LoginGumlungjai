@@ -3,5 +3,6 @@ module.exports = app => {
   
     app.post('/user/getuser', UserController.GetUserController);
     app.post('/user/deleteuser', UserController.DeleteUserController);
+    app.post('/user/getadmin', UserController.GetAdminController);
   }
   
