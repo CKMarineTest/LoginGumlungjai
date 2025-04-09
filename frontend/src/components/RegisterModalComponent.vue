@@ -32,7 +32,7 @@
             </div>
             <div class="absolute w-24 h-24 rounded-full bg-blue-300 bottom-0 left-12 transform translate-y-16"></div>
           </div>
-
+          
           <div class="flex items-center relative z-10">
             <div class="bg-white bg-opacity-20 p-2 rounded-lg mr-3">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
