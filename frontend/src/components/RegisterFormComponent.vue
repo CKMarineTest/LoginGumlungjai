@@ -207,11 +207,11 @@
                 >
                   <td class="px-6 py-5 whitespace-nowrap text-sm">
                     <div class="flex items-center gap-3">
-                      <div
+                      <!-- <div
                         class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-100 via-blue-200 to-blue-100 flex items-center justify-center text-blue-700 font-semibold shadow-sm transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
                       >
                         {{ item.FirstName ? item.FirstName.charAt(0) : "N/A" }}
-                      </div>
+                      </div> -->
                       <span class="font-medium text-gray-700">{{
                         item.idcard
                       }}</span>

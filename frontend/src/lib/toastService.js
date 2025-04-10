@@ -35,7 +35,6 @@ export const useToastService = () => {
             closeOnClick: true,
         })
     }
-
     return {
         showSuccess,
         showWarning,

@@ -123,7 +123,7 @@
                 {{ scholarship.length }} ทุน
               </h2>
               <p class="text-yellow-600 text-xs mt-1 font-medium">
-                เปิดรับถึง 30 เม.ย.
+                เปิดรับถึง 31 พฤษภาคม 2568
               </p>
             </div>
           </div>
@@ -325,7 +325,7 @@
                               <span class="text-gray-700"
                                 >หมดเขตรับสมัคร:
                                 <span class="font-medium">{{
-                                  item.deadline || "31 มีนาคม 2567"
+                                  item.deadline || "31 พฤษภาคม 2568"
                                 }}</span></span
                               >
                             </div>
@@ -349,52 +349,6 @@
                                 >จำนวนเงิน:
                                 <span class="font-medium">{{
                                   item.amount || "ไม่ระบุ"
-                                }}</span></span
-                              >
-                            </div>
-
-                            <div class="flex items-center">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-5 w-5 mr-2 text-blue-500"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                              >
-                                <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  stroke-width="2"
-                                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                                />
-                              </svg>
-                              <span class="text-gray-700"
-                                >คุณสมบัติ:
-                                <span class="font-medium">{{
-                                  item.requirements || "นักศึกษาปริญญาตรี"
-                                }}</span></span
-                              >
-                            </div>
-
-                            <div class="flex items-center">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-5 w-5 mr-2 text-blue-500"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                              >
-                                <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  stroke-width="2"
-                                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                                />
-                              </svg>
-                              <span class="text-gray-700"
-                                >ประเภททุน:
-                                <span class="font-medium">{{
-                                  item.type || "ทุนปริญญาตรี"
                                 }}</span></span
                               >
                             </div>
@@ -1033,22 +987,27 @@ const scholarship = [
   {
     id: "PJ1",
     scholarship: "โครงการกำลังใจสร้างครูของชาติ",
+    amount: "30,000",
   },
   {
     id: "PJ2",
     scholarship: "โครงการทุนคุณหมอของกำลังใจ",
+    amount: "50,000",
   },
   {
     id: "PJ3",
     scholarship: "โครงการทุน Gumlungjai Scholarship",
+    amount: "40,000",
   },
   {
     id: "PJ4",
     scholarship: "โครงการทุนกำลังใจให้พยาบาล",
+    amount: "40,000",
   },
   {
     id: "PJ5",
     scholarship: "โครงการทุนนักจิตวิทยาสร้างกำลังใจ",
+    amount: "40,000",
   },
 ];
 

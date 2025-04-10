@@ -8,8 +8,7 @@
       <br />
       <div>
         <div class="flex justify-end">
-          <button class="bg-blue-500 shadow-lg w-20 rounded-xl p-2 text-white hover:bg-blue-600"
-            @click="handlePrintData(idcard)">
+          <button class="bg-blue-500 shadow-lg w-20 rounded-xl p-2 text-white hover:bg-blue-600" @click="print(idcard)">
             <center>
               <PrinterIcon class="w-10 h-10" />
               <p class="mt-1">Print</p>
@@ -176,48 +175,50 @@
                   placeholder="ความสามารถพิเศษ"></textarea>
               </div>
               <div class="w-full sm:w-1/1 lg:w-1/1">
+
                 <label class="text-lg font-semibold text-blue-700 mb-2 block" for="specialWork">
                   งานพิเศษที่เคยทำหรือกำลังทำอยู่ (นอกเวลาการศึกษา)
                   <span class="text-red-500 text-sm"></span>
                 </label>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                  <input type="text" placeholder="งานพิเศษ" id="specialWork" name="specialWork"
-                    v-model="item.specialWork" readonly
-                    class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200" />
-                </div>
-                <br />
-
-                <div class="overflow-x-auto shadow-md rounded-xl">
-                  <table class="w-full border-collapse bg-white">
-                    <thead>
-                      <tr class="bg-blue-500 text-white">
-                        <th class="px-4 py-3 text-left">ลำดับ</th>
-                        <th class="px-4 py-3 text-left">สถานที่ทำงาน</th>
-                        <th class="px-4 py-3 text-left">รายได้</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr v-for="(work, index) in Workhistory" :key="work.work_id"
-                        class="border-b hover:bg-blue-50 transition-colors">
-                        <td class="px-4 py-3">
-                          <div
-                            class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-sm">
-                            {{ index + 1 }}
-                          </div>
-                        </td>
-                        <td class="px-4 py-3">
-                          <input type="text" v-model="work.location" readonly
-                            class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
-                            placeholder="สถานที่ทำงาน" />
-                        </td>
-                        <td class="px-4 py-3">
-                          <input type="text" v-model="work.salaryWork" readonly
-                            class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
-                            placeholder="รายได้" />
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <input type="text" placeholder="งานพิเศษ" id="specialWork" name="specialWork"
+                      v-model="item.specialWork" readonly
+                      class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200" />
+                  </div>
+                  <br />
+                  <div v-if="item.specialWork === 'มีการทำงานพิเศษ'">
+                  <div class="overflow-x-auto shadow-md rounded-xl">
+                    <table class="w-full border-collapse bg-white">
+                      <thead>
+                        <tr class="bg-blue-500 text-white">
+                          <th class="px-4 py-3 text-left">ลำดับ</th>
+                          <th class="px-4 py-3 text-left">สถานที่ทำงาน</th>
+                          <th class="px-4 py-3 text-left">รายได้</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="(work, index) in Workhistory" :key="work.work_id"
+                          class="border-b hover:bg-blue-50 transition-colors">
+                          <td class="px-4 py-3">
+                            <div
+                              class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-sm">
+                              {{ index + 1 }}
+                            </div>
+                          </td>
+                          <td class="px-4 py-3">
+                            <input type="text" v-model="work.location" readonly
+                              class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
+                              placeholder="สถานที่ทำงาน" />
+                          </td>
+                          <td class="px-4 py-3">
+                            <input type="text" v-model="work.salaryWork" readonly
+                              class="w-full px-3 py-2 text-base border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all duration-200 hover:border-blue-500"
+                              placeholder="รายได้" />
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
 
                 <br />
@@ -234,7 +235,8 @@
 
                   <br />
 
-                  <div class="overflow-x-auto shadow-md rounded-xl" v-if="item.scholarshipStatus === 'no'">
+                  <div class="overflow-x-auto shadow-md rounded-xl"
+                    v-if="item.scholarshipStatus === 'เคยได้รับทุนการศึกษา'">
                     <table class="w-full border-collapse bg-white">
                       <thead>
                         <tr class="bg-blue-500 text-white">
@@ -409,12 +411,12 @@
                       </div>
                       <div>
                         <label class="text-lg font-semibold text-blue-700 mb-2 block" for="tcas">
-                          ค่าเล่าเรียน (บาท/เทอม)<span class="text-red-500"></span>
+                          ค่าเล่าเรียน (บาท/ปี)<span class="text-red-500"></span>
                         </label>
                         <div class="relative">
                           <input type="number" id="tcas" name="tcas" readonly v-model="item.tcas"
                             class="w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500"
-                            placeholder="ค่าเล่าเรียน (บาท/เทอม)" />
+                            placeholder="ค่าเล่าเรียน (บาท/ปี)" />
 
                           <Transition enter-active-class="transition duration-300 ease-out"
                             enter-from-class="opacity-0 scale-95" enter-to-class="opacity-100 scale-100"
@@ -1174,7 +1176,7 @@
                           ข้อมูลประวัติผู้ป่วยภายในครอบครัว
                         </h2>
 
-                        <div class="overflow-x-auto bg-white rounded-lg shadow">
+                        <div class="overflow-x-auto bg-white rounded-lg shadow" v-if="item.isSick === 'someonesick'">
                           <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-blue-500">
                               <tr>
@@ -1772,6 +1774,8 @@
 import { ref, onMounted, watch, nextTick } from "vue";
 import axios from "axios";
 
+import { formatDate, PrintData } from "@/utils";
+
 import SidebarComponent from "./Menu/SidebarComponent.vue";
 // import SiblingInfoFormConponent from "./SiblingInfoFormConponent.vue";
 /* import VolunteerComponent from "./VolunteerComponent.vue";
@@ -1812,6 +1816,10 @@ const Toast = Swal.mixin({
   },
 });
 
+const print = (idCard) => {
+  PrintData(router, idCard);
+}
+
 const dataArray = ref([]);
 const cerArray = ref([]);
 const medArray = ref([]);
@@ -1851,38 +1859,17 @@ const fetchData = async () => {
     });
 };
 
-const formatDate = (dateString) => {
-  // ตรวจสอบว่าเป็นวันที่ที่ถูกต้อง
-  const date = new Date(dateString);
-
-  if (isNaN(date.getTime())) {
-    console.error("Invalid Date");
-    return "";
-  }
-
-  const year = date.getFullYear(); // ได้ปีในรูปแบบ ค.ศ.
-  const monthName = new Intl.DateTimeFormat("th-TH", { month: "long" }).format(
-    date
-  );
-  const day = date.getDate();
-
-  // ปรับปีให้เป็นปี พ.ศ. โดยไม่ต้องลบ 543
-  const adjustedYear = year;
-
-  return `${day} ${monthName} ${adjustedYear}`; // แสดงผลในรูปแบบ วัน เดือน ปี พ.ศ.
-};
-
 onMounted(() => {
   fetchData();
 });
 
-const handlePrintData = (idCard) => {
-  if (idCard) {
-    router.push({ name: "pdfbyid", params: { idcard: idCard } });
-  } else {
-    console.error("ID Card is missing!");
-  }
-};
+// const handlePrintData = (idCard) => {
+//   if (idCard) {
+//     router.push({ name: "pdfbyid", params: { idcard: idCard } });
+//   } else {
+//     console.error("ID Card is missing!");
+//   }
+// };
 
 // modal
 const isCertificateModalOpen = ref(false);
