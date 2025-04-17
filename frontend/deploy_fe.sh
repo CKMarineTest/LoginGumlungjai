@@ -9,6 +9,9 @@ AWS_REGION="ap-southeast-1"
 export AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY
 export AWS_REGION
+export VUE_APP_API_URL="https://portal.thmarinegold.com"
+  
+npm run build
 
 if [ ! -d "$FOLDER_PATH" ]; then
     echo "Error: Folder '$FOLDER_PATH' does not exist."
