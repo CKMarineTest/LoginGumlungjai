@@ -10,6 +10,16 @@ exports.GetlistEfillingController = async (req, res) => {
   }
 };
 
+exports.deleteEfillingController = async (req, res) => {
+  try {
+    const data = await Efilling.delete_efilling();
+    res.status(200).json({ success: true, data });
+  }catch(error) {
+    console.error("Error to delete Efilling", error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+}
+
 exports.GetEfillingController = async (req, res) => {
     let  idCard  = req.body.card_id
 

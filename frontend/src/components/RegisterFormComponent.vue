@@ -324,23 +324,10 @@
                         <DocumentTextIcon class="h-5 w-5" />
                       </button>
                       <button
-                        class="p-2.5 text-green-600 rounded-xl hover:bg-green-100 transition-all duration-200 hover:scale-110 hover:shadow-sm"
+                        class="p-2.5 text-red-600 rounded-xl hover:bg-red-100 transition-all duration-200 hover:scale-110 hover:shadow-sm"
                         title="แก้ไขข้อมูล"
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                          />
-                        </svg>
+                        <Trash2 class="h-5 w-5" />
                       </button>
                     </div>
                   </td>
@@ -417,6 +404,7 @@
 import { ref, computed, onMounted } from "vue";
 import axios from "axios";
 import { DocumentTextIcon } from "@heroicons/vue/24/outline";
+import { Trash2 } from "lucide-vue-next";
 import SidebarComponent from "./Menu/SidebarComponent.vue";
 import router from "@/router";
 
@@ -562,5 +550,4 @@ const goToDocument = (idCard) => {
     console.error("ID Card is missing!");
   }
 };
-
 </script>

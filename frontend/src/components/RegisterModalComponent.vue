@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-gradient-to-r from-blue-500 to-blue-600 border-2 border-transparent rounded-xl shadow-lg p-6 text-white flex flex-col items-center justify-center hover:bg-none hover:border-blue-500 hover:text-blue-500 transition-all cursor-pointer duration-300"
+    class="bg-gradient-to-r from-blue-500 to-blue-600 border-2 border-transparent rounded-xl shadow-lg p-6 text-white flex flex-col items-center justify-center hover:bg-none hover:border-blue-500 hover:text-blue-500 transition-all cursor-pointer duration-500"
     @click="isModalOpen = true">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mb-4 group-hover:text-blue-500" fill="none"
       viewBox="0 0 24 24" stroke="currentColor">
@@ -15,7 +15,6 @@
 
   <Teleport to="body">
     <div v-if="isModalOpen" class="fixed inset-0 flex items-center justify-center z-50 p-4">
-      <!-- Backdrop with blur effect -->
       <div class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm transition-opacity" @click="isModalOpen = false"
         :class="{ 'opacity-0': !isModalOpen, 'opacity-100': isModalOpen }" style="transition: opacity 0.4s ease-out;">
       </div>

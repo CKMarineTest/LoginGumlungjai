@@ -12,7 +12,8 @@ export const formatDate = (input) => {
 
         const date = new Date(year, month, day);
 
-    if (isNaN(date)) {
+    if (isNaN(date)) 
+    {
         return "";
     }
 
@@ -24,9 +25,12 @@ export const formatDate = (input) => {
 }
 
 export const PrintData = (router, idCard) => {
-    if(idCard) {
+    if(idCard) 
+    {
         router.push({ name: "pdfbyid", params: { idcard: idCard } });
-    }else {
-        console.error("Id card is missing")
+    }
+    else
+    {
+        console.error("Id card is missing");
     }
 }

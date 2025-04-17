@@ -1,5 +1,4 @@
-import { useToast } from "vue-toastification";
-import { POSITION } from "vue-toastification";
+import { useToast, POSITION } from "vue-toastification";
 
 export const useToastService = () => {
     const toast = useToast();
@@ -8,23 +7,7 @@ export const useToastService = () => {
         toast.success(message, {
             position: POSITION.TOP_RIGHT,
             timeout: 5000,
-            closeOnClick: true,
-        })
-    }
-
-    const showWarning = (message) => {
-        toast.warning(message, { 
-            position: POSITION.TOP_RIGHT,
-            timeout: 5000,
-            closeOnClick: true,
-        })
-    }
-
-    const showError = (message) => {
-        toast.error(message, {
-            position: POSITION.TOP_RIGHT,
-            timeout: 5000,
-            closeOnClick: true,
+            closeOnClickl: true,
         })
     }
 
@@ -35,6 +18,23 @@ export const useToastService = () => {
             closeOnClick: true,
         })
     }
+
+    const showWarning = (message) => {
+        toast.warning(message, {
+            position: POSITION.TOP_RIGHT,
+            timeout: 5000,
+            closeOnClick: true,
+        })
+    }
+
+    const showError = (message) => {
+        toast.error(message, {
+            position: POSITION.TOP_RIGHT,
+            timeout: 5000,
+            closeOnClick: true
+        })
+    }
+
     return {
         showSuccess,
         showWarning,

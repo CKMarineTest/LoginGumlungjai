@@ -56,16 +56,14 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-100">
-                                <tr v-for="item in filteredUsers" :key="item.su_id"
+                                <tr v-for="(item, index) in filteredUsers" :key="item.su_id"
                                     class="group hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-transparent transition-all duration-300">
                                     <td class="px-6 py-5 whitespace-nowrap text-sm">
                                         <div class="flex items-center gap-3">
                                             <div
                                                 class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-100 via-blue-200 to-blue-100 flex items-center justify-center text-blue-700 font-semibold shadow-sm">
                                                 {{
-                                                    item.username
-                                                        ? item.username.charAt(0)
-                                                : "N/A"
+                                                    index + 1
                                                 }}
                                             </div>
                                             <span class="font-medium text-gray-700">

@@ -1,70 +1,127 @@
 <template>
-  <aside class="w-20 fixed left-0 top-0 bottom-0 bg-gray-900 shadow-lg z-10">
-    <SidebarComponent />
-  </aside>
+  <div class="flex  bg-gray-50">
+    <aside class="w-20 fixed left-0 top-0 bottom-0 bg-gray-900 shadow-lg z-10">
+      <SidebarComponent />
+    </aside>
 
-  <main class="flex-1 ml-20 p-4 md:p-6 lg:p-8 mt-8">
-    <nav class="flex min-w-max">
-      <button
-        v-for="item in settingsMenu"
-        :key="item.id"
-        @click="activeSection = item.id"
-        :class="[
-          'flex items-center px-6 py-5 transition-colors border-b-2 text-sm md:text-base whitespace-nowrap',
+    <main class="flex-1 ml-20 w-12/12 p-4 md:p-6 lg:p-8 min-w-max">
+      <br>
+      <br>
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-gray-800">การตั้งค่า</h2>
+        <p class="text-gray-500 mt-1">จัดการบัญชีและการตั้งค่าความปลอดภัยของคุณ</p>
+      </div>
+
+      <nav class="flex min-w-max border-b border-gray-200 mb-6">
+        <button v-for="item in settingsMenu" :key="item.id" @click="activeSection = item.id" :class="[
+          'flex items-center px-6 py-4 transition-all duration-200 border-b-2 text-sm md:text-base whitespace-nowrap font-medium',
           activeSection === item.id
-            ? 'border-indigo-600 text-indigo-700 font-medium'
-            : 'border-transparent text-gray-600 hover:text-gray-800 hover:border-gray-300',
-        ]"
-      >
-        <span class="mr-2" v-html="item.icon"></span>
-        <span>{{ item.name }}</span>
-      </button>
-    </nav>
+            ? 'border-indigo-600 text-indigo-700'
+            : 'border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-300',
+        ]">
+          <span class="mr-2" v-html="item.icon"></span>
+          <span>{{ item.name }}</span>
+        </button>
+      </nav>
 
-    <div class="flex-1 p-6 md:p-8">
-      <div
-        v-for="section in filteredSections"
-        :key="section.id"
-        class="bg-white shadow rounded-lg p-6 w-full"
-      >
-        <h3 class="text-lg font-medium text-gray-800 mb-4">
-          {{ section.title }}
-        </h3>
-        <p class="text-gray-600">{{ section.description }}</p>
+      <div class="flex-1">
+        <div v-for="section in filteredSections" :key="section.id"
+          class="bg-white shadow-sm rounded-xl p-6 w-full border border-gray-100">
+          <h3 class="text-lg font-medium text-gray-800 mb-2">
+            {{ section.title }}
+          </h3>
+          <p class="text-gray-500 text-sm mb-6">{{ section.description }}</p>
 
-        <div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div
-            class="space-y-4"
-            v-for="(field, index) in section.fields"
-            :key="index"
-          >
-            <div v-for="(label, key) in field" :key="key">
-              <label class="block text-sm font-medium text-gray-700">{{
-                label
-              }}</label>
-              <input
-                :type="
-                  key === 'email' ? 'email' : (key = 'tel' ? 'tel' : 'text')
-                "
-                v-model="formData[key]"
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              />
+          <div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div class="space-y-5" v-for="(field, index) in section.fields" :key="index">
+              <div v-for="(label, key) in field" :key="key" class="relative">
+                <label class="block text-sm font-medium text-gray-700 mb-1">
+                  {{ label }}
+                </label>
+                <input :type="getInputType(key)" v-model="formData[key]" :placeholder="getPlaceholder(key)"
+                  class="input" />
+                <div v-if="key.includes('Password')" class="text-xs text-gray-400 mt-1">
+                  {{ key === 'newPassword' ? 'รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร' : '' }}
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div v-if="section.id === 'notifications'" class="mt-6">
+            <div class="space-y-4">
+              <div v-for="(notification, index) in notificationSettings" :key="index"
+                class="flex items-center justify-between p-4 rounded-lg border border-gray-100 hover:bg-gray-50 transition-colors">
+                <div>
+                  <h4 class="font-medium text-gray-800">{{ notification.title }}</h4>
+                  <p class="text-sm text-gray-500">{{ notification.description }}</p>
+                </div>
+                <div class="relative inline-block w-12 h-6 transition duration-200 ease-in-out">
+                  <input type="checkbox" :id="`toggle-${index}`" v-model="notification.enabled"
+                    class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer top-0.5 left-0.5 transition-all duration-200" />
+                  <label :for="`toggle-${index}`"
+                    class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div v-if="section.id === 'ipblocking'" class="mt-6">
+            <div class="flex items-center mb-6">
+              <input type="text" v-model="newIpAddress" placeholder="192.168.1.1" class="input" />
+              <button @click="addIpToBlocklist"
+                class="bg-indigo-600 text-white px-4 rounded-lg ml-2 hover:bg-indigo-700 transition-colors">
+                เพิ่ม IP
+              </button>
+            </div>
+
+            <div class="border rounded-lg overflow-hidden">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">IP
+                      Address</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      วันที่เพิ่ม</th>
+                    <th class="px-6 py-3 text-right text-xs font-medium text-gray5-00 uppercase tracking-wider">
+                      การจัดการ</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr v-for="(ip, index) in blockedIps" :key="index" class="hover:bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ ip.address }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ ip.dateAdded }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <button @click="removeIp(index)" class="text-red-600 hover:text-red-800">
+                        ลบ
+                      </button>
+                    </td>
+                  </tr>
+                  <tr v-if="blockedIps.length === 0">
+                    <td colspan="3" class="px-6 py-4 text-center text-sm text-gray-500">ไม่มี IP ที่ถูกบล็อก</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
-
-        <button v-if="section.id === 'security'" @click="submit">Change</button>
       </div>
-    </div>
-  </main>
+    </main>
+  </div>
 </template>
 
 <script setup>
 /* eslint-disable */
 import { ref, computed } from "vue";
 import SidebarComponent from "./Menu/SidebarComponent.vue";
+import { useToastService } from "@/lib/toastService";
 
-const activeSection = ref("security");
+const { showSuccess } = useToastService();
+
+const showSuccessAlert = (message) => {
+  showSuccess(message);
+}
+
+const activeSection = ref("ipblocking");
 
 const formData = ref({
   currentPassword: "",
@@ -107,14 +164,81 @@ const sections = [
   {
     id: "ipblocking",
     title: "IP Blocking",
-    description: "IP Blocking Page",
+    description: "จัดการรายการบล็อก IP ที่ไม่ต้องการให้เข้าถึงระบบ",
     fields: [],
   },
 ];
 
+const notificationSettings = ref([
+  {
+    title: "การแจ้งเตือนอีเมล",
+    description: "รับอีเมลเมื่อมีการเข้าสู่ระบบใหม่",
+    enabled: true
+  },
+  {
+    title: "การแจ้งเตือน SMS",
+    description: "รับข้อความเตือนเมื่อมีการเปลี่ยนแปลงรหัสผ่าน",
+    enabled: false
+  },
+  {
+    title: "การแจ้งเตือนในระบบ",
+    description: "แสดงการแจ้งเตือนในแดชบอร์ด",
+    enabled: true
+  },
+  {
+    title: "รายงานความปลอดภัยรายเดือน",
+    description: "รับรายงานสรุปกิจกรรมบัญชีประจำเดือน",
+    enabled: false
+  }
+]);
+
+const newIpAddress = ref("");
+const blockedIps = ref([
+  { address: "192.168.1.10", dateAdded: "17/04/2025" },
+  { address: "10.0.0.5", dateAdded: "15/04/2025" }
+]);
+
+const addIpToBlocklist = () => {
+  if (newIpAddress.value.trim() === "") return;
+
+  const today = new Date();
+  const formattedDate = `${today.getDate().toString().padStart(2, '0')}/${(today.getMonth() + 1).toString().padStart(2, '0')}/${today.getFullYear()}`;
+
+  blockedIps.value.push({
+    address: newIpAddress.value,
+    dateAdded: formattedDate,
+  });
+
+  newIpAddress.value = "";
+}
+
+const removeIp = (index) => {
+  blockedIps.value.splice(index, 1);
+}
+
 const filteredSections = computed(() => {
   return sections.filter((section) => section.id === activeSection.value);
 });
+
+const getInputType = (key) => {
+  if (key.includes("Password")) return "password";
+  if (key === "email") return "email";
+  if (key === "phone") return "tel";
+  return "text";
+};
+
+const getPlaceholder = (key) => {
+  const placeholders = {
+    currentPassword: "กรอกรหัสผ่านปัจจุบัน",
+    newPassword: "กรอกรหัสผ่านใหม่",
+    confirmNewPassword: "ยืนยันรหัสผ่านใหม่",
+    username: "กรอกชื่อผู้ใช้",
+    email: "กรอกอีเมล",
+    fullName: "กรอกชื่อ-นามสกุล",
+    phone: "กรอกเบอร์โทรศัพท์"
+  };
+  return placeholders[key] || "";
+};
 
 const submit = () => {
   if (
@@ -122,45 +246,62 @@ const submit = () => {
     !formData.value.newPassword ||
     !formData.value.confirmNewPassword
   ) {
-    alert("Enter Password");
+    alert("กรุณากรอกข้อมูลรหัสผ่านให้ครบถ้วน");
     return;
   }
 
   if (formData.value.newPassword !== formData.value.confirmNewPassword) {
-    alert("Password don't match");
+    alert("รหัสผ่านใหม่และรหัสผ่านยืนยันไม่ตรงกัน");
     return;
   }
 
   console.log("Current Password", formData.value.currentPassword);
   console.log("New Password", formData.value.newPassword);
   console.log("Confirm Password", formData.value.confirmNewPassword);
+
+  showSuccessAlert("เปลี่ยนรหัสผ่านเสร็จสิ้น")
+
+  formData.value.currentPassword = "";
+  formData.value.newPassword = "";
+  formData.value.confirmNewPassword = "";
 };
 
 const settingsMenu = [
   {
     id: "profile",
     name: "โปรไฟล์",
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
   },
   {
     id: "security",
     name: "ความปลอดภัย",
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+  },
+  {
+    id: "notifications",
+    name: "การแจ้งเตือน",
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bell"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>',
   },
   {
     id: "ipblocking",
     name: "IP Blocking",
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-ellipsis"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/></svg>',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-ban"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m14.5 9-5 5"/><path d="m9.5 9 5 5"/></svg>',
   },
 ];
 </script>
 
 <style scoped>
+.input {
+  @apply w-full px-4 h-12 text-lg border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-100 focus:outline-none pr-[120px] transition-all duration-200 hover:border-blue-500;
+}
+
 .toggle-checkbox:checked {
   right: 0;
-  border-color: #4f46e5;
+  transform: translateX(100%);
+  border-color: #ffffff;
 }
-.toggle-checkbox:checked + .toggle-label {
+
+.toggle-checkbox:checked+.toggle-label {
   background-color: #4f46e5;
 }
 </style>

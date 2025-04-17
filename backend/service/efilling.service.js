@@ -126,6 +126,18 @@ async function getEfilling_Work(E_ID) {
   }
 }
 
+async function delete_efilling(E_ID) {
+  try {
+    const pool = await sql.connect(config);
+    const result = await pool.request()
+      .input('E_ID', sql.NVarChar.E_ID)
+      .query("DELETE FROM efilling WHERE E_ID = @E_ID");
+    return result.recordset;
+  }catch(error) {
+    console.error(`Database Query Error:`, error);
+  }
+}
 
 
-module.exports = { getEfillingService, getEfillingByIdCardService ,getEfilling_Activity,getEfilling_certificate,getefilling_family_medical_history,getEfilling_scholarship,getefilling_siblings,getEfilling_Work };
+
+module.exports = { getEfillingService, getEfillingByIdCardService ,getEfilling_Activity,getEfilling_certificate,getefilling_family_medical_history,getEfilling_scholarship,getefilling_siblings,getEfilling_Work, delete_efilling };
