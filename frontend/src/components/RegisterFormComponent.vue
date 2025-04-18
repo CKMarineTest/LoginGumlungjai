@@ -128,7 +128,7 @@
 
               <div class="border-t border-gray-200 px-8 py-6 flex justify-between items-center bg-white">
                 <div class="flex space-x-3">
-                  <button @click="closeModal"
+                  <button @click="closeSortModal"
                     class="px-5 py-2.5 text-white bg-red-500 hover:bg-red-600 rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-50 flex items-center font-medium">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1.5" fill="none" viewBox="0 0 24 24"
                       stroke="currentColor">
@@ -538,6 +538,10 @@ const filteredByScholarship = (scholarship) => {
 watch(filteredScholarship, (val) => {
   console.log("Selected", val);
 })
+
+const closeSortModal = () => {
+  isSortModalOpen.value = false;
+}
 
 
 const scholarship = [
