@@ -1468,7 +1468,7 @@
                         <div class="overflow-hidden">
                           <div class="">
                             <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight">
-                              เอกสารเรียงความ
+                              เรียงความที่ผู้สมัครเลือก
                             </h1>
                           </div>
 
@@ -1766,6 +1766,16 @@
           </div>
         </div>
       </div>
+      <br>
+      <div class="w-full max-w-7xl mx-auto bg-white shadow-xl rounded-xl overflow-hidden">
+        
+        <BasicScoreTableComponent class="mt-5 mb-5" />
+      </div>
+      <br>
+      <div class="w-full max-w-7xl mx-auto bg-white shadow-xl rounded-xl overflow-hidden">
+        
+        <ScoreTableComponent class="mt-5 mb-5" />
+      </div>
     </div>
   </div>
 </template>
@@ -1777,6 +1787,8 @@ import axios from "axios";
 import { formatDate, PrintData } from "@/utils";
 
 import SidebarComponent from "./Menu/SidebarComponent.vue";
+import ScoreTableComponent from "./ScoreTableComponent.vue";
+import BasicScoreTableComponent from './BasicScoreTableComponent.vue';
 // import SiblingInfoFormConponent from "./SiblingInfoFormConponent.vue";
 /* import VolunteerComponent from "./VolunteerComponent.vue";
 import EssaySubmissionComponent from "./EssaySubmissionComponent.vue";

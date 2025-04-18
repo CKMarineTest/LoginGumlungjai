@@ -1,5 +1,5 @@
 <template>
-  <div class="flex  bg-gray-50">
+  <div class="flex h-screen bg-gray-50">
     <aside class="w-20 fixed left-0 top-0 bottom-0 bg-gray-900 shadow-lg z-10">
       <SidebarComponent />
     </aside>
@@ -46,7 +46,7 @@
               </div>
             </div>
           </div>
-          
+
           <div v-if="section.id === 'notifications'" class="mt-6">
             <div class="space-y-4">
               <div v-for="(notification, index) in notificationSettings" :key="index"

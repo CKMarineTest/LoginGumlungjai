@@ -73,6 +73,11 @@ const routes = [
         path: '/admin',
         name: 'admin',
         component: () => import('../components/AdminTableComponent.vue')
+    },
+    {
+        path: '/score',
+        name: 'score',
+        component: () => import('../components/ScoreTableComponent.vue')
     }
 ]
 
