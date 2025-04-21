@@ -7,7 +7,7 @@ async function getUserService() {
     const result = await pool
       .request()
       .query(
-        "SELECT su_id, card_id, username, Password, Sr_id, su_firstname, su_lastname FROM SystemUser WHERE Sr_id = 4"
+        "SELECT su_id, card_id, username, Password, Sr_id, su_firstname, su_lastname, su_phone FROM SystemUser WHERE Sr_id = 4"
       );
 
     if (result.recordset && result.recordset.length > 0) {

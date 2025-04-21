@@ -76,6 +76,11 @@
                       {{ item.su_firstname }} {{ item.su_lastname }}
                     </span>
                   </td>
+                  <td class="px-6 py-5 whitespace-nowrap">
+                    <span class="text-sm font-medium text-gray-900">
+                      {{ item.su_phone || '-' }}
+                    </span>
+                  </td>
                   <td class="px-6 py-5 whitespace-nowrap text-right">
                     <button @click="openDeleteModal(item)"
                       class="group z-0 relative px-4 py-2 text-red-600 hover:text-white rounded-lg font-medium flex items-center gap-2 transition-all duration-300 overflow-hidden border border-red-300 hover:border-red-600 bg-white hover:bg-red-500 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-opacity-50">
@@ -156,6 +161,7 @@ const selectedUserToDelete = ref(null);
 const headers = [
   { key: "id_card", label: "รหัสประจำตัวประชาชน" },
   { key: "name", label: "ชื่อ - นามสกุล" },
+  { key: "phone", label: "เบอร์โทรศัพท์ติดต่อ" },
   { key: "action", label: "จัดการ" },
 ];
 
