@@ -16,10 +16,10 @@
             </h2>
             <p class="text-gray-500">จัดการข้อมูลผู้สมัครทุนการศึกษาทั้งหมด</p>
           </div>
-          <button class="mt-4 bg-yellow-400 p-3 w-50 flex rounded-xl hover:bg-yellow-300 transition-all duration-300"
+          <!-- <button class="mt-4 bg-yellow-400 p-3 w-50 flex rounded-xl hover:bg-yellow-300 transition-all duration-300"
             @click="isSortModalOpen = true">
             <ArrowDownWideNarrow />กรองข้อมูลทุน
-          </button>
+          </button> -->
 
           <div v-if="isSortModalOpen" ref="overlay"
             class="fixed inset-0 bg-black bg-opacity-60 z-40 flex items-center justify-center backdrop-blur-sm transition-all duration-300"
@@ -381,7 +381,7 @@
 import { ref, computed, onMounted, watch } from "vue";
 import axios from "axios";
 import { DocumentTextIcon } from "@heroicons/vue/24/outline";
-import { ArrowDownWideNarrow, Hospital, Book, Heart, MessageCircleMore, Pill } from "lucide-vue-next";
+import { Hospital, Book, Heart, MessageCircleMore, Pill } from "lucide-vue-next";
 import SidebarComponent from "./Menu/SidebarComponent.vue";
 import router from "@/router";
 
