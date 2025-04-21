@@ -31,21 +31,36 @@
                     </tr>
                 </tbody>
             </table>
+
+            <div class="flex justify-end items-center px-6 py-4 bg-white border-t">
+                <div class="text-right">
+                    <p class="text-sm text-gray-500">คะแนนรวม</p>
+                    <p class="text-2xl font-bold text-blue-700">
+                        {{ animatedScore.toFixed(0) }} <span class="text-base font-medium text-gray-500">/ 40</span>
+                    </p>
+
+                    <div class="w-64 h-3 mt-2 bg-gray-200 rounded-full overflow-hidden shadow-inner">
+                        <div class="h-full bg-gradient-to-r from-blue-400 to-blue-700 transition-all duration-500"
+                            :style="{ width: `${(totalScore / 40) * 100}%` }">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="p-4 bg-gray-50 flex justify-end gap-4">
             <button class="px-6 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition" @click="clearScore">
                 ล้างค่า
             </button>
-            <button class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+            <!-- <button class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
                 ส่งคะแนน
-            </button>
+            </button> -->
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed, watch } from 'vue';
 
 import Swal from 'sweetalert2';
 
@@ -79,6 +94,33 @@ const questions = [
 ];
 
 const scores = ref(Array(questions.length).fill(null));
+
+const totalScore = computed(() => {
+    return scores.value.reduce((sum, selectedRating) => {
+        return sum + (selectedRating?.score || 0);
+    }, 0)
+});
+
+const animatedScore = ref(0);
+
+watch(totalScore, (newScore) => {
+    // const duration = 300;
+    const frames = 30;
+    const increment = (newScore - animatedScore.value) / frames;
+    let currentFrame = 0;
+
+    const animate = () => {
+        if (currentFrame < frames) {
+            animatedScore.value += increment;
+            currentFrame++;
+            requestAnimationFrame(animate);
+        } else {
+            animatedScore.value = newScore;
+        }
+    };
+
+    animate();
+});
 
 const clearScore = async () => {
     const result = await Swal.fire({

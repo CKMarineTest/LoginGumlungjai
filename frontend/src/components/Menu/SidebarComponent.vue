@@ -224,7 +224,7 @@ const showSuccessToast = (message) => {
 
 const router = useRouter();
 const route = useRoute();
-const isExpanded = ref(true);
+const isExpanded = ref(false);
 const showNotifications = ref(false);
 const showProfileMenu = ref(false);
 

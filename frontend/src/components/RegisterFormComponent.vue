@@ -167,7 +167,7 @@
             <div>
               <p class="text-gray-500 text-sm font-medium">ผู้สมัครทั้งหมด</p>
               <h2 class="text-3xl font-bold text-gray-800">
-                {{ dataArray.length }}
+                {{ dataArray.length }} คน
               </h2>
             </div>
           </div>
@@ -251,15 +251,15 @@
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-100">
-                <tr v-for="item in filteredData" :key="item.id_card"
+                <tr v-for="(item, index) in filteredData" :key="item.id_card"
                   class="group hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-transparent transition-all duration-300">
                   <td class="px-6 py-5 whitespace-nowrap text-sm">
                     <div class="flex items-center gap-3">
-                      <!-- <div
+                      <div
                         class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-100 via-blue-200 to-blue-100 flex items-center justify-center text-blue-700 font-semibold shadow-sm transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
                       >
-                        {{ item.FirstName ? item.FirstName.charAt(0) : "N/A" }}
-                      </div> -->
+                        {{ index + 1 }}
+                      </div>
                       <span class="font-medium text-gray-700">{{
                         item.idcard
                       }}</span>
@@ -293,8 +293,27 @@
                     <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl my-4">
 
                       <div class="relative">
-                        <textarea v-model="note" rows="1"
-                          class="block w-full px-4 py-3 text-gray-700 bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:border-transparent transition duration-200"
+                        <div class="absolute top-1 left-1 w-5 h-5 pointer-events-none z-10">
+                          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                            <g transform="translate(20, 20)">
+                              <path
+                                d="M 0,-10 L 2.35,-3.1 9.9,-3.1 3.8,1.2 6.1,8.1 0,3.8 -6.1,8.1 -3.8,1.2 -9.9,-3.1 -2.35,-3.1 Z"
+                                fill="#FFD700" stroke="#FFC107" stroke-width="0.5" opacity="0.85">
+                              </path>
+                              <circle cx="0" cy="0" r="11" fill="url(#miniGlow)" opacity="0.3"></circle>
+                            </g>
+                            <defs>
+                              <radialGradient id="miniGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                                <stop offset="0%" stop-color="#FFD700" stop-opacity="0.3" />
+                                <stop offset="100%" stop-color="#FFD700" stop-opacity="0" />
+                              </radialGradient>
+                            </defs>
+                          </svg>
+                        </div>
+
+                        <textarea rows="1" :value="getNote(item.idcard)"
+                          @input="(e) => saveNote(item.idcard, e.target.value)"
+                          class="block w-full px-4 py-3 pl-8 text-gray-700 bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:border-transparent transition duration-200"
                           placeholder="เพิ่ม Note..."></textarea>
                       </div>
                     </div>
@@ -306,11 +325,11 @@
                         title="ดูเอกสาร">
                         <DocumentTextIcon class="h-5 w-5" />
                       </button>
-                      <button
+                      <!-- <button
                         class="p-2.5 text-red-600 rounded-xl hover:bg-red-100 transition-all duration-200 hover:scale-110 hover:shadow-sm"
                         title="แก้ไขข้อมูล">
                         <Trash2 class="h-5 w-5" />
-                      </button>
+                      </button> -->
                     </div>
                   </td>
                 </tr>
@@ -362,7 +381,7 @@
 import { ref, computed, onMounted, watch } from "vue";
 import axios from "axios";
 import { DocumentTextIcon } from "@heroicons/vue/24/outline";
-import { Trash2, ArrowDownWideNarrow, Hospital, Book, Heart, MessageCircleMore, Pill } from "lucide-vue-next";
+import { ArrowDownWideNarrow, Hospital, Book, Heart, MessageCircleMore, Pill } from "lucide-vue-next";
 import SidebarComponent from "./Menu/SidebarComponent.vue";
 import router from "@/router";
 
@@ -391,6 +410,7 @@ const fetchData = async () => {
     const response = await axios.post(baseUrl);
     if (response.data && Array.isArray(response.data.data)) {
       dataArray.value = response.data.data;  // Set the data to the reactive variable
+      // alert(response.data.idcard)
     } else {
       console.error('API response is not an array or is missing the data array');
     }
@@ -399,6 +419,9 @@ const fetchData = async () => {
     data.value = [];
   }
 };
+
+const getNote = (id) => localStorage.getItem(`note_${id}`) || '';
+const saveNote = (id, note) => localStorage.setItem(`note_${id}`, note);
 
 // const filteredData = computed(() => {
 //   return dataArray.value.filter(data => {
@@ -429,7 +452,7 @@ const filteredData = computed(() => {
     const matchScholarship =
       !scholarshipFilter || String(data.scholarship_id).toLowerCase() === scholarshipFilter.toLowerCase();
 
-    console.log("Scholarship Check:", data.scholarship_id, scholarshipFilter, matchScholarship);
+    // console.log("Scholarship Check:", data.scholarship_id, scholarshipFilter, matchScholarship);
 
     return matchQuery && matchScholarship;
   });

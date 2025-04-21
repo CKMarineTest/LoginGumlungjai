@@ -78,7 +78,7 @@ const routes = [
         path: '/score',
         name: 'score',
         component: () => import('../components/ScoreTableComponent.vue')
-    }
+    },
 ]
 
 const router = createRouter({

@@ -1,7 +1,7 @@
 <template>
     <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
         <div class="bg-gradient-to-r from-blue-600 to-blue-800 p-4 text-white text-center">
-            <h2 class="text-xl font-bold">ลงคะแนนด้านข้อมูลพื้นฐาน (30 คะแนน)</h2>
+            <h2 class="text-xl font-bold">คะแนนเรียงความ 1 (40 คะแนน)</h2>
         </div>
 
         <div class="overflow-x-auto">
@@ -31,21 +31,21 @@
                     </tr>
                 </tbody>
             </table>
+
             <div class="flex justify-end items-center px-6 py-4 bg-white border-t">
                 <div class="text-right">
                     <p class="text-sm text-gray-500">คะแนนรวม</p>
                     <p class="text-2xl font-bold text-blue-700">
-                        {{ animatedScore.toFixed(0) }} <span class="text-base font-medium text-gray-500">/ 30</span>
+                        {{ animatedScore.toFixed(0) }} <span class="text-base font-medium text-gray-500">/ 40</span>
                     </p>
 
                     <div class="w-64 h-3 mt-2 bg-gray-200 rounded-full overflow-hidden shadow-inner">
                         <div class="h-full bg-gradient-to-r from-blue-400 to-blue-700 transition-all duration-500"
-                            :style="{ width: `${(totalScore / 30) * 100}%` }">
+                            :style="{ width: `${(totalScore / 40) * 100}%` }">
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
 
         <div class="p-4 bg-gray-50 flex justify-end gap-4">
@@ -69,30 +69,28 @@ import Swal from 'sweetalert2';
 const ratings = [
     {
         description: 'ควรปรับปรุง',
-        score: 2,
-    },
-    {
-        description: 'พอใช้',
         score: 3,
     },
     {
+        description: 'พอใช้',
+        score: 5,
+    },
+    {
         description: 'ดี',
-        score: 4,
+        score: 7,
     },
     {
         description: 'ดีมาก',
-        score: 5,
+        score: 10,
     }
 ]
 
 const questions = [
-    'ผลสัมฤทธิ์ทางการเรียน (5 คะแนน)',
-    'วิสัยทัศน์ในวิชาชีพ (3 คะแนน)',
-    'ฐานะทางเศรษฐกิจของบิดา/มารดา/ผู้ปกครอง (5 คะแนน)',
-    'สถานที่อยู่อาศัย (5 คะแนน)',
-    'สุขภาพร่างกายของสมาชิกในครอบครัวที่เจ็บป่วยหรือทุพพลภาพ (5 คะแนน)',
-    'ค่าเล่าเรียน (5 คะแนน)',
-    'กิจกรรมจิตอาสา (2 คะแนน)',
+    'ความมุ่งมุ่นในวิชาชีพเมื่อจบการศึกษา (10 คะแนน)',
+    'วิสัยทัศน์ในวิชาชีพ (10 คะแนน)',
+    'การใช้ตรรกะ/เหตุผลคิดแก้ไขปัญหาอย่างเป็นระบบ (10 คะแนน)',
+    'รูปแบบการนำเสนอ/ทักษะการสื่อสาร (5 คะแนน)',
+    'คุณลักษณะพึงมีของสาขานั้นๆ (5 คะแนน)',
 ];
 
 const scores = ref(Array(questions.length).fill(null));
@@ -101,7 +99,7 @@ const totalScore = computed(() => {
     return scores.value.reduce((sum, selectedRating) => {
         return sum + (selectedRating?.score || 0);
     }, 0)
-})
+});
 
 const animatedScore = ref(0);
 

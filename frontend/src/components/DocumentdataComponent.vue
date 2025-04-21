@@ -180,13 +180,13 @@
                   งานพิเศษที่เคยทำหรือกำลังทำอยู่ (นอกเวลาการศึกษา)
                   <span class="text-red-500 text-sm"></span>
                 </label>
-                  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <input type="text" placeholder="งานพิเศษ" id="specialWork" name="specialWork"
-                      v-model="item.specialWork" readonly
-                      class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200" />
-                  </div>
-                  <br />
-                  <div v-if="item.specialWork === 'มีการทำงานพิเศษ'">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <input type="text" placeholder="งานพิเศษ" id="specialWork" name="specialWork"
+                    v-model="item.specialWork" readonly
+                    class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-xl placeholder:text-gray-400 hover:border-blue-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition duration-200" />
+                </div>
+                <br />
+                <div v-if="item.specialWork === 'มีการทำงานพิเศษ'">
                   <div class="overflow-x-auto shadow-md rounded-xl">
                     <table class="w-full border-collapse bg-white">
                       <thead>
@@ -1444,7 +1444,10 @@
                                 </div>
                               </div>
                             </div>
+                            
                           </div>
+                          <EssayScoreComponent />
+
                         </div>
                       </div>
 
@@ -1750,6 +1753,37 @@
                     </div>
                   </div>
                 </div>
+                <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl my-4">
+                  <div class="relative group">
+                    <div
+                      class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-blue-100 to-cyan-100 rounded-xl transform -rotate-1 opacity-70 group-hover:rotate-0 transition-all duration-300">
+                    </div>
+
+                    <div class="relative">
+                      <div class="absolute top-2 left-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none"
+                          viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                        </svg>
+                      </div>
+
+                      <textarea rows="3" :value="getNote(item.idcard)"
+                        @input="(e) => saveNote(item.idcard, e.target.value)"
+                        class="block w-full px-5 py-4 pl-10 text-gray-700 bg-white rounded-xl border-2 border-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent transition duration-200 shadow-sm"
+                        placeholder="เพิ่ม Note | เอกสารที่ขาดหรือต้องแก้ไข">
+                        </textarea>
+                    </div>
+
+                    <div class="absolute -bottom-2 -left-2">
+                      <div class="w-6 h-6 bg-sky-200 rounded-full shadow-sm"></div>
+                    </div>
+
+                    <div class="absolute -top-2 -right-2">
+                      <div class="w-4 h-4 bg-indigo-200 rounded-full shadow-sm"></div>
+                    </div>
+                  </div>
+                </div>
                 <br />
                 <div class="flex justify-center space-x-4">
                   <button @click="editDocument"
@@ -1768,12 +1802,12 @@
       </div>
       <br>
       <div class="w-full max-w-7xl mx-auto bg-white shadow-xl rounded-xl overflow-hidden">
-        
+
         <BasicScoreTableComponent class="mt-5 mb-5" />
       </div>
       <br>
       <div class="w-full max-w-7xl mx-auto bg-white shadow-xl rounded-xl overflow-hidden">
-        
+
         <ScoreTableComponent class="mt-5 mb-5" />
       </div>
     </div>
@@ -1789,6 +1823,7 @@ import { formatDate, PrintData } from "@/utils";
 import SidebarComponent from "./Menu/SidebarComponent.vue";
 import ScoreTableComponent from "./ScoreTableComponent.vue";
 import BasicScoreTableComponent from './BasicScoreTableComponent.vue';
+import EssayScoreComponent from './EssayScoreComponent.vue';
 // import SiblingInfoFormConponent from "./SiblingInfoFormConponent.vue";
 /* import VolunteerComponent from "./VolunteerComponent.vue";
 import EssaySubmissionComponent from "./EssaySubmissionComponent.vue";
@@ -1874,6 +1909,10 @@ const fetchData = async () => {
 onMounted(() => {
   fetchData();
 });
+
+
+const getNote = (id) => localStorage.getItem(`missing_note_${id}`) || '';
+const saveNote = (id, note) => localStorage.setItem(`missing_note_${id}`, note);
 
 // const handlePrintData = (idCard) => {
 //   if (idCard) {
