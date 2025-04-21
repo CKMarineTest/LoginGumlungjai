@@ -293,7 +293,7 @@
                     <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl my-4">
 
                       <div class="relative">
-                        <div class="absolute top-1 left-1 w-5 h-5 pointer-events-none z-10">
+                        <div class="absolute top-1 left-1 w-5 h-5 pointer-events-none z-0">
                           <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
                             <g transform="translate(20, 20)">
                               <path
