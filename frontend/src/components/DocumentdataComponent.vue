@@ -1444,7 +1444,7 @@
                                 </div>
                               </div>
                             </div>
-                            
+
                           </div>
                           <EssayScoreComponent />
 
@@ -1790,7 +1790,7 @@
                     class="bg-yellow-500 flex items-center gap-2 p-4 px-4 rounded-xl text-white hover:bg-yellow-600 transition ease">
                     <Edit /> แก้ไขเอกสาร
                   </button>
-                  <button @click="submitCheck"
+                  <button @click="confirmCheck"
                     class="bg-green-600 flex items-center gap-2 p-4 px-4 rounded-xl text-white hover:bg-green-700 transition ease">
                     <Check /> ยืนยันการตรวจสอบ
                   </button>
@@ -1906,6 +1906,49 @@ const fetchData = async () => {
     });
 };
 
+const editDocument = async () => {
+  const baseUrl = process.env.VUE_APP_API_URL + "/efilling/UpdateEfillingStatusEdit";
+
+  try {
+    const response = await axios.post(baseUrl, {
+      idCard: idcard,
+    });
+
+    if (response) {
+      router.push("/registerform").then(() => {
+        Toast.fire({
+          icon: "success",
+          title: "ปรับสถานะแก้ไขเอกสาร",
+        });
+      });
+    }
+  } catch (error) {
+    console.log("ERROR:", error);
+  }
+}
+
+const confirmCheck = async () => {
+  const baseUrl = process.env.VUE_APP_API_URL + "/efilling/UpdateEfillingStatusSuccess";
+
+  try {
+    const response = await axios.post(baseUrl, {
+      idCard: idcard,
+    });
+
+    if (response) {
+      router.push("/registerform").then(() => {
+        Toast.fire({
+          icon: "success",
+          title: "ยืนยันการตรวสอบเอกสารสำเร็จ",
+        });
+      });
+    }
+    // console.log(response.json());
+  } catch (error) {
+    console.log("ERROR:", error);
+  }
+}
+
 onMounted(() => {
   fetchData();
 });
@@ -1932,15 +1975,6 @@ const closeCertificateModal = () => {
 
 const closeMedicalModal = () => {
   isMedicalModalOpen.value = false;
-};
-
-const editDocument = () => {
-  router.push("/registerform").then(() => {
-    Toast.fire({
-      icon: "success",
-      title: "ปรับสถานะแก้ไขเอกสาร",
-    });
-  });
 };
 
 /* const handleDownLoad = (filePath) => {
@@ -2007,14 +2041,14 @@ watch(dataArray, () => {
   resizeTextarea()
 }, { deep: true })
 
-const submitCheck = () => {
-  router.push("/registerform").then(() => {
-    Toast.fire({
-      icon: "success",
-      title: "ยืนยันการตรวสอบเอกสารสำเร็จ",
-    });
-  });
-};
+// const submitCheck = () => {
+//   router.push("/registerform").then(() => {
+//     Toast.fire({
+//       icon: "success",
+//       title: "ยืนยันการตรวสอบเอกสารสำเร็จ",
+//     });
+//   });
+// };
 </script>
 
 <style scoped>

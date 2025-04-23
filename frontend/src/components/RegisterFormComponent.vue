@@ -201,9 +201,9 @@
               </svg>
             </div>
             <div>
-              <p class="text-gray-500 text-sm font-medium">รอดำเนินการ</p>
+              <p class="text-gray-500 text-sm font-medium">รอดำเนินการตรวจสอบเอกสาร</p>
               <h2 class="text-3xl font-bold text-gray-800">
-                <!-- {{ item.Efilling_statusID.length || 0 }} คน -->
+                {{ countEfillingStatusWaiting }} คน
               </h2>
             </div>
           </div>
@@ -219,7 +219,7 @@
               </svg>
             </div>
             <div>
-              <p class="text-gray-500 text-sm font-medium">ตรวจเสร็จสิ้น</p>
+              <p class="text-gray-500 text-sm font-medium">ตรวจเสร็จสิ้น รอกรรมการลงคะแนน</p>
               <h2 class="text-3xl font-bold text-gray-800">
                 {{ statusCounts["ตรวจเสร็จสิ้น"] || 0 }} คน
               </h2>
@@ -256,8 +256,7 @@
                   <td class="px-6 py-5 whitespace-nowrap text-sm">
                     <div class="flex items-center gap-3">
                       <div
-                        class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-100 via-blue-200 to-blue-100 flex items-center justify-center text-blue-700 font-semibold shadow-sm transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
-                      >
+                        class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-100 via-blue-200 to-blue-100 flex items-center justify-center text-blue-700 font-semibold shadow-sm transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
                         {{ index + 1 }}
                       </div>
                       <span class="font-medium text-gray-700">{{
@@ -282,13 +281,23 @@
                       {{ item.Project_Name }}
                     </span>
                   </td>
-                  <!-- <td class="px-6 py-5 whitespace-nowrap">
-                    <span
-                      class="text-sm text-gray-600 hover:text-blue-600 transition-colors duration-200"
-                    >
-                      {{ item.registerdate }}
+                  <td class="px-6 py-5 whitespace-nowrap">
+                    <span class="text-sm text-gray-600 hover:text-blue-600 transition-colors duration-200">
+
+                      <span class="px-3 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800" v-if="item.Efilling_statusID === 0">
+                        {{ statusMap[item.Efilling_statusID] || 'ไม่พบสถานะ' }}
+                      </span>
+
+                      <span class="px-3 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800" v-if="item.Efilling_statusID === 1">
+                        {{ statusMap[item.Efilling_statusID] || 'ไม่พบสถานะ' }}
+                      </span>
+
+                      <span class="px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800" v-if="item.Efilling_statusID === 2">
+                        {{ statusMap[item.Efilling_statusID] || 'ไม่พบสถานะ' }}
+                      </span>
+
                     </span>
-                  </td> -->
+                  </td>
                   <td class="px-6 py-5 whitespace-nowrap">
                     <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl my-4">
 
@@ -378,6 +387,7 @@
 </template>
 
 <script setup>
+/* eslint-disable */
 import { ref, computed, onMounted, watch } from "vue";
 import axios from "axios";
 import { DocumentTextIcon } from "@heroicons/vue/24/outline";
@@ -399,26 +409,29 @@ const headers = [
   { key: "name", label: "ชื่อ - นามสกุล" },
   { key: "phone", label: "เบอร์โทรศัพท์" },
   { key: "scholarship", label: "ชื่อทุน" },
-  // { key: "registerdate", label: "วันที่สมัคร" },
+  { key: "status", label: "สถานะ" },
   { key: "note", label: "NOTE" },
 ];
 
 const fetchData = async () => {
   const baseUrl = process.env.VUE_APP_API_URL + "/efilling/GetlistEfilling";
-  // console.log(process.env.VUE_APP_API_URL);
+
   try {
     const response = await axios.post(baseUrl);
+    console.log("Raw response:", response.data);
+
     if (response.data && Array.isArray(response.data.data)) {
-      dataArray.value = response.data.data;  // Set the data to the reactive variable
-      // alert(response.data.idcard)
+      dataArray.value = response.data.data;
+      console.log("Fetched dataArray:", dataArray.value);
     } else {
-      console.error('API response is not an array or is missing the data array');
+      console.error("API response is not an array or is missing the data array");
     }
   } catch (error) {
     console.error("Error fetching data:", error);
     data.value = [];
   }
 };
+
 
 const getNote = (id) => localStorage.getItem(`note_${id}`) || '';
 const saveNote = (id, note) => localStorage.setItem(`note_${id}`, note);
@@ -458,12 +471,45 @@ const filteredData = computed(() => {
   });
 });
 
+const statusArray = ref([]);
+
+onMounted(async () => {
+  const baseUrl = process.env.VUE_APP_API_URL + "/efilling/GetlistEfilling";
+  const statusUrl = process.env.VUE_APP_API_URL + "/efilling/GetEfillingStatus";
+  const [dataArrayRes, statusRes] = await Promise.all([
+    axios.post(baseUrl),
+    axios.post(statusUrl)
+  ]);
+
+  dataArray.value = Array.isArray(dataArrayRes.data.data) ? dataArrayRes.data.data : [];
+  statusArray.value = Array.isArray(statusRes.data.data) ? statusRes.data.data : [];
+
+
+  console.log("dataArrayRes", dataArrayRes.data);
+  console.log("statusRes", statusRes.data);
+
+})
+
+const statusMap = computed(() => {
+  const map = {};
+  for (const status of statusArray.value) {
+    map[status.Efilling_StatusID] = status.Efilling_DescriptionLocal;
+    // console.log(status.Efilling_DescriptionLocal)
+  }
+  return map;
+})
+
+const countEfillingStatusWaiting = computed(() => {
+  return filteredData.value.filter(item => item.Efilling_statusID === 8).length;
+})
 
 
 
-onMounted(() => {
-  fetchData();
+
+onMounted(async () => {
+  await fetchData(); // รอให้ข้อมูลโหลดเสร็จก่อน
 });
+
 
 // Fix for statusCounts to ensure it handles non-array data safely
 const statusCounts = computed(() => {

@@ -204,10 +204,15 @@ const addIpToBlocklist = () => {
   const today = new Date();
   const formattedDate = `${today.getDate().toString().padStart(2, '0')}/${(today.getMonth() + 1).toString().padStart(2, '0')}/${today.getFullYear()}`;
 
+  // blockedIps.value.push({
+  //   address: newIpAddress.value,
+  //   dateAdded: formattedDate,
+  // });
+
   blockedIps.value.push({
     address: newIpAddress.value,
-    dateAdded: formattedDate,
-  });
+    dateAdded: formattedDate
+  })
 
   newIpAddress.value = "";
 }

@@ -138,6 +138,41 @@ async function delete_efilling(E_ID) {
   }
 }
 
+async function getEfilling_status() {
+  try {
+    const pool = await sql.connect(config);
+    const result = await pool.request()
+      .query("SELECT * FROM Efilling_Status");
+    return result.recordset;
+  }catch(error) {
+    console.error("Database Query Error:", error);
+  }
+} 
+
+async function updateEfillingStatusSuccess(idCard) {
+  try {
+    const pool = await sql.connect(config);
+    const result = await pool.request()
+      .input("idCard", sql.NVarChar, String(idCard))
+      .query("UPDATE Efilling SET Efilling_statusID = 2 WHERE idcard = @idCard");
+
+    return result.recordset;
+  } catch (error) {
+    console.error(`Database Query Error:`, error);
+  }
+}
+
+async function updateEfillingStatusEdit(idcard) {
+  try {
+    const pool = await sql.connect(config);
+    const result = await pool.request()
+      .input("idCard", sql.NVarChar, String(idcard))
+      .query("UPDATE Efilling SET Efilling_statusID = 0 WHERE idcard = @idCard");
+    return result.recordset;
+  }catch(error) {
+    console.error(`Database Query Error:`, error);
+  }
+}
 
 
-module.exports = { getEfillingService, getEfillingByIdCardService ,getEfilling_Activity,getEfilling_certificate,getefilling_family_medical_history,getEfilling_scholarship,getefilling_siblings,getEfilling_Work, delete_efilling };
+module.exports = { getEfillingService, getEfillingByIdCardService ,getEfilling_Activity,getEfilling_certificate,getefilling_family_medical_history,getEfilling_scholarship,getefilling_siblings,getEfilling_Work, delete_efilling, getEfilling_status, updateEfillingStatusSuccess, updateEfillingStatusEdit };
