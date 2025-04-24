@@ -156,7 +156,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
           <div
             class="bg-white rounded-xl shadow-lg p-6 cursor-pointer flex items-center transform transition hover:scale-105 duration-300 border-l-4 border-blue-600"
-            @click="filterByStatus()">
+            @click="filterByStatus(null)">
             <div class="rounded-full bg-blue-100 p-4 mr-4">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -174,7 +174,7 @@
 
           <div
             class="bg-white rounded-xl shadow-lg p-6 cursor-pointer flex items-center transform transition hover:scale-105 duration-300 border-l-4 border-red-600"
-            @click="filterByStatus('แก้ไขเอกสาร')">
+            @click="filterByStatus(0)">
             <div class="bg-red-100 p-4 mr-4 rounded-full">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -185,14 +185,14 @@
             <div>
               <p class="text-gray-500 text-sm font-medium">ที่ต้องแก้ไข</p>
               <h2 class="text-3xl font-bold text-gray-800">
-                {{ statusCounts["แก้ไขเอกสาร"] || 0 }} คน
+                {{ statusCounts.edit }} คน
               </h2>
             </div>
           </div>
 
           <div
             class="bg-white rounded-xl shadow-lg p-6 cursor-pointer flex items-center transform transition hover:scale-105 duration-300 border-l-4 border-yellow-500"
-            @click="filterByStatus('รอดำเนินการ')">
+            @click="filterByStatus(1)">
             <div class="bg-yellow-100 p-4 mr-4 rounded-full">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-600" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -203,14 +203,14 @@
             <div>
               <p class="text-gray-500 text-sm font-medium">รอดำเนินการตรวจสอบเอกสาร</p>
               <h2 class="text-3xl font-bold text-gray-800">
-                {{ countEfillingStatusWaiting }} คน
+                {{ statusCounts.waiting }} คน
               </h2>
             </div>
           </div>
 
           <div
             class="bg-white rounded-xl shadow-lg p-6 cursor-pointer flex items-center transform transition hover:scale-105 duration-300 border-l-4 border-green-500"
-            @click="filterByStatus('ตรวจเสร็จสิ้น')">
+            @click="filterByStatus(2)">
             <div class="bg-green-100 p-4 mr-4 rounded-full">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -221,8 +221,35 @@
             <div>
               <p class="text-gray-500 text-sm font-medium">ตรวจเสร็จสิ้น รอกรรมการลงคะแนน</p>
               <h2 class="text-3xl font-bold text-gray-800">
-                {{ statusCounts["ตรวจเสร็จสิ้น"] || 0 }} คน
+                {{ statusCounts.success }} คน
               </h2>
+            </div>
+          </div>
+          
+
+          <div class="relative w-12/12">
+            <div @click="isOpen = !isOpen"
+              class="bg-white rounded-lg shadow px-4 py-3 cursor-pointer flex justify-between items-center border border-gray-200 hover:border-blue-400 transition-colors">
+              <div class="flex items-center space-x-2">
+                <div class="h-3 w-3 rounded-full bg-blue-500"></div>
+                <span class="text-sm text-gray-700">{{ selectedScholarship }}</span>
+              </div>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 transition-transform"
+                :class="{ 'rotate-180': isOpen }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+
+            <div v-if="isOpen" class="absolute w-full mt-1 bg-white rounded-lg shadow-lg z-10 border border-gray-100">
+              <div class="py-1 max-h-56 overflow-y-auto">
+                <div v-for="(scholarship, index) in scholarship" :key="index"
+                  @click="selectScholarship(index); isOpen = false;"
+                  class="px-4 py-2 text-sm hover:bg-blue-50 cursor-pointer flex items-center space-x-2"
+                  :class="{ 'bg-blue-50': selectedIndex === index }">
+                  <div class="h-2.5 w-2.5 rounded-full bg-blue-500"></div>
+                  <span class="text-gray-700">{{ scholarship.scholarship }}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -284,15 +311,18 @@
                   <td class="px-6 py-5 whitespace-nowrap">
                     <span class="text-sm text-gray-600 hover:text-blue-600 transition-colors duration-200">
 
-                      <span class="px-3 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800" v-if="item.Efilling_statusID === 0">
+                      <span class="px-3 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800"
+                        v-if="item.Efilling_statusID === 0">
                         {{ statusMap[item.Efilling_statusID] || 'ไม่พบสถานะ' }}
                       </span>
 
-                      <span class="px-3 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800" v-if="item.Efilling_statusID === 1">
+                      <span class="px-3 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800"
+                        v-if="item.Efilling_statusID === 1">
                         {{ statusMap[item.Efilling_statusID] || 'ไม่พบสถานะ' }}
                       </span>
 
-                      <span class="px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800" v-if="item.Efilling_statusID === 2">
+                      <span class="px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800"
+                        v-if="item.Efilling_statusID === 2">
                         {{ statusMap[item.Efilling_statusID] || 'ไม่พบสถานะ' }}
                       </span>
 
@@ -404,6 +434,8 @@ const sortOrder = ref("asc");
 const filteredStatus = ref(null);
 const isSortModalOpen = ref(false);
 
+const isOpen = ref(false);
+
 const headers = [
   { key: "id_card", label: "รหัสประจำตัวประชาชน" },
   { key: "name", label: "ชื่อ - นามสกุล" },
@@ -449,11 +481,15 @@ const saveNote = (id, note) => localStorage.setItem(`note_${id}`, note);
 //   })
 // })
 
+const selectedStatus = ref(null);
+
+
 const filteredData = computed(() => {
   const query = searchQuery.value.toLowerCase();
+  const statusFilter = selectedStatus.value;
   const scholarshipFilter = filteredScholarship.value;
 
-  return dataArray.value.filter(data => {
+  return dataArray.value.filter((data) => {
     const matchQuery =
       String(data.idcard).includes(query) ||
       data.FirstName.toLowerCase().includes(query) ||
@@ -461,15 +497,16 @@ const filteredData = computed(() => {
       data.Mobile.toLowerCase().includes(query) ||
       data.Project_Name.toLowerCase().includes(query);
 
-    // เปรียบเทียบ data.scholarship_id กับ scholarship.id
     const matchScholarship =
       !scholarshipFilter || String(data.scholarship_id).toLowerCase() === scholarshipFilter.toLowerCase();
 
-    // console.log("Scholarship Check:", data.scholarship_id, scholarshipFilter, matchScholarship);
+    const matchStatus =
+      statusFilter === null || data.Efilling_statusID === statusFilter;
 
-    return matchQuery && matchScholarship;
+    return matchQuery && matchScholarship && matchStatus;
   });
 });
+
 
 const statusArray = ref([]);
 
@@ -499,12 +536,17 @@ const statusMap = computed(() => {
   return map;
 })
 
-const countEfillingStatusWaiting = computed(() => {
-  return filteredData.value.filter(item => item.Efilling_statusID === 8).length;
-})
+const statusCounts = computed(() => {
+  return {
+    edit: dataArray.value.filter(item => item.Efilling_statusID === 0).length,
+    waiting: dataArray.value.filter(item => item.Efilling_statusID === 1).length,
+    success: dataArray.value.filter(item => item.Efilling_statusID === 2).length,
+  };
+});
 
-
-
+function filterByStatus(statusID) {
+  selectedStatus.value = statusID;
+}
 
 onMounted(async () => {
   await fetchData(); // รอให้ข้อมูลโหลดเสร็จก่อน
@@ -512,19 +554,19 @@ onMounted(async () => {
 
 
 // Fix for statusCounts to ensure it handles non-array data safely
-const statusCounts = computed(() => {
-  // Ensure data.value is an array before using reduce
-  if (!Array.isArray(data.value)) {
-    return {};
-  }
+// const statusCounts = computed(() => {
+//   // Ensure data.value is an array before using reduce
+//   if (!Array.isArray(data.value)) {
+//     return {};
+//   }
 
-  return data.value.reduce((acc, item) => {
-    if (item && item.status) {
-      acc[item.status] = (acc[item.status] || 0) + 1;
-    }
-    return acc;
-  }, {});
-});
+//   return data.value.reduce((acc, item) => {
+//     if (item && item.status) {
+//       acc[item.status] = (acc[item.status] || 0) + 1;
+//     }
+//     return acc;
+//   }, {});
+// });
 
 // const sortedAndFilteredData = computed(() => {
 //   // Ensure data.value is an array before proceeding
@@ -571,10 +613,6 @@ const statusCounts = computed(() => {
 
 //   return result;
 // });
-
-const filterByStatus = (status) => {
-  filteredStatus.value = status;
-};
 
 const sortBy = (key) => {
   if (sortKey.value === key) {
