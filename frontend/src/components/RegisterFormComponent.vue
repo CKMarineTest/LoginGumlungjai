@@ -232,7 +232,7 @@
               class="bg-white rounded-lg shadow px-4 py-3 cursor-pointer flex justify-between items-center border border-gray-200 hover:border-blue-400 transition-colors">
               <div class="flex items-center space-x-2">
                 <div class="h-3 w-3 rounded-full bg-blue-500"></div>
-                <span class="text-sm text-gray-700">{{ selectedScholarship }}</span>
+                <span class="text-sm text-gray-700">{{ selectedScholarship?.scholarship || 'เลือกทุนการศึกษา' }}</span>
               </div>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 transition-transform"
                 :class="{ 'rotate-180': isOpen }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -251,6 +251,9 @@
                 </div>
               </div>
             </div>
+
+            <button class="bg-gray-500 px-2 text-white py-2 mt-2 rounded-md text-sm hover:bg-gray-600 transition-all ease duration-300" @click="clearScholarship">ล้างตัวกรองทุนการศึกษา</button>
+
           </div>
         </div>
 
@@ -434,6 +437,25 @@ const sortOrder = ref("asc");
 const filteredStatus = ref(null);
 const isSortModalOpen = ref(false);
 
+const selectedScholarship = ref(null);
+
+const selectedIndex = ref(null);
+
+const selectScholarship = (index) => {
+  selectedScholarship.value = scholarship[index];
+  selectedIndex.value = index;
+  filteredScholarship.value = scholarship[index].id;
+  isOpen.value = false;
+};
+
+const clearScholarship = () => {
+  selectedScholarship.value = null;
+  selectedIndex.value = null;
+  filteredScholarship.value = null;
+  isOpen.value = false;
+}
+
+
 const isOpen = ref(false);
 
 const headers = [
@@ -498,7 +520,7 @@ const filteredData = computed(() => {
       data.Project_Name.toLowerCase().includes(query);
 
     const matchScholarship =
-      !scholarshipFilter || String(data.scholarship_id).toLowerCase() === scholarshipFilter.toLowerCase();
+      !scholarshipFilter || String(data.Project_ID).toLowerCase() === scholarshipFilter.toLowerCase();
 
     const matchStatus =
       statusFilter === null || data.Efilling_statusID === statusFilter;
@@ -506,6 +528,7 @@ const filteredData = computed(() => {
     return matchQuery && matchScholarship && matchStatus;
   });
 });
+
 
 
 const statusArray = ref([]);
@@ -552,68 +575,6 @@ onMounted(async () => {
   await fetchData(); // รอให้ข้อมูลโหลดเสร็จก่อน
 });
 
-
-// Fix for statusCounts to ensure it handles non-array data safely
-// const statusCounts = computed(() => {
-//   // Ensure data.value is an array before using reduce
-//   if (!Array.isArray(data.value)) {
-//     return {};
-//   }
-
-//   return data.value.reduce((acc, item) => {
-//     if (item && item.status) {
-//       acc[item.status] = (acc[item.status] || 0) + 1;
-//     }
-//     return acc;
-//   }, {});
-// });
-
-// const sortedAndFilteredData = computed(() => {
-//   // Ensure data.value is an array before proceeding
-//   if (!Array.isArray(data.value)) {
-//     return [];
-//   }
-
-//   let result = [...data.value];
-
-//   if (filteredStatus.value) {
-//     result = result.filter(
-//       (item) => item && item.status === filteredStatus.value
-//     );
-//   }
-
-//   if (searchQuery.value) {
-//     result = result.filter((item) => {
-//       if (!item) return false;
-
-//       return Object.values(item).some(
-//         (value) =>
-//           value &&
-//           String(value).toLowerCase().includes(searchQuery.value.toLowerCase())
-//       );
-//     });
-//   }
-
-//   result.sort((a, b) => {
-//     if (!a || !b) return 0;
-
-//     const aValue = a[sortKey.value];
-//     const bValue = b[sortKey.value];
-
-//     if (!aValue && !bValue) return 0;
-//     if (!aValue) return 1;
-//     if (!bValue) return -1;
-
-//     if (sortOrder.value === "asc") {
-//       return aValue > bValue ? 1 : -1;
-//     } else {
-//       return aValue < bValue ? 1 : -1;
-//     }
-//   });
-
-//   return result;
-// });
-
 const sortBy = (key) => {
   if (sortKey.value === key) {
     sortOrder.value = sortOrder.value === "asc" ? "desc" : "asc";
@@ -637,7 +598,7 @@ const formatPhone = (phone) => {
 const filteredScholarship = ref(null);
 
 const filteredByScholarship = (scholarship) => {
-  alert(scholarship);
+  // alert(scholarship);
   filteredScholarship.value = scholarship;
   isSortModalOpen.value = false;
 }
