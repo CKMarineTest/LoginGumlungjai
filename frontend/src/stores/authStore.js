@@ -15,7 +15,7 @@ export const useAuthStore = defineStore("auth", {
         axios
           .post(baseUrl, {
             username: username,
-            password: password,
+            Password: password,
           })
           .then((response) => {
             if (response.data && response.data.token) {
@@ -27,14 +27,14 @@ export const useAuthStore = defineStore("auth", {
             } else {
               reject(new Error("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง"));
             }
-            
-            
           })
 
           .catch((error) => {
-            // ถ้ามีข้อผิดพลาดจากการเรียก API
-            reject(error.response ? error.response.data.message : "เกิดข้อผิดพลาดขณะเข้าสู่ระบบ");
+            const message =
+              error.response?.data?.message || "เกิดข้อผิดพลาดขณะเข้าสู่ระบบ";
+            reject(new Error(message));
           });
+
       });
     },
     logout(router) {
@@ -48,7 +48,7 @@ export const useAuthStore = defineStore("auth", {
         this.user = JSON.parse(savedUser);
       }
     }
-    
-    
+
+
   },
 });

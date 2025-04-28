@@ -139,7 +139,7 @@
                   
                   <div class="px-4 py-3 border-b">
                     <p class="text-sm font-medium text-gray-900"><b class="text-gray-500">ชื่อผู้ใช้ :</b> {{ userName }}</p>
-                    <p class="text-xs text-gray-500 mt-1" v-if="authStore.user.Sr_id === 1">แอดมินระบบ</p>
+                    <!-- <p class="text-xs text-gray-500 mt-1" v-if="authStore.user.Sr_id === 1">แอดมินระบบ</p> -->
                   </div>
                   
                   <div class="py-2">
