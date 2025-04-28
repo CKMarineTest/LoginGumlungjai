@@ -1,3 +1,4 @@
+import { useAuthStore } from "@/stores/authStore";
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
@@ -85,5 +86,32 @@ const router = createRouter({
     history: createWebHistory('/thegift_backoffice'),
     routes,
 });
+
+
+router.beforeEach((to, from, next) => {
+    const authStore = useAuthStore();
+    const isAuthenticated = authStore.user !== null; // Check if user is authenticated
+    const userRole = authStore.user?.role; // Assuming 'role' is a property of the user object
+  
+    // Define public routes that can be accessed without authentication
+    const publicRoutes = ["Login", "Register"];
+  
+    // If the user is not authenticated and tries to access protected routes
+    if (!isAuthenticated && !publicRoutes.includes(to.name)) {
+      next({ name: "Login" }); // Redirect to login page
+    } else {
+      // Role-based access: add conditions for specific routes based on the user role
+      if (
+        isAuthenticated &&
+        to.name === "SomeAdminPage" &&
+        userRole !== "admin"
+      ) {
+        next({ name: "Unauthorized" }); // Redirect to an unauthorized page if the role doesn't match
+      } else {
+        next(); // Allow navigation to the requested route
+      }
+    }
+  });
+
 
 export default router;

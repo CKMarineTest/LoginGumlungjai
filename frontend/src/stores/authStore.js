@@ -29,9 +29,11 @@ export const useAuthStore = defineStore("auth", {
             }
           })
 
-          .catch((error) => {
-            const message =
-              error.response?.data?.message || "เกิดข้อผิดพลาดขณะเข้าสู่ระบบ";
+          .catch(() => {
+            // const message =
+            //   error.response?.data?.message || "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง";
+
+            const message = "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง" || "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง";
             reject(new Error(message));
           });
 
