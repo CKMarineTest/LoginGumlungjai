@@ -3,117 +3,202 @@
     <aside class="w-20 fixed left-0 top-0 bottom-0 bg-gray-900 shadow-lg z-10">
       <SidebarComponent />
     </aside>
+  </div>
 
-    <main class="flex-1 ml-20 w-12/12 p-4 md:p-6 lg:p-8 min-w-max">
-      <br>
-      <br>
-      <div class="mb-8">
-        <h2 class="text-2xl font-bold text-gray-800">การตั้งค่า</h2>
-        <p class="text-gray-500 mt-1">จัดการบัญชีและการตั้งค่าความปลอดภัยของคุณ</p>
-      </div>
 
-      <nav class="flex min-w-max border-b border-gray-200 mb-6">
-        <button v-for="item in settingsMenu" :key="item.id" @click="activeSection = item.id" :class="[
-          'flex items-center px-6 py-4 transition-all duration-200 border-b-2 text-sm md:text-base whitespace-nowrap font-medium',
-          activeSection === item.id
-            ? 'border-indigo-600 text-indigo-700'
-            : 'border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-300',
-        ]">
-          <span class="mr-2" v-html="item.icon"></span>
-          <span>{{ item.name }}</span>
-        </button>
-      </nav>
+  <main class="flex-1 ml-20 w-12/12 p-4 md:p-6 lg:p-8 min-w-max bg-blue-100">
+    <br>
+    <br>
+    <div class="mb-8">
+      <h2 class="text-2xl font-bold text-gray-800">การตั้งค่า</h2>
+      <p class="text-gray-500 mt-1">จัดการบัญชีและการตั้งค่าความปลอดภัยของคุณ</p>
+    </div>
 
-      <div class="flex-1">
-        <div v-for="section in filteredSections" :key="section.id"
-          class="bg-white shadow-sm rounded-xl p-6 w-full border border-gray-100">
-          <h3 class="text-lg font-medium text-gray-800 mb-2">
-            {{ section.title }}
-          </h3>
-          <p class="text-gray-500 text-sm mb-6">{{ section.description }}</p>
+    <nav class="flex min-w-max border-b border-gray-200 mb-6">
+      <button v-for="item in settingsMenu" :key="item.id" @click="activeSection = item.id" :class="[
+        'flex items-center px-6 py-4 transition-all duration-200 border-b-2 text-sm md:text-base whitespace-nowrap font-medium',
+        activeSection === item.id
+          ? 'border-indigo-600 text-indigo-700'
+          : 'border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-300',
+      ]">
+        <span class="mr-2" v-html="item.icon"></span>
+        <span>{{ item.name }}</span>
+      </button>
+    </nav>
 
-          <div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-            <div class="space-y-5" v-for="(field, index) in section.fields" :key="index">
-              <div v-for="(label, key) in field" :key="key" class="relative">
-                <label class="block text-sm font-medium text-gray-700 mb-1">
-                  {{ label }}
-                </label>
-                <input :type="getInputType(key)" v-model="formData[key]" :placeholder="getPlaceholder(key)"
-                  class="input" />
-                <div v-if="key.includes('Password')" class="text-xs text-gray-400 mt-1">
-                  {{ key === 'newPassword' ? 'รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร' : '' }}
-                </div>
+    <div class="flex-1">
+      <div v-for="section in filteredSections" :key="section.id"
+        class="bg-white shadow-sm rounded-xl p-6 w-full border border-gray-100">
+        <h3 class="text-lg font-medium text-gray-800 mb-2">
+          {{ section.title }}
+        </h3>
+        <p class="text-gray-500 text-sm mb-6">{{ section.description }}</p>
+
+        <div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div class="space-y-5" v-for="(field, index) in section.fields" :key="index">
+            <div v-for="(label, key) in field" :key="key" class="relative">
+              <label class="block text-sm font-medium text-gray-700 mb-1">
+                {{ label }}
+              </label>
+              <input :type="getInputType(key)" v-model="formData[key]" :placeholder="getPlaceholder(key)"
+                class="input" />
+              <div v-if="key.includes('Password')" class="text-xs text-gray-400 mt-1">
+                {{ key === 'newPassword' ? 'รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร' : '' }}
               </div>
             </div>
           </div>
+        </div>
 
-          <div v-if="section.id === 'notifications'" class="mt-6">
-            <div class="space-y-4">
-              <div v-for="(notification, index) in notificationSettings" :key="index"
-                class="flex items-center justify-between p-4 rounded-lg border border-gray-100 hover:bg-gray-50 transition-colors">
-                <div>
-                  <h4 class="font-medium text-gray-800">{{ notification.title }}</h4>
-                  <p class="text-sm text-gray-500">{{ notification.description }}</p>
-                </div>
-                <div class="relative inline-block w-12 h-6 transition duration-200 ease-in-out">
-                  <input type="checkbox" :id="`toggle-${index}`" v-model="notification.enabled"
-                    class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer top-0.5 left-0.5 transition-all duration-200" />
-                  <label :for="`toggle-${index}`"
-                    class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
-                </div>
+        <div v-if="section.id === 'notifications'" class="mt-6">
+          <div class="space-y-4">
+            <div v-for="(notification, index) in notificationSettings" :key="index"
+              class="flex items-center justify-between p-4 rounded-lg border border-gray-100 hover:bg-gray-50 transition-colors">
+              <div>
+                <h4 class="font-medium text-gray-800">{{ notification.title }}</h4>
+                <p class="text-sm text-gray-500">{{ notification.description }}</p>
+              </div>
+              <div class="relative inline-block w-12 h-6 transition duration-200 ease-in-out">
+                <input type="checkbox" :id="`toggle-${index}`" v-model="notification.enabled"
+                  class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer top-0.5 left-0.5 transition-all duration-200" />
+                <label :for="`toggle-${index}`"
+                  class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
               </div>
             </div>
           </div>
+        </div>
 
-          <div v-if="section.id === 'ipblocking'" class="mt-6">
-            <div class="flex items-center mb-6">
-              <input type="text" v-model="newIpAddress" placeholder="192.168.1.1" class="input" />
-              <button @click="addIpToBlocklist"
-                class="bg-indigo-600 text-white px-4 rounded-lg ml-2 hover:bg-indigo-700 transition-colors">
-                เพิ่ม IP
+        <div v-if="section.id === 'ipblocking'" class="mt-6">
+          <div class="flex items-center mb-6">
+            <input type="text" v-model="newIpAddress" placeholder="192.168.1.1" class="input" />
+            <button @click="addIpToBlocklist"
+              class="bg-indigo-600 text-white px-4 rounded-lg ml-2 hover:bg-indigo-700 transition-colors">
+              เพิ่ม IP
+            </button>
+          </div>
+
+          <div class="border rounded-lg overflow-hidden">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">IP
+                    Address</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    วันที่เพิ่ม</th>
+                  <th class="px-6 py-3 text-right text-xs font-medium text-gray5-00 uppercase tracking-wider">
+                    การจัดการ</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr v-for="(ip, index) in blockedIps" :key="index" class="hover:bg-gray-50">
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ ip.address }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ ip.dateAdded }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <button @click="removeIp(index)" class="text-red-600 hover:text-red-800">
+                      ลบ
+                    </button>
+                  </td>
+                </tr>
+                <tr v-if="blockedIps.length === 0">
+                  <td colspan="3" class="px-6 py-4 text-center text-sm text-gray-500">ไม่มี IP ที่ถูกบล็อก</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div v-if="section.id === 'getscore'">
+          <div class="grid grid-cols-2 gap-4">
+            <div v-for="scholarship in scholarship" :key="scholarship.id">
+              <button class="bg-blue-600 text-white px-4 py-4 rounded-lg hover:bg-blue-700"
+                @click="selectedScholarship = scholarship; openModal = true;">
+                {{ scholarship.scholarship }}
               </button>
             </div>
+          </div>
+        </div>
 
-            <div class="border rounded-lg overflow-hidden">
-              <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
-                  <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">IP
-                      Address</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      วันที่เพิ่ม</th>
-                    <th class="px-6 py-3 text-right text-xs font-medium text-gray5-00 uppercase tracking-wider">
-                      การจัดการ</th>
+        <GetScoreModal :show="openModal" @close="openModal = false">
+          <template v-if="selectedScholarship">
+            <div class="flex-1 justify-end items-end">
+              <Button class="flex gap-4 bg-green-500 hover:bg-green-600 px-2 py-2 w-8/12 rounded-lg text-white"
+                @click="openCommittedModal = true">
+                <PlusIcon />เพิ่มกรรมการให้คะแนนทุน <strong>{{ selectedScholarship.scholarship }}</strong>
+              </Button>
+            </div>
+            <div class="mt-4" v-if="committedList.length > 0">
+              <h3 class="text-xl font-semibold">กรรมการที่ให้คะแนนทุน {{ selectedScholarship.scholarship }}</h3>
+              <table class="min-w-full table-auto border-collapse mt-2">
+                <thead>
+                  <tr class="bg-gray-100">
+                    <th class="px-4 py-2 text-sm font-semibold text-gray-700">#</th>
+                    <th class="px-4 py-2 text-sm font-semibold text-gray-700">ชื่อ</th>
+                    <th class="px-4 py-2 text-sm font-semibold text-gray-700">นามสกุล</th>
+                    <th class="px-4 py-2 text-sm font-semibold text-gray-700">จัดการ</th>
                   </tr>
                 </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                  <tr v-for="(ip, index) in blockedIps" :key="index" class="hover:bg-gray-50">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ ip.address }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ ip.dateAdded }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <button @click="removeIp(index)" class="text-red-600 hover:text-red-800">
+                <tbody>
+                  <tr v-for="(committed, index) in committedList" :key="index" class="border-b" align="center">
+                    <td class="px-4 py-2 text-sm text-gray-700">{{ index + 1 }}</td>
+                    <td class="px-4 py-2 text-sm text-gray-700">{{ committed.firstName }}</td>
+                    <td class="px-4 py-2 text-sm text-gray-700">{{ committed.lastName }}</td>
+                    <td>
+                      <button class="bg-red-500 hover:bg-red-600 px-1 py-1 w-3/12 rounded-lg text-white" @click="deleteCommitted(index)">
                         ลบ
                       </button>
                     </td>
                   </tr>
-                  <tr v-if="blockedIps.length === 0">
-                    <td colspan="3" class="px-6 py-4 text-center text-sm text-gray-500">ไม่มี IP ที่ถูกบล็อก</td>
-                  </tr>
                 </tbody>
               </table>
             </div>
-          </div>
-        </div>
+
+          </template>
+        </GetScoreModal>
+
+
+        <CommittedModal :show="openCommittedModal" @close="openCommittedModal = false">
+          <h1 align="center" class="text-2xl mb-2">กรรมการทั้งหมด</h1>
+          <table class="min-w-full table-auto border-collapse">
+            <thead class="border-b">
+              <tr align="center">
+                <th class="px-4 py-4 text-center text-sm font-semibold text-gray-700">#</th>
+                <th class="px-4 py-4 text-center text-sm font-semibold text-gray-700">ชื่อ</th>
+                <th class="px-4 py-4 text-center text-sm font-semibold text-gray-700">นามสกุล</th>
+                <th class="px-4 py-4 text-center text-sm font-semibold text-gray-700">จัดการ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(commit, index) in adminArray" :key="index" align="center" class="border-b hover:bg-gray-100">
+                <td class="px-4 py-4 text-sm text-center text-gray-700">{{ index + 1 }}</td>
+                <td class="px-4 py-4 text-sm text-center text-gray-700">{{ commit.su_firstname }}</td>
+                <td class="px-4 py-4 text-sm text-center text-gray-700">{{ commit.su_lastname }}</td>
+                <td>
+                  <button class="bg-green-500 hover:bg-green-600 px-1 py-1 w-8/12 rounded-lg text-white" @click="addCommitted(commit.su_firstname, commit.su_lastname).then(() => {
+                    openCommittedModal = false;
+                  })">
+                    เพิ่ม
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </CommittedModal>
       </div>
-    </main>
-  </div>
+    </div>
+  </main>
 </template>
 
 <script setup>
 /* eslint-disable */
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import SidebarComponent from "./Menu/SidebarComponent.vue";
 import { useToastService } from "@/lib/toastService";
+
+import axios from "axios";
+
+import { PlusIcon } from "lucide-vue-next";
+
+import GetScoreModal from "./Modal/GetScoreModal.vue";
+import CommittedModal from "./Modal/CommittedModal.vue";
 
 const { showSuccess } = useToastService();
 
@@ -121,7 +206,30 @@ const showSuccessAlert = (message) => {
   showSuccess(message);
 }
 
-const activeSection = ref("ipblocking");
+const openModal = ref(false);
+const selectedScholarship = ref(null);
+const selectedCommitted = ref(null);
+
+const openCommittedModal = ref(false);
+const committedList = ref([]);
+
+const adminArray = ref([]);
+
+const getAdmin = async () => {
+  const baseUrl = process.env.VUE_APP_API_URL + '/user/getadmin';
+
+  try {
+    const response = await axios.post(baseUrl);
+
+    adminArray.value = response.data.data;
+
+    console.log(adminArray.value)
+  } catch (error) {
+    console.error('Failed to fetching admin response data:', error)
+  }
+}
+
+const activeSection = ref("getscore");
 
 const formData = ref({
   currentPassword: "",
@@ -167,6 +275,11 @@ const sections = [
     description: "จัดการรายการบล็อก IP ที่ไม่ต้องการให้เข้าถึงระบบ",
     fields: [],
   },
+  {
+    id: "getscore",
+    title: "กรรมการให้คะแนน",
+    description: "เลือกกรรมการให้คะแนนแต่ละทุน"
+  }
 ];
 
 const notificationSettings = ref([
@@ -292,7 +405,62 @@ const settingsMenu = [
     name: "IP Blocking",
     icon: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-ban"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m14.5 9-5 5"/><path d="m9.5 9 5 5"/></svg>',
   },
+  {
+    id: "getscore",
+    name: "กรรมการให้คะแนน",
+
+  }
 ];
+
+const scholarship = [
+  {
+    id: "PJ1",
+    scholarship: "โครงการกำลังใจสร้างครูของชาติ",
+    amount: "30,000",
+  },
+  {
+    id: "PJ2",
+    scholarship: "โครงการทุนคุณหมอของกำลังใจ",
+    amount: "50,000",
+  },
+  {
+    id: "PJ3",
+    scholarship: "โครงการทุน Gumlungjai Scholarship",
+    amount: "40,000",
+  },
+  {
+    id: "PJ4",
+    scholarship: "โครงการทุนกำลังใจให้พยาบาล",
+    amount: "40,000",
+  },
+  {
+    id: "PJ5",
+    scholarship: "โครงการทุนนักจิตวิทยาสร้างกำลังใจ",
+    amount: "40,000",
+  },
+];
+
+const addCommitted = async (FirstName, LastName) => {
+  return new Promise((resolve, reject) => {
+    committedList.value.push({
+      firstName: FirstName,
+      lastName: LastName,
+    });
+
+    setTimeout(() => {
+      resolve();
+    }, 100)
+  })
+}
+
+const deleteCommitted = async (index) => {
+  committedList.value.splice(index)
+}
+
+onMounted(async () => {
+  await getAdmin();
+})
+
 </script>
 
 <style scoped>

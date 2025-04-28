@@ -12,10 +12,11 @@ import './index.css';
 import './assets/main.css';
 import './assets/font.css';
 
+
 const pinia = createPinia();
 
 const app = createApp(App);
-app.use(pinia);
 app.use(router);
-app.use(Toast)
+app.use(pinia);
+app.use(Toast);
 app.mount('#app');
