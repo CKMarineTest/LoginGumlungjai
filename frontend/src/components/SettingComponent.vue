@@ -495,8 +495,8 @@ const addCommitted = async (FirstName, LastName) => {
   })
 }
 
-const deleteCommitted = async (index) => {
-  committedList.value.splice(index)
+const deleteCommitted = (index) => {
+  committedList.value.splice(index, 1);
 }
 
 onMounted(async () => {
