@@ -275,4 +275,7 @@ const closeHouseIdModal = () => {
     isHouseIdModalOpen.value = false;
 }
 
+const closeModalCardID = () => {
+    isHouseIdModalOpen.value = false;
+}
 </script>

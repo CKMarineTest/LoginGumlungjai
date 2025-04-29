@@ -225,7 +225,7 @@
               </h2>
             </div>
           </div>
-          
+
 
           <div class="relative w-12/12">
             <div @click="isOpen = !isOpen"
@@ -252,7 +252,9 @@
               </div>
             </div>
 
-            <button class="bg-gray-500 px-2 text-white py-2 mt-2 rounded-md text-sm hover:bg-gray-600 transition-all ease duration-300" @click="clearScholarship">ล้างตัวกรองทุนการศึกษา</button>
+            <button
+              class="bg-gray-500 px-2 text-white py-2 mt-2 rounded-md text-sm hover:bg-gray-600 transition-all ease duration-300"
+              @click="clearScholarship">ล้างตัวกรองทุนการศึกษา</button>
 
           </div>
         </div>
@@ -262,7 +264,7 @@
           <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
               <thead>
-                <tr class="bg-gradient-to-r from-blue-50 to-white" align="center">
+                <tr class="bg-gradient-to-r from-blue-50 to-white">
                   <th v-for="header in headers" :key="header.key"
                     class="px-6 py-5 text-left text-sm font-semibold text-gray-700 tracking-wider cursor-pointer group transition-colors duration-200"
                     @click="sortBy(header.key)">
@@ -298,6 +300,12 @@
                     <span
                       class="text-sm font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
                       {{ item.FirstName }} {{ item.LastName }}
+                    </span>
+                  </td>
+                  <td class="px-6 py-5 whitespace-nowrap">
+                    <span
+                      class="text-sm font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
+                      {{ item.NickName }}
                     </span>
                   </td>
                   <td class="px-6 py-5 whitespace-nowrap">
@@ -367,52 +375,12 @@
                         title="ดูเอกสาร">
                         <DocumentTextIcon class="h-5 w-5" />
                       </button>
-                      <!-- <button
-                        class="p-2.5 text-red-600 rounded-xl hover:bg-red-100 transition-all duration-200 hover:scale-110 hover:shadow-sm"
-                        title="แก้ไขข้อมูล">
-                        <Trash2 class="h-5 w-5" />
-                      </button> -->
                     </div>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
-
-          <!-- <div
-            class="bg-gradient-to-r from-gray-50 to-white px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between border-t border-gray-100">
-            <p class="text-sm text-gray-600 mb-4 sm:mb-0">
-              แสดง
-              <span class="font-medium text-gray-900">{{
-                dataArray.length
-              }}</span>
-              รายการ จากทั้งหมด
-              <span class="font-medium text-gray-900">{{ dataArray.length }}</span>
-              รายการ
-            </p>
-            <div class="flex gap-2">
-              <button
-                class="px-4 py-2 rounded-xl border border-gray-200 bg-white text-gray-600 font-medium hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-                ก่อนหน้า
-              </button>
-              <button
-                class="px-4 py-2 rounded-xl bg-blue-600 text-white font-medium hover:bg-blue-700 transition-all duration-200 shadow-sm hover:shadow">
-                1
-              </button>
-              <button
-                class="px-4 py-2 rounded-xl border border-gray-200 bg-white text-gray-600 font-medium hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center gap-1">
-                ถัดไป
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          </div> -->
         </div>
       </div>
     </main>
@@ -461,6 +429,7 @@ const isOpen = ref(false);
 const headers = [
   { key: "id_card", label: "รหัสประจำตัวประชาชน" },
   { key: "name", label: "ชื่อ - นามสกุล" },
+  { key: "nickname", label: "ชื่อเล่น" },
   { key: "phone", label: "เบอร์โทรศัพท์" },
   { key: "scholarship", label: "ชื่อทุน" },
   { key: "status", label: "สถานะ" },
@@ -516,6 +485,7 @@ const filteredData = computed(() => {
       String(data.idcard).includes(query) ||
       data.FirstName.toLowerCase().includes(query) ||
       data.LastName.toLowerCase().includes(query) ||
+      data.NickName.toLowerCase().includes(query) ||
       data.Mobile.toLowerCase().includes(query) ||
       data.Project_Name.toLowerCase().includes(query);
 
@@ -528,8 +498,6 @@ const filteredData = computed(() => {
     return matchQuery && matchScholarship && matchStatus;
   });
 });
-
-
 
 const statusArray = ref([]);
 

@@ -68,7 +68,14 @@ import Swal from 'sweetalert2';
 
 const ratings = [
     {
+        score: 0,
+    },
+    {
         description: 'ควรปรับปรุง',
+        score: 1,
+    },
+    {
+        description: 'ต้องปรับปรุง',
         score: 2,
     },
     {
@@ -83,7 +90,7 @@ const ratings = [
         description: 'ดีมาก',
         score: 5,
     }
-]
+];
 
 const questions = [
     'ผลสัมฤทธิ์ทางการเรียน (5 คะแนน)',

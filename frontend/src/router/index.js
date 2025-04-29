@@ -14,11 +14,13 @@ const routes = [
         path: '/Login',
         name: 'Login',
         component: () => import('../views/LoginForm.vue'),
+        meta: { requiresAuth: false }
     },
     {
         path: '/Dashboard',
         name: 'Dashboard',
         component: () => import('../views/DashBoard.vue'),
+        meta: { requiresAuth: true }
     },
     {
         path: '/registerform',
@@ -29,6 +31,7 @@ const routes = [
         path: '/setting',
         name: 'setting',
         component: () => import('../views/SettingViews.vue'),
+        meta: { requiresAuth: true }
     },
     {
         path: '/infoscholarship',
@@ -80,6 +83,11 @@ const routes = [
         name: 'score',
         component: () => import('../components/ScoreTableComponent.vue')
     },
+    {
+        path: '/modal',
+        name: 'modal',
+        component: () => import('../components/Modal/RegisterModal.vue')
+    }
 ]
 
 const router = createRouter({
@@ -87,31 +95,16 @@ const router = createRouter({
     routes,
 });
 
-
 router.beforeEach((to, from, next) => {
     const authStore = useAuthStore();
-    const isAuthenticated = authStore.user !== null; // Check if user is authenticated
-    const userRole = authStore.user?.role; // Assuming 'role' is a property of the user object
+    const user = authStore.user;
   
-    // Define public routes that can be accessed without authentication
-    const publicRoutes = ["Login", "Register"];
-  
-    // If the user is not authenticated and tries to access protected routes
-    if (!isAuthenticated && !publicRoutes.includes(to.name)) {
-      next({ name: "Login" }); // Redirect to login page
-    } else {
-      // Role-based access: add conditions for specific routes based on the user role
-      if (
-        isAuthenticated &&
-        to.name === "SomeAdminPage" &&
-        userRole !== "admin"
-      ) {
-        next({ name: "Unauthorized" }); // Redirect to an unauthorized page if the role doesn't match
-      } else {
-        next(); // Allow navigation to the requested route
-      }
+    if (to.meta.requiresAuth && !user) {
+      authStore.returnUrl = to.fullPath; 
+      return next({ name: "Login" });
     }
+  
+    next();
   });
-
-
+  
 export default router;

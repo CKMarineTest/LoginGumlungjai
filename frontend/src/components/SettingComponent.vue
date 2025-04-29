@@ -150,7 +150,7 @@
                       <button
                         class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded-md text-white text-sm font-medium transition-colors focus:ring-2 focus:ring-green-300 focus:outline-none"
                         @click="addCommitted(commit.su_firstname, commit.su_lastname).then(() => {
-                          openCommittedModal = false;
+                          openCommittedModal = false; openModal = true;
                         })">
                         เพิ่ม
                       </button>
@@ -169,7 +169,7 @@
               }}</strong></h2>
               <Button
                 class="flex items-center gap-2 bg-green-500 hover:bg-green-600 px-4 py-2 rounded-md text-white text-sm font-medium transition-colors focus:ring-2 focus:ring-green-300 focus:outline-none"
-                @click="openCommittedModal = true">
+                @click="openCommittedModal = true; openModal = false;">
                 <PlusIcon class="w-5 h-5" />
                 <span>เพิ่มกรรมการ</span>
               </Button>
@@ -261,8 +261,6 @@ const getAdmin = async () => {
     const response = await axios.post(baseUrl);
 
     adminArray.value = response.data.data;
-
-    console.log(adminArray.value)
   } catch (error) {
     console.error('Failed to fetching admin response data:', error)
   }
@@ -370,7 +368,7 @@ const addIpToBlocklist = () => {
 }
 
 const removeIp = (index) => {
-  blockedIps.value.splice(index, 1);
+  blockedIps.value.splice(index, 1)
 }
 
 const filteredSections = computed(() => {
@@ -468,7 +466,7 @@ const scholarship = [
     id: "PJ3",
     scholarship: "โครงการทุน Gumlungjai Scholarship",
     amount: "40,000",
-    icon: Activity
+    icon: Microscope
   },
   {
     id: "PJ4",
@@ -480,7 +478,7 @@ const scholarship = [
     id: "PJ5",
     scholarship: "โครงการทุนนักจิตวิทยาสร้างกำลังใจ",
     amount: "40,000",
-    icon: Microscope
+    icon: Activity
   },
 ];
 

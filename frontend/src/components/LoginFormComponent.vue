@@ -157,16 +157,13 @@ const handleLogin = async () => {
 
   try {
 
-    // เรียกใช้ login ฟังก์ชันจาก authStore
-    const loginSuccess = await authStore.login(
-      username.value,
-      password.value
-    );
+    const loginSuccessUrl = await authStore.login(username.value, password.value);
 
-    if (loginSuccess) {
+    if (loginSuccessUrl) {
       showSuccessToast("เข้าสู่ระบบสำเร็จ");
-      router.push('/Dashboard')
+      router.push(loginSuccessUrl); 
     }
+
   } catch (error) {
     formError.value = true;
     showErrorToast(error.message || "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");

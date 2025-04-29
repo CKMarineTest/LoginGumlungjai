@@ -12,7 +12,6 @@ import './index.css';
 import './assets/main.css';
 import './assets/font.css';
 
-
 const pinia = createPinia();
 
 const app = createApp(App);
