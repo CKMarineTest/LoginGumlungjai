@@ -12,6 +12,8 @@ import './index.css';
 import './assets/main.css';
 import './assets/font.css';
 
+// import "./utils/scrolling"
+
 const pinia = createPinia();
 
 const app = createApp(App);
