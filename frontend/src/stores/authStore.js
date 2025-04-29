@@ -15,7 +15,7 @@ export const useAuthStore = defineStore("auth", {
         axios
           .post(baseUrl, {
             username: username,
-            password: password,
+            Password: password,
           })
           .then((response) => {
             if (response.data && response.data.token) {

@@ -33,17 +33,13 @@
           </div>
 
           <div
-            class="bg-white rounded-xl shadow-lg p-6 flex items-center transform transition hover:scale-105 duration-300 border-l-4 border-green-600">
-            <div class="rounded-full bg-green-100 p-4 mr-4">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
+            class="bg-white rounded-xl shadow-lg p-6 flex items-center transform transition hover:scale-105 duration-300 border-l-4 border-red-600">
+            <div class="rounded-full bg-red-100 p-4 mr-4">
+              <CircleAlert class="h-6 w-6 text-red-600" />
             </div>
             <div>
-              <p class="text-gray-500 text-sm font-medium">ผ่านการคัดเลือก</p>
-              <h2 class="text-3xl font-bold text-gray-800"></h2>
+              <p class="text-gray-500 text-sm font-medium">ที่ต้องแก้ไข</p>
+              <h2 class="text-3xl font-bold text-gray-800">{{ statusCounts[0] || 0 }} คน</h2>
             </div>
           </div>
 
@@ -57,28 +53,21 @@
               </svg>
             </div>
             <div>
-              <p class="text-gray-500 text-sm font-medium">รอพิจารณา</p>
-              <h2 class="text-3xl font-bold text-gray-800"></h2>
+              <p class="text-gray-500 text-sm font-medium">รอดำเนินการตรวจเอกสาร</p>
+              <h2 class="text-3xl font-bold text-gray-800">{{ statusCounts[1] || 0 }} คน</h2>
             </div>
           </div>
 
-          <div @click="openModal"
-            class="bg-white rounded-xl shadow-lg p-6 flex items-center transform transition hover:scale-105 duration-300 border-l-4 border-yellow-600">
-            <div class="rounded-full bg-yellow-100 p-4 mr-4">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-600" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
+          <div
+            class="bg-white rounded-xl shadow-lg p-6 flex items-center transform transition hover:scale-105 duration-300 border-l-4 border-green-600">
+            <div class="rounded-full bg-green-100 p-4 mr-4">
+              <Check class="h-6 w-6 text-green-600" />
             </div>
             <div>
-              <p class="text-gray-500 text-sm font-medium">ทุนที่เปิดรับ</p>
+              <p class="text-gray-500 text-sm font-medium">ตรวจเสร็จสิ้นรอกรรมการลงคะแนน</p>
               <h2 class="text-3xl font-bold text-gray-800">
-                {{ scholarship.length }} ทุน
+                {{ statusCounts[2] || 0 }} คน
               </h2>
-              <p class="text-yellow-600 text-xs mt-1 font-medium">
-                เปิดรับถึง 31 พฤษภาคม 2568
-              </p>
             </div>
           </div>
         </div>
@@ -386,7 +375,7 @@
 
 <script setup>
 /* eslint-disable */
-import { ref, onMounted, watch, defineProps, computed, nextTick } from "vue";
+import { ref, onMounted, watch, defineProps, computed, nextTick, render } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
 import gsap from "gsap";
@@ -402,6 +391,8 @@ import {
   LinearScale,
 } from "chart.js";
 
+import { CircleAlert, Check } from "lucide-vue-next";
+
 import { Chart } from "chart.js/auto";
 
 ChartJS.register(
@@ -414,6 +405,7 @@ ChartJS.register(
 );
 
 import RegisterModalComponent from "./RegisterModalComponent.vue";
+import dayjs from "dayjs";
 
 const chartDatasets = {
   today: {
@@ -445,7 +437,27 @@ const totalData = Object.values(chartDatasets).reduce(
   0
 );
 
-const timeFilter = ref("week");
+const timeFilter = ref("month");
+
+const setTimeFilter = (value) => {
+  timeFilter.value = value;
+}
+
+const filteredChartData = computed(() => {
+  const now = dayjs();
+  return dataArray.value.filter((item) => {
+    const createdAt = dayjs(item.CreateDate);
+    if (timeFilter.value === "today") {
+      return createdAt.isSame(now, "day");
+    } else if (timeFilter.value === "week") {
+      return createdAt.isSame(now, "week");
+    } else if (timeFilter.value === "month") {
+      return createdAt.isSame(now, "month");
+    }
+    return true;
+  });
+});
+
 const chartData = computed(() => ({
   labels: chartDatasets[timeFilter.value].labels,
   datasets: [
@@ -517,99 +529,71 @@ const chartOptions = ref({
   animation: { duration: 500 },
 });
 
-const scholarshipData = [
-  { name: 'ทุนกำลังใจสร้างครูของชาติ', percentage: 30, color: '#4F46E5' },
-  { name: 'ทุนคุณหมอของกำลังใจ', percentage: 25, color: '#10B981' },
-  { name: 'ทุน Gumlungjai Scholar', percentage: 20, color: '#8B5CF6' },
-  { name: 'ทุนกำลังใจให้พยาบาล', percentage: 15, color: '#FBBF24' },
-  { name: 'ทุนนักจิตวิทยาสร้างกำลังใจ', percentage: 10, color: '#EF4444' }
+const colors = [
+  "#3B82F6", 
+  "#10B981", 
+  "#F59E0B", 
+  "#EF4444",
+  "#8B5CF6", 
+  "#EC4899", 
 ];
 
-const chartCanvas = ref(null);
+const scholarshipData = computed(() => {
+  const counts = {};
+  let total = 0;
 
-onMounted(() => {
-  const ctx = chartCanvas.value.getContext('2d');
+  dataArray.value.filter((item) => {
+    const projectId = item.Project_Name;
+    if(!counts[projectId]) {
+      counts[projectId] = 0;
+    }
+    counts[projectId]++;
+    total++
+  });
 
-  const chart = new Chart(ctx, {
-    type: 'doughnut',
+  return Object.entries(counts).map(([projectId, count], index) => {
+    return {
+      name: projectId,
+      count,
+      percentage: ((count / total) * 100).toFixed(1),
+      color: colors[index % colors.length],
+    }
+  })
+});
+
+const renderChart = () => {
+  if (chartInstance.value) {
+    chartInstance.value.destroy(); 
+  }
+
+  const ctx = chartCanvas.value.getContext("2d");
+  const data = scholarshipData.value;
+
+  chartInstance.value = new Chart(ctx, {
+    type: "pie",
     data: {
-      labels: scholarshipData.map(item => item.name),
-      datasets: [{
-        data: scholarshipData.map(item => item.percentage),
-        backgroundColor: scholarshipData.map(item => item.color),
-        borderColor: scholarshipData.map(item => item.color),
-        borderWidth: 1,
-        hoverOffset: 10,
-        cutout: "65%",
-      }]
+      labels: data.map((d) => d.name),
+      datasets: [
+        {
+          data: data.map((d) => d.count),
+          backgroundColor: data.map((d) => d.color),
+          borderWidth: 1,
+        },
+      ],
     },
     options: {
       responsive: true,
-      maintainAspectRatio: false,
       plugins: {
         legend: {
-          display: false
+          display: false,
         },
-        tooltip: {
-          callbacks: {
-            label: function (context) {
-              return `${context.label}: ${context.raw}%`;
-            }
-          },
-          backgroundColor: 'rgba(255, 255, 255, 0.9)',
-          titleColor: '#334155',
-          bodyColor: '#334155',
-          borderColor: '#e2e8f0',
-          borderWidth: 1,
-          padding: 10,
-          titleFont: {
-            size: 14,
-            weight: 'bold'
-          },
-          bodyFont: {
-            size: 12
-          }
-        }
       },
-      animation: {
-        animateScale: true,
-        animateRotate: true
-      }
-    }
+    },
   });
-
-  Chart.register({
-    id: 'centerText',
-    afterDraw: function (chart) {
-      const width = chart.width;
-      const height = chart.height;
-      const ctx = chart.ctx;
-
-      ctx.restore();
-      ctx.font = "bold 16px Arial";
-      ctx.fillStyle = "#4F46E5";
-      ctx.textBaseline = "middle";
-
-      const sum = scholarshipData.reduce((acc, item) => acc + item.percentage, 0);
-      const text = `${sum}`;
-      // const textWidth = ctx.measureText(text).width;
-
-      // ctx.fillText(text, width / 2 - textWidth / 2, height / 2 - 10);
-
-      ctx.font = "12px Arial";
-      ctx.fillStyle = "#6B7280";
-      const subText = "";
-      const subTextWidth = ctx.measureText(subText).width;
-
-      ctx.fillText(subText, width / 2 - subTextWidth / 2, height / 2 + 10);
-      ctx.save();
-    }
-  });
-});
-
-const setTimeFilter = (filter) => {
-  timeFilter.value = filter;
 };
+
+const chartCanvas = ref(null);
+const chartInstance = ref(null);
 
 let isOpen = ref(false);
 let modal = ref(null);
@@ -687,6 +671,7 @@ const animateNumber = () => {
     },
   });
 };
+
 const fetchData = async () => {
   const baseUrl = process.env.VUE_APP_API_URL + "/efilling/GetlistEfilling";
   // console.log(process.env.VUE_APP_API_URL);
@@ -694,7 +679,7 @@ const fetchData = async () => {
     const response = await axios.post(baseUrl);
     if (response.data && Array.isArray(response.data.data)) {
       dataArray.value = response.data.data; // Set the data to the reactive variable
-      console.log(dataArray.value);
+      // console.log(dataArray.value);
     } else {
       console.error(
         "API response is not an array or is missing the data array"
@@ -706,8 +691,8 @@ const fetchData = async () => {
   }
 };
 
-onMounted(() => {
-  fetchData();
+onMounted(async () => {
+  await fetchData();
 });
 
 const searchQuery = ref("");
@@ -750,6 +735,24 @@ const scholarship = [
   },
 ];
 
+const statusMap = {
+  1: { label: "รอพิจารณา", color: "purple", icon: "Clock" },
+  2: { label: "อนุมัติแล้ว", color: "green", icon: "CheckCircle" },
+  3: { label: "รอแก้ไข", color: "yellow", icon: "RefreshCcw" },
+};
+
+const statusCounts = computed(() => {
+  const counts = {};
+  dataArray.value.forEach((item) => {
+    const statusID = item.Efilling_statusID;
+    if(!counts[statusID]) {
+      counts[statusID] = 0;
+    }
+    counts[statusID]++;
+  });
+  return counts;
+})
+
 const handleGotoRegisterForm = () => {
   router.push("/registerform");
 };
@@ -758,6 +761,7 @@ onMounted(() => {
   animateNumber(totalData);
 });
 watch(() => dataArray.value.length, animateNumber, { immediate: true });
+watch(scholarshipData, () => { renderChart(); })
 
 watch(timeFilter, () => { });
 </script>

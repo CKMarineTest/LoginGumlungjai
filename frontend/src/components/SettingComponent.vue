@@ -107,81 +107,120 @@
         </div>
 
         <div v-if="section.id === 'getscore'">
-          <div class="grid grid-cols-2 gap-4">
-            <div v-for="scholarship in scholarship" :key="scholarship.id">
-              <button class="bg-blue-600 text-white px-4 py-4 rounded-lg hover:bg-blue-700"
-                @click="selectedScholarship = scholarship; openModal = true;">
-                {{ scholarship.scholarship }}
-              </button>
+          <div class=" mx-auto">
+            <div class="grid grid-cols-2 gap-6 px-4 my-4">
+              <div v-for="scholarship in scholarship" :key="scholarship.id" class="w-full">
+                <button
+                  class="w-full bg-blue-600 text-white px-6 py-5 rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-lg flex items-center justify-center text-center font-medium focus:ring-4 focus:ring-blue-300 focus:outline-none transform hover:-translate-y-1 hover:shadow-xl border-b-4 border-blue-800"
+                  @click="selectedScholarship = scholarship; openModal = true;">
+                  <div class="flex flex-col items-center">
+                    <component :is="scholarship.icon" class="w-6 h-6 mb-2 text-white" />
+                    <span class="truncate font-semibold">{{ scholarship.scholarship }}</span>
+                  </div>
+                </button>
+              </div>
             </div>
           </div>
         </div>
 
-        <GetScoreModal :show="openModal" @close="openModal = false">
-          <template v-if="selectedScholarship">
-            <div class="flex-1 justify-end items-end">
-              <Button class="flex gap-4 bg-green-500 hover:bg-green-600 px-2 py-2 w-8/12 rounded-lg text-white"
-                @click="openCommittedModal = true">
-                <PlusIcon />เพิ่มกรรมการให้คะแนนทุน <strong>{{ selectedScholarship.scholarship }}</strong>
-              </Button>
-            </div>
-            <div class="mt-4" v-if="committedList.length > 0">
-              <h3 class="text-xl font-semibold">กรรมการที่ให้คะแนนทุน {{ selectedScholarship.scholarship }}</h3>
-              <table class="min-w-full table-auto border-collapse mt-2">
-                <thead>
-                  <tr class="bg-gray-100">
-                    <th class="px-4 py-2 text-sm font-semibold text-gray-700">#</th>
-                    <th class="px-4 py-2 text-sm font-semibold text-gray-700">ชื่อ</th>
-                    <th class="px-4 py-2 text-sm font-semibold text-gray-700">นามสกุล</th>
-                    <th class="px-4 py-2 text-sm font-semibold text-gray-700">จัดการ</th>
+        <CommittedModal :show="openCommittedModal" @close="openCommittedModal = false">
+          <div class="p-6">
+            <h1 class="text-2xl font-bold text-center mb-4 text-gray-800">กรรมการทั้งหมด</h1>
+
+            <div class="overflow-x-auto shadow-md rounded-lg">
+              <table class="min-w-full table-auto border-collapse bg-white">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">#
+                    </th>
+                    <th class="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">ชื่อ
+                    </th>
+                    <th class="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                      นามสกุล</th>
+                    <th class="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                      จัดการ</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr v-for="(committed, index) in committedList" :key="index" class="border-b" align="center">
-                    <td class="px-4 py-2 text-sm text-gray-700">{{ index + 1 }}</td>
-                    <td class="px-4 py-2 text-sm text-gray-700">{{ committed.firstName }}</td>
-                    <td class="px-4 py-2 text-sm text-gray-700">{{ committed.lastName }}</td>
-                    <td>
-                      <button class="bg-red-500 hover:bg-red-600 px-1 py-1 w-3/12 rounded-lg text-white" @click="deleteCommitted(index)">
-                        ลบ
+                <tbody class="divide-y divide-gray-200">
+                  <tr v-for="(commit, index) in adminArray" :key="index" class="hover:bg-gray-50 transition-colors">
+                    <td class="px-6 py-4 text-sm text-center text-gray-700">{{ index + 1 }}</td>
+                    <td class="px-6 py-4 text-sm text-center text-gray-700">{{ commit.su_firstname }}</td>
+                    <td class="px-6 py-4 text-sm text-center text-gray-700">{{ commit.su_lastname }}</td>
+                    <td class="px-6 py-4 text-center">
+                      <button
+                        class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded-md text-white text-sm font-medium transition-colors focus:ring-2 focus:ring-green-300 focus:outline-none"
+                        @click="addCommitted(commit.su_firstname, commit.su_lastname).then(() => {
+                          openCommittedModal = false;
+                        })">
+                        เพิ่ม
                       </button>
                     </td>
                   </tr>
                 </tbody>
               </table>
             </div>
-
-          </template>
-        </GetScoreModal>
-
-
-        <CommittedModal :show="openCommittedModal" @close="openCommittedModal = false">
-          <h1 align="center" class="text-2xl mb-2">กรรมการทั้งหมด</h1>
-          <table class="min-w-full table-auto border-collapse">
-            <thead class="border-b">
-              <tr align="center">
-                <th class="px-4 py-4 text-center text-sm font-semibold text-gray-700">#</th>
-                <th class="px-4 py-4 text-center text-sm font-semibold text-gray-700">ชื่อ</th>
-                <th class="px-4 py-4 text-center text-sm font-semibold text-gray-700">นามสกุล</th>
-                <th class="px-4 py-4 text-center text-sm font-semibold text-gray-700">จัดการ</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(commit, index) in adminArray" :key="index" align="center" class="border-b hover:bg-gray-100">
-                <td class="px-4 py-4 text-sm text-center text-gray-700">{{ index + 1 }}</td>
-                <td class="px-4 py-4 text-sm text-center text-gray-700">{{ commit.su_firstname }}</td>
-                <td class="px-4 py-4 text-sm text-center text-gray-700">{{ commit.su_lastname }}</td>
-                <td>
-                  <button class="bg-green-500 hover:bg-green-600 px-1 py-1 w-8/12 rounded-lg text-white" @click="addCommitted(commit.su_firstname, commit.su_lastname).then(() => {
-                    openCommittedModal = false;
-                  })">
-                    เพิ่ม
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          </div>
         </CommittedModal>
+
+        <GetScoreModal :show="openModal" @close="openModal = false">
+          <div class="p-6" v-if="selectedScholarship">
+            <div class="flex justify-between items-center mb-6">
+              <h2 class="text-xl font-bold text-gray-800">จัดการกรรมการ <strong>{{ selectedScholarship.scholarship
+              }}</strong></h2>
+              <Button
+                class="flex items-center gap-2 bg-green-500 hover:bg-green-600 px-4 py-2 rounded-md text-white text-sm font-medium transition-colors focus:ring-2 focus:ring-green-300 focus:outline-none"
+                @click="openCommittedModal = true">
+                <PlusIcon class="w-5 h-5" />
+                <span>เพิ่มกรรมการ</span>
+              </Button>
+            </div>
+
+            <div class="mt-6" v-if="committedList.length > 0">
+              <h3 class="text-lg font-semibold mb-3 text-gray-700">กรรมการที่ให้คะแนนทุน {{
+                selectedScholarship.scholarship }}</h3>
+
+              <div class="overflow-x-auto shadow-md rounded-lg">
+                <table class="min-w-full table-auto border-collapse bg-white">
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th class="px-6 py-3 text-xs font-semibold text-gray-700 uppercase tracking-wider text-center">#
+                      </th>
+                      <th class="px-6 py-3 text-xs font-semibold text-gray-700 uppercase tracking-wider text-center">
+                        ชื่อ</th>
+                      <th class="px-6 py-3 text-xs font-semibold text-gray-700 uppercase tracking-wider text-center">
+                        นามสกุล</th>
+                      <th class="px-6 py-3 text-xs font-semibold text-gray-700 uppercase tracking-wider text-center">
+                        จัดการ</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-200">
+                    <tr v-for="(committed, index) in committedList" :key="index"
+                      class="hover:bg-gray-50 transition-colors">
+                      <td class="px-6 py-4 text-sm text-gray-700 text-center">{{ index + 1 }}</td>
+                      <td class="px-6 py-4 text-sm text-gray-700 text-center">{{ committed.firstName }}</td>
+                      <td class="px-6 py-4 text-sm text-gray-700 text-center">{{ committed.lastName }}</td>
+                      <td class="px-6 py-4 text-center">
+                        <button
+                          class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-md text-white text-sm font-medium transition-colors focus:ring-2 focus:ring-red-300 focus:outline-none"
+                          @click="deleteCommitted(index)">
+                          ลบ
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="mt-8 text-center" v-else>
+              <p class="text-gray-500">ยังไม่มีกรรมการที่ถูกเพิ่มสำหรับทุนนี้</p>
+            </div>
+          </div>
+
+          <div class="p-6 text-center" v-else>
+            <p class="text-gray-500">กรุณาเลือกทุนการศึกษา</p>
+          </div>
+        </GetScoreModal>
       </div>
     </div>
   </main>
@@ -195,7 +234,7 @@ import { useToastService } from "@/lib/toastService";
 
 import axios from "axios";
 
-import { PlusIcon } from "lucide-vue-next";
+import { PlusIcon, GraduationCap, Stethoscope, Microscope, ScanHeart, Activity } from "lucide-vue-next";
 
 import GetScoreModal from "./Modal/GetScoreModal.vue";
 import CommittedModal from "./Modal/CommittedModal.vue";
@@ -417,26 +456,31 @@ const scholarship = [
     id: "PJ1",
     scholarship: "โครงการกำลังใจสร้างครูของชาติ",
     amount: "30,000",
+    icon: GraduationCap
   },
   {
     id: "PJ2",
     scholarship: "โครงการทุนคุณหมอของกำลังใจ",
     amount: "50,000",
+    icon: Stethoscope
   },
   {
     id: "PJ3",
     scholarship: "โครงการทุน Gumlungjai Scholarship",
     amount: "40,000",
+    icon: Activity
   },
   {
     id: "PJ4",
     scholarship: "โครงการทุนกำลังใจให้พยาบาล",
     amount: "40,000",
+    icon: ScanHeart
   },
   {
     id: "PJ5",
     scholarship: "โครงการทุนนักจิตวิทยาสร้างกำลังใจ",
     amount: "40,000",
+    icon: Microscope
   },
 ];
 

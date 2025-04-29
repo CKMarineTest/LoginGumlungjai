@@ -379,7 +379,7 @@
             </table>
           </div>
 
-          <div
+          <!-- <div
             class="bg-gradient-to-r from-gray-50 to-white px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between border-t border-gray-100">
             <p class="text-sm text-gray-600 mb-4 sm:mb-0">
               แสดง
@@ -412,7 +412,7 @@
                 </svg>
               </button>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </main>

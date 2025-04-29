@@ -1,5 +1,5 @@
 <template>
-    <div v-show="visible" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-20">
+    <div v-show="visible" class="fixed inset-0 z-100 flex items-center justify-center bg-black bg-opacity-20">
         <div ref="modalRef" class="bg-white w-full max-w-5xl p-8 rounded-2xl shadow-2xl relative">
             <button @click="closeModal"
                 class="absolute top-4 right-4 text-gray-500 hover:text-red-500 text-2xl font-bold">×</button>
