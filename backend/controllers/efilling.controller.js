@@ -56,7 +56,7 @@ exports.UpdateEfillingStatusEdit = async (req, res) => {
 
     const data = await Efilling.updateEfillingStatusEdit(idCard);
     res.status(200).json({ success: true, data });
-  }catch(error) {
+  } catch (error) {
     console.error("Error to UpdateEfillingStatusEdit", error);
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
@@ -98,30 +98,24 @@ exports.GetEfillingController = async (req, res) => {
   }
 };
 
-
 exports.ConfirmStatusByGumlungjai = async (req, res) => {
   try {
-
     const user_data = req.body;
 
     let Sts_id;
 
-
-    if(user_data.ConFirmSts == 'gumlungjaiApprove')
-    {
+    if (user_data.ConFirmSts == 'gumlungjaiApprove') {
       Sts_id = 2;
-    }
-    else
-    {
+    } else if (user_data.ConFirmSts === 'gumlungjaiEdit') {
       Sts_id = 0;
     }
 
-
-    const data = await Efilling.ConfirmStatus(sts_id,user_data);
-    res.status(200).json({ success: true, data });
-  }catch(error) {
+    const data = await Efilling.ConfirmStatus(Sts_id, user_data.idCard);
+    res.status(200).json({ success: true, data: data });
+  } catch (error) {
     console.error("Error to UpdateEfillingStatusEdit", error);
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 }
+
 

@@ -1786,11 +1786,11 @@
                 </div>
                 <br />
                 <div class="flex justify-center space-x-4">
-                  <button @click="editDocument"
+                  <button @click="ConfirmStatusEdit"
                     class="bg-yellow-500 flex items-center gap-2 p-4 px-4 rounded-xl text-white hover:bg-yellow-600 transition ease">
                     <Edit /> แก้ไขเอกสาร
                   </button>
-                  <button @click="confirmCheck"
+                  <button @click="ConfirmStatus"
                     class="bg-green-600 flex items-center gap-2 p-4 px-4 rounded-xl text-white hover:bg-green-700 transition ease">
                     <Check /> ยืนยันการตรวจสอบ
                   </button>
@@ -1906,12 +1906,13 @@ const fetchData = async () => {
     });
 };
 
-const editDocument = async () => {
-  const baseUrl = process.env.VUE_APP_API_URL + "/efilling/UpdateEfillingStatusEdit";
+const ConfirmStatus = async () => {
+  const baseUrl = process.env.VUE_APP_API_URL + "/efilling/ConfirmStatusByGumlungjai";
 
   try {
     const response = await axios.post(baseUrl, {
       idCard: idcard,
+      ConFirmSts: 'gumlungjaiApprove'
     });
 
     if (response) {
@@ -1923,31 +1924,37 @@ const editDocument = async () => {
       });
     }
   } catch (error) {
-    console.log("ERROR:", error);
+    console.error("ERROR:", error);
   }
 }
 
-const confirmCheck = async () => {
-  const baseUrl = process.env.VUE_APP_API_URL + "/efilling/UpdateEfillingStatusSuccess";
+const ConfirmStatusEdit = async () => {
+  const baseUrl = process.env.VUE_APP_API_URL + "/efilling/ConfirmStatusByGumlungjai";
 
   try {
     const response = await axios.post(baseUrl, {
       idCard: idcard,
+      ConFirmSts: 'gumlungjaiEdit'
     });
 
-    if (response) {
+    if (response.data.success) {
       router.push("/registerform").then(() => {
         Toast.fire({
           icon: "success",
           title: "ยืนยันการตรวสอบเอกสารสำเร็จ",
         });
       });
+    } else {
+      Toast.fire({
+        icon: "error",
+        title: "เกิดข้อผิดพลาด",
+      });
     }
-    // console.log(response.json());
   } catch (error) {
     console.log("ERROR:", error);
   }
 }
+
 
 onMounted(() => {
   fetchData();
@@ -1991,7 +1998,6 @@ const closeMedicalModal = () => {
 
 const handleDownLoad = (filePath) => {
   try {
-    console.log(filePath);
     // Check if filePath is valid
     if (!filePath) {
       throw new Error("File path is required");

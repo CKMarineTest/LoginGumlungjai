@@ -104,7 +104,6 @@ async function getefilling_siblings(E_ID) {
         FROM efilling_siblings 
         WHERE E_ID = @E_ID
       `);
-      console.log(result.recordset);
     return result.recordset;
   } catch (error) {
     console.error(`Database Query Error:`, error);
@@ -174,18 +173,23 @@ async function updateEfillingStatusEdit(idcard) {
   }
 }
 
-async function ConfirmStatus(sts_id,idcard) {
+async function ConfirmStatus(sts_id, idcard) {
   try {
     const pool = await sql.connect(config);
     const result = await pool.request()
-      .input("sts_id", sql.INT,sts_id)
+      .input("sts_id", sql.Int, sts_id)
       .input("idCard", sql.NVarChar, String(idcard))
       .query("UPDATE Efilling SET Efilling_statusID = @sts_id WHERE idcard = @idCard");
+
+    if (result.rowsAffected[0] === 0) {
+      console.log("No rows were updated. Check if the idcard exists in the database.");
+    }
     return result.recordset;
-  }catch(error) {
+  } catch (error) {
     console.error(`Database Query Error:`, error);
   }
 }
+
 
 
 

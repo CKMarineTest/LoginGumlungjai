@@ -441,11 +441,9 @@ const fetchData = async () => {
 
   try {
     const response = await axios.post(baseUrl);
-    console.log("Raw response:", response.data);
 
     if (response.data && Array.isArray(response.data.data)) {
       dataArray.value = response.data.data;
-      console.log("Fetched dataArray:", dataArray.value);
     } else {
       console.error("API response is not an array or is missing the data array");
     }
@@ -512,17 +510,12 @@ onMounted(async () => {
   dataArray.value = Array.isArray(dataArrayRes.data.data) ? dataArrayRes.data.data : [];
   statusArray.value = Array.isArray(statusRes.data.data) ? statusRes.data.data : [];
 
-
-  console.log("dataArrayRes", dataArrayRes.data);
-  console.log("statusRes", statusRes.data);
-
 })
 
 const statusMap = computed(() => {
   const map = {};
   for (const status of statusArray.value) {
     map[status.Efilling_StatusID] = status.Efilling_DescriptionLocal;
-    // console.log(status.Efilling_DescriptionLocal)
   }
   return map;
 })
@@ -572,7 +565,7 @@ const filteredByScholarship = (scholarship) => {
 }
 
 watch(filteredScholarship, (val) => {
-  console.log("Selected", val);
+  // console.log("Selected", val);
 })
 
 const closeSortModal = () => {

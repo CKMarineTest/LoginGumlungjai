@@ -409,11 +409,7 @@ const submit = () => {
     alert("รหัสผ่านใหม่และรหัสผ่านยืนยันไม่ตรงกัน");
     return;
   }
-
-  console.log("Current Password", formData.value.currentPassword);
-  console.log("New Password", formData.value.newPassword);
-  console.log("Confirm Password", formData.value.confirmNewPassword);
-
+  
   showSuccessAlert("เปลี่ยนรหัสผ่านเสร็จสิ้น")
 
   formData.value.currentPassword = "";
