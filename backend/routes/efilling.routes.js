@@ -9,4 +9,6 @@ module.exports = app => {
 
     app.post('/efilling/UpdateEfillingStatusSuccess', efilling.UpdateEfillingStatusSuccess);
     app.post('/efilling/UpdateEfillingStatusEdit', efilling.UpdateEfillingStatusEdit);
+
+    app.post('/efilling/ConfirmStatusByGumlungjai', efilling.ConfirmStatusByGumlungjai);
   };

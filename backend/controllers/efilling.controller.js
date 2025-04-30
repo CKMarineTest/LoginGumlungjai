@@ -98,3 +98,30 @@ exports.GetEfillingController = async (req, res) => {
   }
 };
 
+
+exports.ConfirmStatusByGumlungjai = async (req, res) => {
+  try {
+
+    const user_data = req.body;
+
+    let Sts_id;
+
+
+    if(user_data.ConFirmSts == 'gumlungjaiApprove')
+    {
+      Sts_id = 2;
+    }
+    else
+    {
+      Sts_id = 0;
+    }
+
+
+    const data = await Efilling.ConfirmStatus(sts_id,user_data);
+    res.status(200).json({ success: true, data });
+  }catch(error) {
+    console.error("Error to UpdateEfillingStatusEdit", error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+}
+

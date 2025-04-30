@@ -174,5 +174,19 @@ async function updateEfillingStatusEdit(idcard) {
   }
 }
 
+async function ConfirmStatus(sts_id,idcard) {
+  try {
+    const pool = await sql.connect(config);
+    const result = await pool.request()
+      .input("sts_id", sql.INT,sts_id)
+      .input("idCard", sql.NVarChar, String(idcard))
+      .query("UPDATE Efilling SET Efilling_statusID = @sts_id WHERE idcard = @idCard");
+    return result.recordset;
+  }catch(error) {
+    console.error(`Database Query Error:`, error);
+  }
+}
 
-module.exports = { getEfillingService, getEfillingByIdCardService ,getEfilling_Activity,getEfilling_certificate,getefilling_family_medical_history,getEfilling_scholarship,getefilling_siblings,getEfilling_Work, delete_efilling, getEfilling_status, updateEfillingStatusSuccess, updateEfillingStatusEdit };
+
+
+module.exports = { getEfillingService, getEfillingByIdCardService ,getEfilling_Activity,getEfilling_certificate,getefilling_family_medical_history,getEfilling_scholarship,getefilling_siblings,getEfilling_Work, delete_efilling, getEfilling_status, updateEfillingStatusSuccess, updateEfillingStatusEdit,ConfirmStatus };
