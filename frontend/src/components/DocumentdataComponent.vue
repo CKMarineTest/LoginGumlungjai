@@ -1824,6 +1824,15 @@ import SidebarComponent from "./Menu/SidebarComponent.vue";
 import ScoreTableComponent from "./ScoreTableComponent.vue";
 import BasicScoreTableComponent from './BasicScoreTableComponent.vue';
 import EssayScoreComponent from './EssayScoreComponent.vue';
+
+import { useToastService } from "./../lib/toastService";
+
+const { showSuccess } = useToastService();
+
+const showSuccessAlert = (message) => {
+  showSuccess(message);
+}
+
 // import SiblingInfoFormConponent from "./SiblingInfoFormConponent.vue";
 /* import VolunteerComponent from "./VolunteerComponent.vue";
 import EssaySubmissionComponent from "./EssaySubmissionComponent.vue";
@@ -1917,10 +1926,7 @@ const ConfirmStatus = async () => {
 
     if (response) {
       router.push("/registerform").then(() => {
-        Toast.fire({
-          icon: "success",
-          title: "ปรับสถานะแก้ไขเอกสาร",
-        });
+        showSuccessAlert('ตรวจสอบเอกสารสำเร็จ');
       });
     }
   } catch (error) {
@@ -1939,10 +1945,7 @@ const ConfirmStatusEdit = async () => {
 
     if (response.data.success) {
       router.push("/registerform").then(() => {
-        Toast.fire({
-          icon: "success",
-          title: "ยืนยันการตรวสอบเอกสารสำเร็จ",
-        });
+        showSuccessAlert('ยืนยันการแก้ไขเอกสารสำเร็จ');
       });
     } else {
       Toast.fire({

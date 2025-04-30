@@ -61,7 +61,7 @@
           <div
             class="bg-white rounded-xl shadow-lg p-6 flex items-center transform transition hover:scale-105 duration-300 border-l-4 border-green-600">
             <div class="rounded-full bg-green-100 p-4 mr-4">
-              <Check class="h-6 w-6 text-green-600" />
+              <CheckCircle class="h-6 w-6 text-green-600" />
             </div>
             <div>
               <p class="text-gray-500 text-sm font-medium">ตรวจเสร็จสิ้นรอกรรมการลงคะแนน</p>
@@ -391,7 +391,7 @@ import {
   LinearScale,
 } from "chart.js";
 
-import { CircleAlert, Check } from "lucide-vue-next";
+import { CircleAlert, Check, CheckCircle } from "lucide-vue-next";
 
 import { Chart } from "chart.js/auto";
 

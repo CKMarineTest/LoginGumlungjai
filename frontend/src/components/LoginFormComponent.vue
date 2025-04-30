@@ -1,6 +1,6 @@
 <template>
   <div
-    class="min-h-screen bg-gradient-to-br from-indigo-100 via-blue-50 to-purple-50 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
+    class="min-h-screen  bg-blue-200 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-lg">
       <div class="text-center animate-fadeIn">
         <h1 class="text-4xl font-bold text-gray-900 tracking-tight mb-2">
